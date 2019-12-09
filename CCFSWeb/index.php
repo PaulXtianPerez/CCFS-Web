@@ -28,6 +28,9 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="dist/css/main.css">
+
+    <script src="http://code.jquery.com/jquery-1.4.min.js" type="text/javascript"></script>
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -98,14 +101,110 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <div>
-  <!-- BEGIN topbar.php INCLUDE -->
-  <?php include "sidebar.php"; ?>
-  <!-- END topbar.php INCLUDE -->
-</div>
+  <aside class="main-sidebar sidebar-gradient-green elevation-4">
+    <!-- Brand Logo -->
+    <a href="index.php" class="brand-link">
+      <img src="dist/img/CCFS_logo.png" alt="CCFS Logo" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text font-weight-light">CCFS</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="dist/img/users.png" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block agray">Paul Christian Perez</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-home"></i>
+              <p>
+                Homepage
+              </p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="SchoolYearList.html" class="nav-link">
+              <i class="nav-icon fas fa-calendar"></i>
+              <p>
+              Create School Year
+              </p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Enroll Student
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href=# class="nav-link" id="newenroll">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Enroll New Student</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/layout/boxed.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Enroll Existing Student</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="SchoolYearList.html" class="nav-link">
+              <i class="nav-icon fas fa-list"></i>
+              <p>
+                List of School Years
+              </p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href=# id="cracc" class="nav-link active" >
+              <i class="nav-icon fas fa-user-plus"></i>
+              <p>
+                Create Account
+              </p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="Accounts.html" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                List of Accounts
+              </p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="Accounts.html" class="nav-link">
+              <i class="nav-icon fas fa-percent"></i>
+              <p>
+                Discounts & Sponsorship
+              </p>
+            </a>
+          </li>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper" id="contents">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
@@ -122,6 +221,7 @@
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
+  </div>
     <!-- /.content-header -->
 
     <!-- Main content -->
@@ -131,6 +231,7 @@
         <div class="row">
           <!-- Left col -->
     <!-- /.content -->
+  </section>
   </div>
   <!-- /.content-wrapper -->
 <!--   <footer class="main-footer">
@@ -147,6 +248,44 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
+<!--
+<script type="text/javascript">
+		$(document).ready(function(){e
+		   $("#cracc").click(function(){
+		   	$('.content-wrapper').load('CreateAccount.php');
+		    //alert("Thanks for visiting!");
+		   });
+
+		   $("#page2").click(function(){
+		   	$('#result').load('pages/page2.html');
+		     //alert("Thanks for visiting!");
+		   });
+		 });
+	</script>
+-->
+
+<script type="text/javascript">
+  function divload(){
+  document.getElementById("contents").innerHTML='<object type="text/html" data="CreateAccount.php" ></object>';
+  }
+</script>
+
+
+<script>
+$(document).ready( function() {
+    $("#cracc").on("click", function() {
+        $("#contents").load("CreateAccount.php");
+    });
+});
+</script>
+
+<script>
+$(document).ready( function() {
+    $("#newenroll").on("click", function() {
+        $("#contents").load("pages/forms/general.html");
+    });
+});
+</script>
 
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
