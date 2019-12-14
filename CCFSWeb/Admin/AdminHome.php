@@ -178,12 +178,11 @@
   </section>
   </div>
   <!-- /.content-wrapper -->
-<!--   <footer class="main-footer">
+  <footer class="main-footer">
     <strong>Cypress Christian Foundation School.</strong>
-    All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
     </div>
-  </footer> -->
+  </footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -193,38 +192,9 @@
 </div>
 <!-- ./wrapper -->
 
-<script>
-$(document).ready( function() {
-    $("#crAcc").on("click", function() {
-        $("#contents").load("CreateAccount.php");
-    });
-});
 
-$(document).ready( function() {
-    $("#crSchYr").on("click", function() {
-        $("#contents").load("CreateSchoolYear.php");
-    });
-});
-
-$(document).ready( function() {
-    $("#schYrsList").on("click", function() {
-        $("#contents").load("ListOfSchoolYears.php");
-    });
-});
-
-$(document).ready( function() {
-    $("#accList").on("click", function() {
-        $("#contents").load("ListOfAccounts.php");
-    });
-});
-
-$(document).ready( function() {
-    $("#newEnroll").on("click", function() {
-        $("#contents").load("../Enrollment/EnrollmentNew.php");
-    });
-});
-</script>
-
+<!-- Display Pages -->
+<script src="../Resources/js/displaypage.js"></script>
 <!-- jQuery -->
 <script src="../Resources/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
