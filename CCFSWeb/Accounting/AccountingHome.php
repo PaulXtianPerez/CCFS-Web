@@ -42,7 +42,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="AdminHome.php" class="nav-link">Home</a>
+        <a href="AccountingHome.php" class="nav-link">Home</a>
       </li>
     </ul>
 
@@ -57,7 +57,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-gradient-green elevation-4">
     <!-- Brand Logo -->
-    <a href="AdminHome.php" class="brand-link">
+    <a href="AccountingHome.php" class="brand-link">
       <img src="../Resources/dist/img/CCFS_logo.png" alt="CCFS Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">CCFS</span>
     </a>
@@ -80,7 +80,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="AdminHome.php" class="nav-link active">
+            <a href="AccountingHome.php" class="nav-link active">
               <i class="nav-icon fas fa-home"></i>
               <p>Homepage</p>
             </a>
@@ -134,12 +134,11 @@
   </section>
   </div>
   <!-- /.content-wrapper -->
-<!--   <footer class="main-footer">
+   <footer class="main-footer">
     <strong>Cypress Christian Foundation School.</strong>
-    All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
     </div>
-  </footer> -->
+  </footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -149,38 +148,8 @@
 </div>
 <!-- ./wrapper -->
 
-<script>
-$(document).ready( function() {
-    $("#crAcc").on("click", function() {
-        $("#contents").load("CreateAccount.php");
-    });
-});
-
-$(document).ready( function() {
-    $("#crSchYr").on("click", function() {
-        $("#contents").load("CreateSchoolYear.php");
-    });
-});
-
-$(document).ready( function() {
-    $("#schYrsList").on("click", function() {
-        $("#contents").load("ListOfSchoolYears.php");
-    });
-});
-
-$(document).ready( function() {
-    $("#accList").on("click", function() {
-        $("#contents").load("ListOfAccounts.php");
-    });
-});
-
-$(document).ready( function() {
-    $("#newEnroll").on("click", function() {
-        $("#contents").load("../Enrollment/EnrollmentNew.php");
-    });
-});
-</script>
-
+<!-- Display Pages -->
+<script src="../Resources/js/displaypage.js"></script>
 <!-- jQuery -->
 <script src="../Resources/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
