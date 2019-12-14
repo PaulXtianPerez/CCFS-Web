@@ -27,10 +27,9 @@
   <link rel="stylesheet" href="../Resources/plugins/summernote/summernote-bs4.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="dist/css/main.css">
+  <link rel="stylesheet" type="text/css" href="dist/css/main.css">
 
-    <script src="http://code.jquery.com/jquery-1.4.min.js" type="text/javascript"></script>
-
+  <script src="Resources/plugins/jquery/jquery.min.js"></script>
 </head>
 <body>
   <h1>TODO</h1>
