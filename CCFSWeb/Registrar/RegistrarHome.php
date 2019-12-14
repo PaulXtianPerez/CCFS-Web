@@ -177,12 +177,11 @@
   </section>
   </div>
   <!-- /.content-wrapper -->
-<!--   <footer class="main-footer">
+<footer class="main-footer">
     <strong>Cypress Christian Foundation School.</strong>
-    All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
     </div>
-  </footer> -->
+  </footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -192,20 +191,8 @@
 </div>
 <!-- ./wrapper -->
 
-<script>
-$(document).ready( function() {
-    $("#studList").on("click", function() {
-        $("#contents").load("ListOfStudents.php");
-    });
-});
-
-$(document).ready( function() {
-    $("#newEnroll").on("click", function() {
-        $("#contents").load("../Enrollment/EnrollmentNew.php");
-    });
-});
-</script>
-
+<!-- Display Pages -->
+<script src="../Resources/js/displaypage.js"></script>
 <!-- jQuery -->
 <script src="../Resources/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
