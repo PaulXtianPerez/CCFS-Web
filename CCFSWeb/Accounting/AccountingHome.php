@@ -148,7 +148,7 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- Display Pages -->
+<!-- Open new page -->
 <script src="../Resources/js/displaypage.js"></script>
 <!-- jQuery -->
 <script src="../Resources/plugins/jquery/jquery.min.js"></script>
