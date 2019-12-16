@@ -86,13 +86,13 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href=# id="crSchYr" class="nav-link">
+            <a href="#payments" id="payments" class="nav-link">
               <i class="nav-icon fa fa-money-bill-alt"></i>
               <p>Payments</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href=# id="schYrsList" class="nav-link">
+            <a href="#reports" id="reports" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>Generate Reports</p>
             </a>
