@@ -76,7 +76,7 @@
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false" id="menus">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
@@ -86,13 +86,13 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href=# id="crSchYr" class="nav-link" onclick="openPage('CreateSchoolYear.php')">
+            <a href="#createschoolyear" id="crSchYr" class="nav-link" onclick="openPage('CreateSchoolYear.php')">
               <i class="nav-icon fas fa-calendar"></i>
               <p>Create School Year</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href=# id="crSchYr" class="nav-link">
+            <a href="#createcurriculum" id="crCurr" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>Create Curriculum</p>
             </a>
@@ -104,13 +104,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href=# class="nav-link" id="newEnroll" onclick="openPage('../Enrollment/EnrollmentNew.php')">
+                <a href="#enrollnew" class="nav-link" id="newEnroll" onclick="openPage('../Enrollment/EnrollmentNew.php')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Enroll New Student</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href=# class="nav-link">
+                <a href="#enrollcontinuing" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Enroll Existing Student</p>
                 </a>
@@ -118,25 +118,25 @@
             </ul>
           </li>
           <li class="nav-item has-treeview">
-            <a href=# id="schYrsList" class="nav-link" onclick="openPage('ListOfSchoolYears.php')">
+            <a href="#listofschoolyears" id="schYrsList" class="nav-link" onclick="openPage('ListOfSchoolYears.php')">
               <i class="nav-icon fas fa-list"></i>
               <p>List of School Years</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href=# id="crAcc" class="nav-link" onclick="openPage('CreateAccount.php')">
+            <a href="#createaccount" id="crAcc" class="nav-link" onclick="openPage('CreateAccount.php')">
               <i class="nav-icon fas fa-user-plus"></i>
               <p>Create Account</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href=# id="accList" class="nav-link" onclick="openPage('ListOfAccounts.php')">
+            <a href="#listofaccounts" id="accList" class="nav-link" onclick="openPage('ListOfAccounts.php')">
               <i class="nav-icon fas fa-users"></i>
               <p>List of Accounts</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href=# id="discSpons" class="nav-link">
+            <a href="#discountsponsor" id="discSpons" class="nav-link">
               <i class="nav-icon fas fa-percent"></i>
               <p>Discounts & Sponsorship</p>
             </a>
@@ -191,6 +191,21 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
+
+<script>
+$(document).ready(function() {
+    if (location.hash) {
+        $("a[href='" + location.hash + "']").tab("show");
+    }
+    $(document.body).on("click", "a[data-toggle='tab']", function(event) {
+        location.hash = this.getAttribute("href");
+    });
+});
+$(window).on("popstate", function() {
+    var anchor = location.hash || $("a[data-toggle='tab']").first().attr("href");
+    $("a[href='" + anchor + "']").tab("show");
+});
+</script>
 
 
 <!-- Open new page -->
