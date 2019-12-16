@@ -1,4 +1,18 @@
 <!DOCTYPE html>
+
+<?php
+// php populate html table from mysql database
+
+// connect to mysql
+$connect = mysqli_connect("localhost", "root", "", "ccfs");
+
+// mysql select query
+$query = "SELECT `accid`, CONCAT(`fname`, ' ',`lname`), `username`, `type`, `accstatus` FROM `accounts`";
+
+// result for method
+$result = mysqli_query($connect, $query);
+?>
+
 <html>
 <head>
   <meta charset="utf-8">
@@ -79,28 +93,18 @@
                   <th>Status</th>
                 </tr>
                 </thead>
-                <tbody> <!-- Sample data only. -->
-                <tr>
-                  <td>CCFS-01</td>
-                  <td>Paul Perez</td>
-                  <td>paul_admin</td>
-                  <td>Admin</td>
-                  <td>Active</td>
-                </tr>
-                <tr>
-                  <td>CCFS-02</td>
-                  <td>Imran Mahmood</td>
-                  <td>imran_reg</td>
-                  <td>Registrar</td>
-                  <td>Active</td>
-                </tr>
-                <tr>
-                  <td>CCFS-03</td>
-                  <td>Adam Sobremonte</td>
-                  <td>adam_acc</td>
-                  <td>Accounting</td>
-                  <td>Active</td>
-                </tr>
+                <tbody> <!-- Populate from database. -->
+                  <?php while($row1 = mysqli_fetch_array($result)):;?>
+                    <tr>
+                      <td><?php echo $row1[0];?></td>
+                      <td><?php echo $row1[1];?></td>
+                      <td><?php echo $row1[2];?></td>
+                      <td><?php echo $row1[3];?></td>
+                      <td><?php echo $row1[4];?></td>
+                      <td> <button class='btn btn-primary'>Button</button> </td>
+                    </tr>
+                  <?php endwhile;?>
+                </tbody>
                 </tfoot>
               </table>
             </div>
@@ -111,15 +115,7 @@
           <!-- Left col -->
     <!-- /.content -->
   </div>
-
-
   <!-- /.content-wrapper -->
-<!--   <footer class="main-footer">
-    <strong>Copyright &copy; 2018-2019 Cypress Christian Foundation School.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-    </div>
-  </footer> -->
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

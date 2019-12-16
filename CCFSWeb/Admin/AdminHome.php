@@ -86,7 +86,7 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href=# id="crSchYr" class="nav-link">
+            <a href=# id="crSchYr" class="nav-link" onclick="openPage('CreateSchoolYear.php')">
               <i class="nav-icon fas fa-calendar"></i>
               <p>Create School Year</p>
             </a>
@@ -104,7 +104,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href=# class="nav-link" id="newEnroll">
+                <a href=# class="nav-link" id="newEnroll" onclick="openPage('../Enrollment/EnrollmentNew.php')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Enroll New Student</p>
                 </a>
@@ -118,19 +118,19 @@
             </ul>
           </li>
           <li class="nav-item has-treeview">
-            <a href=# id="schYrsList" class="nav-link">
+            <a href=# id="schYrsList" class="nav-link" onclick="openPage('ListOfSchoolYears.php')">
               <i class="nav-icon fas fa-list"></i>
               <p>List of School Years</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href=# id="crAcc" class="nav-link" >
+            <a href=# id="crAcc" class="nav-link" onclick="openPage('CreateAccount.php')">
               <i class="nav-icon fas fa-user-plus"></i>
               <p>Create Account</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href=# id="accList" class="nav-link">
+            <a href=# id="accList" class="nav-link" onclick="openPage('ListOfAccounts.php')">
               <i class="nav-icon fas fa-users"></i>
               <p>List of Accounts</p>
             </a>
@@ -193,7 +193,7 @@
 <!-- ./wrapper -->
 
 
-<!-- Display Pages -->
+<!-- Open new page -->
 <script src="../Resources/js/displaypage.js"></script>
 <!-- jQuery -->
 <script src="../Resources/plugins/jquery/jquery.min.js"></script>

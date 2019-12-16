@@ -1,4 +1,18 @@
 <!DOCTYPE html>
+
+<?php
+// php populate html table from mysql database
+
+// connect to mysql
+$connect = mysqli_connect("localhost", "root", "", "ccfs");
+
+// mysql select query
+$query = "SELECT CONCAT(`yearstart`, '-',`yearend`), `status` FROM `schoolyear`";
+
+// result for method
+$result = mysqli_query($connect, $query);
+?>
+
 <html>
 <head>
   <meta charset="utf-8">
@@ -46,7 +60,7 @@
     <div>
 
   <!-- Content Wrapper. Contains page content -->
-  <div>
+  <div id="contents">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
@@ -77,22 +91,15 @@
                   <th>Action</th>
                 </tr>
                 </thead>
-                <tbody> <!-- Sample data only. -->
-                <tr>
-                  <td>2018-2019</td>
-                  <td>Inactive</td>
-                  <td>Activate</td>
-                </tr>
-                <tr>
-                  <td>2019-2020</td>
-                  <td>Active</td>
-                  <td>Deactivate</td>
-                </tr>
-                <tr>
-                  <td>2020-2021</td>
-                  <td>Inactive</td>
-                  <td>Activate</td>
-                </tr>
+                <tbody> <!-- Populate from database. -->
+                  <?php while($row1 = mysqli_fetch_array($result)):;?>
+                    <tr onclick="DoNav('../Registrar/ListOfArchivedStudents.php');">
+                      <td><?php echo $row1[0];?></td>
+                      <td><?php echo $row1[1];?></td>
+                      <td> <button class='btn btn-primary'>Activate</button> </td>
+                    </tr>
+                  <?php endwhile;?>
+                </tbody>
                 </tfoot>
               </table>
             </div>
@@ -103,15 +110,7 @@
           <!-- Left col -->
     <!-- /.content -->
   </div>
-
-
   <!-- /.content-wrapper -->
-<!--   <footer class="main-footer">
-    <strong>Copyright &copy; 2018-2019 Cypress Christian Foundation School.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-    </div>
-  </footer> -->
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -121,6 +120,9 @@
 </div>
 <!-- ./wrapper -->
 
+
+<!-- Open new page -->
+<script src="../Resources/js/displaypage.js"></script>
 <!-- jQuery -->
 <script src="../Resources/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
