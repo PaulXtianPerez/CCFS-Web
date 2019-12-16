@@ -92,7 +92,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href=# class="nav-link" id="newEnroll">
+                <a href=# class="nav-link" id="newEnroll" onclick="openPage('../Enrollment/EnrollmentNew.php')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Enroll New Student</p>
                 </a>
@@ -106,7 +106,7 @@
             </ul>
           </li>
           <li class="nav-item has-treeview">
-            <a href=# id="studList" class="nav-link">
+            <a href=# id="studList" class="nav-link" onclick="openPage('ListOfStudents.php')">
               <i class="nav-icon fas fa-list"></i>
               <p>List Of Students</p>
             </a>
@@ -191,7 +191,8 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- Display Pages -->
+
+<!-- Open new page -->
 <script src="../Resources/js/displaypage.js"></script>
 <!-- jQuery -->
 <script src="../Resources/plugins/jquery/jquery.min.js"></script>

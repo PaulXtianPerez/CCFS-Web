@@ -93,15 +93,7 @@
           <!-- Left col -->
     <!-- /.content -->
   </div>
-
-
   <!-- /.content-wrapper -->
-<!--   <footer class="main-footer">
-    <strong>Copyright &copy; 2018-2019 Cypress Christian Foundation School.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-    </div>
-  </footer> -->
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
