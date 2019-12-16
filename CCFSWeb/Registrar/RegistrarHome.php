@@ -92,13 +92,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href=# class="nav-link" id="newEnroll" onclick="openPage('../Enrollment/EnrollmentNew.php')">
+                <a href="#enrollnew" class="nav-link" id="newEnroll" onclick="openPage('../Enrollment/EnrollmentNew.php')">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Enroll New Student</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href=# class="nav-link">
+                <a href="#enrollcontinuing" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Enroll Existing Student</p>
                 </a>
@@ -106,36 +106,36 @@
             </ul>
           </li>
           <li class="nav-item has-treeview">
-            <a href=# id="studList" class="nav-link" onclick="openPage('ListOfStudents.php')">
+            <a href="#listofstudents" id="studList" class="nav-link" onclick="openPage('ListOfStudents.php')">
               <i class="nav-icon fas fa-list"></i>
               <p>List Of Students</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href=# id="studAtt" class="nav-link" >
+            <a href="#attendance" id="studAtt" class="nav-link" >
               <i class="nav-icon fas fa-user-plus"></i>
               <p>Student Attendance</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href=# id="studGrd" class="nav-link">
+            <a href="#grades" id="studGrd" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>Student Grades</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href=# id="kinderChecklist" class="nav-link">
+            <a href="#checklist" id="kinderChecklist" class="nav-link">
               <i class="nav-icon fas fa-check"></i>
               <p>Kindergarten Checklist</p>
             </a>
           <li class="nav-item has-treeview">
-            <a href=# id="discSpons" class="nav-link">
+            <a href="#discountsponsor" id="discSpons" class="nav-link">
               <i class="nav-icon fas fa-percent"></i>
               <p>Discounts & Sponsorship</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href=# id="reports" class="nav-link">
+            <a href="#reports" id="reports" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>Generate Reports</p>
             </a>
