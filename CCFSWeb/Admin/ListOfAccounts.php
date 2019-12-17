@@ -101,7 +101,6 @@ $result = mysqli_query($connect, $query);
                       <td><?php echo $row1[2];?></td>
                       <td><?php echo $row1[3];?></td>
                       <td><?php echo $row1[4];?></td>
-                      <td> <button class='btn btn-primary'>Button</button> </td>
                     </tr>
                   <?php endwhile;?>
                 </tbody>
