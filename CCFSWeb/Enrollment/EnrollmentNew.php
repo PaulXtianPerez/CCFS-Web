@@ -60,15 +60,15 @@
                   <div class="row">
                   <div class="form-group col-4">
                     <label for="surname">Surname</label>
-                    <input class="form-control" id="Inputsurname" placeholder="Enter Surname">
+                    <input class="form-control" id="Inputsurname" placeholder="Enter Surname" name="studentSurname">
                   </div>
                   <div class="form-group col-5">
                     <label for="givenName">Given Name</label>
-                    <input class="form-control" id="givenName" placeholder="Enter Given Name">
+                    <input class="form-control" id="givenName" placeholder="Enter Given Name" name="studentGivenName">
                   </div>
                   <div class="form-group col-3">
                     <label for="middleName"> Middle Name</label>
-                    <input class="form-control" id="middleName" placeholder="Enter Middle Name">
+                    <input class="form-control" id="middleName" placeholder="Enter Middle Name" name="studentMiddleName">
                   </div>
                 </div>
                 <div class="row">
@@ -85,12 +85,12 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                     </div>
-                    <input type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="mm/dd/yyyy" data-mask>
+                    <input type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="mm/dd/yyyy" data-mask name="studentBirthDate">
                   </div>
                 </div>
                     <div class="form-group col-md-2">
                         <label>Grade Level</label>
-                        <select class="form-control">
+                        <select class="form-control" name="gradeLevel">
                           <option>Preschool</option>
                           <option>Kinder</option>
                           <option>Grade 1</option>
@@ -103,27 +103,27 @@
                       </div>
                   <div class="form-group col-md-5">
                     <label for="birthPlace">Birth Place</label>
-                    <input class="form-control" id="birthPlace" placeholder="Enter BirthPlace">
+                    <input class="form-control" id="birthPlace" placeholder="Enter BirthPlace" name="studentBirthPlace">
                   </div>
               </div>
               <div class="row">
                   <div class="form-group col-md-12">
                     <label for="studAddress">Student Address</label>
-                    <input class="form-control" id="studAddress" placeholder="Enter Student Adress">
+                    <input class="form-control" id="studAddress" placeholder="Enter Student Adress" name="studentAddress">
                   </div>
               </div>
               <div class="row">
                   <div class="form-group col-md-3">
                     <label for="studAddress">Telephone Number</label>
-                    <input class="form-control" id="telNumber" placeholder="Enter Telephone Number">
+                    <input class="form-control" id="telNumber" placeholder="Enter Telephone Number" name="studentTelNum">
                   </div>
                   <div class="form-group col-md-3">
                     <label for="studAddress">Mobile Number</label>
-                    <input class="form-control" id="mobileNumber" placeholder="Enter Mobile Number">
+                    <input class="form-control" id="mobileNumber" placeholder="Enter Mobile Number" name="studentMobNum">
                   </div>
                   <div class="form-group col-md-6">
                     <label for="studAddress">Last School Attended</label>
-                    <input class="form-control" id="lastSchool" placeholder="Enter Last School Attended">
+                    <input class="form-control" id="lastSchool" placeholder="Enter Last School Attended" name="studentLastSchool">
                   </div>
               </div>
            <!-- /.card-body -->
@@ -148,57 +148,57 @@
                   <div class="row">
                   <div class="form-group col-3">
                     <label for="fatherFirstName">Father First name</label>
-                    <input class="form-control" id="fatherFirstName" placeholder="Enter Father First Name">
+                    <input class="form-control" id="fatherFirstName" placeholder="Enter Father First Name" name="fatherFirst">
                   </div>
                   <div class="form-group col-3">
                     <label for="fatherLastName">Fathers Last name</label>
-                    <input class="form-control" id="fatherLastName" placeholder="Enter Father Last Name">
+                    <input class="form-control" id="fatherLastName" placeholder="Enter Father Last Name" name="fatherLast">
                   </div>
                   <div class="form-group col-6">
                     <label for="fatherAddress"> Father Address</label>
-                    <input class="form-control" id="fatherAddress" placeholder="Enter Address">
+                    <input class="form-control" id="fatherAddress" placeholder="Enter Address" name="fatherAdd">
                   </div>
                 </div>
                   <div class="row">
                   <div class="form-group col-3">
-                    <label for="motherFirstName">Father Occupation</label>
-                    <input class="form-control" id="motherFirstName" placeholder="Enter Father Occupation">
+                    <label for="fatherOccupation">Father Occupation</label>
+                    <input class="form-control" id="fatherOccupation" placeholder="Enter Father Occupation" name="fatherOcc">
                   </div>
                   <div class="form-group col-3">
-                    <label for="motherLastName">Father Mobile number</label>
-                    <input class="form-control" id="motherLastName" placeholder="Enter Father Mobile Number">
+                    <label for="fatherMobile">Father Mobile number</label>
+                    <input class="form-control" id="fatherMobile" placeholder="Enter Father Mobile Number" name="fatherMobileNum">
                   </div>
                   <div class="form-group col-6">
-                    <label for="motherAddress"> Father Email Address</label>
-                    <input class="form-control" id="motherAddress" placeholder="Enter Father Email Address">
+                    <label for="fatherEmail"> Father Email Address</label>
+                    <input class="form-control" id="fatherEmail" placeholder="Enter Father Email Address" name="fatherEmailAdd">
                   </div>
                 </div>
                   <div class="row">
                   <div class="form-group col-3">
-                    <label for="fatherFirstName">Mother First name</label>
-                    <input class="form-control" id="fatherFirstName" placeholder="Enter Mother First Name">
+                    <label for="motherFirstName">Mother First name</label>
+                    <input class="form-control" id="motherFirstName" placeholder="Enter Mother First Name" name="motherFirst">
                   </div>
                   <div class="form-group col-3">
-                    <label for="fatherLastName">Mother Maiden name</label>
-                    <input class="form-control" id="fatherLastName" placeholder="Enter Mother Last Name">
+                    <label for="motherLastName">Mother Maiden name</label>
+                    <input class="form-control" id="motherLastName" placeholder="Enter Mother Last Name" name="motherLast">
                   </div>
                   <div class="form-group col-6">
-                    <label for="fatherAddress"> Mother Address</label>
-                    <input class="form-control" id="fatherAddress" placeholder="Enter Address">
+                    <label for="motherAddress"> Mother Address</label>
+                    <input class="form-control" id="motherAddress" placeholder="Enter Address" name="motherAdd">
                   </div>
                 </div>
                   <div class="row">
                   <div class="form-group col-3">
-                    <label for="motherFirstName">Mother Occupation</label>
-                    <input class="form-control" id="motherFirstName" placeholder="Enter Mother Occupation">
+                    <label for="motherOccupation">Mother Occupation</label>
+                    <input class="form-control" id="motherOccupation" placeholder="Enter Mother Occupation" name="motherOcc">
                   </div>
                   <div class="form-group col-3">
-                    <label for="motherLastName">Mother Mobile number</label>
-                    <input class="form-control" id="motherLastName" placeholder="Enter Mother Mobile Number">
+                    <label for="motherMobileNumber">Mother Mobile number</label>
+                    <input class="form-control" id="motherMobileNumber" placeholder="Enter Mother Mobile Number" name="motherMobNum">
                   </div>
                   <div class="form-group col-6">
-                    <label for="motherAddress">Mother Email Address</label>
-                    <input class="form-control" id="motherAddress" placeholder="Enter Mother Email Address">
+                    <label for="motherEmailAddress">Mother Email Address</label>
+                    <input class="form-control" id="motherEmailAddress" placeholder="Enter Mother Email Address" name="motherEmAdd">
                   </div>
                 </div>
            <!-- /.card-body -->
@@ -223,12 +223,12 @@
                 <div class="card-body">
                   <div class="row">
                   <div class="form-group col-3">
-                    <label for="fatherFirstName">Sibling Surname</label>
-                    <input class="form-control" id="fatherFirstName" placeholder="Enter Sibling Surname">
+                    <label for="siblingSurname">Sibling Surname</label>
+                    <input class="form-control" id="siblingSurname" placeholder="Enter Sibling Surname" name="siblinglast">
                   </div>
                   <div class="form-group col-3">
-                    <label for="fatherLastName">Siblings Given name</label>
-                    <input class="form-control" id="fatherLastName" placeholder="Enter Sibling Given Name">
+                    <label for="siblingGivenName">Siblings Given name</label>
+                    <input class="form-control" id="siblingGivenName" placeholder="Enter Sibling Given Name" name="siblingFirst">
                   </div>
                   <div class="form-group col-md-3">
                    <label for="birthDate">Birthdate</label>
@@ -236,12 +236,12 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                     </div>
-                    <input type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="mm/dd/yyyy" data-mask>
+                    <input type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="mm/dd/yyyy" data-mask name="siblingBirth">
                   </div>
                 </div>
                   <div class="form-group col-3">
-                    <label for="fatherAddress"> Siblings School</label>
-                    <input class="form-control" id="fatherAddress" placeholder="Enter Address">
+                    <label for="siblingSchool"> Siblings School</label>
+                    <input class="form-control" id="siblingSchool" placeholder="Enter Address" name="siblingSchoolLast">
                   </div>
                   <div class="row">
                     <button type="submit" class="btn btn-primary">Add More</button>
@@ -259,7 +259,7 @@
       </div><!-- /.container-fluid -->
     </div>
       <div class="card-footer">
-          <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#myModal1" style="float: right;">Submit</button>
+          <button type="submit" class="btn btn-success" data-toggle="modal" name="submitButton" data-target="#myModal1" style="float: right;">Submit</button>
       </div>
 
           <!-- The Modal -->
