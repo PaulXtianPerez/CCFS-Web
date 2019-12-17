@@ -47,7 +47,6 @@ $result = mysqli_query($connect, $query);
 <div class="wrapper">
   <div>
 
-
   <!-- Content Wrapper. Contains page content -->
   <div id="contents">
     <!-- Content Header (Page header) -->
@@ -82,7 +81,7 @@ $result = mysqli_query($connect, $query);
                 </thead>
                 <tbody> <!-- Populate from database. -->
                   <?php while($row1 = mysqli_fetch_array($result)):;?>
-                    <tr ondblclick="openPage('../Registrar/ListOfArchivedStudents.php');">
+                    <tr onclick="openPage('../Registrar/ListOfArchivedStudents.php');">
                       <td><?php echo $row1[0];?></td>
                       <td><?php echo $row1[1];?></td>
                       <td> <button class='btn btn-primary'>Activate</button> </td>

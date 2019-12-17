@@ -95,12 +95,13 @@ $result = mysqli_query($connect, $query);
                 </thead>
                 <tbody> <!-- Populate from database. -->
                   <?php while($row1 = mysqli_fetch_array($result)):;?>
-                    <tr ondblclick="">
+                    <tr>
                       <td><?php echo $row1[0];?></td>
                       <td><?php echo $row1[1];?></td>
                       <td><?php echo $row1[2];?></td>
                       <td><?php echo $row1[3];?></td>
                       <td><?php echo $row1[4];?></td>
+                      <td> <button class='btn btn-primary'>Button</button> </td>
                     </tr>
                   <?php endwhile;?>
                 </tbody>
