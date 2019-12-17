@@ -30,7 +30,7 @@
 </head>
 <body>
   <!-- Content Wrapper. Contains page content -->
-  <div class>
+  <div id="contents">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
@@ -203,47 +203,149 @@
                 </div>
            <!-- /.card-body -->
               </div>
-
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
               </form>
+
+
+
+            </div>
+
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Sibling Information</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" class="siblingtable">
+                <div class="card-body">
+                  <div class="row">
+                  <div class="form-group col-3">
+                    <label for="fatherFirstName">Sibling Surname</label>
+                    <input class="form-control" id="fatherFirstName" placeholder="Enter Sibling Surname">
+                  </div>
+                  <div class="form-group col-3">
+                    <label for="fatherLastName">Siblings Given name</label>
+                    <input class="form-control" id="fatherLastName" placeholder="Enter Sibling Given Name">
+                  </div>
+                  <div class="form-group col-md-3">
+                   <label for="birthDate">Birthdate</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                    </div>
+                    <input type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="mm/dd/yyyy" data-mask>
+                  </div>
+                </div>
+                  <div class="form-group col-3">
+                    <label for="fatherAddress"> Siblings School</label>
+                    <input class="form-control" id="fatherAddress" placeholder="Enter Address">
+                  </div>
+                  <div class="row">
+                    <button type="submit" class="btn btn-primary">Add More</button>
+                  </div>
+                </div>
+
+           <!-- /.card-body -->
+              </div>
+              </form>
+
+
+
             </div>
             <!-- /.card -->
       </div><!-- /.container-fluid -->
     </div>
+      <div class="card-footer">
+          <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#myModal1" style="float: right;">Submit</button>
+      </div>
 
-    <!-- jQuery -->
-    <script>
-      $(function () {
-        //Initialize Select2 Elements
-        $('.select2').select2()
+          <!-- The Modal -->
+  <div class="modal fade" id="myModal1">
+    <div class="modal-dialog">
+      <div class="modal-content">
 
-        //Initialize Select2 Elements
-        $('.select2bs4').select2({
-          theme: 'bootstrap4'
-        })
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Enroll this Student?</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
 
-        //Datemask dd/mm/yyyy
-        $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
-        //Datemask2 mm/dd/yyyy
-        $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
-        //Money Euro
-        $('[data-mask]').inputmask()
+        <!-- Modal body -->
+        <div class="modal-body">
 
-        //Date range picker
-        $('#reservation').daterangepicker()
-        //Date range picker with time picker
-        $('#reservationtime').daterangepicker({
-          timePicker: true,
-          timePickerIncrement: 30,
-          locale: {
-            format: 'MM/DD/YYYY hh:mm A'
-          }
-        })
+          <center>Student Information</center>
+          <hr>
+          <!-- Put Student Information here-->
+        </div>
 
-      })
-    </script>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-success" data-dismiss="modal">Confirm</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+          <!-- Left col -->
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+<!--   <footer class="main-footer">
+    <strong>Copyright &copy; 2018-2019 Cypress Christian Foundation School.</strong>
+    All rights reserved.
+    <div class="float-right d-none d-sm-inline-block">
+    </div>
+  </footer> -->
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
+
+    //Datemask dd/mm/yyyy
+    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+    //Datemask2 mm/dd/yyyy
+    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+    //Money Euro
+    $('[data-mask]').inputmask()
+
+    //Date range picker
+    $('#reservation').daterangepicker()
+    //Date range picker with time picker
+    $('#reservationtime').daterangepicker({
+      timePicker: true,
+      timePickerIncrement: 30,
+      locale: {
+        format: 'MM/DD/YYYY hh:mm A'
+      }
+    })
+
+  })
+</script>
     <script src="../Resources/plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="../Resources/plugins/jquery-ui/jquery-ui.min.js"></script>
