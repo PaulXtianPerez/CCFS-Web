@@ -7,7 +7,7 @@
 $connect = mysqli_connect("localhost", "root", "", "ccfs");
 
 // mysql select query
-$query = "SELECT CONCAT(`yearstart`, '-',`yearend`), `status` FROM `schoolyear`";
+$query = "SELECT CONCAT(`yearstart`, '-',`yearend`), `scstatus` FROM `schoolyear`";
 
 // result for method
 $result = mysqli_query($connect, $query);
@@ -46,18 +46,7 @@ $result = mysqli_query($connect, $query);
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
   <div>
-    <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
-    <div>
+
 
   <!-- Content Wrapper. Contains page content -->
   <div id="contents">
@@ -93,7 +82,7 @@ $result = mysqli_query($connect, $query);
                 </thead>
                 <tbody> <!-- Populate from database. -->
                   <?php while($row1 = mysqli_fetch_array($result)):;?>
-                    <tr onclick="openPage('../Registrar/ListOfArchivedStudents.php');">
+                    <tr ondblclick="openPage('../Registrar/ListOfArchivedStudents.php');">
                       <td><?php echo $row1[0];?></td>
                       <td><?php echo $row1[1];?></td>
                       <td> <button class='btn btn-primary'>Activate</button> </td>
