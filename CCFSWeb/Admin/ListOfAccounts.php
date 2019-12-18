@@ -95,13 +95,12 @@ $result = mysqli_query($connect, $query);
                 </thead>
                 <tbody> <!-- Populate from database. -->
                   <?php while($row1 = mysqli_fetch_array($result)):;?>
-                    <tr>
+                    <tr ondblclick="" data-target="#myModal1">
                       <td><?php echo $row1[0];?></td>
                       <td><?php echo $row1[1];?></td>
                       <td><?php echo $row1[2];?></td>
                       <td><?php echo $row1[3];?></td>
                       <td><?php echo $row1[4];?></td>
-                      <td> <button class='btn btn-primary'>Button</button> </td>
                     </tr>
                   <?php endwhile;?>
                 </tbody>
@@ -116,6 +115,35 @@ $result = mysqli_query($connect, $query);
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Enroll this Student?</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+          <center>Student Information</center>
+          <hr>
+          <!-- Put Student Information here-->
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-success" data-dismiss="modal">Confirm</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
