@@ -42,6 +42,7 @@ $result = mysqli_query($connect, $query);
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="dist/css/main.css">
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -95,7 +96,7 @@ $result = mysqli_query($connect, $query);
                 </thead>
                 <tbody> <!-- Populate from database. -->
                   <?php while($row1 = mysqli_fetch_array($result)):;?>
-                    <tr ondblclick="" data-target="#myModal1">
+                    <tr>
                       <td><?php echo $row1[0];?></td>
                       <td><?php echo $row1[1];?></td>
                       <td><?php echo $row1[2];?></td>
@@ -116,34 +117,29 @@ $result = mysqli_query($connect, $query);
   </div>
   <!-- /.content-wrapper -->
 
-  <!-- The Modal -->
-  <div class="modal fade" id="myModal1">
-    <div class="modal-dialog">
-      <div class="modal-content">
-
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Enroll this Student?</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-
-        <!-- Modal body -->
-        <div class="modal-body">
-
-          <center>Student Information</center>
-          <hr>
-          <!-- Put Student Information here-->
-        </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-success" data-dismiss="modal">Confirm</button>
-        </div>
-
+<!-- Modal -->
+  <div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="text-align: center !important">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">EDIT</h4>
       </div>
-    </div>
-  </div>
+      <div class="modal-body">
+        <p>Name: <input type="text" class="input-sm" id="txtname"/></p>
+        <p>Username: <input type="text" class="input-sm" id="txtusername"/></p>
+        <p>Account Type: <input type="text" class="input-sm" id="txttype"/></p>
+        <button type="button" class="btn btn-primary">Change Password</button><br><br>
+        <button type="button" class="btn btn-primary">Activate/Deactivate Account</button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -152,6 +148,15 @@ $result = mysqli_query($connect, $query);
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
+
+<script type="text/javascript">
+$('table tbody tr  td').on('dblclick',function(){
+  $("#myModal").modal("show");
+  $("#txtname").val($(this).closest('tr').children()[1].textContent);
+  $("#txtusername").val($(this).closest('tr').children()[2].textContent);
+  $("#txttype").val($(this).closest('tr').children()[3].textContent);
+});
+</script>
 
 <!-- jQuery -->
 <script src="../Resources/plugins/jquery/jquery.min.js"></script>
