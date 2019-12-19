@@ -129,12 +129,23 @@ $result = mysqli_query($connect, $query);
         <p>Name: <input type="text" class="input-sm" id="txtname"/></p>
         <p>Username: <input type="text" class="input-sm" id="txtusername"/></p>
         <p>Account Type: <input type="text" class="input-sm" id="txttype"/></p>
-        <button type="button" class="btn btn-primary">Change Password</button><br><br>
-        <button type="button" class="btn btn-primary">Activate/Deactivate Account</button>
+        <div class="container">
+        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#changePasswdDiv">Change Password</button>
+          <div id="changePasswdDiv" class="collapse">
+            <form class="changepasswd" action="index.html" method="post">
+              <label for="passwd">Password</label>
+              <input type="password" class="form-control" id="inputPassword" placeholder="Password" name ="passwd" min = "0" required>
+              <label for="passwd">Confirm Password</label>
+              <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" name ="confpasswd" min = "0" required>
+              <input type="submit" class="btn btn-success"  name="save" value="Save New Password" min="0"/>
+            </form>
+          </div>
+        </div>
+        <br><br>
+        <button type="button" class="btn btn-info">Activate/Deactivate Account</button>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -156,6 +167,19 @@ $('table tbody tr  td').on('dblclick',function(){
   $("#txtusername").val($(this).closest('tr').children()[2].textContent);
   $("#txttype").val($(this).closest('tr').children()[3].textContent);
 });
+
+var password = document.getElementById("inputPassword")
+  , confirm_password = document.getElementById("confirmPassword");
+
+function validatePassword(){
+  if(password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Passwords Don't Match");
+  } else {
+    confirm_password.setCustomValidity('');
+  }
+}
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
 </script>
 
 <!-- jQuery -->
