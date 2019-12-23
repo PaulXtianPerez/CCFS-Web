@@ -72,7 +72,8 @@
     <link rel="stylesheet" href="../Resources/plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-      <link rel="stylesheet" type="text/css" href="dist/css/main.css">
+      <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
+
 </head>
 <body>
   <!-- Content Wrapper. Contains page content -->
@@ -83,6 +84,12 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">Fill up the forms below <?php echo $data[0]; echo $data1[0];?></h1>
+              <!-- SEARCH FORM -->
+          <form class="form-inline md-form form-sm mt-0">
+            <i class="fas fa-search" aria-hidden="true"></i>
+            <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search"
+              aria-label="Search">
+          </form>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -254,6 +261,43 @@
 
 
             </div>
+
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Guardian Information</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              
+                <div class="card-body">
+                  <div class="row">
+                  <div class="form-group col-3">
+                    <label for="guardianName">Guardian Name</label>
+                    <input class="form-control" id="guardianName" placeholder="Enter Sibling Surname" name="guardianName">
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="guardianAddress"> Guardian Address </label>
+                    <input class="form-control" id="guardianAddress" placeholder="Enter Guardian Address" name="guardianAddress">
+                  </div>
+                  <div class="form-group col-3">
+                    <label for="guardianContact">Guardian Contact Number</label>
+                    <input class="form-control" id="guardianContact" placeholder="Enter Guardian Contact Number" name="guardianContact">
+                  </div>
+                </div>
+
+           <!-- /.card-body -->
+              </div>
+
+
+
+            </div>
+            <!-- /.card -->
+      </div><!-- /.container-fluid -->
+    </div>
 
         <div class="row">
           <!-- left column -->
