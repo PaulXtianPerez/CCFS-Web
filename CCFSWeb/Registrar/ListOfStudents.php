@@ -4,6 +4,21 @@
     $result = $conn->query($qearStud);
 ?>
 <!DOCTYPE html>
+
+<!DOCTYPE html>
+
+<?php
+// php populate html table from mysql database
+
+// connect to mysql
+$connect = mysqli_connect("localhost", "root", "", "ccfs");
+
+// mysql select query
+$query = "SELECT `IDno`, `SurName`, `GivenName`, `MiddleName`, `gradelvl`, `gradelvl`, `GivenName` FROM `enstudent`";
+// result for method
+$result = mysqli_query($connect, $query);
+?>
+
 <html>
 <head>
   <meta charset="utf-8">
@@ -97,8 +112,18 @@
                   ?>
                 </tr>
                 </thead>
-                <tbody>
-
+                <tbody> <!-- Populate from database. -->
+                  <?php while($row1 = mysqli_fetch_array($result)):;?>
+                    <tr>
+                      <td><?php echo $row1[0];?></td>
+                      <td><?php echo $row1[1];?></td>
+                      <td><?php echo $row1[2];?></td>
+                      <td><?php echo $row1[3];?></td>
+                      <td><?php echo $row1[4];?></td>
+                      <td><?php echo $row1[5];?></td>
+                      <td><?php echo $row1[6];?></td>
+                    </tr>
+                  <?php endwhile;?>
                 </tfoot>
               </table>
             </div>
@@ -111,6 +136,40 @@
   </div>
   <!-- /.content-wrapper -->
 
+  <!-- Modal -->
+    <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">STUDENT INFORMATION</h4>
+        </div>
+        <div class="modal-body">
+          <p>ID Number: <input type="text" class="input-sm" id="txtid"/></p>
+          <p>Username: <input type="text" class="input-sm" id="txtusername"/></p>
+          <p>Account Type: <input type="text" class="input-sm" id="txttype"/></p>
+          <div class="container">
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#changePasswdDiv">Change Password</button>
+            <div id="changePasswdDiv" class="collapse">
+              <form class="changepasswd" action="index.html" method="post">
+                <label for="passwd">Password</label>
+                <input type="password" class="form-control" id="inputPassword" placeholder="Password" name ="passwd" min = "0" required>
+                <label for="passwd">Confirm Password</label>
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" name ="confpasswd" min = "0" required>
+                <input type="submit" class="btn btn-success"  name="save" value="Save New Password" min="0"/>
+              </form>
+            </div>
+          </div>
+          <br><br>
+          <button type="button" class="btn btn-info">Activate/Deactivate Account</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
@@ -118,6 +177,28 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
+
+<script type="text/javascript">
+$('table tbody tr  td').on('dblclick',function(){
+  $("#myModal").modal("show");
+  $("#txtid").val($(this).closest('tr').children()[0].textContent);
+  $("#txtusername").val($(this).closest('tr').children()[2].textContent);
+  $("#txttype").val($(this).closest('tr').children()[3].textContent);
+});
+
+var password = document.getElementById("inputPassword")
+  , confirm_password = document.getElementById("confirmPassword");
+
+function validatePassword(){
+  if(password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Passwords Don't Match");
+  } else {
+    confirm_password.setCustomValidity('');
+  }
+}
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
+</script>
 
 <!-- jQuery -->
 <script src="../Resources/plugins/jquery/jquery.min.js"></script>
