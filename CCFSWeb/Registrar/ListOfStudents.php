@@ -1,3 +1,8 @@
+<?php
+    include("Connection.php");
+    $qearStud = "SELECT IDno,SurName,GivenName,MiddleName,gradelvl FROM `enstudent`";
+    $result = $conn->query($qearStud);
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,13 +77,24 @@
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>ID Number</th>
+                  <th>ID Number </th>
                   <th>Last Name</th>
                   <th>First Name</th>
                   <th>Middle Name</th>
                   <th>Grade Level</th>
                   <th>Section</th>
                   <th>Teacher</th>
+                </tr>
+                <tr>
+                    <?php
+                        while($row = $result->fetch_assoc()) {
+                            echo "<tr><td>".$row['IDno']."</td>"
+                                    . "<td>".$row['SurName']."</td>"
+                                    . "<td>".$row['GivenName']."</td>"
+                                    . "<td>".$row['MiddleName']."</td>"
+                                    . "<td>".$row['gradelvl']."</td></tr>";
+                        }
+                  ?>
                 </tr>
                 </thead>
                 <tbody>
