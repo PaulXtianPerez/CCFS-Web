@@ -1,3 +1,5 @@
+<?php include '../ActiveSchoolYear.php'; ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,7 +50,7 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-        <h5 style="margin-right: 100px">School Year:</h5>
+        <h5>School Year: <?php echo $data1[0]; echo "-" ;echo $data2[1];?></h5>
     </ul>
   <!--  <h3>Cypress Christian Foundation School</h3> -->
   </nav>
