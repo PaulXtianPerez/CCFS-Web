@@ -1,3 +1,5 @@
+<?php include '../ActiveSchoolYear.php'; ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,7 +50,7 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-        <h5 style="margin-right: 100px">School Year:</h5>
+        <h5>School Year: <?php echo $data1[0]; echo "-" ;echo $data2[1];?></h5>
     </ul>
   <!--  <h3>Cypress Christian Foundation School</h3> -->
   </nav>
@@ -112,7 +114,7 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#attendance" id="studAtt" class="nav-link" >
+            <a href="#attendance" id="studAtt" class="nav-link" onclick="openPage('Attendance.php')">
               <i class="nav-icon fas fa-user-plus"></i>
               <p>Student Attendance</p>
             </a>
@@ -135,7 +137,7 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#reports" id="reports" class="nav-link">
+            <a href="#reports" id="reports" class="nav-link" onclick="openPage('RegistrarReports.php')">
               <i class="nav-icon fas fa-list"></i>
               <p>Generate Reports</p>
             </a>
