@@ -1,18 +1,13 @@
-<!DOCTYPE html>
-
 <?php
-// php populate html table from mysql database
-
-// connect to mysql
-$connect = mysqli_connect("localhost", "root", "", "ccfs");
-
+// connect to database
+include 'database.php';
 // mysql select query
-$query = "SELECT `accid`, CONCAT(`fname`, ' ',`lname`), `username`, `type`, `accstatus` FROM `accounts`";
-
+$query = "SELECT * FROM `accounts`";
 // result for method
-$result = mysqli_query($connect, $query);
+$result = mysqli_query($mysqli, $query);
 ?>
 
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -41,24 +36,11 @@ $result = mysqli_query($connect, $query);
   <link rel="stylesheet" href="../Resources/plugins/summernote/summernote-bs4.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="dist/css/main.css">
+  <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
-  <div>
-    <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
-    <div>
+<div id="contents" class="wrapper">
 
   <!-- Content Wrapper. Contains page content -->
   <div>
@@ -78,13 +60,25 @@ $result = mysqli_query($connect, $query);
    <section class="content">
       <div class="row">
         <div class="col-12">
-          <div class="card">
+          <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Double click on a row to edit account information.</h3>
+              <div>
+                <!-- SEARCH FORM -->
+                <form class="form-inline ml-3">
+                  <div class="input-group input-group-sm">
+                    <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"/>
+                    <div class="input-group-append">
+                      <button class="btn btn-navbar" type="submit">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="example2" class="table table-bordered table-hover">
+              <table id="accListTable" class="table table-bordered table-hover">
                 <thead>
                 <tr>
                   <th>Account ID</th>
@@ -92,83 +86,143 @@ $result = mysqli_query($connect, $query);
                   <th>Username</th>
                   <th>Account Type</th>
                   <th>Status</th>
+                  <th></th>
                 </tr>
                 </thead>
                 <tbody> <!-- Populate from database. -->
-                  <?php while($row1 = mysqli_fetch_array($result)):;?>
+                  <?php while($row = mysqli_fetch_array($result)):;?>
                     <tr>
-                      <td><?php echo $row1[0];?></td>
-                      <td><?php echo $row1[1];?></td>
-                      <td><?php echo $row1[2];?></td>
-                      <td><?php echo $row1[3];?></td>
-                      <td><?php echo $row1[4];?></td>
+                      <td><?php echo $row["accid"];?></td>
+                      <td><?php echo $row["fname"]; echo " "; echo $row["lname"];?></td>
+                      <td><?php echo $row["username"];?></td>
+                      <td><?php echo $row["type"];?></td>
+                      <td><?php echo $row["accstatus"];?></td>
+                      <td><input type="button" name="edit" value="Edit" id="<?php echo $row["accid"]; ?>" class="btn btn-info btn-xs edit_data" /></td>
                     </tr>
                   <?php endwhile;?>
                 </tbody>
-                </tfoot>
               </table>
             </div>
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
-        <div class="row">
-          <!-- Left col -->
-    <!-- /.content -->
+        </div>
+      </div>
+    </section>
   </div>
-  <!-- /.content-wrapper -->
+</div> <!-- ./wrapper -->
 
-<!-- Modal -->
-  <div class="modal fade" id="myModal">
+<!-- Modal to display account information. -->
+<div id="add_data_Modal" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header" style="text-align: center !important">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">EDIT</h4>
+      <div class="modal-header">
+        <h4 class="modal-title">Account Information</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
-        <p>Name: <input type="text" class="input-sm" id="txtname"/></p>
-        <p>Username: <input type="text" class="input-sm" id="txtusername"/></p>
-        <p>Account Type: <input type="text" class="input-sm" id="txttype"/></p>
-        <div class="container">
-        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#changePasswdDiv">Change Password</button>
-          <div id="changePasswdDiv" class="collapse">
-            <form class="changepasswd" action="index.html" method="post">
-              <label for="passwd">Password</label>
-              <input type="password" class="form-control" id="inputPassword" placeholder="Password" name ="passwd" min = "0" required>
-              <label for="passwd">Confirm Password</label>
-              <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" name ="confpasswd" min = "0" required>
-              <input type="submit" class="btn btn-success"  name="save" value="Save New Password" min="0"/>
-            </form>
+        <form method="post" id="insert_form">
+          <label>Employee ID</label> <i class="fa fa-lock" aria-hidden="true"></i>
+          <input class="form-control" type="text" name="empid" id="empid" class="form-control" disabled/>
+          <br />
+          <div class="row">
+            <div class="form-group col-6">
+              <label>First Name</label>
+              <input class="form-control" type="text" name="firstname" id="firstname" class="form-control" required/>
+            </div>
+            <div class="form-group col-6">
+              <label>Last Name</label>
+              <input class="form-control" type="text" name="lastname" id="lastname" class="form-control" required/>
+            </div>
           </div>
-        </div>
-        <br><br>
-        <button type="button" class="btn btn-info">Activate/Deactivate Account</button>
+          <div class="row">
+            <div class="form-group col-6">
+            <label>Username</label> <i class="fa fa-lock" aria-hidden="true"></i>
+            <input type="text" name="username" id="username" class="form-control" disabled/>
+            </div>
+            <div class="form-group col-6">
+            <label>Account Type</label> <i class="fa fa-lock" aria-hidden="true"></i>
+            <input type="text" name="type" id="type" class="form-control" disabled/>
+            </div>
+          </div>
+          <label>Change Account Status:</label>
+          <select name="status" id="status" class="form-control">
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+          </select>
+          <br />
+          <div class="row">
+            <div class="form-group col-6">
+              <label>Change Password</label>
+              <input type="password" name="password" id="password" class="form-control" required/>
+              <br />
+            </div>
+            <div class="form-group col-6">
+              <label>Confirm Password</label>
+              <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" required/>
+              <br />
+            </div>
+          </div>
+          <input type="hidden" name="account_id" id="account_id" />
+          <input type="submit" name="update" id="update" value="Update" class="btn btn-success" />
+        </form>
       </div>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
+    </div>
+  </div>
 </div>
-<!-- ./wrapper -->
 
+<!-- View and edit account information through modal. -->
 <script type="text/javascript">
-$('table tbody tr  td').on('dblclick',function(){
-  $("#myModal").modal("show");
-  $("#txtname").val($(this).closest('tr').children()[1].textContent);
-  $("#txtusername").val($(this).closest('tr').children()[2].textContent);
-  $("#txttype").val($(this).closest('tr').children()[3].textContent);
-});
+$(document).ready(function(){
+  $(document).on('click', '.edit_data', function(){
+    var account_id = $(this).attr("id");
+    $.ajax({
+      url:"AccountFetch.php",
+      method:"POST",
+      data:{account_id:account_id},
+      dataType:"json",
+      success:function(data){
+        $('#empid').val(data.empid);
+        $('#firstname').val(data.fname);
+        $('#lastname').val(data.lname);
+        $('#username').val(data.username);
+        $('#type').val(data.type);
+        $('#status').val(data.accstatus);
+        $('#password').val(data.password);
+        $('#confirmPassword').val(data.password);
+        $('#account_id').val(data.accid);
+        $('#add_data_Modal').modal('show');
+      }
+    });
+  });
 
-var password = document.getElementById("inputPassword")
+  $('#insert_form').on("submit", function(event){
+    event.preventDefault();
+    $.ajax({
+      url:"AccountUpdate.php",
+      method:"POST",
+      data:$('#insert_form').serialize(),
+      beforeSend:function(){
+        $('#update').val("Updating...");
+        },
+        success:function(data){
+          $('#insert_form')[0].reset();
+          $('#add_data_Modal').modal('hide');
+          $('#accListTable').html(data);
+          $('#update').val("Update");
+        }
+      });
+    });
+  });
+</script>
+
+<!-- Password validation. -->
+<script type="text/javascript">
+var password = document.getElementById("password")
   , confirm_password = document.getElementById("confirmPassword");
 
 function validatePassword(){
