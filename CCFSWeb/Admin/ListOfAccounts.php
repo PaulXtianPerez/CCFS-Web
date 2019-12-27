@@ -125,17 +125,17 @@ $result = mysqli_query($mysqli, $query);
           <div class="row">
             <div class="form-group col-6">
               <label>Employee ID</label> <i class="fa fa-lock" aria-hidden="true"></i>
-              <input class="form-control" type="text" name="empid" id="empid" class="form-control" disabled/>
+              <input class="form-control" type="text" name="empid" id="empid" disabled/>
             </div>
           </div>
           <div class="row">
             <div class="form-group col-6">
               <label>First Name</label>
-              <input class="form-control" type="text" name="firstname" id="firstname" class="form-control" required/>
+              <input class="form-control" type="text" name="firstname" id="firstname" required/>
             </div>
             <div class="form-group col-6">
               <label>Last Name</label>
-              <input class="form-control" type="text" name="lastname" id="lastname" class="form-control" required/>
+              <input class="form-control" type="text" name="lastname" id="lastname" required/>
             </div>
           </div>
           <div class="row">
