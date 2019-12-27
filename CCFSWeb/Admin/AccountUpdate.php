@@ -5,15 +5,15 @@
       $message = '';
       $firstname = mysqli_real_escape_string($connect, $_POST["firstname"]);
       $lastname = mysqli_real_escape_string($connect, $_POST["lastname"]);
-      $status = mysqli_real_escape_string($connect, $_POST["status"]);
       $password = mysqli_real_escape_string($connect, $_POST["password"]);
+      $status = mysqli_real_escape_string($connect, $_POST["status"]);
       if($_POST["account_id"] != '') {
            $query = "
            UPDATE accounts
            SET fname='$firstname',
            lname='$lastname',
-           accstatus = '$status',
-           password = '$password'
+           password='$password',
+           accstatus='$status'
            WHERE accid='".$_POST["account_id"]."'";
            $message = 'Account updated.';
       }

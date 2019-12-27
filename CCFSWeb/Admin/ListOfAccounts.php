@@ -122,9 +122,12 @@ $result = mysqli_query($mysqli, $query);
       </div>
       <div class="modal-body">
         <form method="post" id="insert_form">
-          <label>Employee ID</label> <i class="fa fa-lock" aria-hidden="true"></i>
-          <input class="form-control" type="text" name="empid" id="empid" class="form-control" disabled/>
-          <br />
+          <div class="row">
+            <div class="form-group col-6">
+              <label>Employee ID</label> <i class="fa fa-lock" aria-hidden="true"></i>
+              <input class="form-control" type="text" name="empid" id="empid" class="form-control" disabled/>
+            </div>
+          </div>
           <div class="row">
             <div class="form-group col-6">
               <label>First Name</label>
@@ -137,32 +140,35 @@ $result = mysqli_query($mysqli, $query);
           </div>
           <div class="row">
             <div class="form-group col-6">
-            <label>Username</label> <i class="fa fa-lock" aria-hidden="true"></i>
-            <input type="text" name="username" id="username" class="form-control" disabled/>
+              <label>Username</label> <i class="fa fa-lock" aria-hidden="true"></i>
+              <input type="text" name="username" id="username" class="form-control" disabled/>
             </div>
             <div class="form-group col-6">
-            <label>Account Type</label> <i class="fa fa-lock" aria-hidden="true"></i>
-            <input type="text" name="type" id="type" class="form-control" disabled/>
+              <label>Account Type</label> <i class="fa fa-lock" aria-hidden="true"></i>
+              <input type="text" name="type" id="type" class="form-control" disabled/>
             </div>
           </div>
-          <label>Change Account Status:</label>
-          <select name="status" id="status" class="form-control">
-            <option value="Active">Active</option>
-            <option value="Inactive">Inactive</option>
-          </select>
-          <br />
           <div class="row">
             <div class="form-group col-6">
               <label>Change Password</label>
               <input type="password" name="password" id="password" class="form-control" required/>
-              <br />
             </div>
             <div class="form-group col-6">
               <label>Confirm Password</label>
               <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" required/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-6">
+              <label>Change Account Status</label>
+              <select name="status" id="status" class="form-control">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
               <br />
             </div>
           </div>
+
           <input type="hidden" name="account_id" id="account_id" />
           <input type="submit" name="update" id="update" value="Update" class="btn btn-success" />
         </form>
@@ -191,9 +197,9 @@ $(document).ready(function(){
         $('#lastname').val(data.lname);
         $('#username').val(data.username);
         $('#type').val(data.type);
-        $('#status').val(data.accstatus);
         $('#password').val(data.password);
         $('#confirmPassword').val(data.password);
+        $('#status').val(data.accstatus);
         $('#account_id').val(data.accid);
         $('#add_data_Modal').modal('show');
       }
