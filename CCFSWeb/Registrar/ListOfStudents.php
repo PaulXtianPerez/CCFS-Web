@@ -1,6 +1,6 @@
 <?php
     include("Connection.php");
-    $qearStud = "SELECT IDno,SurName,GivenName,MiddleName,gradelvl FROM `enstudent`";
+    $qearStud = "SELECT IDno, SurName, GivenName, MiddleName, gradelvl FROM `enstudent`";
     $result = $conn->query($qearStud);
 ?>
 <!DOCTYPE html>
@@ -35,20 +35,7 @@
     <link rel="stylesheet" type="text/css" href="dist/css/main.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
-  <div>
-    <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
-    <div>
+<div id="contents" class="wrapper">
 
   <!-- Content Wrapper. Contains page content -->
   <div>
@@ -58,6 +45,7 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">List of Students</h1>
+            <h5 class="m-0 text-dark">School Year: [Sch Yr]</h5>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -68,56 +56,285 @@
    <section class="content">
       <div class="row">
         <div class="col-12">
-          <div class="card">
+          <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Double click on a row to view/edit student information.</h3>
+              <div>
+                <!-- SEARCH FORM -->
+                <form class="form-inline ml-3">
+                  <div class="input-group input-group-sm">
+                    <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"/>
+                    <div class="input-group-append">
+                      <button class="btn btn-navbar" type="submit">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="example2" class="table table-bordered table-hover">
+              <table id="studListTable" class="table table-bordered table-hover">
                 <thead>
                 <tr>
                   <th>ID Number </th>
-                  <th>Last Name</th>
-                  <th>First Name</th>
+                  <th>Surname</th>
+                  <th>Given Name</th>
                   <th>Middle Name</th>
                   <th>Grade Level</th>
                   <th>Section</th>
                   <th>Teacher</th>
+                  <th></th>
                 </tr>
-                <tr>
-                    <?php
-                        while($row = $result->fetch_assoc()) {
-                            echo "<tr><td>".$row['IDno']."</td>"
-                                    . "<td>".$row['SurName']."</td>"
-                                    . "<td>".$row['GivenName']."</td>"
-                                    . "<td>".$row['MiddleName']."</td>"
-                                    . "<td>".$row['gradelvl']."</td></tr>";
-                        }
-                  ?>
-                </tr>
-                </thead>
-                <tbody>
-
-                </tfoot>
+              </thead>
+              <tbody> <!-- Populate from database. -->
+                <?php while($row = $result->fetch_assoc()) { ?>
+                  <tr>
+                    <td><?php echo $row["IDno"];?></td>
+                    <td><?php echo $row["SurName"];?></td>
+                    <td><?php echo $row["GivenName"];?></td>
+                    <td><?php echo $row["MiddleName"];?></td>
+                    <td><?php echo $row["gradelvl"];?></td>
+                    <td></td>
+                    <td></td>
+                    <td><input type="button" name="edit" value="Edit" id="<?php echo $row["IDno"]; ?>" class="btn btn-info btn-xs edit_data" /></td>
+                  </tr>
+                  <?php }?>
+                </tbody>
               </table>
             </div>
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
-        <div class="row">
-          <!-- Left col -->
-    <!-- /.content -->
+        </div>
+      </div>
+    </section>
   </div>
-  <!-- /.content-wrapper -->
+</div> <!-- ./wrapper -->
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
+<!-- Modal to display student information. -->
+<div id="add_data_Modal" class="modal fade">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Student Information</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form method="post" id="insert_form">
+          <div class="row">
+            <div class="form-group col-4">
+              <label>ID Number</label> <i class="fa fa-lock" aria-hidden="true"></i>
+              <input class="form-control" type="text" name="studid" id="studid" disabled/>
+            </div>
+            <div class="form-group col-4">
+              <label>Date Enrolled</label> <i class="fa fa-lock" aria-hidden="true"></i>
+              <input class="form-control" type="text" name="dateEnr" id="dateEnr" disabled/>
+            </div>
+            <div class="form-group col-4">
+              <label>Status</label>
+              <select name="status" id="status" class="form-control">
+                <option value="Enrolled">Enrolled</option>
+                <option value="Temporarily Enrolled">Temporarily Enrolled</option>
+                <option value="Withdrew">Withdrew</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-4">
+              <label>Surname</label>
+              <input class="form-control" type="text" name="surname" id="surname" required/>
+            </div>
+            <div class="form-group col-4">
+              <label>Given Name</label>
+              <input class="form-control" type="text" name="givenname" id="givenname" required/>
+            </div>
+            <div class="form-group col-4">
+              <label>Middle Name</label>
+              <input class="form-control" type="text" name="midname" id="midname" required/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-2">
+              <label>Gender</label>
+              <select name="gender" id="gender" class="form-control">
+                <option value="M">MALE</option>
+                <option value="F">FEMALE</option>
+              </select>
+            </div>
+            <div class="form-group col-3">
+              <label>Birthdate</label>
+              <input class="form-control" type="date" name="birthdate" id="birthdate" required/>
+            </div>
+            <div class="form-group col-2">
+              <label>Age</label> <i class="fa fa-lock" aria-hidden="true"></i>
+              <input class="form-control" type="text" name="age" id="age" disabled/>
+            </div>
+            <div class="form-group col-5">
+              <label>Birthplace</label>
+              <input class="form-control" type="text" name="birthplace" id="birthplace" required/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-8">
+              <label>Address</label>
+              <input class="form-control" type="text" name="address" id="address" required/>
+            </div>
+            <div class="form-group col-2">
+              <label>Telephone No.</label>
+              <input class="form-control" type="text" name="telnum" id="telnum"/>
+            </div>
+            <div class="form-group col-2">
+              <label>Mobile No.</label>
+              <input class="form-control" type="text" name="mobnum" id="mobnum"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-4">
+              <label>Grade Level</label>
+              <select name="grdLvl" id="grdLvl" class="form-control">
+                <option value="NURSERY">NURSERY</option>
+                <option value="PRE-KINDER">PRE-KINDER</option>
+                <option value="KINDER">KINDER</option>
+                <option value="GRADE 1">GRADE 1</option>
+                <option value="GRADE 2">GRADE 2</option>
+                <option value="GRADE 3">GRADE 3</option>
+                <option value="GRADE 4">GRADE 4</option>
+                <option value="GRADE 5">GRADE 5</option>
+                <option value="GRADE 6">GRADE 6</option>
+              </select>
+            </div>
+            <div class="form-group col-4">
+              <label>Section</label>
+              <select name="section" id="section" class="form-control">
+                <option value="section">[fetch from database]</option>
+              </select>
+            </div>
+            <div class="form-group col-4">
+              <label>Adviser</label>
+              <input class="form-control" type="text" name="adviser" id="adviser"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-3">
+              <label>Father First Name</label>
+              <input class="form-control" type="text" name="faFirstName" id="faFirstName"/>
+            </div>
+            <div class="form-group col-3">
+              <label>Father Last Name</label>
+              <input class="form-control" type="text" name="faLastName" id="faLastName"/>
+            </div>
+            <div class="form-group col-3">
+              <label>Father Mobile No.</label>
+              <input class="form-control" type="text" name="faMobile" id="faMobile"/>
+            </div>
+            <div class="form-group col-3">
+              <label>Father Email Address</label>
+              <input class="form-control" type="email" name="faEmail" id="faEmail"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-3">
+              <label>Mother First Name</label>
+              <input class="form-control" type="text" name="moFirstName" id="moFirstName"/>
+            </div>
+            <div class="form-group col-3">
+              <label>Mother Last Name</label>
+              <input class="form-control" type="text" name="moLastName" id="moLastName"/>
+            </div>
+            <div class="form-group col-3">
+              <label>Mother Mobile No.</label>
+              <input class="form-control" type="text" name="moMobile" id="moMobile"/>
+            </div>
+            <div class="form-group col-3">
+              <label>Mother Email Address</label>
+              <input class="form-control" type="email" name="moEmail" id="moEmail"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-6">
+              <label>Guardian Name</label>
+              <input class="form-control" type="text" name="guaName" id="guaName"/>
+            </div>
+            <div class="form-group col-6">
+              <label>Guardian Contact No.</label>
+              <input class="form-control" type="text" name="guaContact" id="guaContact"/>
+            </div>
+          </div>
+
+          <input type="hidden" name="student_id" id="student_id" />
+          <input type="submit" name="update" id="update" value="Update" class="btn btn-success" />
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
-<!-- ./wrapper -->
+
+<!-- View and edit student information through modal. -->
+<script type="text/javascript">
+$(document).ready(function(){
+  $(document).on('click', '.edit_data', function(){
+    var student_id = $(this).attr("id");
+    $.ajax({
+      url:"StudentFetch.php",
+      method:"POST",
+      data:{student_id:student_id},
+      dataType:"json",
+      success:function(data){
+        $('#studid').val(data.IDno);
+        $('#dateEnr').val(data.dateenrolled);
+        $('#status').val(data.studstat);
+        $('#surname').val(data.SurName);
+        $('#givenname').val(data.GivenName);
+        $('#midname').val(data.MiddleName);
+        $('#gender').val(data.gender);
+        $('#birthdate').val(data.birthdate);
+        $('#birthplace').val(data.birthplace);
+        $('#address').val(data.studaddress);
+        $('#telnum').val(data.homeTelnum);
+        $('#mobnum').val(data.mobilenum);
+        $('#grdLvl').val(data.gradelvl);
+        $('#faFirstName').val(data.faFname);
+        $('#faLastName').val(data.falname);
+        $('#faMobile').val(data.faMobilenum);
+        $('#faEmail').val(data.faEmail);
+        $('#moFirstName').val(data.moFname);
+        $('#moLastName').val(data.moLname);
+        $('#moMobile').val(data.momobilenum);
+        $('#moEmail').val(data.moEmail);
+        $('#guaName').val(data.guardianName);
+        $('#guaContact').val(data.guardianContact);
+        $('#student_id').val(data.IDno);
+        $('#add_data_Modal').modal('show');
+      }
+    });
+  });
+
+  $('#insert_form').on("submit", function(event){
+    event.preventDefault();
+    $.ajax({
+      url:"StudentUpdate.php",
+      method:"POST",
+      data:$('#insert_form').serialize(),
+      beforeSend:function(){
+        $('#update').val("Updating...");
+        },
+        success:function(data){
+          $('#insert_form')[0].reset();
+          $('#add_data_Modal').modal('hide');
+          $('#studListTable').html(data);
+          $('#update').val("Update");
+        }
+      });
+    });
+  });
+</script>
+
+
 
 <!-- jQuery -->
 <script src="../Resources/plugins/jquery/jquery.min.js"></script>
