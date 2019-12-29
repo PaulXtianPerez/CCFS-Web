@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 22, 2019 at 03:50 AM
+-- Generation Time: Dec 29, 2019 at 06:37 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `accounts` (
   `accstatus` varchar(11) DEFAULT 'Active',
   PRIMARY KEY (`accid`),
   UNIQUE KEY `empID` (`empid`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `accounts`
@@ -51,7 +51,9 @@ INSERT INTO `accounts` (`accid`, `empid`, `username`, `password`, `fname`, `lnam
 (2, 'CCFS-002', 'Paul_Acc', 'a123', 'PAUL', 'PEREZ', 'REGISTRAR', 'Inactive'),
 (3, 'CCFS-003', 'ACCOUNTING', 'ACCOUNTING', 'JARGON', 'TAASIN', 'ACCOUNTING', 'Active'),
 (4, 'CCFS-004', 'vinceAcc', 'running', 'VINCENT', 'TOLENTINO', 'ACCOUNTING', 'Inactive'),
-(5, 'CCFS-005', 'ADMIN', 'ADMIN', 'ADMIN', 'ADMIN', 'ADMIN', 'Active');
+(5, 'CCFS-005', 'ADMIN', 'ADMIN', 'ADMIN', 'ADMIN', 'ADMIN', 'Active'),
+(6, 'CCFS-008', 'ACC_IMRAN', '12345', 'IMRAN', 'MAHMOOD', 'ACCOUNTING', 'Active'),
+(7, 'CCFS-009', 'TEST', 'TEST', 'TEST', 'TEST', 'ADMIN', 'Active');
 
 -- --------------------------------------------------------
 
@@ -160,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `curstudent` (
   KEY `yearID_idx` (`yearid`),
   KEY `enrID_idx` (`enrID`),
   KEY `IDno` (`IDno`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `curstudent`
@@ -180,7 +182,9 @@ INSERT INTO `curstudent` (`studentid`, `IDno`, `gradelvl`, `section`, `teacher`,
 (11, 210011, 'GRADE 1', '1', '1', 1, '2019-11-19', 3, 11),
 (12, 210012, 'GRADE 1', '1', '1', 1, '2019-11-19', 3, 12),
 (13, 210013, 'GRADE 1', '1', '1', 1, '2019-11-19', 3, 13),
-(14, 210014, 'GRADE 6', '1', '1', 1, '2019-11-20', 3, 14);
+(14, 210014, 'GRADE 6', '1', '1', 1, '2019-11-20', 3, 14),
+(15, 210015, 'NURSERY', '1', '1', 1, '2019-11-20', 3, 15),
+(16, 210016, 'NURSERY', '1', '1', 1, '2019-11-27', 3, 16);
 
 -- --------------------------------------------------------
 
@@ -232,7 +236,7 @@ CREATE TABLE IF NOT EXISTS `enstudent` (
   KEY `gradelvl` (`gradelvl`),
   KEY `YearID_idx` (`yearid`),
   KEY `studIDno_idx` (`IDno`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `enstudent`
@@ -253,7 +257,8 @@ INSERT INTO `enstudent` (`enid`, `IDno`, `GivenName`, `MiddleName`, `SurName`, `
 (12, 210012, 'MERLA ZYLIE', 'LLACUNA', 'TALLOCOY', 'GRADE 1', '2013-09-25', 'LA TRINIDAD, BENGUET', 'F', '', '09294029140', '#96 PUROK 17, IRISAN, BAGUIO CITY', 'CCFS', 'Enrolled', NULL, 'PETER', 'TALLOCOY', '#96 PUROK 17, IRISAN, BAGUIO CITY', '', 'PJ.TALLOCOY@YAHOO.COM', 'OFW', 'FARRA MAE', 'TALLOCOY', '#96 PUROK 17, IRISAN, BAGUIO CITY', '09294029140', 'FM.TALLOCOY@YAHOO.COM', 'HOUSEKEEPER', NULL, NULL, NULL, NULL, 3, '2019-11-19', ' ', ' ', ' '),
 (13, 210013, 'CEEJAY', 'BUENAVISTA', 'MORALES', 'GRADE 1', '2013-10-20', 'BENGUET', 'M', '', '09103323015', '011A PUROK 12, IRISAN, BAGUIO CITY', 'CCFS', 'Enrolled', NULL, 'SEVERINO', 'MORALES', '011A PUROK 12, IRISAN, BAGUIO CITY', '', '', 'WELDER', 'MARIVIC', 'MORALES', '011A PUROK 12, IRISAN, BAGUIO CITY', '09103323015', '', 'HOUSEWIFE', 'JOY MARRIE', 'MORALES', '1999-12-08', 'UC', 3, '2019-11-19', ' ', ' ', ' '),
 (14, 210014, 'ADAM', 'NAVARRO', 'SOBREMONT', 'GRADE 6', '1999-06-02', 'BAGUIO CITY ', 'M', '', '0995635694', '06B LOAKAN BAGUIO CITY', 'CCFS', 'Enrolled', NULL, 'ARIEL', 'SOBREMONTE', '06B LOAKAN BAGUIO CITY', '09560595161', '', 'TAXI DRIVER', 'LILIA', 'NAVARRO', '06B LOAKAN BAGUIO CITY', '', '', 'OFW', NULL, NULL, NULL, NULL, 3, '2019-11-20', 'PAUL CHRISTIAN PEREZ', 'AWLFJAW', '09999999999'),
-(15, 210015, 'CHRISTINE MAE ANNE', 'SANGGA', 'PEREZ', 'NURSERY', '2013-08-15', 'BAGUIO CITY', 'F', NULL, '09614286968', 'IRISAN, BAGUIO CITY', ' ', 'Enrolled', NULL, NULL, NULL, NULL, NULL, NULL, 'ENGINEER', NULL, NULL, NULL, NULL, NULL, 'NURSE', NULL, NULL, NULL, NULL, 3, '2019-11-01', 'PAUL ROLAND ', '#31 PUROK 15, BALABOA, IRISAN BAGUIO CITY', '099939294913');
+(15, 210015, 'CHRISTINE MAE ANNE', 'SANGGA', 'PEREZ', 'NURSERY', '2013-08-15', 'BAGUIO CITY', 'F', NULL, '09614286968', 'IRISAN, BAGUIO CITY', ' ', 'Enrolled', NULL, NULL, NULL, NULL, NULL, NULL, 'ENGINEER', NULL, NULL, NULL, NULL, NULL, 'NURSE', NULL, NULL, NULL, NULL, 3, '2019-11-01', 'PAUL ROLAND ', '#31 PUROK 15, BALABOA, IRISAN BAGUIO CITY', '099939294913'),
+(16, 210016, 'IMRAN', 'DIXON', 'MAHMOOD', 'NURSERY', '2004-11-14', 'BAGUIO CITY', 'M', '', '', 'BAGUIO CITY', '', 'Enrolled', NULL, '', '', 'BAGUIO CITY', '', '', '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, 3, '2019-11-27', 'PAUL PEREZ', 'BAGUIO CITY', '0912345678');
 
 --
 -- Triggers `enstudent`
@@ -350,24 +355,54 @@ CREATE TABLE IF NOT EXISTS `schoolfees` (
 DROP TABLE IF EXISTS `schoolyear`;
 CREATE TABLE IF NOT EXISTS `schoolyear` (
   `yearid` int(11) NOT NULL AUTO_INCREMENT,
-  `yearstart` year(4) NOT NULL,
-  `yearend` year(4) NOT NULL,
-  `totalAtt` int(20) NOT NULL,
-  `scfeeID` int(40) DEFAULT NULL,
+  `yearstart` int(10) NOT NULL,
+  `yearend` int(10) NOT NULL,
+  `totalAtt` int(20) DEFAULT NULL,
+  `totalSec` int(20) NOT NULL,
+  `dateStart` date DEFAULT NULL,
+  `dateEnd` date DEFAULT NULL,
+  `pretui1` float DEFAULT NULL,
+  `premisc1` float DEFAULT NULL,
+  `prebook1` float DEFAULT NULL,
+  `pretui2` float DEFAULT NULL,
+  `premisc2` float DEFAULT NULL,
+  `prebook2` float DEFAULT NULL,
+  `gradetui1` float DEFAULT NULL,
+  `gradebook1` float DEFAULT NULL,
+  `grademisc1` float DEFAULT NULL,
+  `gradetui2` float DEFAULT NULL,
+  `grademisc2` float DEFAULT NULL,
+  `gradebook2` float DEFAULT NULL,
+  `gradetui3` float DEFAULT NULL,
+  `grademisc3` float DEFAULT NULL,
+  `gradebook3` float DEFAULT NULL,
+  `gradetui4` float DEFAULT NULL,
+  `grademisc4` float DEFAULT NULL,
+  `gradebook4` float DEFAULT NULL,
+  `gradetui5` float DEFAULT NULL,
+  `grademisc5` float DEFAULT NULL,
+  `gradebook5` float DEFAULT NULL,
+  `gradetui6` float DEFAULT NULL,
+  `grademisc6` float DEFAULT NULL,
+  `gradebook6` float DEFAULT NULL,
+  `scfee` float DEFAULT NULL,
+  `scstatus` varchar(10) DEFAULT 'INACTIVE',
   PRIMARY KEY (`yearid`),
-  UNIQUE KEY `scfeeID_UNIQUE` (`scfeeID`),
   KEY `yearstart` (`yearstart`),
   KEY `yearend` (`yearend`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `schoolyear`
 --
 
-INSERT INTO `schoolyear` (`yearid`, `yearstart`, `yearend`, `totalAtt`, `scfeeID`) VALUES
-(1, 2019, 2020, 1, NULL),
-(2, 2020, 2021, 200, NULL),
-(3, 2021, 2022, 200, NULL);
+INSERT INTO `schoolyear` (`yearid`, `yearstart`, `yearend`, `totalAtt`, `totalSec`, `dateStart`, `dateEnd`, `pretui1`, `premisc1`, `prebook1`, `pretui2`, `premisc2`, `prebook2`, `gradetui1`, `gradebook1`, `grademisc1`, `gradetui2`, `grademisc2`, `gradebook2`, `gradetui3`, `grademisc3`, `gradebook3`, `gradetui4`, `grademisc4`, `gradebook4`, `gradetui5`, `grademisc5`, `gradebook5`, `gradetui6`, `grademisc6`, `gradebook6`, `scfee`, `scstatus`) VALUES
+(1, 2019, 2020, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INACTIVE'),
+(2, 2020, 2021, 200, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INACTIVE'),
+(3, 2021, 2022, 200, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INACTIVE'),
+(7, 2019, 2020, 200, 6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 20115, 'INACTIVE'),
+(10, 2020, 2021, 200, 8, '2020-06-30', '2021-04-15', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5632, 'INACTIVE'),
+(11, 2222, 22223, 52, 6, '2222-05-04', '2223-06-02', 1, 123, 12, 2, 213, 21, 1, 123, 12, 2, 21, 213, 3, 31, 312, 4, 41, 412, 5, 51, 512, 6, 61, 612, 6215, 'INACTIVE');
 
 -- --------------------------------------------------------
 

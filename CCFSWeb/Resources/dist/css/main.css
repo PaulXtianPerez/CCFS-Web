@@ -484,4 +484,18 @@ a {
     background-color: #49941c!important;
 }
 
+.login-box, .register-box {
+    width: 360px;
+    margin: auto!important;
+    width: 50%!important;
+    padding: 10px!important;
+}
 
+#ccfs_logoAcc {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 45%;
+  padding-bottom: 15px;
+  margin-top: 10px;
+}

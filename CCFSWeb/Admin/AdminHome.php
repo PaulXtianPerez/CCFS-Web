@@ -50,7 +50,12 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-        <h5>School Year: <?php echo $data1[0]; echo "-" ;echo $data2[1];?></h5>
+        <h5>School Year: <?php if(empty($data1[0])) {
+          echo "--";
+        }else {
+          echo $data1[0];
+        }
+        ; echo "-" ; if(empty($data2[1])){echo "--";}else {echo $data2[1];}?></h5>
     </ul>
   <!--  <h3>Cypress Christian Foundation School</h3> -->
   </nav>
@@ -100,24 +105,10 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="#enrollnew" class="nav-link" id="newEnroll" onclick="openPage('../Enrollment/EnrollmentNew.php')">
               <i class="nav-icon fas fa-copy"></i>
-              <p>Enroll Student<i class="fas fa-angle-left right"></i></p>
+              <p>Enroll Student<i class=""></i></p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#enrollnew" class="nav-link" id="newEnroll" onclick="openPage('../Enrollment/EnrollmentNew.php')">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Enroll New Student</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#enrollcontinuing" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Enroll Existing Student</p>
-                </a>
-              </li>
-            </ul>
           </li>
           <li class="nav-item has-treeview">
             <a href="#listofschoolyears" id="schYrsList" class="nav-link" onclick="openPage('ListOfSchoolYears.php')">
