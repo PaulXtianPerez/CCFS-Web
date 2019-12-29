@@ -1,4 +1,7 @@
-<?php include '../ActiveSchoolYear.php'; ?>
+<?php include '../ActiveSchoolYear.php';
+ include ('../edit.php');
+ include('../server.php'); 
+  ?>
 
 <!DOCTYPE html>
 <html>
@@ -77,7 +80,7 @@
           <img src="../Resources/dist/img/users.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block agray">Paul Christian Perez</a>
+          <a class="d-block agray" tabindex="-1" href="#"><?php echo $_SESSION['username']; ?></a>
         </div>
       </div>
 
