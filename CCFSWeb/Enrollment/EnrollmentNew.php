@@ -18,9 +18,10 @@
   if(isset($_POST['searcher'])){
     $f = $_POST['search'];
     if(is_numeric($f)) {
-      $e = "SELECT SurName,GivenName,MiddleName,gender,birthdate,gradelvl,birthplace,studaddress,homeTelnum,mobilenum,prevschoolattended,faFname,falname,faAdd,faMobilenum,faEmail,faoccupation,moFname,moLname,momobilenum,moAdd,moEmail,mooccupation,sibFname,sibLname,sibBrithdate,sibschoolname,guardianName,guardianAddress,guardianContact From enstudent Where $f";
+      $e = "SELECT SurName,GivenName,MiddleName,gender,birthdate,gradelvl,birthplace,studaddress,homeTelnum,mobilenum,prevschoolattended,faFname,falname,faAdd,faMobilenum,faEmail,faoccupation,moFname,moLname,momobilenum,moAdd,moEmail,mooccupation,sibFname,sibLname,sibBirthdate,sibschoolname,guardianName,guardianAddress,guardianContact From enstudent Where IDno='$f'";
+      $result2 = $conn->query($e);
     }else {
-      $e = "SELECT SurName,GivenName,MiddleName,gender,birthdate,gradelvl,birthplace,studaddress,homeTelnum,mobilenum,prevschoolattended,faFname,falname,faAdd,faMobilenum,faEmail,faoccupation,moFname,moLname,momobilenum,moAdd,moEmail,mooccupation,sibFname,sibLname,sibBrithdate,sibschoolname,guardianName,guardianAddress,guardianContact From enstudent Where $f";
+      $e = "SELECT SurName,GivenName,MiddleName,gender,birthdate,gradelvl,birthplace,studaddress,homeTelnum,mobilenum,prevschoolattended,faFname,falname,faAdd,faMobilenum,faEmail,faoccupation,moFname,moLname,momobilenum,moAdd,moEmail,mooccupation,sibFname,sibLname,sibBirthdate,sibschoolname,guardianName,guardianAddress,guardianContact From enstudent Where SurName='$f'";
     }
   }
 
@@ -53,12 +54,20 @@
               . "'$_POST[motherAdd]','$_POST[motherMobNum]',"
               . "'$_POST[motherEmAdd]','$_POST[motherOcc]','','','','',"
               . "'$data1[0]','2019-12-12','','','')";
-      $insert_row = $conn->query($enstud);
+      $insert_row = $conn->query($enstud) or die($conn->error.__LINE__);
+      $message = "e";
   }
 ?>
 <html>
 <head>
-  <?php if(isset($e)){echo '<p>'.$e.'</p>';}?>
+  <?php if(isset($result2)){
+    while($row = $result2->fetch_assoc()) {
+        echo "<p>".$row['SurName']."</p>";
+    }
+  }?>
+  <?php if(isset($message)){
+        echo "<p>".$message."</p>";
+  }?>
   <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>CCFS Student Information System</title>
@@ -121,7 +130,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="" method="post">
+              <form role="form" action="../Enrollment/EnrollmentNew.php" method="post">
                 <div class="card-body">
                   <div class="row">
                   <div class="form-group col-4">
