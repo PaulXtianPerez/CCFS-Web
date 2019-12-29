@@ -115,18 +115,46 @@
               <div class="card-body">
                   <div class="row">
                   <div class="form-group col-3">
-                    <label for="preschoolTuition">PreSchool Tuition </label>
-                    <input class="form-control" id="inputpreschoolTFee" placeholder="Enter Tuition Fee" type= "number" name ="preTuition" min="0">
+                    <label for="nurseryTuition">Nursery Tuition</label>
+                    <input class="form-control" id="inputnurseryTuition" placeholder="Enter Tuition Fee" type= "number" name ="nurseryTuition" min="0">
                   </div>
                   <div class="form-group col-3">
-                    <label for="preschoolBook">PreSchool Book</label>
-                    <input class="form-control" id="inputPreschoolBook" placeholder="Enter Book Fee" type= "number" name ="preBook" min= "0">
+                    <label for="nurseryBook">Nursery Book Fees</label>
+                    <input class="form-control" id="inputnurseryBook" placeholder="Enter Book Fee" type= "number" name ="nurBook" min= "0">
                   </div>
                   <div class="form-group col-3">
-                    <label for="preschoolMisc">PreSchool Misc Fee</label>
-                    <input class="form-control" id="inputpreschoolMisc" placeholder="Enter Miscellaneous fee" type= "number" name ="preMisc" min ="0">
+                    <label for="nurseryMisc">Nursery Misc. Fee</label>
+                    <input class="form-control" id="inputnurseryMisc" placeholder="Enter Miscellaneous Fee" type= "number" name ="nurMisc" min ="0">
                   </div>
-                </div>  
+                </div>
+                  <div class="row">
+                  <div class="form-group col-3">
+                    <label for="preKinTuition">Pre-Kinder Tuition</label>
+                    <input class="form-control" id="inputpreKinTuition" placeholder="Enter Tuition Fee" type= "number" name ="preKinTuition" min="0">
+                  </div>
+                  <div class="form-group col-3">
+                    <label for="preKinBook">Pre-Kinder Book Fees</label>
+                    <input class="form-control" id="inputpreKinBook" placeholder="Enter Book Fee" type= "number" name ="preKinBook" min= "0">
+                  </div>
+                  <div class="form-group col-3">
+                    <label for="preKinMisc">Pre-Kinder Misc. Fee</label>
+                    <input class="form-control" id="inputnurseryMisc" placeholder="Enter Miscellaneous Fee" type= "number" name ="preKinMisc" min ="0">
+                  </div>
+                </div>
+                  <div class="row">
+                  <div class="form-group col-3">
+                    <label for="KinTuition">Kinder Tuition</label>
+                    <input class="form-control" id="inputKinTuition" placeholder="Enter Tuition Fee" type= "number" name ="KinTuition" min="0">
+                  </div>
+                  <div class="form-group col-3">
+                    <label for="KinBook">Kinder Book Fees</label>
+                    <input class="form-control" id="inputKinBook" placeholder="Enter Book Fee" type= "number" name ="KinBook" min= "0">
+                  </div>
+                  <div class="form-group col-3">
+                    <label for="KinMisc">Kinder Misc. Fee</label>
+                    <input class="form-control" id="inputnurseryMisc" placeholder="Enter Miscellaneous Fee" type= "number" name ="KinMisc" min ="0">
+                  </div>
+                </div>     
               </div>
             </div> 
 
@@ -138,20 +166,91 @@
               <div class="card-body">
                   <div class="row">
                   <div class="form-group col-3">
-                    <label for="gradeSchoolTFee">Grade School Tuition </label>
-                    <input class="form-control" id="inputgradeschoolTFee" placeholder="Enter Tuition Fee" type= "number" name ="gradeTuition" min ="0">
+                    <label for="grade1TFee">Grade 1 Tuition Fee </label>
+                    <input class="form-control" id="inputgrade1TFee" placeholder="Enter Tuition Fee" type= "number" name ="grade1Tuition" min ="0">
                   </div>
                   <div class="form-group col-3">
-                    <label for="gradeSchoolMiscFee">Grade School Misc</label>
-                    <input class="form-control" id="inputgradeSchoolMiscFee" placeholder="Enter Book Fee" type= "number" name ="gradeMisc" min = "0">
+                    <label for="grade1MiscFee">Grade 1 Misc. Fee</label>
+                    <input class="form-control" id="inputgrade1MiscFee" placeholder="Enter Miscellaneous Fee" type= "number" name ="grade1Misc" min = "0">
                   </div>
                   <div class="form-group col-3">
-                    <label for="gradeSchoolBookFee">Grade School Book</label>
-                    <input class="form-control" id="inputgradeSchoolBookFee" placeholder="Enter Miscellaneous fee" type= "number" name ="gradeBook" min = "0">
+                    <label for="grade1BookFee">Grade 1 Book Fee</label>
+                    <input class="form-control" id="inputgrade1BookFee" placeholder="Enter Book Fee" type= "number" name ="grade1Book" min = "0">
                   </div>
+                </div>
+                  <div class="row">
+                  <div class="form-group col-3">
+                    <label for="grade2TFee">Grade 2 Tuition Fee </label>
+                    <input class="form-control" id="inputgrade2TFee" placeholder="Enter Tuition Fee" type= "number" name ="grade2Tuition" min ="0">
+                  </div>
+                  <div class="form-group col-3">
+                    <label for="grade2MiscFee">Grade 2 Misc. Fee</label>
+                    <input class="form-control" id="inputgrade2MiscFee" placeholder="Enter Miscellaneous Fee" type= "number" name ="grade2Misc" min = "0">
+                  </div>
+                  <div class="form-group col-3">
+                    <label for="grade2BookFee">Grade 2 Book Fee</label>
+                    <input class="form-control" id="inputgrade2BookFee" placeholder="Enter Book Fee" type= "number" name ="grade2Book" min = "0">
+                  </div>
+                </div>
+                  <div class="row">
+                  <div class="form-group col-3">
+                    <label for="grade3TFee">Grade 3 Tuition Fee </label>
+                    <input class="form-control" id="inputgrade3TFee" placeholder="Enter Tuition Fee" type= "number" name ="grade3Tuition" min ="0">
+                  </div>
+                  <div class="form-group col-3">
+                    <label for="grade3MiscFee">Grade 3 Misc. Fee</label>
+                    <input class="form-control" id="inputgrade3MiscFee" placeholder="Enter Miscellaneous Fee" type= "number" name ="grade3Misc" min = "0">
+                  </div>
+                  <div class="form-group col-3">
+                    <label for="grade3BookFee">Grade 3 Book Fee</label>
+                    <input class="form-control" id="inputgrade3BookFee" placeholder="Enter Book Fee" type= "number" name ="grade3Book" min = "0">
+                  </div>
+                </div>
+                  <div class="row">
+                  <div class="form-group col-3">
+                    <label for="grade4TFee">Grade 4 Tuition Fee </label>
+                    <input class="form-control" id="inputgrade4TFee" placeholder="Enter Tuition Fee" type= "number" name ="grade4Tuition" min ="0">
+                  </div>
+                  <div class="form-group col-3">
+                    <label for="grade4MiscFee">Grade 4 Misc. Fee</label>
+                    <input class="form-control" id="inputgrade4MiscFee" placeholder="Enter Miscellaneous Fee" type= "number" name ="grade4Misc" min = "0">
+                  </div>
+                  <div class="form-group col-3">
+                    <label for="grade4BookFee">Grade 4 Book Fee</label>
+                    <input class="form-control" id="inputgrade4BookFee" placeholder="Enter Book Fee" type= "number" name ="grade4Book" min = "0">
+                  </div>
+                </div>
+                  <div class="row">
+                  <div class="form-group col-3">
+                    <label for="grade5TFee">Grade 5 Tuition Fee </label>
+                    <input class="form-control" id="inputgrade5TFee" placeholder="Enter Tuition Fee" type= "number" name ="grade5Tuition" min ="0">
+                  </div>
+                  <div class="form-group col-3">
+                    <label for="grade5MiscFee">Grade 5 Misc. Fee</label>
+                    <input class="form-control" id="inputgrade5MiscFee" placeholder="Enter Miscellaneous Fee" type= "number" name ="grade5Misc" min = "0">
+                  </div>
+                  <div class="form-group col-3">
+                    <label for="grade5BookFee">Grade 5 Book Fee</label>
+                    <input class="form-control" id="inputgrade5BookFee" placeholder="Enter Book Fee" type= "number" name ="grade5Book" min = "0">
+                  </div>
+                </div>
+                  <div class="row">
+                  <div class="form-group col-3">
+                    <label for="grade6TFee">Grade 6 Tuition Fee </label>
+                    <input class="form-control" id="inputgrade6TFee" placeholder="Enter Tuition Fee" type= "number" name ="grade5Tuition" min ="0">
+                  </div>
+                  <div class="form-group col-3">
+                    <label for="grade6MiscFee">Grade 6 Misc. Fee</label>
+                    <input class="form-control" id="inputgrade5MiscFee" placeholder="Enter Miscellaneous Fee" type= "number" name ="grade6Misc" min = "0">
+                  </div>
+                  <div class="form-group col-3">
+                    <label for="grade6BookFee">Grade 6 Book Fee</label>
+                    <input class="form-control" id="inputgrade6BookFee" placeholder="Enter Book Fee" type= "number" name ="grade6Book" min = "0">
+                  </div>
+                </div>
                   <div class="form-group col-3">
                     <label for="totalFee">Overall Tuition Fee</label>
-                    <input class="form-control" id="inputtotalFee" placeholder="Enter Miscellaneous fee" type= "number" name ="scfee" min = "0">
+                    <input class="form-control" id="inputtotalFee" type= "number" name ="scfee" min = "0">
                   </div>
                 </div>  
               </div>
