@@ -2,12 +2,20 @@
 <?php 
   if(isset($_POST['submit'])){
     
-    $query = "INSERT INTO `schoolyear`(yearstart, yearend, totalAtt, totalSec, dateStart, dateEnd, preTuition, preMisc, preBook, gradeTuition, gradeMisc, gradeBook, scfee ) values ('$_POST[yearstart]', '$_POST[yearend]', '$_POST[totalAtt]', '$_POST[totalSec]', '$_POST[dateStart]', '$_POST[dateEnd]', '$_POST[preTuition]', '$_POST[preMisc]', '$_POST[preBook]', '$_POST[gradeTuition]', '$_POST[gradeMisc]', '$_POST[gradeBook]', '$_POST[scfee]')";
+    
+
+    
+    $query = "INSERT INTO `schoolyear`(yearstart, yearend, totalAtt, totalSec, dateStart, dateEnd, pretui1, premisc1, prebook1, pretui2, premisc2, prebook2, pretui3, premisc3, prebook3, gradetui1, grademisc1, gradebook1, gradetui2, grademisc2, gradebook2, gradetui3, grademisc3, gradebook3, gradetui4, grademisc4, gradebook4, gradetui5, grademisc5, gradebook5,gradetui6, grademisc6, gradebook6, scfee ) values ('$_POST[yearstart]', '$_POST[yearend]', '$_POST[totalAtt]', '$_POST[totalSec]', '$_POST[dateStart]', '$_POST[dateEnd]', '$_POST[pretui1]', '$_POST[premisc1]', '$_POST[prebook1]','$_POST[pretui2]', '$_POST[premisc2]', '$_POST[prebook2]', '$_POST[pretui3]', '$_POST[premisc3]', '$_POST[prebook3]', '$_POST[gradetui1]', '$_POST[grademisc1]', '$_POST[gradebook1]', '$_POST[gradetui2]', '$_POST[grademisc2]', '$_POST[gradebook2]', '$_POST[gradetui3]', '$_POST[grademisc3]', '$_POST[gradebook3]', '$_POST[gradetui4]', '$_POST[grademisc4]', '$_POST[gradebook4]', '$_POST[gradetui5]', '$_POST[grademisc5]', '$_POST[gradebook5]', '$_POST[gradetui6]', '$_POST[grademisc6]', '$_POST[gradebook6]', '$_POST[scfee]')";
     
     $insert_row = $mysqli->query($query) or die($mysqli->error.__LINE__);
-  
+    
+
+
   $message = 'School Year have been added';
-  }  
+  
+  }
+  
+  
 ?>
 
 <!DOCTYPE html>
@@ -116,43 +124,43 @@
                   <div class="row">
                   <div class="form-group col-3">
                     <label for="nurseryTuition">Nursery Tuition</label>
-                    <input class="form-control" id="inputnurseryTuition" placeholder="Enter Tuition Fee" type= "number" name ="nurseryTuition" min="0">
+                    <input class="form-control" id="inputnurseryTuition" placeholder="Enter Tuition Fee" type= "number" name ="pretui1" min="0">
                   </div>
                   <div class="form-group col-3">
                     <label for="nurseryBook">Nursery Book Fees</label>
-                    <input class="form-control" id="inputnurseryBook" placeholder="Enter Book Fee" type= "number" name ="nurBook" min= "0">
+                    <input class="form-control" id="inputnurseryBook" placeholder="Enter Book Fee" type= "number" name ="prebook1" min= "0">
                   </div>
                   <div class="form-group col-3">
                     <label for="nurseryMisc">Nursery Misc. Fee</label>
-                    <input class="form-control" id="inputnurseryMisc" placeholder="Enter Miscellaneous Fee" type= "number" name ="nurMisc" min ="0">
+                    <input class="form-control" id="inputnurseryMisc" placeholder="Enter Miscellaneous Fee" type= "number" name ="premisc1" min ="0">
                   </div>
                 </div>
                   <div class="row">
                   <div class="form-group col-3">
                     <label for="preKinTuition">Pre-Kinder Tuition</label>
-                    <input class="form-control" id="inputpreKinTuition" placeholder="Enter Tuition Fee" type= "number" name ="preKinTuition" min="0">
+                    <input class="form-control" id="inputpreKinTuition" placeholder="Enter Tuition Fee" type= "number" name ="pretui2" min="0">
                   </div>
                   <div class="form-group col-3">
                     <label for="preKinBook">Pre-Kinder Book Fees</label>
-                    <input class="form-control" id="inputpreKinBook" placeholder="Enter Book Fee" type= "number" name ="preKinBook" min= "0">
+                    <input class="form-control" id="inputpreKinBook" placeholder="Enter Book Fee" type= "number" name ="prebook2" min= "0">
                   </div>
                   <div class="form-group col-3">
                     <label for="preKinMisc">Pre-Kinder Misc. Fee</label>
-                    <input class="form-control" id="inputnurseryMisc" placeholder="Enter Miscellaneous Fee" type= "number" name ="preKinMisc" min ="0">
+                    <input class="form-control" id="inputnurseryMisc" placeholder="Enter Miscellaneous Fee" type= "number" name ="premisc2" min ="0">
                   </div>
                 </div>
                   <div class="row">
                   <div class="form-group col-3">
                     <label for="KinTuition">Kinder Tuition</label>
-                    <input class="form-control" id="inputKinTuition" placeholder="Enter Tuition Fee" type= "number" name ="KinTuition" min="0">
+                    <input class="form-control" id="inputKinTuition" placeholder="Enter Tuition Fee" type= "number" name ="pretui3" min="0">
                   </div>
                   <div class="form-group col-3">
                     <label for="KinBook">Kinder Book Fees</label>
-                    <input class="form-control" id="inputKinBook" placeholder="Enter Book Fee" type= "number" name ="KinBook" min= "0">
+                    <input class="form-control" id="inputKinBook" placeholder="Enter Book Fee" type= "number" name ="premisc3" min= "0">
                   </div>
                   <div class="form-group col-3">
                     <label for="KinMisc">Kinder Misc. Fee</label>
-                    <input class="form-control" id="inputnurseryMisc" placeholder="Enter Miscellaneous Fee" type= "number" name ="KinMisc" min ="0">
+                    <input class="form-control" id="inputnurseryMisc" placeholder="Enter Miscellaneous Fee" type= "number" name ="prebook3" min ="0">
                   </div>
                 </div>     
               </div>
@@ -167,85 +175,85 @@
                   <div class="row">
                   <div class="form-group col-3">
                     <label for="grade1TFee">Grade 1 Tuition Fee </label>
-                    <input class="form-control" id="inputgrade1TFee" placeholder="Enter Tuition Fee" type= "number" name ="grade1Tuition" min ="0">
+                    <input class="form-control" id="inputgrade1TFee" placeholder="Enter Tuition Fee" type= "number" name ="gradetui1" min ="0">
                   </div>
                   <div class="form-group col-3">
                     <label for="grade1MiscFee">Grade 1 Misc. Fee</label>
-                    <input class="form-control" id="inputgrade1MiscFee" placeholder="Enter Miscellaneous Fee" type= "number" name ="grade1Misc" min = "0">
+                    <input class="form-control" id="inputgrade1MiscFee" placeholder="Enter Miscellaneous Fee" type= "number" name ="grademisc1" min = "0">
                   </div>
                   <div class="form-group col-3">
                     <label for="grade1BookFee">Grade 1 Book Fee</label>
-                    <input class="form-control" id="inputgrade1BookFee" placeholder="Enter Book Fee" type= "number" name ="grade1Book" min = "0">
+                    <input class="form-control" id="inputgrade1BookFee" placeholder="Enter Book Fee" type= "number" name ="gradebook1" min = "0">
                   </div>
                 </div>
                   <div class="row">
                   <div class="form-group col-3">
                     <label for="grade2TFee">Grade 2 Tuition Fee </label>
-                    <input class="form-control" id="inputgrade2TFee" placeholder="Enter Tuition Fee" type= "number" name ="grade2Tuition" min ="0">
+                    <input class="form-control" id="inputgrade2TFee" placeholder="Enter Tuition Fee" type= "number" name ="gradetui2" min ="0">
                   </div>
                   <div class="form-group col-3">
                     <label for="grade2MiscFee">Grade 2 Misc. Fee</label>
-                    <input class="form-control" id="inputgrade2MiscFee" placeholder="Enter Miscellaneous Fee" type= "number" name ="grade2Misc" min = "0">
+                    <input class="form-control" id="inputgrade2MiscFee" placeholder="Enter Miscellaneous Fee" type= "number" name ="grademisc2" min = "0">
                   </div>
                   <div class="form-group col-3">
                     <label for="grade2BookFee">Grade 2 Book Fee</label>
-                    <input class="form-control" id="inputgrade2BookFee" placeholder="Enter Book Fee" type= "number" name ="grade2Book" min = "0">
+                    <input class="form-control" id="inputgrade2BookFee" placeholder="Enter Book Fee" type= "number" name ="gradebook2" min = "0">
                   </div>
                 </div>
                   <div class="row">
                   <div class="form-group col-3">
                     <label for="grade3TFee">Grade 3 Tuition Fee </label>
-                    <input class="form-control" id="inputgrade3TFee" placeholder="Enter Tuition Fee" type= "number" name ="grade3Tuition" min ="0">
+                    <input class="form-control" id="inputgrade3TFee" placeholder="Enter Tuition Fee" type= "number" name ="gradetui3" min ="0">
                   </div>
                   <div class="form-group col-3">
                     <label for="grade3MiscFee">Grade 3 Misc. Fee</label>
-                    <input class="form-control" id="inputgrade3MiscFee" placeholder="Enter Miscellaneous Fee" type= "number" name ="grade3Misc" min = "0">
+                    <input class="form-control" id="inputgrade3MiscFee" placeholder="Enter Miscellaneous Fee" type= "number" name ="grademisc3" min = "0">
                   </div>
                   <div class="form-group col-3">
                     <label for="grade3BookFee">Grade 3 Book Fee</label>
-                    <input class="form-control" id="inputgrade3BookFee" placeholder="Enter Book Fee" type= "number" name ="grade3Book" min = "0">
+                    <input class="form-control" id="inputgrade3BookFee" placeholder="Enter Book Fee" type= "number" name ="gradebook3" min = "0">
                   </div>
                 </div>
                   <div class="row">
                   <div class="form-group col-3">
                     <label for="grade4TFee">Grade 4 Tuition Fee </label>
-                    <input class="form-control" id="inputgrade4TFee" placeholder="Enter Tuition Fee" type= "number" name ="grade4Tuition" min ="0">
+                    <input class="form-control" id="inputgrade4TFee" placeholder="Enter Tuition Fee" type= "number" name ="gradetui4" min ="0">
                   </div>
                   <div class="form-group col-3">
                     <label for="grade4MiscFee">Grade 4 Misc. Fee</label>
-                    <input class="form-control" id="inputgrade4MiscFee" placeholder="Enter Miscellaneous Fee" type= "number" name ="grade4Misc" min = "0">
+                    <input class="form-control" id="inputgrade4MiscFee" placeholder="Enter Miscellaneous Fee" type= "number" name ="grademisc4" min = "0">
                   </div>
                   <div class="form-group col-3">
                     <label for="grade4BookFee">Grade 4 Book Fee</label>
-                    <input class="form-control" id="inputgrade4BookFee" placeholder="Enter Book Fee" type= "number" name ="grade4Book" min = "0">
+                    <input class="form-control" id="inputgrade4BookFee" placeholder="Enter Book Fee" type= "number" name ="gradebook4" min = "0">
                   </div>
                 </div>
                   <div class="row">
                   <div class="form-group col-3">
                     <label for="grade5TFee">Grade 5 Tuition Fee </label>
-                    <input class="form-control" id="inputgrade5TFee" placeholder="Enter Tuition Fee" type= "number" name ="grade5Tuition" min ="0">
+                    <input class="form-control" id="inputgrade5TFee" placeholder="Enter Tuition Fee" type= "number" name ="gradetui5" min ="0">
                   </div>
                   <div class="form-group col-3">
                     <label for="grade5MiscFee">Grade 5 Misc. Fee</label>
-                    <input class="form-control" id="inputgrade5MiscFee" placeholder="Enter Miscellaneous Fee" type= "number" name ="grade5Misc" min = "0">
+                    <input class="form-control" id="inputgrade5MiscFee" placeholder="Enter Miscellaneous Fee" type= "number" name ="grademisc5" min = "0">
                   </div>
                   <div class="form-group col-3">
                     <label for="grade5BookFee">Grade 5 Book Fee</label>
-                    <input class="form-control" id="inputgrade5BookFee" placeholder="Enter Book Fee" type= "number" name ="grade5Book" min = "0">
+                    <input class="form-control" id="inputgrade5BookFee" placeholder="Enter Book Fee" type= "number" name ="gradebook5" min = "0">
                   </div>
                 </div>
                   <div class="row">
                   <div class="form-group col-3">
                     <label for="grade6TFee">Grade 6 Tuition Fee </label>
-                    <input class="form-control" id="inputgrade6TFee" placeholder="Enter Tuition Fee" type= "number" name ="grade5Tuition" min ="0">
+                    <input class="form-control" id="inputgrade6TFee" placeholder="Enter Tuition Fee" type= "number" name ="gradetui6" min ="0">
                   </div>
                   <div class="form-group col-3">
                     <label for="grade6MiscFee">Grade 6 Misc. Fee</label>
-                    <input class="form-control" id="inputgrade5MiscFee" placeholder="Enter Miscellaneous Fee" type= "number" name ="grade6Misc" min = "0">
+                    <input class="form-control" id="inputgrade5MiscFee" placeholder="Enter Miscellaneous Fee" type= "number" name ="grademisc6" min = "0">
                   </div>
                   <div class="form-group col-3">
                     <label for="grade6BookFee">Grade 6 Book Fee</label>
-                    <input class="form-control" id="inputgrade6BookFee" placeholder="Enter Book Fee" type= "number" name ="grade6Book" min = "0">
+                    <input class="form-control" id="inputgrade6BookFee" placeholder="Enter Book Fee" type= "number" name ="gradebook6" min = "0">
                   </div>
                 </div>
                   <div class="form-group col-3">
