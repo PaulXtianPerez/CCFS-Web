@@ -1,3 +1,16 @@
+<?php
+// php populate html table from mysql database
+
+// connect to mysql
+$connect = mysqli_connect("localhost", "root", "", "ccfs");
+
+// mysql select query
+$query = "SELECT * FROM `attendance`";
+
+// result for method
+$result = mysqli_query($connect, $query);
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -28,6 +41,8 @@
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
+    <!-- jQuery Table Editor -->
+    <script src="../Resources/plugins/jquery/jquery.tabledit.js"></script>
   </head>
   <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -69,27 +84,36 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                      <table id="example2" class="table table-bordered table-hover">
+                      <table id="editable_table" class="table table-bordered table-hover">
                         <thead>
                         <tr>
                           <th></th>
                           <th>[Months here]</th>
                           <th>Total</th>
+                          <th>Action</th>
                         </tr>
                         </thead>
                         <tbody> <!-- Populate from database. -->
-                            <tr>
+                          <?php //while($row1 = mysqli_fetch_array($result)):;
+                            while($row = mysqli_fetch_array($result)) {
+                              echo '
+                              <tr>
                               <td>No.of School Days</td>
-                            </tr>
-                            <tr>
+                              </tr>
+                              <tr>
                               <td>No.of Days Present</td>
-                            </tr>
-                            <tr>
+                              <td>'.$row["month"].'</td>
+                              <td>'.$row["daysTar"].'</td>
+                              </tr>
+                              <tr>
                               <td>No.of Days Absent</td>
-                            </tr>
-                            <tr>
+                              </tr>
                               <td>No.of Days Tardy</td>
-                            </tr>
+                              </tr>
+                              ';
+                            }
+                            ?>
+
                         </tbody>
                         </tfoot>
                       </table>
@@ -102,5 +126,63 @@
             <!-- /.content -->
           </div>
           <!-- /.content-wrapper -->
+
+    <!-- jQuery Table Editor -->
+    <script src="../Resources/plugins/jquery/jquery.tabledit.js"></script>
+    <!-- jQuery -->
+    <script src="../Resources/plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="../Resources/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+      $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="../Resources/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    <script src="../Resources/plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="../Resources/plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="../Resources/plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="../Resources/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="../Resources/plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="../Resources/plugins/moment/moment.min.js"></script>
+    <script src="../Resources/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="../Resources/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="../Resources/plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="../Resources/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../Resources/dist/js/adminlte.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="../Resources/dist/js/pages/dashboard.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../Resources/dist/js/demo.js"></script>
   </body>
 </html>
+<script type="text/javascript">
+$(document).ready(function(){
+$('#editable_table').Tabledit({
+url:'UserAction.php',
+columns:{
+identifier:[0,"attid"],
+editable:[[1, 'month'], [2, 'month']]
+},
+restoreButton:false,
+onSuccess:function(data, textStatus, jqXHR)
+{
+if(data.action == 'delete')
+{
+$('#'+data.id).remove();
+}
+}
+});
+
+});
+
+</script>
