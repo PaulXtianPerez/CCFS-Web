@@ -1,51 +1,64 @@
 <?php
-    include("Connection.php");
-    $lastID = 'SELECT IDno FROM enstudent ORDER BY IDno DESC LIMIT 1';
-    $result = $conn->query($lastID);
-    $data = array();
-    while($row = $result->fetch_assoc()) {
-        $data[0] = $row['IDno'];
+  include("Connection.php");
+
+  $lastID = 'SELECT IDno FROM enstudent ORDER BY IDno DESC LIMIT 1';
+  $result = $conn->query($lastID);
+  $data = array();
+  while($row = $result->fetch_assoc()) {
+      $data[0] = $row['IDno']+1;
+  }
+
+  $lastyear = 'SELECT yearId FROM schoolyear ORDER BY yearId DESC LIMIT 1';
+  $result1 = $conn->query($lastyear);
+  $data1 = array();
+  while($row = $result1->fetch_assoc()) {
+      $data1[0] = $row['yearId'];
+  }
+
+  if(isset($_POST['searcher'])){
+    $f = $_POST['search'];
+    if(is_numeric($f)) {
+      $e = "SELECT SurName,GivenName,MiddleName,gender,birthdate,gradelvl,birthplace,studaddress,homeTelnum,mobilenum,prevschoolattended,faFname,falname,faAdd,faMobilenum,faEmail,faoccupation,moFname,moLname,momobilenum,moAdd,moEmail,mooccupation,sibFname,sibLname,sibBrithdate,sibschoolname,guardianName,guardianAddress,guardianContact From enstudent Where $f";
+    }else {
+      $e = "SELECT SurName,GivenName,MiddleName,gender,birthdate,gradelvl,birthplace,studaddress,homeTelnum,mobilenum,prevschoolattended,faFname,falname,faAdd,faMobilenum,faEmail,faoccupation,moFname,moLname,momobilenum,moAdd,moEmail,mooccupation,sibFname,sibLname,sibBrithdate,sibschoolname,guardianName,guardianAddress,guardianContact From enstudent Where $f";
     }
-    $lastyear = 'SELECT yearId FROM schoolyear ORDER BY yearId DESC LIMIT 1';
-    $result1 = $conn->query($lastyear);
-    $data1 = array();
-    while($row = $result1->fetch_assoc()) {
-        $data1[0] = $row['yearId'];
-    }
-    if (isset($_POST['submit'])) { 
-        $enstud = "INSERT INTO `enstudent`( 
-        IDno, GivenName, MiddleName, 
-        SurName, gradelvl, birthdate, 
-        birthplace, gender, homeTelnum, 
-        mobilenum, studaddress, 
-        prevschoolattended, studstat, 
-        sponsor, faFname, falname, 
-        faAdd, faMobilenum, faEmail, 
-        faoccupation, moFname, moLname, 
-        moAdd, momobilenum, moEmail, 
-        mooccupation, sibFname, sibLname, 
-        sibBirthdate, sibschoolname, 
-        yearid, dateenrolled, 
-        guardianName, guardianAddress, 
-        guardianContact) 
-        VALUES ('".$result['IDno']."','$_POST[studentGivenName]]',"
-                . "'$_POST[studentMiddleName]'),'$_POST[studentSurname]',"
-                . "'$_POST[gradeLevel]','$_POST[studentBirthDate]',"
-                . "'$_POST[studentBirthPlace]','$_POST[gender]',"
-                . "'$_POST[studentTelNum]',$_POST[studentMobNum],"
-                . "'$_POST[studentAddress]',$_POST[studentLastSchool],"
-                . "Enrolled,'','$_POST[fatherFirst]','$_POST[fatherLast]',"
-                . "'$_POST[fatherAdd],'$_POST[fatherMobile]',"
-                . "'$_POST[fatherEmailAdd]','$_POST[fatherOcc]',"
-                . "'$_POST[motherFirst]','$_POST[motherLast]',"
-                . "'$_POST[motherAdd]','$_POST[motherMobNum]',"
-                . "'$_POST[motherEmAdd]','$_POST[motherOcc]','','','','',"
-                . "'".$result1['yearid']."','2019-12-12','','','')";
-        $insert_row = $conn->query($enstud);
-    }
+  }
+
+  if(isset($_POST['enroll'])) { 
+      $enstud = "INSERT INTO `enstudent`( 
+      IDno, GivenName, MiddleName, 
+      SurName, gradelvl, birthdate, 
+      birthplace, gender, homeTelnum, 
+      mobilenum, studaddress, 
+      prevschoolattended, studstat, 
+      sponsor, faFname, falname, 
+      faAdd, faMobilenum, faEmail, 
+      faoccupation, moFname, moLname, 
+      moAdd, momobilenum, moEmail, 
+      mooccupation, sibFname, sibLname, 
+      sibBirthdate, sibschoolname, 
+      yearid, dateenrolled, 
+      guardianName, guardianAddress, 
+      guardianContact) 
+      VALUES ('$data[0]','$_POST[studentGivenName]',"
+              . "'$_POST[studentMiddleName]','$_POST[studentSurname]',"
+              . "'$_POST[gradeLevel]','$_POST[studentBirthDate]',"
+              . "'$_POST[studentBirthPlace]','$_POST[gender]',"
+              . "'$_POST[studentTelNum]','$_POST[studentMobNum]',"
+              . "'$_POST[studentAddress]','$_POST[studentLastSchool]',"
+              . "'Enrolled','','$_POST[fatherFirst]','$_POST[fatherLast]',"
+              . "'$_POST[fatherAdd]','$_POST[fatherMobileNum]',"
+              . "'$_POST[fatherEmailAdd]','$_POST[fatherOcc]',"
+              . "'$_POST[motherFirst]','$_POST[motherLast]',"
+              . "'$_POST[motherAdd]','$_POST[motherMobNum]',"
+              . "'$_POST[motherEmAdd]','$_POST[motherOcc]','','','','',"
+              . "'$data1[0]','2019-12-12','','','')";
+      $insert_row = $conn->query($enstud);
+  }
 ?>
 <html>
 <head>
+  <?php if(isset($e)){echo '<p>'.$e.'</p>';}?>
   <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>CCFS Student Information System</title>
@@ -72,8 +85,7 @@
     <link rel="stylesheet" href="../Resources/plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-      <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
-
+    <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
 </head>
 <body>
   <!-- Content Wrapper. Contains page content -->
@@ -83,12 +95,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Fill up the forms below <?php echo $data[0]; echo $data1[0];?></h1>
+            <h1 class="m-0 text-dark">Fill up the forms below</h1>
               <!-- SEARCH FORM -->
-          <form class="form-inline md-form form-sm mt-0">
+          <form class="form-inline md-form form-sm mt-0" action="../Enrollment/EnrollmentNew.php" method="post">
             <i class="fas fa-search" aria-hidden="true"></i>
-            <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search by ID Num or Surname"
-              aria-label="Search">
+            <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search ID or Surname"
+              aria-label="Search" name="search">
+            <input type="submit" name="searcher" value="search">
           </form>
           </div><!-- /.col -->
           <div class="col-sm-6">
@@ -108,7 +121,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="EnrollmentNew.php" method="POST">
+              <form role="form" action="" method="post">
                 <div class="card-body">
                   <div class="row">
                   <div class="form-group col-4">
@@ -353,9 +366,9 @@
       </div><!-- /.container-fluid -->
     </div>
       <div class="card-footer">
-          <button type="submit" class="btn btn-success" data-toggle="modal" name="submitButton" data-target="#myModal1" style="float: right;">Submit</button>
+          <button type="submit" class="btn btn-success" data-toggle="modal" name="enroll" value="enroll" data-target="#myModal1" style="float: right;">Submit</button>
       </div>
-                          </form>
+          </form>
 
 
           <!-- The Modal -->
