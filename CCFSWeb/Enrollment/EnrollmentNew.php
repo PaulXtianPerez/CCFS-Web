@@ -87,7 +87,7 @@
               <!-- SEARCH FORM -->
           <form class="form-inline md-form form-sm mt-0">
             <i class="fas fa-search" aria-hidden="true"></i>
-            <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search"
+            <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search by ID Num or Surname"
               aria-label="Search">
           </form>
           </div><!-- /.col -->
@@ -141,7 +141,7 @@
                     <input type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="mm/dd/yyyy" data-mask name="studentBirthDate">
                   </div>
                 </div>
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-3">
                         <label>Grade Level</label>
                         <select class="form-control" name="gradeLevel">
                           <option>Preschool</option>
@@ -154,17 +154,22 @@
                           <option>Grade 6</option>
                         </select>
                       </div>
-                  <div class="form-group col-md-5">
+                    <div class="form-group col-md-3">
+                        <label>Section</label>
+                        <select class="form-control" name="section">
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row">
+                  <div class="form-group col-md-6">
                     <label for="birthPlace">Birth Place</label>
                     <input class="form-control" id="birthPlace" placeholder="Enter BirthPlace" name="studentBirthPlace">
                   </div>
-              </div>
-              <div class="row">
-                  <div class="form-group col-md-12">
+                  <div class="form-group col-md-6">
                     <label for="studAddress">Student Address</label>
                     <input class="form-control" id="studAddress" placeholder="Enter Student Adress" name="studentAddress">
                   </div>
-              </div>
+                </div>
               <div class="row">
                   <div class="form-group col-md-3">
                     <label for="studAddress">Telephone Number</label>
