@@ -143,6 +143,13 @@ $(document).ready(function(){
      url:'AttendanceAction.php',
      deleteButton: false,
      hideIdentifier: true,
+     buttons: {
+        edit: {
+            class: 'btn btn-info btn-xs edit_data',
+            html: '<span data-toggle="tooltip" title="Edit"><i class="fas fa-edit" aria-hidden="true"></i></span>',
+            action: 'edit'
+        }
+    },
      columns:{
       identifier:[0, "attid"],
       editable:[[2, 'month']]
