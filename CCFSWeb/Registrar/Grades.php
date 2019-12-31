@@ -5,7 +5,7 @@
 $connect = mysqli_connect("localhost", "root", "", "ccfs");
 
 // mysql select query
-$query = "SELECT * FROM `attendance`";
+$query = "SELECT * FROM `grades`";
 
 // result for method
 $result = mysqli_query($connect, $query);
@@ -53,7 +53,7 @@ $result = mysqli_query($connect, $query);
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Student Attendance</h1>
+            <h1 class="m-0 text-dark">Student Grades</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -85,13 +85,17 @@ $result = mysqli_query($connect, $query);
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="attTable" class="table table-bordered table-hover">
+              <table id="gradesTable" class="table table-bordered table-hover">
                 <thead>
                 <tr>
                   <th>ID</th>
-                  <th width="20%"></th>
-                  <th>[Months here]</th>
-                  <th>Total</th>
+                  <th>Learning Areas</th>
+                  <th>1st</th>
+                  <th>2nd</th>
+                  <th>3rd</th>
+                  <th>4th</th>
+                  <th>Final Grade</th>
+                  <th>Remarks</th>
                 </tr>
                 </thead>
                 <tbody> <!-- Populate from database. -->
@@ -99,27 +103,14 @@ $result = mysqli_query($connect, $query);
                     while($row = mysqli_fetch_array($result)) {
                       echo '
                       <tr>
-                      <td>'.$row["attid"].'</td>
-                      <td>No.of School Days</td>
-                      <td>'.$row["month"].'</td>
-                      <td>'.$row["daysPres"].'</td>
-                      </tr>
-                      <tr>
-                      <td>'.$row["attid"].'</td>
-                      <td>No.of Days Present</td>
-                      <td>'.$row["month"].'</td>
-                      <td>'.$row["daysPres"].'</td>
-                      </tr>
-                      <tr>
-                      <td>'.$row["attid"].'</td>
-                      <td>No.of Days Absent</td>
-                      <td>'.$row["month"].'</td>
-                      <td>'.$row["daysAbs"].'</td>
-                      </tr>
-                      <td>'.$row["attid"].'</td>
-                      <td>No.of Days Tardy</td>
-                      <td>'.$row["month"].'</td>
-                      <td>'.$row["daysTar"].'</td>
+                      <td>'.$row["gradeid"].'</td>
+                      <td>'.$row["subjID"].'</td>
+                      <td>'.$row["firstquartergrade"].'</td>
+                      <td>'.$row["secondquartergrade"].'</td>
+                      <td>'.$row["thirdquartergrade"].'</td>
+                      <td>'.$row["fourthquartergrade"].'</td>
+                      <td>'.$row["finalgrade"].'</td>
+                      <td>'.$row["remarks"].'</td>
                       </tr>
                       ';
                     }
@@ -139,10 +130,10 @@ $result = mysqli_query($connect, $query);
 
 <script>
 $(document).ready(function(){
-    $('#attTable').Tabledit({
-     url:'AttendanceAction.php',
+    $('#gradesTable').Tabledit({
+     url:'GradesAction.php',
      deleteButton: false,
-     hideIdentifier: true,
+    // hideIdentifier: true,
      buttons: {
         edit: {
             class: 'btn btn-info btn-xs edit_data',
@@ -151,8 +142,8 @@ $(document).ready(function(){
         }
     },
      columns:{
-      identifier:[0, "attid"],
-      editable:[[2, 'month']]
+      identifier:[1, "subjID"], //gradeid or subjID?
+      editable:[[2, 'firstquartergrade'], [3, 'secondquartergrade'], [4, 'thirdquartergrade'], [5, 'fourthquartergrade'], [7, 'remarks']]
      },
     });
 
