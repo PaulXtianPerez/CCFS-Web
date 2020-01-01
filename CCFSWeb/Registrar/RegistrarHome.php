@@ -122,9 +122,15 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#checklist" id="kinderChecklist" class="nav-link">
+            <a href="#checklist" id="kinderChecklist" class="nav-link" onclick="openPage('KinderChecklist.php')">
               <i class="nav-icon fas fa-check"></i>
               <p>Kindergarten Checklist</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#competency" id="kinderCompetency" class="nav-link" onclick="openPage('KinderCompetency.php')">
+              <i class="nav-icon fas fa-check"></i>
+              <p>Kindergarten Competency</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
