@@ -1,6 +1,6 @@
 <?php include '../ActiveSchoolYear.php';
  include ('../edit.php');
- include('../server.php'); 
+ include('../server.php');
   ?>
 
 <!DOCTYPE html>
@@ -116,7 +116,7 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#grades" id="studGrd" class="nav-link">
+            <a href="#grades" id="studGrd" class="nav-link" onclick="openPage('Grades.php')">
               <i class="nav-icon fas fa-list"></i>
               <p>Student Grades</p>
             </a>
@@ -126,6 +126,13 @@
               <i class="nav-icon fas fa-check"></i>
               <p>Kindergarten Checklist</p>
             </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#observedvalues" id="observedValues" class="nav-link" onclick="openPage('ObservedValues.php')">
+              <i class="nav-icon fas fa-check"></i>
+              <p>Learner's Observed Values</p>
+            </a>
+          </li>
           <li class="nav-item has-treeview">
             <a href="#discountsponsor" id="discSpons" class="nav-link">
               <i class="nav-icon fas fa-percent"></i>

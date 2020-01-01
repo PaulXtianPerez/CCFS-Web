@@ -17,7 +17,7 @@ if($input["action"] === 'edit'){
  secondquartergrade = '".$secondGr."',
  thirdquartergrade = '".$thirdGr."',
  fourthquartergrade = '".$fourthGr."',
- remarks = '".$remarks."',
+ remarks = '".$remarks."'
  WHERE subjID = '".$input["subjID"]."'
  ";
 
