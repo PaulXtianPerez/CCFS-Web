@@ -140,7 +140,7 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#discountsponsor" id="discSpons" class="nav-link">
+            <a href="#discountsponsor" id="discSpons" class="nav-link" onclick="openPage('../Admin/DiscountSponsor.php')">
               <i class="nav-icon fas fa-percent"></i>
               <p>Discounts & Sponsorship</p>
             </a>
