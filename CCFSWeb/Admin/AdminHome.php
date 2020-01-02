@@ -1,6 +1,6 @@
 <?php include '../ActiveSchoolYear.php';
  include ('../edit.php');
- include('../server.php')  
+ include('../server.php')
  ?>
 
 <!DOCTYPE html>
@@ -104,9 +104,21 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#createcurriculum" id="crCurr" class="nav-link">
+            <a href="#listofschoolyears" id="schYrsList" class="nav-link" onclick="openPage('ListOfSchoolYears.php')">
               <i class="nav-icon fas fa-list"></i>
+              <p>List of School Years</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#createcurriculum" id="crCurr" class="nav-link" onclick="openPage('CreateCurriculum.php')">
+              <i class="nav-icon fas fa-book"></i>
               <p>Create Curriculum</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#listofcurriculums" id="curriculumsList" class="nav-link" onclick="openPage('ListOfCurriculums.php')">
+              <i class="nav-icon fas fa-list"></i>
+              <p>List of Curriculums</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
@@ -116,9 +128,9 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#listofschoolyears" id="schYrsList" class="nav-link" onclick="openPage('ListOfSchoolYears.php')">
-              <i class="nav-icon fas fa-list"></i>
-              <p>List of School Years</p>
+            <a href="#discountsponsor" id="discSpons" class="nav-link" onclick="openPage('DiscountSponsor.php')">
+              <i class="nav-icon fas fa-percent"></i>
+              <p>Discounts & Sponsorships</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
@@ -131,12 +143,6 @@
             <a href="#listofaccounts" id="accList" class="nav-link" onclick="openPage('ListOfAccounts.php')">
               <i class="nav-icon fas fa-users"></i>
               <p>List of Accounts</p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview">
-            <a href="#discountsponsor" id="discSpons" class="nav-link">
-              <i class="nav-icon fas fa-percent"></i>
-              <p>Discounts & Sponsorship</p>
             </a>
           </li>
       </nav>
