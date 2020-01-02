@@ -30,20 +30,7 @@
     <link rel="stylesheet" type="text/css" href="dist/css/main.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
-  <div>
-    <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
-    <div>
+<div id="contents" class="wrapper">
 
   <!-- Content Wrapper. Contains page content -->
   <div>
@@ -52,7 +39,8 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Student Archive (School Year: __)</h1>
+            <h1 class="m-0 text-dark">Archived Students</h1>
+            <h5 class="m-0 text-dark">School Year: [Sch Yr]</h5>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -63,13 +51,25 @@
    <section class="content">
       <div class="row">
         <div class="col-12">
-          <div class="card">
+          <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Double click on a row to view student information.</h3>
+              <div>
+                <!-- SEARCH FORM -->
+                <form class="form-inline ml-3">
+                  <div class="input-group input-group-sm">
+                    <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"/>
+                    <div class="input-group-append">
+                      <button class="btn btn-navbar" type="submit">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="example2" class="table table-bordered table-hover">
+              <table id="studArchiveTable" class="table table-bordered table-hover">
                 <thead>
                 <tr>
                   <th>ID Number</th>
@@ -83,26 +83,17 @@
                 <tbody>
 
                 </tbody>
-
-                </tfoot>
               </table>
             </div>
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
-        <div class="row">
-          <!-- Left col -->
-    <!-- /.content -->
+        </div>
+      </div>
+    </section>
   </div>
-  <!-- /.content-wrapper -->
+</div> <!-- ./wrapper -->
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
 
 <!-- jQuery -->
 <script src="../Resources/plugins/jquery/jquery.min.js"></script>
