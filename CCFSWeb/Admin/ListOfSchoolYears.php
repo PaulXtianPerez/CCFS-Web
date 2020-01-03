@@ -83,7 +83,7 @@ $result = mysqli_query($connect, $query);
                     <tr ondblclick="openPage('../Registrar/ListOfArchivedStudents.php');">
                       <td><?php echo $row["yearstart"]; echo "-"; echo $row["yearend"];?></td>
                       <td><?php echo $row["scstatus"];?> <button class='btn btn-info btn-xs edit_data'>Activate</button></td>
-                      <td><input type="button" name="edit" value="Edit" id="<?php echo $row["yearid"]; ?>" class="btn btn-info btn-xs edit_data" /></td>
+                      <td><input type="button" name="edit" value="Edit" id="<?php echo $row["yearid"]; ?>" class="btn btn-info btn-xs edit_data"  data-target="#add_data_Modal" data-toggle="modal" /></td>
                     </tr>
                     <?php }?>
                 </tbody>
@@ -109,146 +109,151 @@ $result = mysqli_query($connect, $query);
       <div class="modal-body">
         <form method="post" id="insert_form">
           <div class="row">
-            <div class="form-group col-4">
-              <label>ID Number</label> <i class="fa fa-lock" aria-hidden="true"></i>
-              <input class="form-control" type="text" name="studid" id="studid" disabled/>
+            <div class="form-group col-3">
+              <label>Year Start</label> <i class="fa fa-lock" aria-hidden="true"></i>
+              <input class="form-control" type="text" name="yearStart" id="yearStart" disabled/>
             </div>
-            <div class="form-group col-4">
-              <label>Date Enrolled</label> <i class="fa fa-lock" aria-hidden="true"></i>
-              <input class="form-control" type="text" name="dateEnr" id="dateEnr" disabled/>
+            <div class="form-group col-3">
+              <label>Year End</label> <i class="fa fa-lock" aria-hidden="true"></i>
+              <input class="form-control" type="text" name="yearEnd" id="yearEnd" disabled/>
             </div>
-            <div class="form-group col-4">
-              <label>Status</label>
-              <select name="status" id="status" class="form-control">
-                <option value="Enrolled">Enrolled</option>
-                <option value="Temporarily Enrolled">Temporarily Enrolled</option>
-                <option value="Withdrew">Withdrew</option>
-              </select>
+            <div class="form-group col-3">
+              <label>Date Start</label> <i class="fa fa-lock" aria-hidden="true"></i>
+              <input class="form-control" type="text" name="dateStart" id="dateStart" disabled/>
+            </div>
+            <div class="form-group col-3">
+              <label>Date End</label> <i class="fa fa-lock" aria-hidden="true"></i>
+              <input class="form-control" type="text" name="dateEnd" id="dateEnd" disabled/>
             </div>
           </div>
-          <div class="row">
+            <div class="row">
+              <div class="form-group col-4">
+                <label for="nurseryTuition">Nursery Tuition</label>
+                <input class="form-control" id="inputnurseryTuition" placeholder="Enter Tuition Fee" type= "number" name ="pretui1" min="0">
+              </div>
             <div class="form-group col-4">
-              <label>Surname</label>
-              <input class="form-control" type="text" name="surname" id="surname" required/>
-            </div>
-            <div class="form-group col-4">
-              <label>Given Name</label>
-              <input class="form-control" type="text" name="givenname" id="givenname" required/>
-            </div>
-            <div class="form-group col-4">
-              <label>Middle Name</label>
-              <input class="form-control" type="text" name="midname" id="midname" required/>
-            </div>
-          </div>
-          <div class="row">
-            <div class="form-group col-2">
-              <label>Gender</label>
-              <select name="gender" id="gender" class="form-control">
-                <option value="M">MALE</option>
-                <option value="F">FEMALE</option>
-              </select>
-            </div>
-            <div class="form-group col-3">
-              <label>Birthdate</label>
-              <input class="form-control" type="date" name="birthdate" id="birthdate" required/>
-            </div>
-            <div class="form-group col-2">
-              <label>Age</label> <i class="fa fa-lock" aria-hidden="true"></i>
-              <input class="form-control" type="text" name="age" id="age" disabled/>
-            </div>
-            <div class="form-group col-5">
-              <label>Birthplace</label>
-              <input class="form-control" type="text" name="birthplace" id="birthplace" required/>
-            </div>
-          </div>
-          <div class="row">
-            <div class="form-group col-8">
-              <label>Address</label>
-              <input class="form-control" type="text" name="address" id="address" required/>
-            </div>
-            <div class="form-group col-2">
-              <label>Telephone No.</label>
-              <input class="form-control" type="text" name="telnum" id="telnum"/>
-            </div>
-            <div class="form-group col-2">
-              <label>Mobile No.</label>
-              <input class="form-control" type="text" name="mobnum" id="mobnum"/>
-            </div>
-          </div>
-          <div class="row">
-            <div class="form-group col-4">
-              <label>Grade Level</label>
-              <select name="grdLvl" id="grdLvl" class="form-control">
-                <option value="NURSERY">NURSERY</option>
-                <option value="PRE-KINDER">PRE-KINDER</option>
-                <option value="KINDER">KINDER</option>
-                <option value="GRADE 1">GRADE 1</option>
-                <option value="GRADE 2">GRADE 2</option>
-                <option value="GRADE 3">GRADE 3</option>
-                <option value="GRADE 4">GRADE 4</option>
-                <option value="GRADE 5">GRADE 5</option>
-                <option value="GRADE 6">GRADE 6</option>
-              </select>
+                <label for="nurseryBook">Nursery Book Fees</label>
+                <input class="form-control" id="inputnurseryBook" placeholder="Enter Book Fee" type= "number" name ="prebook1" min= "0">
             </div>
             <div class="form-group col-4">
-              <label>Section</label>
-              <select name="section" id="section" class="form-control">
-                <option value="section">[fetch from database]</option>
-              </select>
+                <label for="nurseryMisc">Nursery Misc. Fee</label>
+                <input class="form-control" id="inputnurseryMisc1" placeholder="Enter Miscellaneous Fee" type= "number" name ="premisc1" min ="0">
+              </div>
+          </div>
+            <div class="row">
+            <div class="form-group col-4">
+              <label for="preKinTuition">Pre-Kinder Tuition</label>
+              <input class="form-control" id="inputpreKinTuition" placeholder="Enter Tuition Fee" type= "number" name ="pretui2" min="0">
             </div>
             <div class="form-group col-4">
-              <label>Adviser</label>
-              <input class="form-control" type="text" name="adviser" id="adviser"/>
+              <label for="preKinBook">Pre-Kinder Book Fees</label>
+              <input class="form-control" id="inputpreKinBook" placeholder="Enter Book Fee" type= "number" name ="prebook2" min= "0">
+            </div>
+            <div class="form-group col-4">
+              <label for="preKinMisc">Pre-Kinder Misc. Fee</label>
+              <input class="form-control" id="inputnurseryMisc2" placeholder="Enter Miscellaneous Fee" type= "number" name ="premisc2" min ="0">
             </div>
           </div>
-          <div class="row">
-            <div class="form-group col-3">
-              <label>Father First Name</label>
-              <input class="form-control" type="text" name="faFirstName" id="faFirstName"/>
+            <div class="row">
+            <div class="form-group col-4">
+              <label for="KinTuition">Kinder Tuition</label>
+              <input class="form-control" id="inputKinTuition" placeholder="Enter Tuition Fee" type= "number" name ="pretui3" min="0">
             </div>
-            <div class="form-group col-3">
-              <label>Father Last Name</label>
-              <input class="form-control" type="text" name="faLastName" id="faLastName"/>
+            <div class="form-group col-4">
+              <label for="KinBook">Kinder Book Fees</label>
+              <input class="form-control" id="inputKinBook" placeholder="Enter Book Fee" type= "number" name ="premisc3" min= "0">
             </div>
-            <div class="form-group col-3">
-              <label>Father Mobile No.</label>
-              <input class="form-control" type="text" name="faMobile" id="faMobile"/>
+            <div class="form-group col-4">
+              <label for="KinMisc">Kinder Misc. Fee</label>
+              <input class="form-control" id="inputnurseryMisc3" placeholder="Enter Miscellaneous Fee" type= "number" name ="prebook3" min ="0">
             </div>
-            <div class="form-group col-3">
-              <label>Father Email Address</label>
-              <input class="form-control" type="email" name="faEmail" id="faEmail"/>
+          </div> 
+            <div class="row">
+            <div class="form-group col-4">
+              <label for="grade1TFee">Grade 1 Tuition Fee </label>
+              <input class="form-control" id="inputgrade1TFee" placeholder="Enter Tuition Fee" type= "number" name ="gradetui1" min ="0">
             </div>
-          </div>
-          <div class="row">
-            <div class="form-group col-3">
-              <label>Mother First Name</label>
-              <input class="form-control" type="text" name="moFirstName" id="moFirstName"/>
+            <div class="form-group col-4">
+              <label for="grade1MiscFee">Grade 1 Misc. Fee</label>
+              <input class="form-control" id="inputgrade1MiscFee" placeholder="Enter Miscellaneous Fee" type= "number" name ="grademisc1" min = "0">
             </div>
-            <div class="form-group col-3">
-              <label>Mother Last Name</label>
-              <input class="form-control" type="text" name="moLastName" id="moLastName"/>
-            </div>
-            <div class="form-group col-3">
-              <label>Mother Mobile No.</label>
-              <input class="form-control" type="text" name="moMobile" id="moMobile"/>
-            </div>
-            <div class="form-group col-3">
-              <label>Mother Email Address</label>
-              <input class="form-control" type="email" name="moEmail" id="moEmail"/>
+            <div class="form-group col-4">
+              <label for="grade1BookFee">Grade 1 Book Fee</label>
+              <input class="form-control" id="inputgrade1BookFee" placeholder="Enter Book Fee" type= "number" name ="gradebook1" min = "0">
             </div>
           </div>
-          <div class="row">
-            <div class="form-group col-6">
-              <label>Guardian Name</label>
-              <input class="form-control" type="text" name="guaName" id="guaName"/>
+            <div class="row">
+            <div class="form-group col-4">
+              <label for="grade2TFee">Grade 2 Tuition Fee </label>
+              <input class="form-control" id="inputgrade2TFee" placeholder="Enter Tuition Fee" type= "number" name ="gradetui2" min ="0">
             </div>
-            <div class="form-group col-6">
-              <label>Guardian Contact No.</label>
-              <input class="form-control" type="text" name="guaContact" id="guaContact"/>
+            <div class="form-group col-4">
+              <label for="grade2MiscFee">Grade 2 Misc. Fee</label>
+              <input class="form-control" id="inputgrade2MiscFee" placeholder="Enter Miscellaneous Fee" type= "number" name ="grademisc2" min = "0">
+            </div>
+            <div class="form-group col-4">
+              <label for="grade2BookFee">Grade 2 Book Fee</label>
+              <input class="form-control" id="inputgrade2BookFee" placeholder="Enter Book Fee" type= "number" name ="gradebook2" min = "0">
+            </div>
+          </div>
+            <div class="row">
+            <div class="form-group col-4">
+              <label for="grade3TFee">Grade 3 Tuition Fee </label>
+              <input class="form-control" id="inputgrade3TFee" placeholder="Enter Tuition Fee" type= "number" name ="gradetui3" min ="0">
+            </div>
+            <div class="form-group col-4">
+              <label for="grade3MiscFee">Grade 3 Misc. Fee</label>
+              <input class="form-control" id="inputgrade3MiscFee" placeholder="Enter Miscellaneous Fee" type= "number" name ="grademisc3" min = "0">
+            </div>
+            <div class="form-group col-4">
+              <label for="grade3BookFee">Grade 3 Book Fee</label>
+              <input class="form-control" id="inputgrade3BookFee" placeholder="Enter Book Fee" type= "number" name ="gradebook3" min = "0">
+            </div>
+          </div>
+            <div class="row">
+            <div class="form-group col-4">
+              <label for="grade4TFee">Grade 4 Tuition Fee </label>
+              <input class="form-control" id="inputgrade4TFee" placeholder="Enter Tuition Fee" type= "number" name ="gradetui4" min ="0">
+            </div>
+            <div class="form-group col-4">
+              <label for="grade4MiscFee">Grade 4 Misc. Fee</label>
+              <input class="form-control" id="inputgrade4MiscFee" placeholder="Enter Miscellaneous Fee" type= "number" name ="grademisc4" min = "0">
+            </div>
+            <div class="form-group col-4">
+              <label for="grade4BookFee">Grade 4 Book Fee</label>
+              <input class="form-control" id="inputgrade4BookFee" placeholder="Enter Book Fee" type= "number" name ="gradebook4" min = "0">
+            </div>
+          </div>
+            <div class="row">
+            <div class="form-group col-4">
+              <label for="grade5TFee">Grade 5 Tuition Fee </label>
+              <input class="form-control" id="inputgrade5TFee" placeholder="Enter Tuition Fee" type= "number" name ="gradetui5" min ="0">
+            </div>
+            <div class="form-group col-4">
+              <label for="grade5MiscFee">Grade 5 Misc. Fee</label>
+              <input class="form-control" id="inputgrade5MiscFee" placeholder="Enter Miscellaneous Fee" type= "number" name ="grademisc5" min = "0">
+            </div>
+            <div class="form-group col-4">
+              <label for="grade5BookFee">Grade 5 Book Fee</label>
+              <input class="form-control" id="inputgrade5BookFee" placeholder="Enter Book Fee" type= "number" name ="gradebook5" min = "0">
+            </div>
+          </div>
+            <div class="row">
+            <div class="form-group col-4">
+              <label for="grade6TFee">Grade 6 Tuition Fee </label>
+              <input class="form-control" id="inputgrade6TFee" placeholder="Enter Tuition Fee" type= "number" name ="gradetui6" min ="0">
+            </div>
+            <div class="form-group col-4">
+              <label for="grade6MiscFee">Grade 6 Misc. Fee</label>
+              <input class="form-control" id="inputgrade6MiscFee" placeholder="Enter Miscellaneous Fee" type= "number" name ="grademisc6" min = "0">
+            </div>
+            <div class="form-group col-4">
+              <label for="grade6BookFee">Grade 6 Book Fee</label>
+              <input class="form-control" id="inputgrade6BookFee" placeholder="Enter Book Fee" type= "number" name ="gradebook6" min = "0">
             </div>
           </div>
 
-          <input type="hidden" name="student_id" id="student_id" />
+          <input type="hidden" name="schoolYear_id" id="schoolYear_id" />
           <input type="submit" name="update" id="update" value="Update" class="btn btn-success" />
         </form>
       </div>
@@ -264,37 +269,45 @@ $result = mysqli_query($connect, $query);
 <script type="text/javascript">
 $(document).ready(function(){
   $(document).on('click', '.edit_data', function(){
-    var student_id = $(this).attr("id");
+    var schoolYear_id = $(this).attr("id");
     $.ajax({
       url:"SchoolYearFetch.php",
       method:"POST",
-      data:{student_id:student_id},
+      data:{schoolYear_id:schoolYear_id},
       dataType:"json",
       success:function(data){
-        $('#studid').val(data.IDno);
-        $('#dateEnr').val(data.dateenrolled);
-        $('#status').val(data.studstat);
-        $('#surname').val(data.SurName);
-        $('#givenname').val(data.GivenName);
-        $('#midname').val(data.MiddleName);
-        $('#gender').val(data.gender);
-        $('#birthdate').val(data.birthdate);
-        $('#birthplace').val(data.birthplace);
-        $('#address').val(data.studaddress);
-        $('#telnum').val(data.homeTelnum);
-        $('#mobnum').val(data.mobilenum);
-        $('#grdLvl').val(data.gradelvl);
-        $('#faFirstName').val(data.faFname);
-        $('#faLastName').val(data.falname);
-        $('#faMobile').val(data.faMobilenum);
-        $('#faEmail').val(data.faEmail);
-        $('#moFirstName').val(data.moFname);
-        $('#moLastName').val(data.moLname);
-        $('#moMobile').val(data.momobilenum);
-        $('#moEmail').val(data.moEmail);
-        $('#guaName').val(data.guardianName);
-        $('#guaContact').val(data.guardianContact);
-        $('#student_id').val(data.IDno);
+        $('#yearStart').val(data.yearstart);
+        $('#yearEnd').val(data.yearend);
+        $('#dateStart').val(data.dateStart);
+        $('#dateEnd').val(data.dateEnd);
+        $('#inputnurseryTuition').val(data.pretui1);
+        $('#inputnurseryBook').val(data.premisc1);
+        $('#inputnurseryMisc1').val(data.prebook1);
+        $('#inputpreKinTuition').val(data.pretui2);
+        $('#inputpreKinBook').val(data.premisc2);
+        $('#inputnurseryMisc2').val(data.prebook2);
+        $('#inputKinTuition').val(data.pretui3);
+        $('#inputKinBook').val(data.premisc3);
+        $('#inputnurseryMisc3').val(data.prebook3);
+        $('#inputgrade1TFee').val(data.gradetui1);
+        $('#inputgrade1MiscFee').val(data.grademisc1);
+        $('#inputgrade1BookFee').val(data.gradebook1);
+        $('#inputgrade2TFee').val(data.gradetui2);
+        $('#inputgrade2MiscFee').val(data.grademisc2);
+        $('#inputgrade2BookFee').val(data.gradebook2);
+        $('#inputgrade3TFee').val(data.gradetui3);
+        $('#inputgrade3MiscFee').val(data.grademisc3);
+        $('#inputgrade3BookFee').val(data.gradebook3);
+        $('#inputgrade4TFee').val(data.gradetui4);
+        $('#inputgrade4MiscFee').val(data.grademisc4);
+        $('#inputgrade4BookFee').val(data.gradebook4);
+        $('#inputgrade5TFee').val(data.gradetui5);
+        $('#inputgrade5MiscFee').val(data.grademisc5);
+        $('#inputgrade5BookFee').val(data.gradebook5);
+        $('#inputgrade6TFee').val(data.gradetui6);
+        $('#inputgrade6MiscFee').val(data.grademisc6);
+        $('#inputgrade6BookFee').val(data.gradebook6);
+        $('#schoolYear_id').val(data.yearid);
         $('#add_data_Modal').modal('show');
       }
     });
