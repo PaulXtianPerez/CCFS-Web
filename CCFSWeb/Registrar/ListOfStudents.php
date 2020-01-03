@@ -2,8 +2,6 @@
     include("Connection.php");
     $qearStud = "SELECT IDno, SurName, GivenName, MiddleName, gradelvl FROM `enstudent`";
     $result = $conn->query($qearStud);
-    
-    
 ?>
 <!DOCTYPE html>
 <html>

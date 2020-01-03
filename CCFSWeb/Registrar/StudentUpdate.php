@@ -48,7 +48,7 @@
            moEmail='$moemail',
            guardianName='$guaname',
            guardianContact='$guacontact'
-           WHERE IDno='".$_POST["student_id"]."'";
+           WHERE IDno='$_POST[student_id]'";
            $message = 'Successfully updated.';
       }
 
