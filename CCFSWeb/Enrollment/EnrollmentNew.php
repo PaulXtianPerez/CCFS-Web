@@ -52,8 +52,8 @@
               . "'$_POST[fatherEmailAdd]','$_POST[fatherOcc]',"
               . "'$_POST[motherFirst]','$_POST[motherLast]',"
               . "'$_POST[motherAdd]','$_POST[motherMobNum]',"
-              . "'$_POST[motherEmAdd]','$_POST[motherOcc]','','','','',"
-              . "'$data1[0]','2019-12-12','','','')";
+              . "'$_POST[motherEmAdd]','$_POST[motherOcc]','','','2020-12-12','',"
+              . "'$data1[0]','".date("Y-d-m")."','','','')";
       $insert_row = $conn->query($enstud) or die($conn->error.__LINE__);
       $message = "e";
   }
@@ -99,6 +99,7 @@
 <body>
   <!-- Content Wrapper. Contains page content -->
   <div id="contents">
+  <?php echo date("Y-m-d");?>
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
