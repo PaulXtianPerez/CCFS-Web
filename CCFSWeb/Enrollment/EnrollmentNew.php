@@ -20,8 +20,10 @@
     if(is_numeric($f)) {
       $e = "SELECT SurName,GivenName,MiddleName,gender,birthdate,gradelvl,birthplace,studaddress,homeTelnum,mobilenum,prevschoolattended,faFname,falname,faAdd,faMobilenum,faEmail,faoccupation,moFname,moLname,momobilenum,moAdd,moEmail,mooccupation,sibFname,sibLname,sibBirthdate,sibschoolname,guardianName,guardianAddress,guardianContact From enstudent Where IDno='$f'";
       $result2 = $conn->query($e);
+      $message = 'E';
     }else {
       $e = "SELECT SurName,GivenName,MiddleName,gender,birthdate,gradelvl,birthplace,studaddress,homeTelnum,mobilenum,prevschoolattended,faFname,falname,faAdd,faMobilenum,faEmail,faoccupation,moFname,moLname,momobilenum,moAdd,moEmail,mooccupation,sibFname,sibLname,sibBirthdate,sibschoolname,guardianName,guardianAddress,guardianContact From enstudent Where SurName='$f'";
+      $message = 'Em';
     }
   }
 
@@ -60,11 +62,6 @@
 ?>
 <html>
 <head>
-  <?php if(isset($result2)){
-    while($row = $result2->fetch_assoc()) {
-        echo "<p>".$row['SurName']."</p>";
-    }
-  }?>
   <?php if(isset($message)){
         echo "<p>".$message."</p>";
   }?>
@@ -99,7 +96,6 @@
 <body>
   <!-- Content Wrapper. Contains page content -->
   <div id="contents">
-  <?php echo date("Y-m-d");?>
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
