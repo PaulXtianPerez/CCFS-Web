@@ -13,7 +13,7 @@
       $address = mysqli_real_escape_string($connect, $_POST["address"]);
       $telephone = mysqli_real_escape_string($connect, $_POST["telnum"]);
       $mobile = mysqli_real_escape_string($connect, $_POST["mobnum"]);
-      //$grlvl = mysqli_real_escape_string($connect, $_POST["grdLvl"]); //error updating in database
+      $grlvl = mysqli_real_escape_string($connect, $_POST["grdLvl"]);
       $fafirst = mysqli_real_escape_string($connect, $_POST["faFirstName"]);
       $falast = mysqli_real_escape_string($connect, $_POST["faLastName"]);
       $famob = mysqli_real_escape_string($connect, $_POST["faMobile"]);
@@ -32,6 +32,7 @@
            GivenName='$givenname',
            MiddleName='$middlename',
            gender='$gender',
+           gradelvl='$grlvl',
            birthdate='$bdate',
            birthplace='$bplace',
            studaddress='$address',
