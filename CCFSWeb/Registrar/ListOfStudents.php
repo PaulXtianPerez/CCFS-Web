@@ -2,6 +2,10 @@
     include("Connection.php");
     $qearStud = "SELECT IDno, SurName, GivenName, MiddleName, gradelvl FROM `enstudent`";
     $result = $conn->query($qearStud);
+    if(isset($_POST['update'])) {
+        $upQuery = "UPDATE 'enstudent' SET `studstat`='$_POST[status]',`SurName`='$_POST[surname]',`GivenName`='$_POST[givenname]',`MiddleName`='$_POST[midname]',`gender`='$_POST[gender]',`birthdate`=".date(Y-m-d,strtotime($_POST[birthdate])).",`birthplace`='$_POST[birthplace]',`studaddress`='$_POST[address]',`homeTelnum`='$_POST[telnum]',`mobilenum`='$_POST[mobnum]',`gradelvl`='$_POST[grdLvl]',`faFname`='$_POST[faFirstName]',`falname`='$_POST[faLastName]',`faMobilenum`='$_POST[faMobile]',`faEmail`='$_POST[faEmail]',`moFname`='$_POST[moFirstName]',`moLname`='$_POST[moLastName]',`momobilenum`='$_POST[moMobile]',`moEmail`='$_POST[moEmail]',`guardianName`='$_POST[guaName]',`guardianContact`='$_POST[guaContact]'";
+        $result = $conn->query($upQuery);
+    }
 ?>
 <!DOCTYPE html>
 <html>
