@@ -1,5 +1,5 @@
-<?php include '../ActiveSchoolYear.php';
- include ('../edit.php');
+<?php include('../ActiveSchoolYear.php');
+ include('../edit.php');
  include('../server.php');
   ?>
 

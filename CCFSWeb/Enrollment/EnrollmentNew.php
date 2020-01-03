@@ -103,7 +103,7 @@
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">Fill up the forms below</h1>
               <!-- SEARCH FORM -->
-          <form class="form-inline md-form form-sm mt-0" action="../Enrollment/EnrollmentNew.php" method="post">
+          <form class="form-inline md-form form-sm mt-0" method="post">
             <i class="fas fa-search" aria-hidden="true"></i>
             <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search ID or Surname"
               aria-label="Search" name="search">
@@ -127,7 +127,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="../Enrollment/EnrollmentNew.php" method="post">
+              <form action="../Enrollment/EnrollmentNew.php" method="post">
                 <div class="card-body">
                   <div class="row">
                   <div class="form-group col-4">
