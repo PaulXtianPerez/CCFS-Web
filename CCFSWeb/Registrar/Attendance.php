@@ -90,7 +90,18 @@ $result = mysqli_query($connect, $query);
                 <tr>
                   <th>ID</th>
                   <th width="20%"></th>
-                  <th>[Months here]</th>
+                  <th>Jan</th>
+                  <th>Feb</th>
+                  <th>Mar</th>
+                  <th>Apr</th>
+                  <th>May</th>
+                  <th>Jun</th>
+                  <th>Jul</th>
+                  <th>Aug</th>
+                  <th>Sept</th>
+                  <th>Oct</th>
+                  <th>Nov</th>
+                  <th>Dec</th>
                   <th>Total</th>
                 </tr>
                 </thead>
@@ -103,23 +114,67 @@ $result = mysqli_query($connect, $query);
                       <td>No.of School Days</td>
                       <td>'.$row["month"].'</td>
                       <td>'.$row["daysPres"].'</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
                       </tr>
                       <tr>
                       <td>'.$row["attid"].'</td>
                       <td>No.of Days Present</td>
                       <td>'.$row["month"].'</td>
                       <td>'.$row["daysPres"].'</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
                       </tr>
                       <tr>
                       <td>'.$row["attid"].'</td>
                       <td>No.of Days Absent</td>
                       <td>'.$row["month"].'</td>
                       <td>'.$row["daysAbs"].'</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
                       </tr>
                       <td>'.$row["attid"].'</td>
                       <td>No.of Days Tardy</td>
                       <td>'.$row["month"].'</td>
                       <td>'.$row["daysTar"].'</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
                       </tr>
                       ';
                     }
