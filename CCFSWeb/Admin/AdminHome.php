@@ -1,6 +1,54 @@
 <?php include '../ActiveSchoolYear.php';
  include ('../edit.php');
- include('../server.php')
+ include('../server.php');
+ include('Connection.php');
+ 
+ $lastID = 'SELECT IDno FROM enstudent ORDER BY IDno DESC LIMIT 1';
+ $result = $conn->query($lastID);
+ $data = array();
+ while($row = $result->fetch_assoc()) {
+     $data[0] = $row['IDno']+1;
+ }
+
+ $lastyear = 'SELECT yearId FROM schoolyear ORDER BY yearId DESC LIMIT 1';
+ $result1 = $conn->query($lastyear);
+ $data1 = array();
+ while($row = $result1->fetch_assoc()) {
+     $data1[0] = $row['yearId'];
+ }
+
+if(isset($_POST['enroll'])) { 
+ $enstud = "INSERT INTO `enstudent`( 
+ IDno, GivenName, MiddleName, 
+ SurName, gradelvl, birthdate, 
+ birthplace, gender, homeTelnum, 
+ mobilenum, studaddress, 
+ prevschoolattended, studstat, 
+ sponsor, faFname, falname, 
+ faAdd, faMobilenum, faEmail, 
+ faoccupation, moFname, moLname, 
+ moAdd, momobilenum, moEmail, 
+ mooccupation, sibFname, sibLname, 
+ sibBirthdate, sibschoolname, 
+ yearid, dateenrolled, 
+ guardianName, guardianAddress, 
+ guardianContact) 
+ VALUES ('$data[0]','$_POST[studentGivenName]',"
+         . "'$_POST[studentMiddleName]','$_POST[studentSurname]',"
+         . "'$_POST[gradeLevel]','$_POST[studentBirthDate]',"
+         . "'$_POST[studentBirthPlace]','$_POST[gender]',"
+         . "'$_POST[studentTelNum]','$_POST[studentMobNum]',"
+         . "'$_POST[studentAddress]','$_POST[studentLastSchool]',"
+         . "'Enrolled','','$_POST[fatherFirst]','$_POST[fatherLast]',"
+         . "'$_POST[fatherAdd]','$_POST[fatherMobileNum]',"
+         . "'$_POST[fatherEmailAdd]','$_POST[fatherOcc]',"
+         . "'$_POST[motherFirst]','$_POST[motherLast]',"
+         . "'$_POST[motherAdd]','$_POST[motherMobNum]',"
+         . "'$_POST[motherEmAdd]','$_POST[motherOcc]','','','2020-12-12','',"
+         . "'$data1[0]','".date("Y-d-m")."','$_POST[guardianName]','$_POST[guardianAddress]','$_POST[guardianContact]')";
+ $insert_row = $conn->query($enstud) or die($conn->error.__LINE__);
+ $message = "successfully enrolled a student";
+}
  ?>
 
 <!DOCTYPE html>

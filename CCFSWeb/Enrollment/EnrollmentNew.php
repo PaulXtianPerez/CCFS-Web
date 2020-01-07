@@ -1,19 +1,5 @@
 <?php
   include("Connection.php");
-  
-  $lastID = 'SELECT IDno FROM enstudent ORDER BY IDno DESC LIMIT 1';
-  $result = $conn->query($lastID);
-  $data = array();
-  while($row = $result->fetch_assoc()) {
-      $data[0] = $row['IDno']+1;
-  }
-
-  $lastyear = 'SELECT yearId FROM schoolyear ORDER BY yearId DESC LIMIT 1';
-  $result1 = $conn->query($lastyear);
-  $data1 = array();
-  while($row = $result1->fetch_assoc()) {
-      $data1[0] = $row['yearId'];
-  }
 
   if(isset($_POST['searcher'])){
     $f = $_POST['search'];
@@ -27,41 +13,13 @@
     }
   }
 
-  if(isset($_POST['enroll'])) { 
-      $enstud = "INSERT INTO `enstudent`( 
-      IDno, GivenName, MiddleName, 
-      SurName, gradelvl, birthdate, 
-      birthplace, gender, homeTelnum, 
-      mobilenum, studaddress, 
-      prevschoolattended, studstat, 
-      sponsor, faFname, falname, 
-      faAdd, faMobilenum, faEmail, 
-      faoccupation, moFname, moLname, 
-      moAdd, momobilenum, moEmail, 
-      mooccupation, sibFname, sibLname, 
-      sibBirthdate, sibschoolname, 
-      yearid, dateenrolled, 
-      guardianName, guardianAddress, 
-      guardianContact) 
-      VALUES ('$data[0]','$_POST[studentGivenName]',"
-              . "'$_POST[studentMiddleName]','$_POST[studentSurname]',"
-              . "'$_POST[gradeLevel]','$_POST[studentBirthDate]',"
-              . "'$_POST[studentBirthPlace]','$_POST[gender]',"
-              . "'$_POST[studentTelNum]','$_POST[studentMobNum]',"
-              . "'$_POST[studentAddress]','$_POST[studentLastSchool]',"
-              . "'Enrolled','','$_POST[fatherFirst]','$_POST[fatherLast]',"
-              . "'$_POST[fatherAdd]','$_POST[fatherMobileNum]',"
-              . "'$_POST[fatherEmailAdd]','$_POST[fatherOcc]',"
-              . "'$_POST[motherFirst]','$_POST[motherLast]',"
-              . "'$_POST[motherAdd]','$_POST[motherMobNum]',"
-              . "'$_POST[motherEmAdd]','$_POST[motherOcc]','','','2020-12-12','',"
-              . "'$data1[0]','".date("Y-d-m")."','$_POST[guardianName]','$_POST[guardianAddress]','$_POST[guardianContact]')";
-      $insert_row = $conn->query($enstud) or die($conn->error.__LINE__);
-      $message = "e";
-  }
+  
 ?>
 <html>
 <head>
+  <?php if(isset($message)){
+        echo "<p>".$message."</p>";
+  }?>
   <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>CCFS Student Information System</title>
@@ -91,11 +49,6 @@
     <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
 </head>
 <body>
-<?php 
-  if(isset($_POST['varname'])){
-    echo $_POST['varname'];
-  }
-?>
   <!-- Content Wrapper. Contains page content -->
   <div id="contents">
     <!-- Content Header (Page header) -->
@@ -129,7 +82,12 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              
+              <?php if($_POST['varname'] === 'R') {
+                echo "<form action='../Registrar/RegistrarHome.php' method='post'>";
+              } else {
+                echo "<form action='../Admin/AdminHome.php' method='post'>";
+              }
+              ?>
                 <div class="card-body">
                   <div class="row">
                   <div class="form-group col-4">
@@ -148,7 +106,7 @@
                 <div class="row">
                     <div class="form-group col-md-2">
                         <label>Gender</label>
-                        <select class="form-control" id="gender" name="gender">
+                        <select class="form-control" name="gender">
                           <option>Male</option>
                           <option>Female</option>
                         </select>
@@ -159,12 +117,12 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                     </div>
-                    <input type="text" id="bday" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="mm/dd/yyyy" data-mask name="studentBirthDate">
+                    <input type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="mm/dd/yyyy" data-mask name="studentBirthDate">
                   </div>
                 </div>
                     <div class="form-group col-md-3">
                         <label>Grade Level</label>
-                        <select class="form-control" id="grade" name="gradeLevel">
+                        <select class="form-control" name="gradeLevel">
                           <option>Preschool</option>
                           <option>Kinder</option>
                           <option>Grade 1</option>
@@ -371,58 +329,25 @@
 
             </div>
             <!-- /.card -->
-      </div><!-- /.container-fluid -->  
+      </div><!-- /.container-fluid -->
     </div>
       <div class="card-footer">
           <button type="submit" class="btn btn-success" data-toggle="modal" name="enroll" value="enroll" data-target="#myModal1" style="float: right;">Submit</button>
       </div>
+          </form>
 
 
           <!-- The Modal -->
   <div class="modal fade" id="myModal1">
-    <form method="post" action="EnrollmentNew.php" id="modal_form">
-      <input type="hidden" id="" name="">
-      <input type="hidden" id="" name="">
-      <input type="hidden" id="" name="">
-      <input type="hidden" id="" name="">
-      <input type="hidden" id="" name="">
-      <input type="hidden" id="" name="">
-      <input type="hidden" id="" name="">
-      <input type="hidden" id="" name="">
-      <input type="hidden" id="" name="">
-      <input type="hidden" id="" name="">
-      <input type="hidden" id="" name="">
-      <input type="hidden" id="" name="">
-      <input type="hidden" id="" name="">
-      <input type="hidden" id="" name="">
-      <input type="hidden" id="" name="">
-      <input type="hidden" id="" name="">
-      <input type="hidden" id="" name="">
-      <input type="hidden" id="" name="">
-      <input type="hidden" id="" name="">
-      <input type="hidden" id="" name="">
-      <input type="hidden" id="" name="">
-      <input type="hidden" id="" name="">
-      <input type="hidden" id="" name="">
-      <input type="hidden" id="" name="">
-      <input type="hidden" id="" name="">
-      <input type="hidden" id="" name="">
-      <input type="hidden" id="" name="">
-      <input type="hidden" id="" name="">
-      <input type="hidden" id="" name="">
-      <div class="modal-dialog">
-        <div class="modal-content">
+    
+    <div class="modal-dialog">
+      <div class="modal-content">
 
-          <!-- Modal Header -->
-          <div class="modal-header">
-            <h4 class="modal-title">Enroll this Student?</h4>
-            <?php 
-            if(isset($_POST['varname'])) {
-              echo "<button type='button' class='close' data-dismiss='modal'>&times;</button>";
-            }
-            ?>
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Enroll this Student?</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
-    </form>
 
         <!-- Modal body -->
         <div class="modal-body">
@@ -496,39 +421,7 @@
     })
 
   })
-</script>
-<script>
-function getValue() {
-  document.getElementById("Inputsurname").value;
-  document.getElementById("givenName").value;
-  document.getElementById("middleName").value;
-  document.getElementById("gender").value;
-  document.getElementById("bday").value;
-  document.getElementById("grade").value;
-  document.getElementById("birthPlace").value;
-  document.getElementById("studAddress").value;
-  document.getElementById("telNumber").value;
-  document.getElementById("mobileNumber").value;
-  document.getElementById("lastSchool").value;
-  document.getElementById("fatherFirstName").value;
-  document.getElementById("fatherLastName").value;
-  document.getElementById("fatherAddress").value;
-  document.getElementById("fatherOccupation").value;
-  document.getElementById("fatherMobile").value;
-  document.getElementById("fatherEmail").value;
-  document.getElementById("motherFirstName").value;
-  document.getElementById("motherLastName").value;
-  document.getElementById("motherAddress").value;
-  document.getElementById("motherOccupation").value;
-  document.getElementById("motherMobileNumber").value;
-  document.getElementById("motherEmailAddress").value;
-  document.getElementById("guardianName").value;
-  document.getElementById("guardianAddress").value;
-  document.getElementById("guardianContact").value;
-  document.getElementById("siblingSurname").value;
-  document.getElementById("siblingGivenName").value;
-  document.getElementById("siblingSchool").value;
-}
+
 </script>
     <script src="../Resources/plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
