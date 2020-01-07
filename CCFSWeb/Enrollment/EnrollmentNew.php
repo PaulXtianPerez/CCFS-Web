@@ -148,7 +148,7 @@
                 <div class="row">
                     <div class="form-group col-md-2">
                         <label>Gender</label>
-                        <select class="form-control" name="gender">
+                        <select class="form-control" id="gender" name="gender">
                           <option>Male</option>
                           <option>Female</option>
                         </select>
@@ -159,12 +159,12 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                     </div>
-                    <input type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="mm/dd/yyyy" data-mask name="studentBirthDate">
+                    <input type="text" id="bday" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="mm/dd/yyyy" data-mask name="studentBirthDate">
                   </div>
                 </div>
                     <div class="form-group col-md-3">
                         <label>Grade Level</label>
-                        <select class="form-control" name="gradeLevel">
+                        <select class="form-control" id="grade" name="gradeLevel">
                           <option>Preschool</option>
                           <option>Kinder</option>
                           <option>Grade 1</option>
@@ -381,19 +381,48 @@
           <!-- The Modal -->
   <div class="modal fade" id="myModal1">
     <form method="post" action="EnrollmentNew.php" id="modal_form">
-    <div class="modal-dialog">
-      <div class="modal-content">
+      <input type="hidden" id="" name="">
+      <input type="hidden" id="" name="">
+      <input type="hidden" id="" name="">
+      <input type="hidden" id="" name="">
+      <input type="hidden" id="" name="">
+      <input type="hidden" id="" name="">
+      <input type="hidden" id="" name="">
+      <input type="hidden" id="" name="">
+      <input type="hidden" id="" name="">
+      <input type="hidden" id="" name="">
+      <input type="hidden" id="" name="">
+      <input type="hidden" id="" name="">
+      <input type="hidden" id="" name="">
+      <input type="hidden" id="" name="">
+      <input type="hidden" id="" name="">
+      <input type="hidden" id="" name="">
+      <input type="hidden" id="" name="">
+      <input type="hidden" id="" name="">
+      <input type="hidden" id="" name="">
+      <input type="hidden" id="" name="">
+      <input type="hidden" id="" name="">
+      <input type="hidden" id="" name="">
+      <input type="hidden" id="" name="">
+      <input type="hidden" id="" name="">
+      <input type="hidden" id="" name="">
+      <input type="hidden" id="" name="">
+      <input type="hidden" id="" name="">
+      <input type="hidden" id="" name="">
+      <input type="hidden" id="" name="">
+      <div class="modal-dialog">
+        <div class="modal-content">
 
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Enroll this Student?</h4>
-          <?php 
-          if(isset($_POST['varname'])) {
-            echo "<button type='button' class='close' data-dismiss='modal'>&times;</button>";
-          }
-          ?>
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Enroll this Student?</h4>
+            <?php 
+            if(isset($_POST['varname'])) {
+              echo "<button type='button' class='close' data-dismiss='modal'>&times;</button>";
+            }
+            ?>
         </div>
-        </form>
+    </form>
 
         <!-- Modal body -->
         <div class="modal-body">
@@ -467,7 +496,39 @@
     })
 
   })
-
+</script>
+<script>
+function getValue() {
+  document.getElementById("Inputsurname").value;
+  document.getElementById("givenName").value;
+  document.getElementById("middleName").value;
+  document.getElementById("gender").value;
+  document.getElementById("bday").value;
+  document.getElementById("grade").value;
+  document.getElementById("birthPlace").value;
+  document.getElementById("studAddress").value;
+  document.getElementById("telNumber").value;
+  document.getElementById("mobileNumber").value;
+  document.getElementById("lastSchool").value;
+  document.getElementById("fatherFirstName").value;
+  document.getElementById("fatherLastName").value;
+  document.getElementById("fatherAddress").value;
+  document.getElementById("fatherOccupation").value;
+  document.getElementById("fatherMobile").value;
+  document.getElementById("fatherEmail").value;
+  document.getElementById("motherFirstName").value;
+  document.getElementById("motherLastName").value;
+  document.getElementById("motherAddress").value;
+  document.getElementById("motherOccupation").value;
+  document.getElementById("motherMobileNumber").value;
+  document.getElementById("motherEmailAddress").value;
+  document.getElementById("guardianName").value;
+  document.getElementById("guardianAddress").value;
+  document.getElementById("guardianContact").value;
+  document.getElementById("siblingSurname").value;
+  document.getElementById("siblingGivenName").value;
+  document.getElementById("siblingSchool").value;
+}
 </script>
     <script src="../Resources/plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->

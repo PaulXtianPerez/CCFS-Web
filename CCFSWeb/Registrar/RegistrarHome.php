@@ -101,8 +101,9 @@
           <form action="../Enrollment/EnrollmentNew.php" method="post">
           <input type="hidden" name="varname" value="R">
             <button type="submit" class="nav-link" id="newEnroll" href="'../Enrollment/EnrollmentNew.php'">Enroll Student</button>
-          </li>
           </form>
+          </li>
+
           <li class="nav-item has-treeview">
             <a href="#listofstudents" id="studList" class="nav-link" onclick="openPage('ListOfStudents.php')">
               <i class="nav-icon fas fa-list"></i>

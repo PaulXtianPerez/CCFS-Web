@@ -122,10 +122,10 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#enrollnew" class="nav-link" id="newEnroll" onclick="openPage('../Enrollment/EnrollmentNew.php')">
-              <i class="nav-icon fas fa-copy"></i>
-              <p>Enroll Student<i class=""></i></p>
-            </a>
+          <form action="../Enrollment/EnrollmentNew.php" method="post">
+          <input type="hidden" name="varname" value="A">
+            <button type="submit" class="nav-link" id="newEnroll" href="'../Enrollment/EnrollmentNew.php'">Enroll Student</button>
+          </form>
           </li>
           <li class="nav-item has-treeview">
             <a href="#discountsponsor" id="discSpons" class="nav-link" onclick="openPage('DiscountSponsor.php')">
