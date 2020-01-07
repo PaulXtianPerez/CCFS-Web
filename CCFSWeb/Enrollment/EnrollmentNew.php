@@ -1,6 +1,6 @@
 <?php
   include("Connection.php");
-
+  
   $lastID = 'SELECT IDno FROM enstudent ORDER BY IDno DESC LIMIT 1';
   $result = $conn->query($lastID);
   $data = array();
@@ -62,9 +62,6 @@
 ?>
 <html>
 <head>
-  <?php if(isset($message)){
-        echo "<p>".$message."</p>";
-  }?>
   <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>CCFS Student Information System</title>
@@ -94,6 +91,11 @@
     <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
 </head>
 <body>
+<?php 
+  if(isset($_POST['varname'])){
+    echo $_POST['varname'];
+  }
+?>
   <!-- Content Wrapper. Contains page content -->
   <div id="contents">
     <!-- Content Header (Page header) -->
@@ -103,7 +105,7 @@
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">Fill up the forms below</h1>
               <!-- SEARCH FORM -->
-          <form class="form-inline md-form form-sm mt-0" method="post">
+          <form class="form-inline md-form form-sm mt-0" action="../Enrollment/EnrollmentNew.php" method="post">
             <i class="fas fa-search" aria-hidden="true"></i>
             <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search ID or Surname"
               aria-label="Search" name="search">
@@ -127,7 +129,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="../Enrollment/EnrollmentNew.php" method="post">
+              
                 <div class="card-body">
                   <div class="row">
                   <div class="form-group col-4">
@@ -369,24 +371,29 @@
 
             </div>
             <!-- /.card -->
-      </div><!-- /.container-fluid -->
+      </div><!-- /.container-fluid -->  
     </div>
       <div class="card-footer">
           <button type="submit" class="btn btn-success" data-toggle="modal" name="enroll" value="enroll" data-target="#myModal1" style="float: right;">Submit</button>
       </div>
-          </form>
 
 
           <!-- The Modal -->
   <div class="modal fade" id="myModal1">
+    <form method="post" action="EnrollmentNew.php" id="modal_form">
     <div class="modal-dialog">
       <div class="modal-content">
 
         <!-- Modal Header -->
         <div class="modal-header">
           <h4 class="modal-title">Enroll this Student?</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <?php 
+          if(isset($_POST['varname'])) {
+            echo "<button type='button' class='close' data-dismiss='modal'>&times;</button>";
+          }
+          ?>
         </div>
+        </form>
 
         <!-- Modal body -->
         <div class="modal-body">
@@ -460,6 +467,7 @@
     })
 
   })
+
 </script>
     <script src="../Resources/plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->

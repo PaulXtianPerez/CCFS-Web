@@ -98,11 +98,11 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#enrollnew" class="nav-link" id="newEnroll" onclick="openPage('../Enrollment/EnrollmentNew.php')">
-              <i class="nav-icon fas fa-copy"></i>
-              <p>Enroll Student<i class=""></i></p>
-            </a>
+          <form action="../Enrollment/EnrollmentNew.php" method="post">
+          <input type="hidden" name="varname" value="R">
+            <button type="submit" class="nav-link" id="newEnroll" href="'../Enrollment/EnrollmentNew.php'">Enroll Student</button>
           </li>
+          </form>
           <li class="nav-item has-treeview">
             <a href="#listofstudents" id="studList" class="nav-link" onclick="openPage('ListOfStudents.php')">
               <i class="nav-icon fas fa-list"></i>
