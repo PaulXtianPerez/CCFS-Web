@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 08, 2020 at 03:55 AM
--- Server version: 5.7.24
--- PHP Version: 7.2.14
+-- Generation Time: Jan 10, 2020 at 07:45 AM
+-- Server version: 5.7.26
+-- PHP Version: 7.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -392,6 +392,9 @@ CREATE TABLE IF NOT EXISTS `schoolyear` (
   `pretui2` float DEFAULT NULL,
   `premisc2` float DEFAULT NULL,
   `prebook2` float DEFAULT NULL,
+  `pretui3` int(11) NOT NULL,
+  `premisc3` int(11) NOT NULL,
+  `prebook3` int(11) NOT NULL,
   `gradetui1` float DEFAULT NULL,
   `gradebook1` float DEFAULT NULL,
   `grademisc1` float DEFAULT NULL,
@@ -415,20 +418,22 @@ CREATE TABLE IF NOT EXISTS `schoolyear` (
   PRIMARY KEY (`yearid`),
   KEY `yearstart` (`yearstart`),
   KEY `yearend` (`yearend`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `schoolyear`
 --
 
-INSERT INTO `schoolyear` (`yearid`, `yearstart`, `yearend`, `janAtt`, `febAtt`, `marAtt`, `aprAtt`, `mayAtt`, `junAtt`, `julAtt`, `augAtt`, `sepAtt`, `octAtt`, `novAtt`, `decAtt`, `totalAtt`, `totalSec`, `dateStart`, `dateEnd`, `pretui1`, `premisc1`, `prebook1`, `pretui2`, `premisc2`, `prebook2`, `gradetui1`, `gradebook1`, `grademisc1`, `gradetui2`, `grademisc2`, `gradebook2`, `gradetui3`, `grademisc3`, `gradebook3`, `gradetui4`, `grademisc4`, `gradebook4`, `gradetui5`, `grademisc5`, `gradebook5`, `gradetui6`, `grademisc6`, `gradebook6`, `scfee`, `scstatus`) VALUES
-(1, 2019, 2020, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INACTIVE'),
-(2, 2020, 2021, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INACTIVE'),
-(3, 2021, 2022, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INACTIVE'),
-(7, 2019, 2020, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 20115, 'INACTIVE'),
-(10, 2020, 2021, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 8, '2020-06-30', '2021-04-15', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5632, 'INACTIVE'),
-(11, 2222, 22223, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 52, 6, '2222-05-04', '2223-06-02', 1, 123, 12, 2, 213, 21, 1, 123, 12, 2, 21, 213, 3, 31, 312, 4, 41, 412, 5, 51, 512, 6, 61, 612, 6215, 'INACTIVE'),
-(12, 2023, 2024, 20, 25, 26, 23, 21, 51, 2, 56, 1, 56, 5, 4, 200, 6, '2023-06-02', '2024-05-25', 51548, 5484, 5484, 545, 545, 5454, 545, 54, 54, 54, 54, 54, 54, 54, 545, 45, 454, 545, 45, 45, 454, 545, 45, 54, 545, 'ACTIVE');
+INSERT INTO `schoolyear` (`yearid`, `yearstart`, `yearend`, `janAtt`, `febAtt`, `marAtt`, `aprAtt`, `mayAtt`, `junAtt`, `julAtt`, `augAtt`, `sepAtt`, `octAtt`, `novAtt`, `decAtt`, `totalAtt`, `totalSec`, `dateStart`, `dateEnd`, `pretui1`, `premisc1`, `prebook1`, `pretui2`, `premisc2`, `prebook2`, `pretui3`, `premisc3`, `prebook3`, `gradetui1`, `gradebook1`, `grademisc1`, `gradetui2`, `grademisc2`, `gradebook2`, `gradetui3`, `grademisc3`, `gradebook3`, `gradetui4`, `grademisc4`, `gradebook4`, `gradetui5`, `grademisc5`, `gradebook5`, `gradetui6`, `grademisc6`, `gradebook6`, `scfee`, `scstatus`) VALUES
+(1, 2019, 2020, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INACTIVE'),
+(2, 2020, 2021, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INACTIVE'),
+(3, 2021, 2022, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INACTIVE'),
+(7, 2019, 2020, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 20115, 'INACTIVE'),
+(10, 2020, 2021, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 8, '2020-06-30', '2021-04-15', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5632, 'INACTIVE'),
+(11, 2222, 22223, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 52, 6, '2222-05-04', '2223-06-02', 1, 123, 12, 2, 213, 21, 0, 0, 0, 1, 123, 12, 2, 21, 213, 3, 31, 312, 4, 41, 412, 5, 51, 512, 6, 61, 612, 6215, 'INACTIVE'),
+(12, 2023, 2024, 20, 25, 26, 23, 21, 51, 2, 56, 1, 56, 5, 4, 200, 6, '2023-06-02', '2024-05-25', 51548, 5484, 5484, 545, 545, 5454, 0, 0, 0, 545, 54, 54, 54, 54, 54, 54, 54, 545, 45, 454, 545, 45, 45, 454, 545, 45, 54, 545, 'ACTIVE'),
+(13, 3019, 3020, 12, 12, 12, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, '3019-01-09', '3020-12-01', 54, 545, 54, 454, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 5, 45, 45, 45, 4, 54, 54, 54, 54, 'INACTIVE'),
+(14, 4019, 4020, 564, 897, 5648, 7456, 8, 454, 87, 487, 48, 7487, 4847870, 85, 78, 965487, '4019-12-01', '4020-12-01', 748, 874, 74, 8748, 574, 5748, 74, 857, 5874, 8574, 58, 8574, 7485, 74, 5874, 8574, 58, 74, 8574, 8574, 5, 874, 8574, 8574, 85, 74, 8574, 8574, 'INACTIVE');
 
 -- --------------------------------------------------------
 
