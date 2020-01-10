@@ -5,7 +5,7 @@
     
 
     
-    $query = "INSERT INTO `schoolyear`(yearstart, yearend, totalAtt, totalSec, dateStart, dateEnd, pretui1, premisc1, prebook1, pretui2, premisc2, prebook2, pretui3, premisc3, prebook3, gradetui1, grademisc1, gradebook1, gradetui2, grademisc2, gradebook2, gradetui3, grademisc3, gradebook3, gradetui4, grademisc4, gradebook4, gradetui5, grademisc5, gradebook5,gradetui6, grademisc6, gradebook6, scfee ) values ('$_POST[yearstart]', '$_POST[yearend]', '$_POST[totalAtt]', '$_POST[totalSec]', '$_POST[dateStart]', '$_POST[dateEnd]', '$_POST[pretui1]', '$_POST[premisc1]', '$_POST[prebook1]','$_POST[pretui2]', '$_POST[premisc2]', '$_POST[prebook2]', '$_POST[pretui3]', '$_POST[premisc3]', '$_POST[prebook3]', '$_POST[gradetui1]', '$_POST[grademisc1]', '$_POST[gradebook1]', '$_POST[gradetui2]', '$_POST[grademisc2]', '$_POST[gradebook2]', '$_POST[gradetui3]', '$_POST[grademisc3]', '$_POST[gradebook3]', '$_POST[gradetui4]', '$_POST[grademisc4]', '$_POST[gradebook4]', '$_POST[gradetui5]', '$_POST[grademisc5]', '$_POST[gradebook5]', '$_POST[gradetui6]', '$_POST[grademisc6]', '$_POST[gradebook6]', '$_POST[scfee]')";
+    $query = "INSERT INTO `schoolyear`(yearstart, yearend,janAtt, febAtt, marAtt, aprAtt, mayAtt, junAtt, julAtt, augAtt, sepAtt, octAtt, novAtt, decAtt, totalAtt, totalSec, dateStart, dateEnd, pretui1, premisc1, prebook1, pretui2, premisc2, prebook2, pretui3, premisc3, prebook3, gradetui1, grademisc1, gradebook1, gradetui2, grademisc2, gradebook2, gradetui3, grademisc3, gradebook3, gradetui4, grademisc4, gradebook4, gradetui5, grademisc5, gradebook5,gradetui6, grademisc6, gradebook6, scfee ) values ('$_POST[yearstart]', '$_POST[yearend]', '$_POST[janAtt]', '$_POST[febAtt]', '$_POST[marAtt]', '$_POST[aprAtt]', '$_POST[mayAtt]', '$_POST[junAtt]', '$_POST[julAtt]', '$_POST[augAtt]', '$_POST[sepAtt]', '$_POST[octAtt]', '$_POST[novAtt]', '$_POST[decAtt]', '$_POST[totalAtt]', '$_POST[totalSec]', '$_POST[dateStart]', '$_POST[dateEnd]', '$_POST[pretui1]', '$_POST[premisc1]', '$_POST[prebook1]','$_POST[pretui2]', '$_POST[premisc2]', '$_POST[prebook2]', '$_POST[pretui3]', '$_POST[premisc3]', '$_POST[prebook3]', '$_POST[gradetui1]', '$_POST[grademisc1]', '$_POST[gradebook1]', '$_POST[gradetui2]', '$_POST[grademisc2]', '$_POST[gradebook2]', '$_POST[gradetui3]', '$_POST[grademisc3]', '$_POST[gradebook3]', '$_POST[gradetui4]', '$_POST[grademisc4]', '$_POST[gradebook4]', '$_POST[gradetui5]', '$_POST[grademisc5]', '$_POST[gradebook5]', '$_POST[gradetui6]', '$_POST[grademisc6]', '$_POST[gradebook6]', '$_POST[scfee]')";
     
     $insert_row = $mysqli->query($query) or die($mysqli->error.__LINE__);
     
@@ -114,6 +114,68 @@
                 </div>  
               </div>
             </div>    
+
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Number of Days per Month</h3>
+              </div>
+              <div class="card-body">
+                  <div class="row">
+                  <div class="form-group col-3">
+                    <label for="Yearstart">January </label>
+                    <input class="form-control" id="inputYearStart" placeholder="Number of days" type= "number" name ="janAtt" min = "0">
+                  </div>
+                  <div class="form-group col-3">
+                    <label for="Yearend">February</label>
+                    <input class="form-control" id="inputYearEnd" placeholder="Number of days" type= "number" name ="febAtt" min = "0">
+                  </div>
+                  <div class="form-group col-3">
+                    <label for="Yearstart">March </label>
+                    <input class="form-control" id="inputYearStart" placeholder="Number of days" type= "number"name ="marAtt" min = "0">
+                  </div>
+                  <div class="form-group col-3">
+                    <label for="Yearend">April</label>
+                    <input class="form-control" id="inputYearEnd" placeholder="Number of days" type= "number" name ="aprAtt" min = "0">
+                  </div>
+                </div>
+                  <div class="row">
+                  <div class="form-group col-3">
+                    <label for="Yearstart">May </label>
+                    <input class="form-control" id="inputYearStart" placeholder="Number of days" type= "number" name ="mayAtt" min = "0">
+                  </div>
+                  <div class="form-group col-3">
+                    <label for="Yearend">June</label>
+                    <input class="form-control" id="inputYearEnd" placeholder="Number of days" type= "number" name ="junAtt" min = "0">
+                  </div>
+                  <div class="form-group col-3">
+                    <label for="Yearstart">July </label>
+                    <input class="form-control" id="inputYearStart" placeholder="Number of days" type= "number" name ="julAtt" min = "0">
+                  </div>
+                  <div class="form-group col-3">
+                    <label for="Yearend">August</label>
+                    <input class="form-control" id="inputYearEnd" placeholder="Number of days" type= "number" name ="augAtt" min = "0">
+                  </div>
+                </div>
+                  <div class="row">
+                  <div class="form-group col-3">
+                    <label for="Yearstart">September </label>
+                    <input class="form-control" id="inputYearStart" placeholder="Number of days" type= "number" name ="sepAtt" min = "0">
+                  </div>
+                  <div class="form-group col-3">
+                    <label for="Yearend">October</label>
+                    <input class="form-control" id="inputYearEnd" placeholder="Number of days" type= "number" name ="octAtt" min = "0">
+                  </div>
+                  <div class="form-group col-3">
+                    <label for="Yearstart">November </label>
+                    <input class="form-control" id="inputYearStart" placeholder="Number of days" type= "number" name ="novAtt" min = "0">
+                  </div>
+                  <div class="form-group col-3">
+                    <label for="Yearend">December</label>
+                    <input class="form-control" id="inputYearEnd" placeholder="Number of days" type= "number" name ="decAtt" min = "0">
+                  </div>
+                </div>
+                </div>  
+            </div>   
 
         <!-- Start of Preschool Card -->
           <div class="card card-primary">
