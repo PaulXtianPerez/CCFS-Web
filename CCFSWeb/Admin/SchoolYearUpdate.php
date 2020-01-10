@@ -3,6 +3,18 @@
  if(!empty($_POST)) {
       $output = '';
       $message = '';
+      $janAtt = mysqli_real_escape_string($connect, $_POST["janAtt"]);
+      $febAtt = mysqli_real_escape_string($connect, $_POST["febAtt"]);
+      $marAtt = mysqli_real_escape_string($connect, $_POST["marAtt"]);
+      $aprAtt = mysqli_real_escape_string($connect, $_POST["aprAtt"]);
+      $mayAtt = mysqli_real_escape_string($connect, $_POST["mayAtt"]);
+      $junAtt = mysqli_real_escape_string($connect, $_POST["junAtt"]);
+      $julAtt = mysqli_real_escape_string($connect, $_POST["julAtt"]);
+      $augAtt = mysqli_real_escape_string($connect, $_POST["augAtt"]);
+      $sepAtt = mysqli_real_escape_string($connect, $_POST["sepAtt"]);
+      $octAtt = mysqli_real_escape_string($connect, $_POST["octAtt"]);
+      $novAtt = mysqli_real_escape_string($connect, $_POST["novAtt"]);
+      $decAtt = mysqli_real_escape_string($connect, $_POST["decAtt"]);
       $inputnurseryTuition = mysqli_real_escape_string($connect, $_POST["pretui1"]);
       $inputnurseryBook = mysqli_real_escape_string($connect, $_POST["premisc1"]);
       $inputnurseryMisc1 = mysqli_real_escape_string($connect, $_POST["prebook1"]);
@@ -34,7 +46,19 @@
       if($_POST["schoolYear_id"] != '') {
            $query = "
            UPDATE schoolyear
-           SET pretui1='$inputnurseryTuition',
+           SET janAtt='$janAtt',
+           febAtt='$febAtt',
+           marAtt='$marAtt',
+           aprAtt='$aprAtt',
+           mayAtt='$mayAtt',
+           junAtt='$junAtt',
+           julAtt='$julAtt',
+           augAtt='$augAtt',
+           sepAtt='$sepAtt',
+           octAtt='$octAtt',
+           novAtt='$novAtt',
+           decAtt='$decAtt',
+           pretui1='$inputnurseryTuition',
            premisc1='$inputnurseryBook',
            prebook1='$inputnurseryMisc1',
            pretui2='$inputpreKinTuition',

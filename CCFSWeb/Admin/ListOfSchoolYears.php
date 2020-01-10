@@ -108,6 +108,8 @@ $result = mysqli_query($connect, $query);
       </div>
       <div class="modal-body">
         <form method="post" id="insert_form">
+          <label>Date Information</label>
+          <br>
           <div class="row">
             <div class="form-group col-3">
               <label>Year Start</label> <i class="fa fa-lock" aria-hidden="true"></i>
@@ -126,6 +128,68 @@ $result = mysqli_query($connect, $query);
               <input class="form-control" type="text" name="dateEnd" id="dateEnd" disabled/>
             </div>
           </div>
+
+          <label>Number of Days per Month</label>
+          <br>
+            <div class="row">
+              <div class="form-group col-4">
+                <label for="nurseryTuition">January</label>
+                <input class="form-control" id="janAtt" placeholder="Enter Tuition Fee" type= "number" name ="janAtt" min="0">
+              </div>
+            <div class="form-group col-4">
+                <label for="nurseryBook">February</label>
+                <input class="form-control" id="febAtt" placeholder="Enter Book Fee" type= "number" name ="febAtt" min= "0">
+            </div>
+            <div class="form-group col-4">
+                <label for="nurseryMisc">March</label>
+                <input class="form-control" id="marAtt" placeholder="Enter Miscellaneous Fee" type= "number" name ="marAtt" min ="0">
+              </div>
+          </div>
+            <div class="row">
+              <div class="form-group col-4">
+                <label for="nurseryTuition">April</label>
+                <input class="form-control" id="aprAtt" placeholder="Enter Tuition Fee" type= "number" name ="aprAtt" min="0">
+              </div>
+            <div class="form-group col-4">
+                <label for="nurseryBook">May</label>
+                <input class="form-control" id="mayAtt" placeholder="Enter Book Fee" type= "number" name ="mayAtt" min= "0">
+            </div>
+            <div class="form-group col-4">
+                <label for="nurseryMisc">June</label>
+                <input class="form-control" id="junAtt" placeholder="Enter Miscellaneous Fee" type= "number" name ="junAtt" min ="0">
+              </div>
+          </div>
+            <div class="row">
+              <div class="form-group col-4">
+                <label for="nurseryTuition">July</label>
+                <input class="form-control" id="julAtt" placeholder="Enter Tuition Fee" type= "number" name ="julAtt" min="0">
+              </div>
+            <div class="form-group col-4">
+                <label for="nurseryBook">August</label>
+                <input class="form-control" id="augAtt" placeholder="Enter Book Fee" type= "number" name ="augAtt" min= "0">
+            </div>
+            <div class="form-group col-4">
+                <label for="nurseryMisc">September</label>
+                <input class="form-control" id="sepAtt" placeholder="Enter Miscellaneous Fee" type= "number" name ="sepAtt" min ="0">
+              </div>
+          </div>
+            <div class="row">
+              <div class="form-group col-4">
+                <label for="nurseryTuition">October</label>
+                <input class="form-control" id="octAtt" placeholder="Enter Tuition Fee" type= "number" name ="octAtt" min="0">
+              </div>
+            <div class="form-group col-4">
+                <label for="nurseryBook">November</label>
+                <input class="form-control" id="novAtt" placeholder="Enter Book Fee" type= "number" name ="novAtt" min= "0">
+            </div>
+            <div class="form-group col-4">
+                <label for="nurseryMisc">December</label>
+                <input class="form-control" id="decAtt" placeholder="Enter Miscellaneous Fee" type= "number" name ="decAtt" min ="0">
+              </div>
+          </div>
+          <br>
+
+          <label>Fees Information</label>
             <div class="row">
               <div class="form-group col-4">
                 <label for="nurseryTuition">Nursery Tuition</label>
@@ -289,6 +353,18 @@ $(document).ready(function(){
         $('#inputKinTuition').val(data.pretui3);
         $('#inputKinBook').val(data.premisc3);
         $('#inputnurseryMisc3').val(data.prebook3);
+        $('#janAtt').val(data.janAtt);
+        $('#febAtt').val(data.febAtt);
+        $('#marAtt').val(data.marAtt);
+        $('#aprAtt').val(data.aprAtt);
+        $('#mayAtt').val(data.mayAtt);
+        $('#junAtt').val(data.junAtt);
+        $('#julAtt').val(data.julAtt);
+        $('#augAtt').val(data.augAtt);
+        $('#sepAtt').val(data.sepAtt);
+        $('#octAtt').val(data.octAtt);
+        $('#novAtt').val(data.novAtt);
+        $('#decAtt').val(data.decAtt);
         $('#inputgrade1TFee').val(data.gradetui1);
         $('#inputgrade1MiscFee').val(data.grademisc1);
         $('#inputgrade1BookFee').val(data.gradebook1);
