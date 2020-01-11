@@ -54,7 +54,7 @@
 				<h3 class="card-title">Fill up the fields below.</h3>
 				</div>
 				<div class="card-body">
-					<form id="frmBox" method="post" action="Insert.php" onsubmit="return formSubmit();">
+					<form id="frmBox" class="needs-validation" method="post" action="Insert.php" onsubmit="return formSubmit();">
 						<div class="row">
 	            <div class="form-group col-6">
 								<label>Employee ID</label>
@@ -76,7 +76,7 @@
 									</select>
 									<div class="input-group-append">
 										<div class="input-group-text">
-											<span class="fas fa-id-badge"></span>
+											<span class="fas fa-users"></span>
 										</div>
 									</div>
 								</div>
@@ -110,7 +110,7 @@
 	            <div class="form-group col-6">
 								<label>Username</label>
 								<div class="input-group mb-3">
-									<input type= "text" name="username" id="username" class="form-control" placeholder="Username" onkeyup="checkname();" required/>
+									<input type= "text" name="username" id="username" class="form-control" placeholder="Username" onkeyup="checkname();" minlength="2" maxlength="45" required/>
 									<div class="input-group-append">
 										<div class="input-group-text">
 											<span class="fas fa-user"></span>
@@ -126,7 +126,7 @@
 	            <div class="form-group col-6">
 								<label>Password</label>
 								<div class="input-group mb-3">
-									<input type= "password" name="password" id="password" class="form-control" placeholder="Password" required/>
+									<input type="password" name="password" id="password" class="form-control" placeholder="Password" minlength="6"  maxlength="16" required/>
 									<div class="input-group-append">
 										<div class="input-group-text">
 											<span class="fas fa-lock"></span>
@@ -137,7 +137,7 @@
 							<div class="form-group col-6">
 								<label>Confirm Password</label>
 								<div class="input-group mb-3">
-									<input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password" required/>
+									<input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password" minlength="6"  maxlength="16" required/>
 									<div class="input-group-append">
 										<div class="input-group-text">
 											<span class="fas fa-lock"></span>

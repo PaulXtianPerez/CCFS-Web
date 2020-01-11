@@ -37,7 +37,7 @@ $result = mysqli_query($mysqli, $query);
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
-
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css"/>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div id="contents" class="wrapper">
@@ -151,11 +151,11 @@ $result = mysqli_query($mysqli, $query);
           <div class="row">
             <div class="form-group col-6">
               <label>Change Password</label>
-              <input type="password" name="password" id="password" class="form-control" required/>
+              <input type="password" name="password" id="password" class="form-control" minlength="6"  maxlength="16" required/>
             </div>
             <div class="form-group col-6">
               <label>Confirm Password</label>
-              <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" required/>
+              <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" minlength="6"  maxlength="16" required/>
             </div>
           </div>
           <div class="row">
@@ -241,6 +241,18 @@ function validatePassword(){
 password.onchange = validatePassword;
 confirm_password.onkeyup = validatePassword;
 </script>
+
+<script type="text/javascript">
+// Basic example
+$(document).ready(function () {
+$('#accListTable').DataTable({
+  "pagingType": "simple" // "simple" option for 'Previous' and 'Next' buttons only
+});
+$('.dataTables_length').addClass('bs-select');
+});
+</script>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
 
 <!-- jQuery -->
 <script src="../Resources/plugins/jquery/jquery.min.js"></script>
