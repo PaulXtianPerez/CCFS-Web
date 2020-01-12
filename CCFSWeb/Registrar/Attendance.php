@@ -1,11 +1,11 @@
 <?php
 // php populate html table from mysql database
-
 // connect to mysql
+include('AttendanceAction.php');
 $connect = mysqli_connect("localhost", "root", "", "ccfs");
 
 // mysql select query
-$query = "SELECT * FROM `attendance`";
+$query = "SELECT curstudent.IDno,GivenName,MiddleName,SurName FROM `curstudent` JOIN `enstudent` ON enstudent.IDno = curstudent.IDno";
 
 // result for method
 $result = mysqli_query($connect, $query);
@@ -14,6 +14,7 @@ $result = mysqli_query($connect, $query);
 <!DOCTYPE html>
 <html>
 <head>
+
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>CCFS Student Information System</title>
@@ -85,98 +86,23 @@ $result = mysqli_query($connect, $query);
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="attTable" class="table table-bordered table-hover">
+              <table class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>ID</th>
-                  <th width="20%"></th>
-                  <th>Jan</th>
-                  <th>Feb</th>
-                  <th>Mar</th>
-                  <th>Apr</th>
-                  <th>May</th>
-                  <th>Jun</th>
-                  <th>Jul</th>
-                  <th>Aug</th>
-                  <th>Sept</th>
-                  <th>Oct</th>
-                  <th>Nov</th>
-                  <th>Dec</th>
-                  <th>Total</th>
+                  <th>IDno</th>
+                  <th>Given name</th>
+                  <th>Middle name</th>
+                  <th>Surname</th>
                 </tr>
                 </thead>
                 <tbody> <!-- Populate from database. -->
                   <?php
                     while($row = mysqli_fetch_array($result)) {
-                      echo '
-                      <tr>
-                      <td>'.$row["attid"].'</td>
-                      <td>No.of School Days</td>
-                      <td>'.$row["month"].'</td>
-                      <td>'.$row["daysPres"].'</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      </tr>
-                      <tr>
-                      <td>'.$row["attid"].'</td>
-                      <td>No.of Days Present</td>
-                      <td>'.$row["month"].'</td>
-                      <td>'.$row["daysPres"].'</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      </tr>
-                      <tr>
-                      <td>'.$row["attid"].'</td>
-                      <td>No.of Days Absent</td>
-                      <td>'.$row["month"].'</td>
-                      <td>'.$row["daysAbs"].'</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      </tr>
-                      <td>'.$row["attid"].'</td>
-                      <td>No.of Days Tardy</td>
-                      <td>'.$row["month"].'</td>
-                      <td>'.$row["daysTar"].'</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      </tr>
-                      ';
+                      echo "<tr><td>".$row['IDno']."</td>
+                      <td>".$row['GivenName']."</td>
+                      <td>".$row['MiddleName']."</td>
+                      <td>".$row['SurName']."</td>
+                      <td><button type='button' class='btn btn-info btn-xs edit_data' id=".$row['IDno']." data-toggle='modal' data-target='#myModal'>Edit</button></tr>";
                     }
                     ?>
                 </tbody>
@@ -192,25 +118,93 @@ $result = mysqli_query($connect, $query);
   </div>
 </div> <!-- ./wrapper -->
 
-<script>
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+
+          <h4 class="modal-title" id="modHead"></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <table id="attTable" class="table table-bordered table-hover">
+            <tr>
+              <th>#</th>
+              <th>Months</th>
+              <th>Days Present</th>
+              <th>Days Tardy</th>
+              <th>Days Absent</th>
+              <th>Total</th>
+            </tr>
+            <tbody>
+              <input type="text" id="studid">
+              <tr><td></td><td>Jan</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td></td><td>Feb</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td></td><td>Mar</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td></td><td>Apr</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td></td><td>May</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td></td><td>Jun</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td></td><td>Jul</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td></td><td>Aug</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td></td><td>Sep</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td></td><td>Oct</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td></td><td>Nov</td><td></td><td></td><td></td><td></td></tr>
+              <tr><td></td><td>Dec</td><td></td><td></td><td></td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button"  class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
 $(document).ready(function(){
+  $(document).on('click','.edit_data',function(){
+    var student_id = $(this).attr("id");
+    $.ajax({
+      url:"AttendanceAction.php",
+      method:"POST",
+      data:{student_id:student_id},
+      dataType:"json",
+      success:function(data){
+        $('#studid').val(data);
+      }
+    });
+  });
+  $(document).on('click','.btn-success',function(){
+    var id = $('#studid').val();
+    var daysPres = $("input[name=daysPres]").val();
+    var daysTar = $("input[name=daysTar]").val();
+    var daysAbs = $("input[name=daysAbs]").val();
+    $.ajax({
+      url:"AttendanceAction.php",
+      method:"POST",
+      data:{id:id,daysPres:daysPres,daysTar:daysTar,daysAbs:daysAbs},
+      dataType:"json"
+    });
+  });
     $('#attTable').Tabledit({
      url:'AttendanceAction.php',
      deleteButton: false,
      hideIdentifier: true,
      buttons: {
         edit: {
-            class: 'btn btn-info btn-xs edit_data',
+            class: 'btn btn-info btn-xs',
             html: '<span data-toggle="tooltip" title="Edit"><i class="fas fa-edit" aria-hidden="true"></i></span>',
             action: 'edit'
         }
-    },
-     columns:{
-      identifier:[0, "attid"],
-      editable:[[2, 'month']]
-     },
+      },
+      columns:{
+        identifier:[0, "IDno"],
+        editable:[[2, 'daysPres'],[3, 'daysTar'],[4, 'daysAbs']]
+      }
     });
-
 });
 </script>
 
