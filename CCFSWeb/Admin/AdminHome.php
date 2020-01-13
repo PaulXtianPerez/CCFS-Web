@@ -159,8 +159,14 @@ if(isset($_POST['enroll'])) {
           </li>
           <li class="nav-item has-treeview">
             <a href="#listofschoolyears" id="schYrsList" class="nav-link" onclick="openPage('CreateSection.php')">
-              <i class="nav-icon fas fa-tasks"></i>
+              <i class="nav-icon fas fa-book"></i>
               <p>Create Section</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#listofschoolyears" id="schYrsList" class="nav-link" onclick="openPage('ListOfSections.php')">
+              <i class="nav-icon fas fa-list"></i>
+              <p>List Of Sections</p>
             </a>
           </li>
           <li class="nav-item has-treeview">

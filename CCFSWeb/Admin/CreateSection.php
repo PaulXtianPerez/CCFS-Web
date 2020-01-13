@@ -12,12 +12,22 @@
 
 
 	$message = 'Section have been added';
-	
+
+	$query = "SELECT * FROM `section`";
+	$result = mysqli_query($mysqli, $query);	
 	}
 	
 	
 ?>
 
+<?php
+// connect to database
+include 'database.php';
+// mysql select query
+$query = "SELECT * FROM `section`";
+// result for method
+$result = mysqli_query($mysqli, $query);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -64,10 +74,10 @@
             <h1 class="m-0 text-dark">Create Section</h1>
             	<?php if(isset($message)){
 			echo '<p>' .$message.'</p>';
-
 	}else {}?>
           </div><!-- /.col -->
         </div><!-- /.row -->
+    </div>
       <div class="container-fluid">
 		<!-- Start of Create Account Card -->
 		<div class="card card-primary">
@@ -159,11 +169,8 @@
 					</form>
 				</div>
 			</div>
-		</div>
-	</div>
       </div><!-- /.container-fluid -->
     </div>
-    <!-- /.content-header -->
 
 
 
