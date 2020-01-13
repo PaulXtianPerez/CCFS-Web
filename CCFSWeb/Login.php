@@ -35,7 +35,6 @@
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50 animated animatedFadeInUp fadeInUp">
 				<form class="login100-form validate-form" method="post" class= "forms" action="login.php">
-					<?php include('errors.php'); ?>
 					<img src="Resources/dist/img/CCFS_Logo.png" alt="CCFS Logo" id="ccfs_logo" class="animated animatedFadeInUp fadeInUp" >
 					<span class="login100-form-title p-b-33">
 						Cypress Christian Foundation School
@@ -55,7 +54,8 @@
 					</div>
 
 					<div class="container-login100-form-btn m-t-20">
-						 <input type= "submit" class="btn btn-primary btn-block" name="login_user" value="login">
+						 <input type= "submit" class="btn btn-primary btn-block" name="login_user" value="Login">
+						 <?php include('errors.php'); ?>
 					</div>
 				</form>
 			</div>
