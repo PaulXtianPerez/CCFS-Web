@@ -101,16 +101,16 @@ $result = mysqli_query($mysqli, $query);
 							<div class="form-group col-6">
 								<label>Grade Level</label>
 								<div class="input-group mb-3">
-									<select name="gradelvl" id="type" class="form-control">
-										<option value="Registrar">Nursery</option>
-										<option value="Accounting">Pre-Kinder</option>
-										<option value="Registrar">Kinder</option>
-										<option value="Accounting">Grade 1</option>
-										<option value="Registrar">Grade 2</option>
-										<option value="Accounting">Grade 3</option>
-										<option value="Registrar">Grade 4</option>
-										<option value="Accounting">Grade 5</option>
-										<option value="Registrar">Grade 6</option>
+									<select name="gradelvl" id="gradelvl" class="form-control">
+										<option value="Nursery">Nursery</option>
+										<option value="Pre-Kinder">Pre-Kinder</option>
+										<option value="Kinder">Kinder</option>
+										<option value="Grade 1">Grade 1</option>
+										<option value="Grade 2">Grade 2</option>
+										<option value="Grade 3">Grade 3</option>
+										<option value="Grade 4">Grade 4</option>
+										<option value="Grade 5">Grade 5</option>
+										<option value="Grade 6">Grade 6</option>
 									</select>
 									<div class="input-group-append">
 										<div class="input-group-text">
