@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 10, 2020 at 07:45 AM
+-- Generation Time: Jan 13, 2020 at 01:02 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.18
 
@@ -392,9 +392,9 @@ CREATE TABLE IF NOT EXISTS `schoolyear` (
   `pretui2` float DEFAULT NULL,
   `premisc2` float DEFAULT NULL,
   `prebook2` float DEFAULT NULL,
-  `pretui3` int(11) NOT NULL,
-  `premisc3` int(11) NOT NULL,
-  `prebook3` int(11) NOT NULL,
+  `pretui3` float NOT NULL,
+  `premisc3` float NOT NULL,
+  `prebook3` float NOT NULL,
   `gradetui1` float DEFAULT NULL,
   `gradebook1` float DEFAULT NULL,
   `grademisc1` float DEFAULT NULL,
@@ -418,7 +418,7 @@ CREATE TABLE IF NOT EXISTS `schoolyear` (
   PRIMARY KEY (`yearid`),
   KEY `yearstart` (`yearstart`),
   KEY `yearend` (`yearend`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `schoolyear`
@@ -432,8 +432,7 @@ INSERT INTO `schoolyear` (`yearid`, `yearstart`, `yearend`, `janAtt`, `febAtt`, 
 (10, 2020, 2021, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 8, '2020-06-30', '2021-04-15', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5632, 'INACTIVE'),
 (11, 2222, 22223, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 52, 6, '2222-05-04', '2223-06-02', 1, 123, 12, 2, 213, 21, 0, 0, 0, 1, 123, 12, 2, 21, 213, 3, 31, 312, 4, 41, 412, 5, 51, 512, 6, 61, 612, 6215, 'INACTIVE'),
 (12, 2023, 2024, 20, 25, 26, 23, 21, 51, 2, 56, 1, 56, 5, 4, 200, 6, '2023-06-02', '2024-05-25', 51548, 5484, 5484, 545, 545, 5454, 0, 0, 0, 545, 54, 54, 54, 54, 54, 54, 54, 545, 45, 454, 545, 45, 45, 454, 545, 45, 54, 545, 'ACTIVE'),
-(13, 3019, 3020, 12, 12, 12, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, '3019-01-09', '3020-12-01', 54, 545, 54, 454, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 5, 45, 45, 45, 4, 54, 54, 54, 54, 'INACTIVE'),
-(14, 4019, 4020, 564, 897, 5648, 7456, 8, 454, 87, 487, 48, 7487, 4847870, 85, 78, 965487, '4019-12-01', '4020-12-01', 748, 874, 74, 8748, 574, 5748, 74, 857, 5874, 8574, 58, 8574, 7485, 74, 5874, 8574, 58, 74, 8574, 8574, 5, 874, 8574, 8574, 85, 74, 8574, 8574, 'INACTIVE');
+(13, 9010, 9011, 5454, 545, 45, 454, 54, 54, 54, 54, 54, 54, 5, 45, 45, 54, '9010-01-21', '9011-01-21', 45, 54, 4, 54, 54, 54, 54, 5, 45, 45, 54, 4, 54, 54, 54, 54, 54, 54, 5, 45, 4, 54, 54, 54, 54, 5, 45, 4, 'INACTIVE');
 
 -- --------------------------------------------------------
 
@@ -445,13 +444,19 @@ DROP TABLE IF EXISTS `section`;
 CREATE TABLE IF NOT EXISTS `section` (
   `secID` int(11) NOT NULL AUTO_INCREMENT,
   `sename` varchar(10) NOT NULL,
-  `adviserfname` varchar(45) NOT NULL,
+  `gradelvl` text NOT NULL,
   `adviserlname` varchar(40) NOT NULL,
   `yearid` int(11) NOT NULL,
   PRIMARY KEY (`secID`),
-  UNIQUE KEY `adviserid` (`adviserfname`),
   UNIQUE KEY `yearid` (`yearid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `section`
+--
+
+INSERT INTO `section` (`secID`, `sename`, `gradelvl`, `adviserlname`, `yearid`) VALUES
+(1, 'Alpha', 'Kinder', 'SOBREMONTE', 12);
 
 -- --------------------------------------------------------
 
