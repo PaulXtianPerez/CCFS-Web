@@ -10,7 +10,7 @@
      $data[0] = $row['IDno']+1;
  }
 
- $lastyear = 'SELECT yearId FROM schoolyear ORDER BY yearId DESC LIMIT 1';
+ $lastyear = 'SELECT yearId FROM schoolyear WHERE scstatus = "ACTIVE"';
  $result1 = $conn->query($lastyear);
  $data1 = array();
  while($row = $result1->fetch_assoc()) {
@@ -45,7 +45,7 @@ if(isset($_POST['enroll'])) {
          . "'$_POST[motherFirst]','$_POST[motherLast]',"
          . "'$_POST[motherAdd]','$_POST[motherMobNum]',"
          . "'$_POST[motherEmAdd]','$_POST[motherOcc]','','','2020-12-12','',"
-         . "'$data1[0]','".date("Y-d-m")."','$_POST[guardianName]','$_POST[guardianAddress]','$_POST[guardianContact]')";
+         . "'$data1[0]','".date("Y-m-d")."','$_POST[guardianName]','$_POST[guardianAddress]','$_POST[guardianContact]')";
  $insert_row = $conn->query($enstud) or die($conn->error.__LINE__);
  $message = "successfully enrolled a student";
 }
