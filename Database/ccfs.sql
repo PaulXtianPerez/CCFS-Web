@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 14, 2020 at 01:14 AM
--- Server version: 5.7.26
--- PHP Version: 7.2.18
+-- Generation Time: Jan 14, 2020 at 01:58 AM
+-- Server version: 5.7.24
+-- PHP Version: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -88,8 +88,8 @@ CREATE TABLE IF NOT EXISTS `attendance` (
   `daysTar` int(40) NOT NULL,
   `daysAbs` int(40) DEFAULT NULL,
   PRIMARY KEY (`attid`),
-  UNIQUE KEY `studid` (`IDno`,`yearid`),
-  UNIQUE KEY `idyear` (`yearid`)
+  KEY `studid` (`IDno`,`yearid`) USING BTREE,
+  KEY `idyear` (`yearid`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
