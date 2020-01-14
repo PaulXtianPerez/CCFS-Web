@@ -1,18 +1,15 @@
-<!DOCTYPE html>
-
 <?php
-// php populate html table from mysql database
-
 // connect to mysql
-$connect = mysqli_connect("localhost", "root", "", "ccfs");
+include("database.php");
 
 // mysql select query
 $query = "SELECT * FROM `schoolyear`";
 
 // result for method
-$result = mysqli_query($connect, $query);
+$result = mysqli_query($mysqli, $query);
 ?>
 
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -41,7 +38,9 @@ $result = mysqli_query($connect, $query);
   <link rel="stylesheet" href="../Resources/plugins/summernote/summernote-bs4.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="dist/css/main.css">
+  <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
+  <!-- CSS for DataTables plugin -->
+  <link rel="stylesheet" type="text/css" href="../Resources/plugins/bootstrap/js/DataTables/datatables.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div id="contents" class="wrapper">
@@ -56,45 +55,49 @@ $result = mysqli_query($connect, $query);
             <h1 class="m-0 text-dark">List of School Years</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
+        <!-- Main content -->
+       <section class="content">
+          <div class="row">
+            <div class="col-12">
+              <div class="card card-primary">
+                <div class="card-header">
+                  <!-- SEARCH FORM -->
+                  <form class="form-inline ml-3">
+                    <div class="input-group input-group-sm">
+                      <input id="searchInput" class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"/>
+                    </div>
+                  </form>
+                  <h3 class="card-title">Double click on a row to view list of archived students.</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <table id="schyrTable" class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                      <th>School Year</th>
+                      <th>Status</th>
+                      <th></th>
+                    </tr>
+                    </thead>
+                    <tbody> <!-- Populate from database. -->
+                      <?php while($row = $result->fetch_assoc()) { ?>
+                        <tr ondblclick="openPage('../Registrar/ListOfArchivedStudents.php');">
+                          <td><?php echo $row["yearstart"]; echo "-"; echo $row["yearend"];?></td>
+                          <td><?php echo $row["scstatus"];?> <button class='btn btn-info btn-xs edit_data'>Activate</button></td>
+                          <td style="text-align: center;"><input type="button" name="edit" value="Edit" id="<?php echo $row["yearid"]; ?>" class="btn btn-info btn-xs edit_data"  data-target="#add_data_Modal" data-toggle="modal" /></td>
+                        </tr>
+                        <?php }?>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+            </div>
+          </div>
+        </section>
       </div><!-- /.container-fluid -->
     </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-   <section class="content">
-      <div class="row">
-        <div class="col-12">
-          <div class="card card-primary">
-            <div class="card-header">
-              <h3 class="card-title">Double click on a row to view list of archived students.</h3>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-              <table id="schyrTable" class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                  <th>School Year</th>
-                  <th>Status</th>
-                  <th></th>
-                </tr>
-                </thead>
-                <tbody> <!-- Populate from database. -->
-                  <?php while($row = $result->fetch_assoc()) { ?>
-                    <tr ondblclick="openPage('../Registrar/ListOfArchivedStudents.php');">
-                      <td><?php echo $row["yearstart"]; echo "-"; echo $row["yearend"];?></td>
-                      <td><?php echo $row["scstatus"];?> <button class='btn btn-info btn-xs edit_data'>Activate</button></td>
-                      <td><input type="button" name="edit" value="Edit" id="<?php echo $row["yearid"]; ?>" class="btn btn-info btn-xs edit_data"  data-target="#add_data_Modal" data-toggle="modal" /></td>
-                    </tr>
-                    <?php }?>
-                </tbody>
-              </table>
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-        </div>
-      </div>
-    </section>
   </div>
 </div> <!-- ./wrapper -->
 
@@ -231,7 +234,7 @@ $result = mysqli_query($connect, $query);
               <label for="KinMisc">Kinder Misc. Fee</label>
               <input class="form-control" id="inputnurseryMisc3" placeholder="Enter Miscellaneous Fee" type= "number" name ="prebook3" min ="0">
             </div>
-          </div> 
+          </div>
             <div class="row">
             <div class="form-group col-4">
               <label for="grade1TFee">Grade 1 Tuition Fee </label>
@@ -409,6 +412,21 @@ $(document).ready(function(){
   });
 </script>
 
+<!-- Initialize DataTables plugin -->
+<script type="text/javascript">
+var table = $("#schyrTable").DataTable();
+$("#searchInput").on("keyup", function() {
+  table.search(this.value).draw(); //search/filter functionality using DataTables search API
+});
+table.destroy(); //for reinitialization
+
+$("#schyrTable").DataTable({
+  "pagingType": "full_numbers", //'First', 'Previous', 'Next' and 'Last' buttons plus page numbers
+  "bFilter": false, //remove default search/filter
+  "destroy": true //for reinitialization
+});
+</script>
+
 
 <!-- Open new page -->
 <script src="../Resources/js/displaypage.js"></script>
@@ -446,5 +464,7 @@ $(document).ready(function(){
 <script src="../Resources/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../Resources/dist/js/demo.js"></script>
+<!-- DataTables plugin -->
+<script type="text/javascript" charset="utf8" src="../Resources/plugins/bootstrap/js/DataTables/datatables.js"></script>
 </body>
 </html>
