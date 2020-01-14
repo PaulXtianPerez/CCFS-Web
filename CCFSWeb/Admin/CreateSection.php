@@ -1,25 +1,3 @@
-<?php include 'database.php'; ?>
-<?php 
-	if(isset($_POST['submit'])){
-		
-		
-
-		
-		$query = "INSERT INTO `section`(sename, gradelvl, adviserlname, yearid) values ('$_POST[sename]', '$_POST[gradelvl]', '$_POST[adviserlname]', '$_POST[yearid]')";
-		
-		$insert_row = $mysqli->query($query) or die($mysqli->error.__LINE__);
-		
-
-
-	$message = 'Section have been added';
-
-	$query = "SELECT * FROM `section`";
-	$result = mysqli_query($mysqli, $query);	
-	}
-	
-	
-?>
-
 <?php
 // connect to database
 include 'database.php';
@@ -141,7 +119,7 @@ $result = mysqli_query($mysqli, $query);
 	            </div>
 							<div class="form-group col-6">
 								<label>School Year</label>
-								<?php $query2 = "Select yearid from schoolyear where scstatus = 'ACTIVE'";
+								<?php $query2 = "Select yearstart from schoolyear where scstatus = 'ACTIVE'";
 								$result2 = $mysqli->query($query2) or die($mysqli->error.__LINE__);
 								?>	
 								<div class="input-group mb-3">
@@ -191,7 +169,7 @@ confirm_password.onkeyup = validatePassword;
 </script>
 
 <!--Submit form.-->
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 function formSubmit(){
 	bootbox.confirm({
 		message: "Create Section?",
@@ -224,7 +202,7 @@ function formSubmit(){
 	});
 	return false;
 }
-</script> -->
+</script>
 
 <!--===============================================================================================-->
 	<script src="../Resources/vendor/jquery/jquery-3.2.1.min.js"></script>
