@@ -71,7 +71,7 @@ $result = mysqli_query($connect, $query);
                 <!-- SEARCH FORM -->
                 <form class="form-inline ml-3">
                   <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"/>
+                    <input id='search' class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"/>
                     <div class="input-group-append">
                       <button class="btn btn-navbar" type="submit">
                         <i class="fas fa-search"></i>
@@ -119,7 +119,7 @@ $result = mysqli_query($connect, $query);
 </div> <!-- ./wrapper -->
 
 <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
     
       <!-- Modal content-->
       <div class="modal-content">
@@ -129,29 +129,29 @@ $result = mysqli_query($connect, $query);
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          <table id="attTable" class="table table-bordered table-hover">
+          <table id="attTable" class="table-sm table-bordered table-hover">
             <tr>
-              <th>#</th>
               <th>Months</th>
               <th>Days Present</th>
               <th>Days Tardy</th>
               <th>Days Absent</th>
               <th>Total</th>
+              <th></th>
             </tr>
             <tbody>
-              <input type="text" id="studid">
-              <tr><td></td><td>Jan</td><td></td><td></td><td></td><td></td></tr>
-              <tr><td></td><td>Feb</td><td></td><td></td><td></td><td></td></tr>
-              <tr><td></td><td>Mar</td><td></td><td></td><td></td><td></td></tr>
-              <tr><td></td><td>Apr</td><td></td><td></td><td></td><td></td></tr>
-              <tr><td></td><td>May</td><td></td><td></td><td></td><td></td></tr>
-              <tr><td></td><td>Jun</td><td></td><td></td><td></td><td></td></tr>
-              <tr><td></td><td>Jul</td><td></td><td></td><td></td><td></td></tr>
-              <tr><td></td><td>Aug</td><td></td><td></td><td></td><td></td></tr>
-              <tr><td></td><td>Sep</td><td></td><td></td><td></td><td></td></tr>
-              <tr><td></td><td>Oct</td><td></td><td></td><td></td><td></td></tr>
-              <tr><td></td><td>Nov</td><td></td><td></td><td></td><td></td></tr>
-              <tr><td></td><td>Dec</td><td></td><td></td><td></td><td></td></tr>
+              <input type="text" id="studid" disabled>
+              <tr><td>Jan</td><td><input type="number" name="dPres1"></td><td><input type="number" name="dTar1" ></td><td><input type="number" name="dAbs1"></td><td></td><td><button type="submit" class="btn btn-info btn-xs ed" id="1">Save</button></td></tr>
+              <tr><td>Feb</td><td><input type="number" name="dPres2"></td><td><input type="number" name="dTar2" ></td><td><input type="number" name="dAbs2"></td><td></td><td><button type="submit" class="btn btn-info btn-xs ed" id="2">Save</button></td></tr>
+              <tr><td>Mar</td><td><input type="number" name="dPres3"></td><td><input type="number" name="dTar3" ></td><td><input type="number" name="dAbs3"></td><td></td><td><button type="submit" class="btn btn-info btn-xs ed" id="3">Save</button></td></tr>
+              <tr><td>Apr</td><td><input type="number" name="dPres4"></td><td><input type="number" name="dTar4" ></td><td><input type="number" name="dAbs4"></td><td></td><td><button type="submit" class="btn btn-info btn-xs ed" id="4">Save</button></td></tr>
+              <tr><td>May</td><td><input type="number" name="dPres5"></td><td><input type="number" name="dTar5" ></td><td><input type="number" name="dAbs5"></td><td></td><td><button type="submit" class="btn btn-info btn-xs ed" id="5">Save</button></td></tr>
+              <tr><td>Jun</td><td><input type="number" name="dPres6"></td><td><input type="number" name="dTar6" ></td><td><input type="number" name="dAbs6"></td><td></td><td><button type="submit" class="btn btn-info btn-xs ed" id="6">Save</button></td></tr>
+              <tr><td>Jul</td><td><input type="number" name="dPres7"></td><td><input type="number" name="dTar7" ></td><td><input type="number" name="dAbs7"></td><td></td><td><button type="submit" class="btn btn-info btn-xs ed" id="7">Save</button></td></tr>
+              <tr><td>Aug</td><td><input type="number" name="dPres8"></td><td><input type="number" name="dTar8" ></td><td><input type="number" name="dAbs8"></td><td></td><td><button type="submit" class="btn btn-info btn-xs ed" id="8">Save</button></td></tr>
+              <tr><td>Sep</td><td><input type="number" name="dPres9"></td><td><input type="number" name="dTar9" ></td><td><input type="number" name="dAbs9"></td><td></td><td><button type="submit" class="btn btn-info btn-xs ed" id="9">Save</button></td></tr>
+              <tr><td>Oct</td><td><input type="number" name="dPres10"></td><td><input type="number" name="dTar10" ></td><td><input type="number" name="dAbs10"></td><td></td><td><button type="submit" class="btn btn-info btn-xs ed" id="10">Save</button></td></tr>
+              <tr><td>Nov</td><td><input type="number" name="dPres11"></td><td><input type="number" name="dTar11" ></td><td><input type="number" name="dAbs11"></td><td></td><td><button type="submit" class="btn btn-info btn-xs ed" id="11">Save</button></td></tr>
+              <tr><td>Dec</td><td><input type="number" name="dPres12"></td><td><input type="number" name="dTar12" ></td><td><input type="number" name="dAbs12"></td><td></td><td><button type="submit" class="btn btn-info btn-xs ed" id="12">Save</button></td></tr>
             </tbody>
           </table>
         </div>
@@ -159,7 +159,6 @@ $result = mysqli_query($connect, $query);
           <button type="button"  class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
-      
     </div>
   </div>
 </div>
@@ -177,34 +176,63 @@ $(document).ready(function(){
       }
     });
   });
-  $(document).on('click','.btn-success',function(){
+  $(document).on('click','.ed',function() {
+    var month = $(this).attr("id");
     var id = $('#studid').val();
-    var daysPres = $("input[name=daysPres]").val();
-    var daysTar = $("input[name=daysTar]").val();
-    var daysAbs = $("input[name=daysAbs]").val();
+    var daysPres1 = $("input[name=dPres1]").val();
+    var daysPres2 = $("input[name=dPres2]").val();
+    var daysPres3 = $("input[name=dPres3]").val();
+    var daysPres4 = $("input[name=dPres4]").val();
+    var daysPres5 = $("input[name=dPres5]").val();
+    var daysPres6 = $("input[name=dPres6]").val();
+    var daysPres7 = $("input[name=dPres7]").val();
+    var daysPres8 = $("input[name=dPres8]").val();
+    var daysPres9 = $("input[name=dPres9]").val();
+    var daysPres10 = $("input[name=dPres10]").val();
+    var daysPres11 = $("input[name=dPres11]").val();
+    var daysPres12 = $("input[name=dPres12]").val();
+    // dtar
+    var daysTar1 = $("input[name=dTar1]").val();
+    var daysTar2 = $("input[name=dTar2]").val();
+    var daysTar3 = $("input[name=dTar3]").val();
+    var daysTar4 = $("input[name=dTar4]").val();
+    var daysTar5 = $("input[name=dTar5]").val();
+    var daysTar6 = $("input[name=dTar6]").val();
+    var daysTar7 = $("input[name=dTar7]").val();
+    var daysTar8 = $("input[name=dTar8]").val();
+    var daysTar9 = $("input[name=dTar9]").val();
+    var daysTar10 = $("input[name=dTar10]").val();
+    var daysTar11 = $("input[name=dTar11]").val();
+    var daysTar12 = $("input[name=dTar12]").val();
+    //dAbs
+    var daysAbs1 = $("input[name=dAbs1]").val();
+    var daysAbs2 = $("input[name=dAbs2]").val();
+    var daysAbs3 = $("input[name=dAbs3]").val();
+    var daysAbs4 = $("input[name=dAbs4]").val();
+    var daysAbs5 = $("input[name=dAbs5]").val();
+    var daysAbs6 = $("input[name=dAbs6]").val();
+    var daysAbs7 = $("input[name=dAbs7]").val();
+    var daysAbs8 = $("input[name=dAbs8]").val();
+    var daysAbs9 = $("input[name=dAbs9]").val();
+    var daysAbs10 = $("input[name=dAbs10]").val();
+    var daysAbs11 = $("input[name=dAbs11]").val();
+    var daysAbs12 = $("input[name=dAbs12]").val();
     $.ajax({
       url:"AttendanceAction.php",
       method:"POST",
-      data:{id:id,daysPres:daysPres,daysTar:daysTar,daysAbs:daysAbs},
+      data:{month:month,id:id,daysPres1:daysPres1,daysPres2:daysPres2,daysPres3:daysPres3,
+        daysPres4:daysPres4,daysPres5:daysPres5,daysPres6:daysPres6,daysPres7:daysPres7,
+        daysPres8:daysPres8,daysPres9:daysPres9,daysPres10:daysPres10,daysPres11:daysPres11,
+        daysPres12:daysPres12,daysTar1:daysTar1,daysTar2:daysTar2,daysTar3:daysTar3,
+        daysTar4:daysTar4,daysTar5:daysTar5,daysTar6:daysTar6,daysTar7:daysTar7,
+        daysTar8:daysTar8,daysTar9:daysTar9,daysTar10:daysTar10,daysTar11:daysTar11,
+        daysTar12:daysTar12,daysAbs1:daysAbs1,daysAbs2:daysAbs2,daysAbs3:daysAbs3,
+        daysAbs4:daysAbs4,daysAbs5:daysAbs5,daysAbs6:daysAbs6,daysAbs7:daysAbs7,
+        daysAbs8:daysAbs8,daysAbs9:daysAbs9,daysAbs10:daysAbs10,daysAbs11:daysAbs11,
+        daysAbs12:daysAbs12},
       dataType:"json"
     });
   });
-    $('#attTable').Tabledit({
-     url:'AttendanceAction.php',
-     deleteButton: false,
-     hideIdentifier: true,
-     buttons: {
-        edit: {
-            class: 'btn btn-info btn-xs',
-            html: '<span data-toggle="tooltip" title="Edit"><i class="fas fa-edit" aria-hidden="true"></i></span>',
-            action: 'edit'
-        }
-      },
-      columns:{
-        identifier:[0, "IDno"],
-        editable:[[2, 'daysPres'],[3, 'daysTar'],[4, 'daysAbs']]
-      }
-    });
 });
 </script>
 
