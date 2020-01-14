@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 13, 2020 at 01:02 PM
+-- Generation Time: Jan 14, 2020 at 01:14 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.18
 
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `accounts` (
   `accstatus` varchar(11) DEFAULT 'Active',
   PRIMARY KEY (`accid`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `accounts`
@@ -53,7 +53,8 @@ INSERT INTO `accounts` (`accid`, `empid`, `username`, `password`, `fname`, `lnam
 (4, 'CCFS-004', 'vinceAcc', 'running', 'VINCENT', 'TOLENTINO', 'ACCOUNTING', 'Inactive'),
 (5, 'CCFS-005', 'ADMIN', 'ADMIN', 'ADMIN', 'ADMIN', 'ADMIN', 'Active'),
 (6, 'CCFS-008', 'ACC_IMRAN', '12345', 'IMRAN', 'MAHMOOD', 'ACCOUNTING', 'Active'),
-(7, 'CCFS-009', 'TEST', 'TEST', 'TEST', 'TEST', 'ADMIN', 'Active');
+(7, 'CCFS-009', 'TEST', 'TEST', 'TEST', 'TEST', 'ADMIN', 'Active'),
+(8, '30', 'JacobAnderson', '123456', 'Jacob ', 'Anderson', 'Registrar', 'Active');
 
 -- --------------------------------------------------------
 
@@ -429,9 +430,9 @@ INSERT INTO `schoolyear` (`yearid`, `yearstart`, `yearend`, `janAtt`, `febAtt`, 
 (2, 2020, 2021, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INACTIVE'),
 (3, 2021, 2022, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INACTIVE'),
 (7, 2019, 2020, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 20115, 'INACTIVE'),
-(10, 2020, 2021, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 8, '2020-06-30', '2021-04-15', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5632, 'INACTIVE'),
+(10, 2020, 2021, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 8, '2020-06-30', '2021-04-15', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5632, 'ACTIVE'),
 (11, 2222, 22223, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 52, 6, '2222-05-04', '2223-06-02', 1, 123, 12, 2, 213, 21, 0, 0, 0, 1, 123, 12, 2, 21, 213, 3, 31, 312, 4, 41, 412, 5, 51, 512, 6, 61, 612, 6215, 'INACTIVE'),
-(12, 2023, 2024, 20, 25, 26, 23, 21, 51, 2, 56, 1, 56, 5, 4, 200, 6, '2023-06-02', '2024-05-25', 51548, 5484, 5484, 545, 545, 5454, 0, 0, 0, 545, 54, 54, 54, 54, 54, 54, 54, 545, 45, 454, 545, 45, 45, 454, 545, 45, 54, 545, 'ACTIVE'),
+(12, 2023, 2024, 20, 25, 26, 23, 21, 51, 2, 56, 1, 56, 5, 4, 200, 6, '2023-06-02', '2024-05-25', 51548, 5484, 5484, 545, 545, 5454, 0, 0, 0, 545, 54, 54, 54, 54, 54, 54, 54, 545, 45, 454, 545, 45, 45, 454, 545, 45, 54, 545, 'INACTIVE'),
 (13, 9010, 9011, 5454, 545, 45, 454, 54, 54, 54, 54, 54, 54, 5, 45, 45, 54, '9010-01-21', '9011-01-21', 45, 54, 4, 54, 54, 54, 54, 5, 45, 45, 54, 4, 54, 54, 54, 54, 54, 54, 5, 45, 4, 54, 54, 54, 54, 5, 45, 4, 'INACTIVE');
 
 -- --------------------------------------------------------
@@ -448,15 +449,19 @@ CREATE TABLE IF NOT EXISTS `section` (
   `adviserlname` varchar(40) NOT NULL,
   `yearid` int(11) NOT NULL,
   PRIMARY KEY (`secID`),
-  UNIQUE KEY `yearid` (`yearid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  KEY `yearid` (`yearid`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `section`
 --
 
 INSERT INTO `section` (`secID`, `sename`, `gradelvl`, `adviserlname`, `yearid`) VALUES
-(1, 'Alpha', 'Kinder', 'SOBREMONTE', 12);
+(1, 'Alpha', 'Kinder', 'SOBREMONTE', 12),
+(11, 'Undo', 'Grade 1', 'TOLENTINO', 10),
+(12, 'Iyot', 'Grade 2', 'MAHMOOD', 10),
+(13, 'asd', 'Grade 2', 'TOLENTINO', 10),
+(14, 'IyotMaster', 'Grade 3', 'PEREZ', 10);
 
 -- --------------------------------------------------------
 
