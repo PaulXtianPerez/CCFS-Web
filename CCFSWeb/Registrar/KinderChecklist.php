@@ -53,7 +53,7 @@ $result = mysqli_query($connect, $query);
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Early Childhood Care and Development and Cheklist</h1>
+            <h1 class="m-0 text-dark">Early Childhood Care and Development and Checklist</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
         <!-- Main content -->

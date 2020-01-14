@@ -57,70 +57,60 @@ $result = mysqli_query($connect, $query);
             <h1 class="m-0 text-dark">Student Attendance</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
+        <!-- Main content -->
+       <section class="content">
+          <div class="row">
+            <div class="col-12">
+              <div class="card card-primary">
+                <div class="card-header">
+                  <div>
+                    <!-- SEARCH FORM -->
+                    <form class="form-inline ml-3">
+                      <div class="input-group input-group-sm">
+                        <input id="searchInput" class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"/>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <table id="studListTable" class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                      <th>IDno</th>
+                      <th>Given name</th>
+                      <th>Middle name</th>
+                      <th>Surname</th>
+                      <th></th>
+                    </tr>
+                    </thead>
+                    <tbody> <!-- Populate from database. -->
+                      <?php
+                        while($row = mysqli_fetch_array($result)) {
+                          echo "<tr><td>".$row['IDno']."</td>
+                          <td>".$row['GivenName']."</td>
+                          <td>".$row['MiddleName']."</td>
+                          <td>".$row['SurName']."</td>
+                          <td style='text-align: center;'><button type='button' class='btn btn-info btn-xs edit_data' id=".$row['IDno']." data-toggle='modal' data-target='#myModal'>Edit</button></tr>";
+                        }
+                        ?>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+            </div>
+          </div>
+        </section>
       </div><!-- /.container-fluid -->
     </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-   <section class="content">
-      <div class="row">
-        <div class="col-12">
-          <div class="card card-primary">
-            <div class="card-header">
-              <div>
-                <!-- SEARCH FORM -->
-                <form class="form-inline ml-3">
-                  <div class="input-group input-group-sm">
-                    <input id='search' class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"/>
-                    <div class="input-group-append">
-                      <button class="btn btn-navbar" type="submit">
-                        <i class="fas fa-search"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div> <br>
-              <div>
-                <h3 class="card-title">Student: [Name] | [Grade Lv.]</h3><br>
-              </div>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-              <table class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                  <th>IDno</th>
-                  <th>Given name</th>
-                  <th>Middle name</th>
-                  <th>Surname</th>
-                </tr>
-                </thead>
-                <tbody> <!-- Populate from database. -->
-                  <?php
-                    while($row = mysqli_fetch_array($result)) {
-                      echo "<tr><td>".$row['IDno']."</td>
-                      <td>".$row['GivenName']."</td>
-                      <td>".$row['MiddleName']."</td>
-                      <td>".$row['SurName']."</td>
-                      <td><button type='button' class='btn btn-info btn-xs edit_data' id=".$row['IDno']." data-toggle='modal' data-target='#myModal'>Edit</button></tr>";
-                    }
-                    ?>
-                </tbody>
-                </tfoot>
-              </table>
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-        </div>
-      </div>
-    </section>
   </div>
 </div> <!-- ./wrapper -->
 
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-lg">
-    
+
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -161,7 +151,7 @@ $result = mysqli_query($connect, $query);
       </div>
     </div>
   </div>
-</div>
+
 <script type="text/javascript">
 $(document).ready(function(){
   $(document).on('click','.edit_data',function(){
@@ -236,6 +226,22 @@ $(document).ready(function(){
 });
 </script>
 
+<!-- Initialize DataTables plugin -->
+<script type="text/javascript">
+var table = $("#studListTable").DataTable();
+$("#searchInput").on("keyup", function() {
+  table.search(this.value).draw(); //search/filter functionality using DataTables search API
+});
+table.destroy(); //for reinitialization
+
+$("#studListTable").DataTable({
+  "pagingType": "full_numbers", //'First', 'Previous', 'Next' and 'Last' buttons plus page numbers
+  "bFilter": false, //remove default search/filter
+  "destroy": true //for reinitialization
+});
+</script>
+
+
 <!-- jQuery -->
 <script src="../Resources/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -270,8 +276,7 @@ $(document).ready(function(){
 <script src="../Resources/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../Resources/dist/js/demo.js"></script>
-<!-- JQuery Inline Table Editor Plugin -->
-<script src="../Resources/plugins/jquery/jquery.tabledit.js"></script>
-<script src="../Resources/plugins/jquery/jquery.tabledit.min.js"></script>
+<!-- DataTables plugin -->
+<script type="text/javascript" charset="utf8" src="../Resources/plugins/bootstrap/js/DataTables/datatables.js"></script>
 </body>
 </html>

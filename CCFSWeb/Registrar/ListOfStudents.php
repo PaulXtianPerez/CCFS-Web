@@ -1,4 +1,5 @@
 <?php
+    include('../ActiveSchoolYear.php');
     include("Connection.php");
     $qearStud = "SELECT IDno, SurName, GivenName, MiddleName, gradelvl FROM `enstudent`";
     $result = $conn->query($qearStud);
@@ -47,7 +48,12 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">List of Students</h1>
-            <h5 class="m-0 text-dark">School Year: [Sch Yr]</h5>
+            <h5 class="m-0 text-dark">School Year: <?php if(empty($data1[0])) {
+              echo "--";
+            }else {
+              echo $data1[0];
+            }
+            ; echo "-" ; if(empty($data2[1])){echo "--";}else {echo $data2[1];}?></h5>
           </div><!-- /.col -->
         </div><!-- /.row -->
         <!-- Main content -->
@@ -103,7 +109,7 @@
           </div>
         </section>
       </div><!-- /.container-fluid -->
-    </div>    
+    </div>
   </div>
 </div> <!-- ./wrapper -->
 
