@@ -116,31 +116,31 @@ $result = mysqli_query($mysqli, $query);
           <div class="row">
             <div class="form-group col-6">
               <label>Section ID</label> <i class="fa fa-lock" aria-hidden="true"></i>
-              <input class="form-control" type="text" name="empid" id="empid" disabled/>
+              <input class="form-control" type="text" name="secID" id="secID">
             </div>
           </div>
           <div class="row">
             <div class="form-group col-6">
               <label>Section Name</label>
-              <input class="form-control" type="text" name="firstname" id="firstname" required/>
+              <input class="form-control" type="text" name="sename" id="sename" required/>
             </div>
             <div class="form-group col-6">
               <label>Grade Level</label>
-              <input class="form-control" type="text" name="lastname" id="lastname" required/>
+              <input class="form-control" type="text" name="gradelvl" id="gradelvl" required/>
             </div>
           </div>
           <div class="row">
             <div class="form-group col-6">
               <label>Adviser Name</label> <i class="fa fa-lock" aria-hidden="true"></i>
-              <input type="text" name="username" id="username" class="form-control" disabled/>
+              <input type="text" name="adviserlname" id="adviserlname" class="form-control" />
             </div>
             <div class="form-group col-6">
               <label>Year</label> <i class="fa fa-lock" aria-hidden="true"></i>
-              <input type="text" name="type" id="type" class="form-control" disabled/>
+              <input type="text" name="yearid" id="yearid" class="form-control" disabled/>
             </div>
           </div>
 
-          <input type="hidden" name="account_id" id="account_id" />
+          <input type="hidden" name="sec_ID" id="sec_ID" />
           <input type="submit" name="update" id="update" value="Update" class="btn btn-success" />
         </form>
       </div>
@@ -156,22 +156,18 @@ $result = mysqli_query($mysqli, $query);
 <script type="text/javascript">
 $(document).ready(function(){
   $(document).on('click', '.edit_data', function(){
-    var account_id = $(this).attr("id");
+    var sec_ID = $(this).attr("id");
     $.ajax({
-      url:"AccountFetch.php",
+      url:"SectionFetch.php",
       method:"POST",
-      data:{account_id:account_id},
+      data:{sec_ID:sec_ID},
       dataType:"json",
       success:function(data){
-        $('#empid').val(data.empid);
-        $('#firstname').val(data.fname);
-        $('#lastname').val(data.lname);
-        $('#username').val(data.username);
-        $('#type').val(data.type);
-        $('#password').val(data.password);
-        $('#confirmPassword').val(data.password);
-        $('#status').val(data.accstatus);
-        $('#account_id').val(data.accid);
+        $('#secID').val(data.secID);
+        $('#sename').val(data.sename);
+        $('#gradelvl').val(data.gradelvl);
+        $('#adviserlname').val(data.adviserlname);
+        $('#yearid').val(data.yearid);
         $('#add_data_Modal').modal('show');
       }
     });
@@ -180,7 +176,7 @@ $(document).ready(function(){
   $('#insert_form').on("submit", function(event){
     event.preventDefault();
     $.ajax({
-      url:"AccountUpdate.php",
+      url:"SectionUpdate.php",
       method:"POST",
       data:$('#insert_form').serialize(),
       beforeSend:function(){
@@ -189,7 +185,7 @@ $(document).ready(function(){
         success:function(data){
           $('#insert_form')[0].reset();
           $('#add_data_Modal').modal('hide');
-          $('#accListTable').html(data);
+          $('#secListTable').html(data);
           $('#update').val("Update");
         }
       });
