@@ -41,212 +41,211 @@
               <h5 class="m-0 text-dark">School Year: [Sch Yr]</h5>
             </div><!-- /.col -->
           </div><!-- /.row -->
+          <!-- Main content -->
+         <section class="content">
+           <!-- Number of Pre-School Students -->
+            <div class="row">
+              <div class="col-12">
+                <div class="card card-primary">
+                  <div class="card-header">
+                    <h3 class="card-title">Number of Pre-School Students</h3>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    <table id="preSchSummary" class="table table-bordered table-hover">
+                      <thead>
+                      <tr>
+                        <th width="20%">Grade Level</th>
+                        <th width="20%">Section</th>
+                        <th width="20%">Boys</th>
+                        <th width="20%">Girls</th>
+                        <th width="20%">Total</th>
+                      </tr>
+                      </thead>
+                      <tbody> <!-- Populate from database. -->
+                        <tr>
+                          <td>Nursery</td>
+                          <td>[Section]</td>
+                        </tr>
+                        <tr>
+                          <td>Pre-Kinder</td>
+                          <td>[Section]</td>
+                        </tr>
+                        <tr>
+                          <td>Kinder</td>
+                          <td>[Section]</td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td><b>Total</b></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Number of Grade School (Elementary) Students -->
+            <div class="row">
+              <div class="col-12">
+                <div class="card card-primary">
+                  <div class="card-header">
+                    <h3 class="card-title">Number of Grade School (Elementary) Students</h3>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    <table id="grdSchSummary" class="table table-bordered table-hover">
+                      <thead>
+                      <tr>
+                        <th width="20%">Grade Level</th>
+                        <th width="20%">Section</th>
+                        <th width="20%">Boys</th>
+                        <th width="20%">Girls</th>
+                        <th width="20%">Total</th>
+                      </tr>
+                      </thead>
+                      <tbody> <!-- Populate from database. -->
+                        <tr>
+                          <td>Grade 1</td>
+                          <td>[Section]</td>
+                        </tr>
+                        <tr>
+                          <td>Grade 2</td>
+                          <td>[Section]</td>
+                        </tr>
+                        <tr>
+                          <td>Grade 3</td>
+                          <td>[Section]</td>
+                        </tr>
+                        <tr>
+                          <td>Grade 4</td>
+                          <td>[Section]</td>
+                        </tr>
+                        <tr>
+                          <td>Grade 5</td>
+                          <td>[Section]</td>
+                        </tr>
+                        <tr>
+                          <td>Grade 6</td>
+                          <td>[Section]</td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td><b>Total</b></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Total Number of Students -->
+            <div class="row">
+              <div class="col-12">
+                <div class="card card-primary">
+                  <div class="card-header">
+                    <h3 class="card-title">Total Number of Students</h3>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    <table id="totalStudSummary" class="table table-bordered table-hover">
+                      <thead>
+                      <tr>
+                        <th width="20%"></th>
+                        <th>Boys</th>
+                        <th>Girls</th>
+                        <th>Total</th>
+                      </tr>
+                      </thead>
+                      <tbody> <!-- Populate from database. -->
+                        <tr>
+                          <td><b>Total Students</b></td>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Number of Students per Status -->
+            <div class="row">
+              <div class="col-12">
+                <div class="card card-primary">
+                  <div class="card-header">
+                    <h3 class="card-title">Number of Students per Status</h3>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    <table id="statusSummary" class="table table-bordered table-hover">
+                      <thead>
+                      <tr>
+                        <th width="20%">Status</th>
+                        <th>Nursery</th>
+                        <th>Kinder</th>
+                        <th>Pre-Kinder</th>
+                        <th>Grade 1</th>
+                        <th>Grade 2</th>
+                        <th>Grade 3</th>
+                        <th>Grade 4</th>
+                        <th>Grade 5</th>
+                        <th>Grade 6</th>
+                        <th>Total</th>
+                      </tr>
+                      </thead>
+                      <tbody> <!-- Populate from database. -->
+                        <tr>
+                          <td>Academic Scholars</td>
+                        </tr>
+                        <tr>
+                          <td>Paying</td>
+                        </tr>
+                        <tr>
+                          <td>Full Sponsors</td>
+                        </tr>
+                        <tr>
+                          <td>% Sponsors</td>
+                        </tr>
+                        <tr>
+                          <td>Staff Scholar</td>
+                        </tr>
+                          <td><b>Total</b></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Total Number of Families from Nursery to Grade 6 -->
+            <div class="row">
+              <div class="col-12">
+                <div class="card card-primary">
+                  <div class="card-header">
+                    <h3 class="card-title">Total Number of Families from Nursery to Grade 6</h3>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    <table id="totalFamilySummary" class="table table-bordered table-hover">
+                      <tbody> <!-- Populate from database. -->
+                        <tr>
+                          <td><b>Total number of families from nursery to grade 6: </b>___</td>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-footer">
+              <button type="button" class="btn btn-success" name="saveBtn" style="float: right;">Save report as...</button>
+            </div>
+
+          </section>
         </div><!-- /.container-fluid -->
-      </div><!-- /.content-header -->
-
-      <!-- Main content -->
-     <section class="content">
-       <!-- Number of Pre-School Students -->
-        <div class="row">
-          <div class="col-12">
-            <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Number of Pre-School Students</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <table id="preSchSummary" class="table table-bordered table-hover">
-                  <thead>
-                  <tr>
-                    <th width="20%">Grade Level</th>
-                    <th width="20%">Section</th>
-                    <th width="20%">Boys</th>
-                    <th width="20%">Girls</th>
-                    <th width="20%">Total</th>
-                  </tr>
-                  </thead>
-                  <tbody> <!-- Populate from database. -->
-                    <tr>
-                      <td>Nursery</td>
-                      <td>[Section]</td>
-                    </tr>
-                    <tr>
-                      <td>Pre-Kinder</td>
-                      <td>[Section]</td>
-                    </tr>
-                    <tr>
-                      <td>Kinder</td>
-                      <td>[Section]</td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td><b>Total</b></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Number of Grade School (Elementary) Students -->
-        <div class="row">
-          <div class="col-12">
-            <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Number of Grade School (Elementary) Students</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <table id="grdSchSummary" class="table table-bordered table-hover">
-                  <thead>
-                  <tr>
-                    <th width="20%">Grade Level</th>
-                    <th width="20%">Section</th>
-                    <th width="20%">Boys</th>
-                    <th width="20%">Girls</th>
-                    <th width="20%">Total</th>
-                  </tr>
-                  </thead>
-                  <tbody> <!-- Populate from database. -->
-                    <tr>
-                      <td>Grade 1</td>
-                      <td>[Section]</td>
-                    </tr>
-                    <tr>
-                      <td>Grade 2</td>
-                      <td>[Section]</td>
-                    </tr>
-                    <tr>
-                      <td>Grade 3</td>
-                      <td>[Section]</td>
-                    </tr>
-                    <tr>
-                      <td>Grade 4</td>
-                      <td>[Section]</td>
-                    </tr>
-                    <tr>
-                      <td>Grade 5</td>
-                      <td>[Section]</td>
-                    </tr>
-                    <tr>
-                      <td>Grade 6</td>
-                      <td>[Section]</td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td><b>Total</b></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Total Number of Students -->
-        <div class="row">
-          <div class="col-12">
-            <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Total Number of Students</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <table id="totalStudSummary" class="table table-bordered table-hover">
-                  <thead>
-                  <tr>
-                    <th width="20%"></th>
-                    <th>Boys</th>
-                    <th>Girls</th>
-                    <th>Total</th>
-                  </tr>
-                  </thead>
-                  <tbody> <!-- Populate from database. -->
-                    <tr>
-                      <td><b>Total Students</b></td>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Number of Students per Status -->
-        <div class="row">
-          <div class="col-12">
-            <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Number of Students per Status</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <table id="statusSummary" class="table table-bordered table-hover">
-                  <thead>
-                  <tr>
-                    <th width="20%">Status</th>
-                    <th>Nursery</th>
-                    <th>Kinder</th>
-                    <th>Pre-Kinder</th>
-                    <th>Grade 1</th>
-                    <th>Grade 2</th>
-                    <th>Grade 3</th>
-                    <th>Grade 4</th>
-                    <th>Grade 5</th>
-                    <th>Grade 6</th>
-                    <th>Total</th>
-                  </tr>
-                  </thead>
-                  <tbody> <!-- Populate from database. -->
-                    <tr>
-                      <td>Academic Scholars</td>
-                    </tr>
-                    <tr>
-                      <td>Paying</td>
-                    </tr>
-                    <tr>
-                      <td>Full Sponsors</td>
-                    </tr>
-                    <tr>
-                      <td>% Sponsors</td>
-                    </tr>
-                    <tr>
-                      <td>Staff Scholar</td>
-                    </tr>
-                      <td><b>Total</b></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Total Number of Families from Nursery to Grade 6 -->
-        <div class="row">
-          <div class="col-12">
-            <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Total Number of Families from Nursery to Grade 6</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <table id="totalFamilySummary" class="table table-bordered table-hover">
-                  <tbody> <!-- Populate from database. -->
-                    <tr>
-                      <td><b>Total number of families from nursery to grade 6: </b>___</td>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card-footer">
-          <button type="button" class="btn btn-success" name="saveBtn" style="float: right;">Save report as...</button>
-        </div>
-
-    </section>
+      </div>
   </div> <!-- /.content-wrapper -->
 
     <!-- jQuery -->

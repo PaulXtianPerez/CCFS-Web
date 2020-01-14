@@ -2,7 +2,7 @@
  include('../edit.php');
  include('../server.php');
  include('Connection.php');
- 
+
   $lastID = 'SELECT IDno FROM enstudent ORDER BY IDno DESC LIMIT 1';
   $result = $conn->query($lastID);
   $data = array();
@@ -10,29 +10,29 @@
       $data[0] = $row['IDno']+1;
   }
 
-  $lastyear = 'SELECT yearId FROM schoolyear WHERE scstatus="ACTIVE"';
+  $lastyear = 'SELECT yearId FROM schoolyear ORDER BY yearId DESC LIMIT 1';
   $result1 = $conn->query($lastyear);
   $data1 = array();
   while($row = $result1->fetch_assoc()) {
       $data1[0] = $row['yearId'];
   }
 
- if(isset($_POST['enroll'])) { 
-  $enstud = "INSERT INTO `enstudent`( 
-  IDno, GivenName, MiddleName, 
-  SurName, gradelvl, birthdate, 
-  birthplace, gender, homeTelnum, 
-  mobilenum, studaddress, 
-  prevschoolattended, studstat, 
-  sponsor, faFname, falname, 
-  faAdd, faMobilenum, faEmail, 
-  faoccupation, moFname, moLname, 
-  moAdd, momobilenum, moEmail, 
-  mooccupation, sibFname, sibLname, 
-  sibBirthdate, sibschoolname, 
-  yearid, dateenrolled, 
-  guardianName, guardianAddress, 
-  guardianContact) 
+ if(isset($_POST['enroll'])) {
+  $enstud = "INSERT INTO `enstudent`(
+  IDno, GivenName, MiddleName,
+  SurName, gradelvl, birthdate,
+  birthplace, gender, homeTelnum,
+  mobilenum, studaddress,
+  prevschoolattended, studstat,
+  sponsor, faFname, falname,
+  faAdd, faMobilenum, faEmail,
+  faoccupation, moFname, moLname,
+  moAdd, momobilenum, moEmail,
+  mooccupation, sibFname, sibLname,
+  sibBirthdate, sibschoolname,
+  yearid, dateenrolled,
+  guardianName, guardianAddress,
+  guardianContact)
   VALUES ('$data[0]','$_POST[studentGivenName]',"
           . "'$_POST[studentMiddleName]','$_POST[studentSurname]',"
           . "'$_POST[gradeLevel]','$_POST[studentBirthDate]',"
@@ -45,7 +45,7 @@
           . "'$_POST[motherFirst]','$_POST[motherLast]',"
           . "'$_POST[motherAdd]','$_POST[motherMobNum]',"
           . "'$_POST[motherEmAdd]','$_POST[motherOcc]','','','2020-12-12','',"
-          . "'$data1[0]','".date("Y-m-d")."','$_POST[guardianName]','$_POST[guardianAddress]','$_POST[guardianContact]')";
+          . "'$data1[0]','".date("Y-d-m")."','$_POST[guardianName]','$_POST[guardianAddress]','$_POST[guardianContact]')";
   $insert_row = $conn->query($enstud) or die($conn->error.__LINE__);
   $message = "successfully enrolled a student";
 }
@@ -153,7 +153,7 @@
           </li>
 
           <li class="nav-item has-treeview">
-            <a href="#listofstudents" id="studList" class="nav-link" onclick="openPage('ListOfStudents.php')">
+            <a href="#listofstudents" id="studList" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>List Of Students</p>
             </a>
@@ -165,37 +165,37 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#grades" id="studGrd" class="nav-link" onclick="openPage('Grades.php')">
+            <a href="#grades" id="studGrd" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>Student Grades</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#checklist" id="kinderChecklist" class="nav-link" onclick="openPage('KinderChecklist.php')">
+            <a href="#kinderchecklist" id="kinderChecklist" class="nav-link">
               <i class="nav-icon fas fa-check"></i>
               <p>Kindergarten Checklist</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#competency" id="kinderCompetency" class="nav-link" onclick="openPage('KinderCompetency.php')">
+            <a href="#kindercompetency" id="kinderCompetency" class="nav-link">
               <i class="nav-icon fas fa-check"></i>
               <p>Kindergarten Competency</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#observedvalues" id="observedValues" class="nav-link" onclick="openPage('ObservedValues.php')">
+            <a href="#observedvalues" id="observedValues" class="nav-link">
               <i class="nav-icon fas fa-check"></i>
               <p>Learner's Observed Values</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#discountsponsor" id="discSpons" class="nav-link" onclick="openPage('../Admin/DiscountSponsor.php')">
+            <a href="../Admin/#discountsponsor" id="discSpons" class="nav-link">
               <i class="nav-icon fas fa-percent"></i>
               <p>Discounts & Sponsorship</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#reports" id="reports" class="nav-link" onclick="openPage('RegistrarReports.php')">
+            <a href="#registrarreports" id="reports" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>Generate Reports</p>
             </a>
@@ -251,20 +251,6 @@
 </div>
 <!-- ./wrapper -->
 
-<script>
-$(document).ready(function() {
-    if (location.hash) {
-        $("a[href='" + location.hash + "']").tab("show");
-    }
-    $(document.body).on("click", "a[data-toggle='tab']", function(event) {
-        location.hash = this.getAttribute("href");
-    });
-});
-$(window).on("popstate", function() {
-    var anchor = location.hash || $("a[data-toggle='tab']").first().attr("href");
-    $("a[href='" + anchor + "']").tab("show");
-});
-</script>
 
 <!-- Open new page -->
 <script src="../Resources/js/displaypage.js"></script>
@@ -302,5 +288,10 @@ $(window).on("popstate", function() {
 <script src="../Resources/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../Resources/dist/js/demo.js"></script>
+<!-- Load new page into #contents div -->
+<script src="disp.js"></script>
+<!-- DataTables plugin -->
+<script type="text/javascript" charset="utf8" src="../Resources/plugins/bootstrap/js/DataTables/datatables.js"></script>
+
 </body>
 </html>

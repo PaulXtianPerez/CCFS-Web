@@ -56,73 +56,70 @@ $result = mysqli_query($connect, $query);
             <h1 class="m-0 text-dark">Early Childhood Care and Development and Cheklist</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
+        <!-- Main content -->
+       <section class="content">
+          <div class="row">
+            <div class="col-12">
+              <div class="card card-primary">
+                <div class="card-header">
+                  <div>
+                    <!-- SEARCH FORM -->
+                    <form class="form-inline ml-3">
+                      <div class="input-group input-group-sm">
+                        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"/>
+                        <div class="input-group-append">
+                          <button class="btn btn-navbar" type="submit">
+                            <i class="fas fa-search"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div> <br>
+                  <div>
+                    <h3 class="card-title">Student: [Name] | [Grade Lv.]</h3><br>
+                  </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <table id="checklistTable" class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                      <th>Check ID</th>
+                      <th>Domain</th>
+                      <th>Description</th>
+                      <th>1st</th>
+                      <th>2nd</th>
+                      <th>3rd</th>
+                      <th>4th</th>
+                    </tr>
+                    </thead>
+                    <tbody> <!-- Populate from database. -->
+                      <?php
+                        while($row = mysqli_fetch_array($result)) {
+                          echo '
+                          <tr>
+                          <td>'.$row["checkid"].'</td>
+                          <td>'.$row["checkdesc"].'</td>
+                          <td>'.$row["checkvalues"].'</td>
+                          <td>'.$row["firstrating"].'</td>
+                          <td>'.$row["secondrating"].'</td>
+                          <td>'.$row["thirdrating"].'</td>
+                          <td>'.$row["fourthrating"].'</td>
+                          </tr>
+                          ';
+                        }
+                        ?>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+            </div>
+          </div>
+        </section>
       </div><!-- /.container-fluid -->
     </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-   <section class="content">
-      <div class="row">
-        <div class="col-12">
-          <div class="card card-primary">
-            <div class="card-header">
-              <div>
-                <!-- SEARCH FORM -->
-                <form class="form-inline ml-3">
-                  <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"/>
-                    <div class="input-group-append">
-                      <button class="btn btn-navbar" type="submit">
-                        <i class="fas fa-search"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div> <br>
-              <div>
-                <h3 class="card-title">Student: [Name] | [Grade Lv.]</h3><br>
-              </div>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-              <table id="checklistTable" class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                  <th>Check ID</th>
-                  <th>Domain</th>
-                  <th>Description</th>
-                  <th>1st</th>
-                  <th>2nd</th>
-                  <th>3rd</th>
-                  <th>4th</th>
-                </tr>
-                </thead>
-                <tbody> <!-- Populate from database. -->
-                  <?php
-                    while($row = mysqli_fetch_array($result)) {
-                      echo '
-                      <tr>
-                      <td>'.$row["checkid"].'</td>
-                      <td>'.$row["checkdesc"].'</td>
-                      <td>'.$row["checkvalues"].'</td>
-                      <td>'.$row["firstrating"].'</td>
-                      <td>'.$row["secondrating"].'</td>
-                      <td>'.$row["thirdrating"].'</td>
-                      <td>'.$row["fourthrating"].'</td>
-                      </tr>
-                      ';
-                    }
-                    ?>
-                </tbody>
-                </tfoot>
-              </table>
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-        </div>
-      </div>
-    </section>
   </div>
 </div> <!-- ./wrapper -->
 
