@@ -6,13 +6,13 @@
       $sename = mysqli_real_escape_string($connect, $_POST["sename"]);
       $gradelvl = mysqli_real_escape_string($connect, $_POST["gradelvl"]);
       $adviserlname = mysqli_real_escape_string($connect, $_POST["adviserlname"]);
-      if($_POST["sec_ID"] != '') {
+      if($_POST["secID"] != '') {
            $query = "
            UPDATE section
            SET sename='$sename',
            gradelvl='$gradelvl', 
            adviserlname='$adviserlname'
-           WHERE secID='".$_POST["sec_ID"]."'";
+           WHERE secID='".$_POST["secID"]."'";
            $message = 'Account updated.';
       }
 
