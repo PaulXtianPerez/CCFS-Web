@@ -44,121 +44,121 @@
             <h1 class="m-0 text-dark">Create Account</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
+        <!-- Start of Create Account Card -->
+    		<div class="card card-primary">
+    			<div class="card-header">
+    				<h3 class="card-title">Fill up the fields below.</h3>
+    				</div>
+    				<div class="card-body">
+    					<form id="frmBox" class="needs-validation" method="post" action="Insert.php" onsubmit="return formSubmit();">
+    						<div class="row">
+    	            <div class="form-group col-6">
+    								<label>Employee ID</label>
+    								<div class="input-group mb-3">
+    		              <input type="text" name="empid" id="empid" class="form-control" placeholder="Employee ID" required/>
+    									<div class="input-group-append">
+    										<div class="input-group-text">
+    											<span class="fas fa-id-badge"></span>
+    										</div>
+    									</div>
+    								</div>
+    	            </div>
+    							<div class="form-group col-6">
+    								<label>Account Type</label>
+    								<div class="input-group mb-3">
+    									<select name="type" id="type" class="form-control">
+    										<option value="Registrar">Registrar</option>
+    										<option value="Accounting">Accounting</option>
+    									</select>
+    									<div class="input-group-append">
+    										<div class="input-group-text">
+    											<span class="fas fa-users"></span>
+    										</div>
+    									</div>
+    								</div>
+    	            </div>
+    	          </div>
+    						<div class="row">
+    	            <div class="form-group col-6">
+    								<label>First Name</label>
+    								<div class="input-group mb-3">
+    									<input type= "text" name="fname" id="fname" class="form-control" placeholder="First Name" required/>
+    									<div class="input-group-append">
+    										<div class="input-group-text">
+    											<span class="fas fa-user-circle"></span>
+    										</div>
+    									</div>
+    								</div>
+    	            </div>
+    							<div class="form-group col-6">
+    								<label>Last Name</label>
+    								<div class="input-group mb-3">
+    									<input type= "text" name="lname" id="lname" class="form-control" placeholder="Last Name" required/>
+    									<div class="input-group-append">
+    										<div class="input-group-text">
+    											<span class="fas fa-user-circle"></span>
+    										</div>
+    									</div>
+    								</div>
+    	            </div>
+    	          </div>
+    						<div class="row">
+    	            <div class="form-group col-6">
+    								<label>Username</label>
+    								<div class="input-group mb-3">
+    									<input type= "text" name="username" id="username" class="form-control" placeholder="Username" onkeyup="checkname();" minlength="2" maxlength="45" required/>
+    									<div class="input-group-append">
+    										<div class="input-group-text">
+    											<span class="fas fa-user"></span>
+    										</div>
+    									</div>
+    								</div>
+    	            </div>
+    							<div class="form-group col-6">
+    								<br><b><p id="availability" style="font-size:18px;"></p></b>
+    	            </div>
+    	          </div>
+    						<div class="row">
+    	            <div class="form-group col-6">
+    								<label>Password</label>
+    								<div class="input-group mb-3">
+    									<input type="password" name="password" id="password" class="form-control" placeholder="Password" minlength="6"  maxlength="16" required/>
+    									<div class="input-group-append">
+    										<div class="input-group-text">
+    											<span class="fas fa-lock"></span>
+    										</div>
+    									</div>
+    								</div>
+    	            </div>
+    							<div class="form-group col-6">
+    								<label>Confirm Password</label>
+    								<div class="input-group mb-3">
+    									<input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password" minlength="6"  maxlength="16" required/>
+    									<div class="input-group-append">
+    										<div class="input-group-text">
+    											<span class="fas fa-lock"></span>
+    										</div>
+    									</div>
+    								</div>
+    	            </div>
+    	          </div>
+    						<div class="row">
+    							<!-- /.col -->
+    							<div class="col-4">
+    								<input type="submit" name="submit" value="Create" min="0" class="btn btn-success"/>
+    							</div>
+    							<!-- /.col -->
+    						</div>
+    							<b><p id="success" style="text-align:center; font-size:22px;"></p></b>
+    					</form>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
     </div>
-    <!-- /.content-header -->
+  </div>
 
-		<!-- Start of Create Account Card -->
-		<div class="card card-primary">
-			<div class="card-header">
-				<h3 class="card-title">Fill up the fields below.</h3>
-				</div>
-				<div class="card-body">
-					<form id="frmBox" class="needs-validation" method="post" action="Insert.php" onsubmit="return formSubmit();">
-						<div class="row">
-	            <div class="form-group col-6">
-								<label>Employee ID</label>
-								<div class="input-group mb-3">
-		              <input type="text" name="empid" id="empid" class="form-control" placeholder="Employee ID" required/>
-									<div class="input-group-append">
-										<div class="input-group-text">
-											<span class="fas fa-id-badge"></span>
-										</div>
-									</div>
-								</div>
-	            </div>
-							<div class="form-group col-6">
-								<label>Account Type</label>
-								<div class="input-group mb-3">
-									<select name="type" id="type" class="form-control">
-										<option value="Registrar">Registrar</option>
-										<option value="Accounting">Accounting</option>
-									</select>
-									<div class="input-group-append">
-										<div class="input-group-text">
-											<span class="fas fa-users"></span>
-										</div>
-									</div>
-								</div>
-	            </div>
-	          </div>
-						<div class="row">
-	            <div class="form-group col-6">
-								<label>First Name</label>
-								<div class="input-group mb-3">
-									<input type= "text" name="fname" id="fname" class="form-control" placeholder="First Name" required/>
-									<div class="input-group-append">
-										<div class="input-group-text">
-											<span class="fas fa-user-circle"></span>
-										</div>
-									</div>
-								</div>
-	            </div>
-							<div class="form-group col-6">
-								<label>Last Name</label>
-								<div class="input-group mb-3">
-									<input type= "text" name="lname" id="lname" class="form-control" placeholder="Last Name" required/>
-									<div class="input-group-append">
-										<div class="input-group-text">
-											<span class="fas fa-user-circle"></span>
-										</div>
-									</div>
-								</div>
-	            </div>
-	          </div>
-						<div class="row">
-	            <div class="form-group col-6">
-								<label>Username</label>
-								<div class="input-group mb-3">
-									<input type= "text" name="username" id="username" class="form-control" placeholder="Username" onkeyup="checkname();" minlength="2" maxlength="45" required/>
-									<div class="input-group-append">
-										<div class="input-group-text">
-											<span class="fas fa-user"></span>
-										</div>
-									</div>
-								</div>
-	            </div>
-							<div class="form-group col-6">
-								<br><b><p id="availability" style="font-size:18px;"></p></b>
-	            </div>
-	          </div>
-						<div class="row">
-	            <div class="form-group col-6">
-								<label>Password</label>
-								<div class="input-group mb-3">
-									<input type="password" name="password" id="password" class="form-control" placeholder="Password" minlength="6"  maxlength="16" required/>
-									<div class="input-group-append">
-										<div class="input-group-text">
-											<span class="fas fa-lock"></span>
-										</div>
-									</div>
-								</div>
-	            </div>
-							<div class="form-group col-6">
-								<label>Confirm Password</label>
-								<div class="input-group mb-3">
-									<input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password" minlength="6"  maxlength="16" required/>
-									<div class="input-group-append">
-										<div class="input-group-text">
-											<span class="fas fa-lock"></span>
-										</div>
-									</div>
-								</div>
-	            </div>
-	          </div>
-						<div class="row">
-							<!-- /.col -->
-							<div class="col-4">
-								<input type="submit" name="submit" value="Create" min="0" class="btn btn-success"/>
-							</div>
-							<!-- /.col -->
-						</div>
-							<b><p id="success" style="text-align:center; font-size:22px;"></p></b>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+
 
 <!-- Username validation. -->
 <script type="text/javascript">

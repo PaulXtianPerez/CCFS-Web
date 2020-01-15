@@ -37,7 +37,8 @@ $result = mysqli_query($mysqli, $query);
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css"/>
+  <!-- CSS for DataTables plugin -->
+  <link rel="stylesheet" type="text/css" href="../Resources/plugins/bootstrap/js/DataTables/datatables.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div id="contents" class="wrapper">
@@ -52,63 +53,59 @@ $result = mysqli_query($mysqli, $query);
             <h1 class="m-0 text-dark">List of Accounts</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
+        <!-- Main content -->
+       <section class="content">
+          <div class="row">
+            <div class="col-12">
+              <div class="card card-primary">
+                <div class="card-header">
+                  <div>
+                    <!-- SEARCH FORM -->
+                    <form class="form-inline ml-3">
+                      <div class="input-group input-group-sm">
+                        <input id="searchInput" class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"/>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <table id="accListTable" class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                      <th>Account ID</th>
+                      <th>Name</th>
+                      <th>Username</th>
+                      <th>Account Type</th>
+                      <th>Status</th>
+                      <th></th>
+                    </tr>
+                    </thead>
+                    <tbody> <!-- Populate from database. -->
+                      <?php while($row = mysqli_fetch_array($result)):;?>
+                        <tr>
+                          <td><?php echo $row["accid"];?></td>
+                          <td><?php echo $row["fname"]; echo " "; echo $row["lname"];?></td>
+                          <td><?php echo $row["username"];?></td>
+                          <td><?php echo $row["type"];?></td>
+                          <td><?php echo $row["accstatus"];?></td>
+                          <td style="text-align: center;"><input type="button" name="edit" value="Edit" id="<?php echo $row["accid"]; ?>" class="btn btn-info btn-xs edit_data" /></td>
+                        </tr>
+                      <?php endwhile;?>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+            </div>
+          </div>
+        </section>
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
 
-    <!-- Main content -->
-   <section class="content">
-      <div class="row">
-        <div class="col-12">
-          <div class="card card-primary">
-            <div class="card-header">
-              <div>
-                <!-- SEARCH FORM -->
-                <form class="form-inline ml-3">
-                  <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"/>
-                    <div class="input-group-append">
-                      <button class="btn btn-navbar" type="submit">
-                        <i class="fas fa-search"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-              <table id="accListTable" class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                  <th>Account ID</th>
-                  <th>Name</th>
-                  <th>Username</th>
-                  <th>Account Type</th>
-                  <th>Status</th>
-                  <th></th>
-                </tr>
-                </thead>
-                <tbody> <!-- Populate from database. -->
-                  <?php while($row = mysqli_fetch_array($result)):;?>
-                    <tr>
-                      <td><?php echo $row["accid"];?></td>
-                      <td><?php echo $row["fname"]; echo " "; echo $row["lname"];?></td>
-                      <td><?php echo $row["username"];?></td>
-                      <td><?php echo $row["type"];?></td>
-                      <td><?php echo $row["accstatus"];?></td>
-                      <td><input type="button" name="edit" value="Edit" id="<?php echo $row["accid"]; ?>" class="btn btn-info btn-xs edit_data" /></td>
-                    </tr>
-                  <?php endwhile;?>
-                </tbody>
-              </table>
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-        </div>
-      </div>
-    </section>
+
   </div>
 </div> <!-- ./wrapper -->
 
@@ -242,17 +239,20 @@ password.onchange = validatePassword;
 confirm_password.onkeyup = validatePassword;
 </script>
 
+<!-- Initialize DataTables plugin -->
 <script type="text/javascript">
-// Basic example
-$(document).ready(function () {
-$('#accListTable').DataTable({
-  "pagingType": "simple" // "simple" option for 'Previous' and 'Next' buttons only
+var table = $("#accListTable").DataTable();
+$("#searchInput").on("keyup", function() {
+  table.search(this.value).draw(); //search/filter functionality using DataTables search API
 });
-$('.dataTables_length').addClass('bs-select');
+table.destroy(); //for reinitialization
+
+$("#accListTable").DataTable({
+  "pagingType": "full_numbers", //'First', 'Previous', 'Next' and 'Last' buttons plus page numbers
+  "bFilter": false, //remove default search/filter
+  "destroy": true //for reinitialization
 });
 </script>
-
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
 
 <!-- jQuery -->
 <script src="../Resources/plugins/jquery/jquery.min.js"></script>
@@ -288,5 +288,7 @@ $('.dataTables_length').addClass('bs-select');
 <script src="../Resources/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../Resources/dist/js/demo.js"></script>
+<!-- DataTables plugin -->
+<script type="text/javascript" charset="utf8" src="../Resources/plugins/bootstrap/js/DataTables/datatables.js"></script>
 </body>
 </html>

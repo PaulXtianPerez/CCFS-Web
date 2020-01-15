@@ -55,76 +55,74 @@ $result = mysqli_query($connect, $query);
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">Student Grades</h1>
           </div><!-- /.col -->
+          <!-- Main content -->
+         <section class="content">
+            <div class="row">
+              <div class="col-12">
+                <div class="card card-primary">
+                  <div class="card-header">
+                    <div>
+                      <!-- SEARCH FORM -->
+                      <form class="form-inline ml-3">
+                        <div class="input-group input-group-sm">
+                          <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"/>
+                          <div class="input-group-append">
+                            <button class="btn btn-navbar" type="submit">
+                              <i class="fas fa-search"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </form>
+                    </div> <br>
+                    <div>
+                      <h3 class="card-title">Student: [Name] | [Grade Lv.]</h3><br>
+                    </div>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    <table id="gradesTable" class="table table-bordered table-hover">
+                      <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Learning Areas</th>
+                        <th>1st</th>
+                        <th>2nd</th>
+                        <th>3rd</th>
+                        <th>4th</th>
+                        <th>Final Grade</th>
+                        <th>Remarks</th>
+                      </tr>
+                      </thead>
+                      <tbody> <!-- Populate from database. -->
+                        <?php
+                          while($row = mysqli_fetch_array($result)) {
+                            echo '
+                            <tr>
+                            <td>'.$row["gradeid"].'</td>
+                            <td>'.$row["subjID"].'</td>
+                            <td>'.$row["firstquartergrade"].'</td>
+                            <td>'.$row["secondquartergrade"].'</td>
+                            <td>'.$row["thirdquartergrade"].'</td>
+                            <td>'.$row["fourthquartergrade"].'</td>
+                            <td>'.$row["finalgrade"].'</td>
+                            <td>'.$row["remarks"].'</td>
+                            </tr>
+                            ';
+                          }
+                          ?>
+                      </tbody>
+                      </tfoot>
+                    </table>
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+              </div>
+            </div>
+          </section>
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-   <section class="content">
-      <div class="row">
-        <div class="col-12">
-          <div class="card card-primary">
-            <div class="card-header">
-              <div>
-                <!-- SEARCH FORM -->
-                <form class="form-inline ml-3">
-                  <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"/>
-                    <div class="input-group-append">
-                      <button class="btn btn-navbar" type="submit">
-                        <i class="fas fa-search"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div> <br>
-              <div>
-                <h3 class="card-title">Student: [Name] | [Grade Lv.]</h3><br>
-              </div>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-              <table id="gradesTable" class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Learning Areas</th>
-                  <th>1st</th>
-                  <th>2nd</th>
-                  <th>3rd</th>
-                  <th>4th</th>
-                  <th>Final Grade</th>
-                  <th>Remarks</th>
-                </tr>
-                </thead>
-                <tbody> <!-- Populate from database. -->
-                  <?php
-                    while($row = mysqli_fetch_array($result)) {
-                      echo '
-                      <tr>
-                      <td>'.$row["gradeid"].'</td>
-                      <td>'.$row["subjID"].'</td>
-                      <td>'.$row["firstquartergrade"].'</td>
-                      <td>'.$row["secondquartergrade"].'</td>
-                      <td>'.$row["thirdquartergrade"].'</td>
-                      <td>'.$row["fourthquartergrade"].'</td>
-                      <td>'.$row["finalgrade"].'</td>
-                      <td>'.$row["remarks"].'</td>
-                      </tr>
-                      ';
-                    }
-                    ?>
-                </tbody>
-                </tfoot>
-              </table>
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-        </div>
-      </div>
-    </section>
   </div>
 </div> <!-- ./wrapper -->
 

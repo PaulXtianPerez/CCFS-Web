@@ -106,7 +106,7 @@
                      <tr>
                           <td>' . $row["yearstart"] . '-' . $row["yearend"] .'</td>
                           <td>' . $row["scstatus"] . '</td>
-                          <td><input type="button" name="edit" value="Edit" id="'.$row["yearid"] .'" class="btn btn-info btn-xs edit_data" /></td>
+                          <td style="text-align: center;"><input type="button" name="edit" value="Edit" id="'.$row["yearid"] .'" class="btn btn-info btn-xs edit_data" /></td>
                      </tr>
                 ';
            }

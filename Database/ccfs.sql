@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 14, 2020 at 01:58 AM
--- Server version: 5.7.24
--- PHP Version: 7.3.1
+-- Generation Time: Jan 15, 2020 at 11:55 AM
+-- Server version: 5.7.26
+-- PHP Version: 7.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -85,9 +85,9 @@ CREATE TABLE IF NOT EXISTS `attendance` (
   `yearid` int(11) NOT NULL,
   `month` varchar(31) DEFAULT NULL,
   `daysPres` int(40) DEFAULT NULL,
-  `daysTar` int(40) NOT NULL,
+  `daysTar` int(40) DEFAULT NULL,
   `daysAbs` int(40) DEFAULT NULL,
-  PRIMARY KEY (`attid`),
+  PRIMARY KEY (`attid`) USING BTREE,
   KEY `studid` (`IDno`,`yearid`) USING BTREE,
   KEY `idyear` (`yearid`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
@@ -131,21 +131,33 @@ CREATE TABLE IF NOT EXISTS `checklist` (
 DROP TABLE IF EXISTS `curriculum`;
 CREATE TABLE IF NOT EXISTS `curriculum` (
   `curid` int(45) NOT NULL AUTO_INCREMENT,
-  `subjID` int(90) NOT NULL,
+  `curname` varchar(11) NOT NULL,
+  `subjname1` text NOT NULL,
+  `subjname2` text NOT NULL,
+  `subjname3` text NOT NULL,
+  `subjname4` text NOT NULL,
+  `subjname5` text NOT NULL,
+  `subjname6` text NOT NULL,
+  `subjname7` text NOT NULL,
+  `subjname8` text NOT NULL,
+  `subjname9` text NOT NULL,
+  `subjname10` text NOT NULL,
+  `subjname11` text NOT NULL,
+  `subjname12` text NOT NULL,
+  `subjname13` text NOT NULL,
+  `subjname14` text NOT NULL,
+  `subjname15` text NOT NULL,
+  `subjname16` text NOT NULL,
+  `subjname17` text NOT NULL,
+  `subjname18` text NOT NULL,
+  `subjname19` text NOT NULL,
+  `subjname20` text NOT NULL,
   `grade` varchar(11) NOT NULL,
   `yearid` int(11) NOT NULL,
-  `ordering` varchar(10) NOT NULL,
   PRIMARY KEY (`curid`),
   KEY `idyear` (`yearid`) USING BTREE,
-  KEY `subjectID` (`subjID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `curriculum`
---
-
-INSERT INTO `curriculum` (`curid`, `subjID`, `grade`, `yearid`, `ordering`) VALUES
-(1, 1, '1', 12, 'A');
+  KEY `curname` (`curname`)
+) ENGINE=InnoDB AUTO_INCREMENT=243 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -170,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `curstudent` (
   KEY `yearID_idx` (`yearid`),
   KEY `enrID_idx` (`enrID`),
   KEY `IDno` (`IDno`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `curstudent`
@@ -195,7 +207,10 @@ INSERT INTO `curstudent` (`studentid`, `IDno`, `gradelvl`, `section`, `teacher`,
 (16, 210016, 'KINDER', '1', '1', 1, '2019-11-27', 3, 16),
 (17, 210017, 'Preschool', '1', '1', 1, '2020-03-01', 11, 17),
 (18, 210018, 'Preschool', '1', '1', 1, '2020-03-01', 11, 18),
-(19, 210019, 'Preschool', '1', '1', 1, '2020-03-01', 11, 19);
+(19, 210019, 'Preschool', '1', '1', 1, '2020-03-01', 11, 19),
+(20, 210020, 'Grade 1', '1', '1', 1, '2020-01-14', 13, 20),
+(21, 210021, 'Grade 2', '1', '1', 1, '2020-01-14', 13, 21),
+(22, 210022, 'Section', '1', '1', 1, '2020-01-15', 10, 22);
 
 -- --------------------------------------------------------
 
@@ -247,7 +262,7 @@ CREATE TABLE IF NOT EXISTS `enstudent` (
   KEY `gradelvl` (`gradelvl`),
   KEY `YearID_idx` (`yearid`),
   KEY `studIDno_idx` (`IDno`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `enstudent`
@@ -272,7 +287,10 @@ INSERT INTO `enstudent` (`enid`, `IDno`, `GivenName`, `MiddleName`, `SurName`, `
 (16, 210016, 'IMRAN', 'DIXON', 'MAHMOOD', 'NURSERY', '2020-12-12', 'BAGUIO CITY', 'M', '', '', 'BAGUIO CITY', '', 'Enrolled', NULL, '', '', 'BAGUIO CITY', '', '', '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, 3, '2019-11-27', 'PAUL PEREZ', 'BAGUIO CITY', '0912345678'),
 (17, 210017, 'aawd', 'awd', 'awd', 'Preschool', '2020-12-12', 'awd', 'Male', 'awd', 'awwd', 'awd', 'awd', 'Enrolled', '', 'awd', 'awd', 'awd', 'awwd', 'awd', 'awd', 'awd', 'awd', 'awwd', 'awd', 'awd', 'awd', '', '', '2020-12-12', '', 11, '2020-03-01', '', '', ''),
 (18, 210018, 'awd', 'awd', 'awd', 'Preschool', '2020-12-12', 'awd', 'Male', 'awwd', 'awd', 'wd', 'awd', 'Enrolled', '', 'awd', 'aawd', 'awd', 'awd', 'awd', 'awwd', 'awawd', 'awwd', 'awd', 'awd', 'awd', 'awd', '', '', '2020-12-12', '', 11, '2020-03-01', 'awd', 'awd', 'awd'),
-(19, 210019, 'awd', 'awd', 'awd', 'Preschool', '2020-12-12', 'awd', 'Male', 'awd', 'awd', 'awd', 'awd', 'Enrolled', '', 'awd', 'khk', 'hk', 'hkh', 'kh', 'hk', 'khk', 'hk', 'hk', 'khk', 'hk', 'hkh', '', '', '2020-12-12', '', 11, '2020-03-01', 'h', 'khh', 'kh');
+(19, 210019, 'awd', 'awd', 'awd', 'Preschool', '2020-12-12', 'awd', 'Male', 'awd', 'awd', 'awd', 'awd', 'Enrolled', '', 'awd', 'khk', 'hk', 'hkh', 'kh', 'hk', 'khk', 'hk', 'hk', 'khk', 'hk', 'hkh', '', '', '2020-12-12', '', 11, '2020-03-01', 'h', 'khh', 'kh'),
+(20, 210020, 'HDin', 'aosidlsd', 'Hander', 'Grade 1', '1998-01-21', 'qweqwe', 'Male', '123', '123', 'qwe', 'asd', 'Enrolled', '', 'jhkjh', 'kjh', 'kjh', '123', 'kjh', 'kjh', 'kjh', 'kjh', 'kjh', '123', 'jkasjd', 'kjh', '', '', '2020-12-12', '', 13, '2020-01-14', 'kjhkjh', 'kjhkh', '123'),
+(21, 210021, 'asdasd', 'asdasd', 'Hander', 'Grade 2', '1998-01-21', 'asdasd', 'Male', '123', '123', 'asdasd', 'jasdj', 'Enrolled', '', 'kjhkjh', 'kh', 'kjh', '123', 'kjh', 'kjh', 'kjhkjh', 'kjkjh', 'kjhkjh', '123', 'kjhkj', 'khjkjh', '', '', '2020-12-12', '', 13, '2020-01-14', 'kjhjkh', 'kjh', '132'),
+(22, 210022, 'HDin', 'aosidlsd', 'Hander', 'Section', '1998-01-21', 'lklkj', 'Female', 'k123123', '12312', 'lkjl', 'kjhkjh', 'Enrolled', '', 'jhkjhkjh', 'kjh', 'kjh', '123123', 'jhgjhgjhg', 'kjhk', 'jhgjhg', 'jhgj', 'hgjhg', '123', 'jhgjhg', 'jhgjhgjhg', '', '', '2020-12-12', '', 10, '2020-01-15', 'hkjhkjh', 'kjhkjhkjh', '12313');
 
 --
 -- Triggers `enstudent`
@@ -296,6 +314,7 @@ CREATE TABLE IF NOT EXISTS `feestudent` (
   `misc` double NOT NULL,
   `tuition` double NOT NULL,
   `service` double DEFAULT NULL,
+  `balance` int(11) NOT NULL,
   `IDno` int(11) NOT NULL,
   `yearid` int(11) NOT NULL,
   PRIMARY KEY (`feestID`),
@@ -383,8 +402,6 @@ CREATE TABLE IF NOT EXISTS `schoolyear` (
   `octAtt` float NOT NULL,
   `novAtt` float NOT NULL,
   `decAtt` float NOT NULL,
-  `totalAtt` int(20) DEFAULT NULL,
-  `totalSec` int(20) NOT NULL,
   `dateStart` date DEFAULT NULL,
   `dateEnd` date DEFAULT NULL,
   `pretui1` float DEFAULT NULL,
@@ -419,21 +436,22 @@ CREATE TABLE IF NOT EXISTS `schoolyear` (
   PRIMARY KEY (`yearid`),
   KEY `yearstart` (`yearstart`),
   KEY `yearend` (`yearend`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `schoolyear`
 --
 
-INSERT INTO `schoolyear` (`yearid`, `yearstart`, `yearend`, `janAtt`, `febAtt`, `marAtt`, `aprAtt`, `mayAtt`, `junAtt`, `julAtt`, `augAtt`, `sepAtt`, `octAtt`, `novAtt`, `decAtt`, `totalAtt`, `totalSec`, `dateStart`, `dateEnd`, `pretui1`, `premisc1`, `prebook1`, `pretui2`, `premisc2`, `prebook2`, `pretui3`, `premisc3`, `prebook3`, `gradetui1`, `gradebook1`, `grademisc1`, `gradetui2`, `grademisc2`, `gradebook2`, `gradetui3`, `grademisc3`, `gradebook3`, `gradetui4`, `grademisc4`, `gradebook4`, `gradetui5`, `grademisc5`, `gradebook5`, `gradetui6`, `grademisc6`, `gradebook6`, `scfee`, `scstatus`) VALUES
-(1, 2019, 2020, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INACTIVE'),
-(2, 2020, 2021, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INACTIVE'),
-(3, 2021, 2022, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INACTIVE'),
-(7, 2019, 2020, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 20115, 'INACTIVE'),
-(10, 2020, 2021, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 8, '2020-06-30', '2021-04-15', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5632, 'ACTIVE'),
-(11, 2222, 22223, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 52, 6, '2222-05-04', '2223-06-02', 1, 123, 12, 2, 213, 21, 0, 0, 0, 1, 123, 12, 2, 21, 213, 3, 31, 312, 4, 41, 412, 5, 51, 512, 6, 61, 612, 6215, 'INACTIVE'),
-(12, 2023, 2024, 20, 25, 26, 23, 21, 51, 2, 56, 1, 56, 5, 4, 200, 6, '2023-06-02', '2024-05-25', 51548, 5484, 5484, 545, 545, 5454, 0, 0, 0, 545, 54, 54, 54, 54, 54, 54, 54, 545, 45, 454, 545, 45, 45, 454, 545, 45, 54, 545, 'INACTIVE'),
-(13, 9010, 9011, 5454, 545, 45, 454, 54, 54, 54, 54, 54, 54, 5, 45, 45, 54, '9010-01-21', '9011-01-21', 45, 54, 4, 54, 54, 54, 54, 5, 45, 45, 54, 4, 54, 54, 54, 54, 54, 54, 5, 45, 4, 54, 54, 54, 54, 5, 45, 4, 'INACTIVE');
+INSERT INTO `schoolyear` (`yearid`, `yearstart`, `yearend`, `janAtt`, `febAtt`, `marAtt`, `aprAtt`, `mayAtt`, `junAtt`, `julAtt`, `augAtt`, `sepAtt`, `octAtt`, `novAtt`, `decAtt`, `dateStart`, `dateEnd`, `pretui1`, `premisc1`, `prebook1`, `pretui2`, `premisc2`, `prebook2`, `pretui3`, `premisc3`, `prebook3`, `gradetui1`, `gradebook1`, `grademisc1`, `gradetui2`, `grademisc2`, `gradebook2`, `gradetui3`, `grademisc3`, `gradebook3`, `gradetui4`, `grademisc4`, `gradebook4`, `gradetui5`, `grademisc5`, `gradebook5`, `gradetui6`, `grademisc6`, `gradebook6`, `scfee`, `scstatus`) VALUES
+(1, 2019, 2020, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INACTIVE'),
+(2, 2020, 2021, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INACTIVE'),
+(3, 2021, 2022, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INACTIVE'),
+(7, 2019, 2020, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 20115, 'INACTIVE'),
+(10, 2020, 2021, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2020-06-30', '2021-04-15', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5632, 'ACTIVE'),
+(11, 2222, 22223, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2222-05-04', '2223-06-02', 1, 123, 12, 2, 213, 21, 0, 0, 0, 1, 123, 12, 2, 21, 213, 3, 31, 312, 4, 41, 412, 5, 51, 512, 6, 61, 612, 6215, 'INACTIVE'),
+(12, 2023, 2024, 20, 25, 26, 23, 21, 51, 2, 56, 1, 56, 5, 4, '2023-06-02', '2024-05-25', 51548, 5484, 5484, 545, 545, 5454, 0, 0, 0, 545, 54, 54, 54, 54, 54, 54, 54, 545, 45, 454, 545, 45, 45, 454, 545, 45, 54, 545, 'INACTIVE'),
+(13, 9010, 9011, 54541, 545, 45, 454, 54, 54, 54, 54, 54, 54, 5, 45, '9010-01-21', '9011-01-21', 45, 4, 54, 54, 54, 54, 54, 5, 45, 45, 54, 4, 54, 54, 54, 54, 54, 54, 5, 45, 4, 54123, 54, 54, 54, 5, 45, 4, 'INACTIVE'),
+(14, 3019, 3020, 654564, 654, 654, 654, 654, 645, 654, 654, 6, 546, 54, 654, '3019-12-01', '3020-12-01', 654, 6, 54, 654, 654, 654, 654, 546, 6, 546, 654, 54, 654, 654, 654, 65, 46, 54, 654, 654, 6, 54, 654, 654, 654, 65, 465, NULL, 'INACTIVE');
 
 -- --------------------------------------------------------
 
@@ -450,18 +468,20 @@ CREATE TABLE IF NOT EXISTS `section` (
   `yearid` int(11) NOT NULL,
   PRIMARY KEY (`secID`),
   KEY `yearid` (`yearid`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `section`
 --
 
 INSERT INTO `section` (`secID`, `sename`, `gradelvl`, `adviserlname`, `yearid`) VALUES
-(1, 'Alpha', 'Kinder', 'SOBREMONTE', 12),
 (11, 'Undo', 'Grade 1', 'TOLENTINO', 10),
-(12, 'Iyot', 'Grade 2', 'MAHMOOD', 10),
 (13, 'asd', 'Grade 2', 'TOLENTINO', 10),
-(14, 'IyotMaster', 'Grade 3', 'PEREZ', 10);
+(14, 'Master', 'Grade 3', 'PEREZ', 10),
+(16, 'Yorne', 'Grade 5', 'MAHMOOD', 2020),
+(17, 'AASD', 'Kinder', 'TAASIN', 2020),
+(18, 'AASDasd', 'Kinder', 'TAASIN', 2020),
+(45, 'Hand', 'Kinder', 'MAHMOOD', 12);
 
 -- --------------------------------------------------------
 
@@ -477,14 +497,15 @@ CREATE TABLE IF NOT EXISTS `subject` (
   `yearid` int(11) NOT NULL,
   PRIMARY KEY (`subjID`),
   KEY `yeaid` (`yearid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `subject`
 --
 
 INSERT INTO `subject` (`subjID`, `subname`, `adviserLname`, `yearid`) VALUES
-(1, 'math', 'TOLENTINO', 12);
+(1, 'math', 'TOLENTINO', 12),
+(2, 'English', 'SOBREMONTE', 13);
 
 --
 -- Constraints for dumped tables
@@ -512,8 +533,7 @@ ALTER TABLE `checklist`
 -- Constraints for table `curriculum`
 --
 ALTER TABLE `curriculum`
-  ADD CONSTRAINT `iyear` FOREIGN KEY (`yearid`) REFERENCES `schoolyear` (`yearid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `subjectID` FOREIGN KEY (`subjID`) REFERENCES `subject` (`subjID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `iyear` FOREIGN KEY (`yearid`) REFERENCES `schoolyear` (`yearid`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `curstudent`

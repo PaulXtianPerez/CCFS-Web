@@ -2,7 +2,7 @@
  include ('../edit.php');
  include('../server.php');
  include('Connection.php');
- 
+
  $lastID = 'SELECT IDno FROM enstudent ORDER BY IDno DESC LIMIT 1';
  $result = $conn->query($lastID);
  $data = array();
@@ -10,29 +10,29 @@
      $data[0] = $row['IDno']+1;
  }
 
- $lastyear = 'SELECT yearId FROM schoolyear WHERE scstatus = "ACTIVE"';
+ $lastyear = 'SELECT yearId FROM schoolyear ORDER BY yearId DESC LIMIT 1';
  $result1 = $conn->query($lastyear);
  $data1 = array();
  while($row = $result1->fetch_assoc()) {
      $data1[0] = $row['yearId'];
  }
 
-if(isset($_POST['enroll'])) { 
- $enstud = "INSERT INTO `enstudent`( 
- IDno, GivenName, MiddleName, 
- SurName, gradelvl, birthdate, 
- birthplace, gender, homeTelnum, 
- mobilenum, studaddress, 
- prevschoolattended, studstat, 
- sponsor, faFname, falname, 
- faAdd, faMobilenum, faEmail, 
- faoccupation, moFname, moLname, 
- moAdd, momobilenum, moEmail, 
- mooccupation, sibFname, sibLname, 
- sibBirthdate, sibschoolname, 
- yearid, dateenrolled, 
- guardianName, guardianAddress, 
- guardianContact) 
+if(isset($_POST['enroll'])) {
+ $enstud = "INSERT INTO `enstudent`(
+ IDno, GivenName, MiddleName,
+ SurName, gradelvl, birthdate,
+ birthplace, gender, homeTelnum,
+ mobilenum, studaddress,
+ prevschoolattended, studstat,
+ sponsor, faFname, falname,
+ faAdd, faMobilenum, faEmail,
+ faoccupation, moFname, moLname,
+ moAdd, momobilenum, moEmail,
+ mooccupation, sibFname, sibLname,
+ sibBirthdate, sibschoolname,
+ yearid, dateenrolled,
+ guardianName, guardianAddress,
+ guardianContact)
  VALUES ('$data[0]','$_POST[studentGivenName]',"
          . "'$_POST[studentMiddleName]','$_POST[studentSurname]',"
          . "'$_POST[gradeLevel]','$_POST[studentBirthDate]',"
@@ -50,7 +50,6 @@ if(isset($_POST['enroll'])) {
  $message = "successfully enrolled a student";
 }
  ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,7 +81,6 @@ if(isset($_POST['enroll'])) {
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
 
-  <script src="../Resources/plugins/jquery/jquery.min.js"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -146,37 +144,37 @@ if(isset($_POST['enroll'])) {
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#createschoolyear" id="crSchYr" class="nav-link" onclick="openPage('CreateSchoolYear.php')">
+            <a href="#createschoolyear" id="crSchYr" class="nav-link">
               <i class="nav-icon fas fa-calendar"></i>
               <p>Create School Year</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#listofschoolyears" id="schYrsList" class="nav-link" onclick="openPage('ListOfSchoolYears.php')">
+            <a href="#listofschoolyears" id="schYrsList" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>List of School Years</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#listofschoolyears" id="schYrsList" class="nav-link" onclick="openPage('CreateSection.php')">
+            <a href="#createsection" id="crSection" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>Create Section</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#listofschoolyears" id="schYrsList" class="nav-link" onclick="openPage('ListOfSections.php')">
+            <a href="#listofsections" id="sectionsList" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>List Of Sections</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#createcurriculum" id="crCurr" class="nav-link" onclick="openPage('CreateCurriculum.php')">
+            <a href="#createcurriculum" id="crCurr" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>Create Curriculum</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#listofcurriculums" id="curriculumsList" class="nav-link" onclick="openPage('ListOfCurriculums.php')">
+            <a href="#listofcurriculums" id="curriculumsList" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>List of Curriculums</p>
             </a>
@@ -188,19 +186,19 @@ if(isset($_POST['enroll'])) {
           </form>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#discountsponsor" id="discSpons" class="nav-link" onclick="openPage('DiscountSponsor.php')">
+            <a href="#discountsponsor" id="discSpons" class="nav-link">
               <i class="nav-icon fas fa-percent"></i>
               <p>Discounts & Sponsorships</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#createaccount" id="crAcc" class="nav-link" onclick="openPage('CreateAccount.php')">
+            <a href="#createaccount" id="crAcc" class="nav-link">
               <i class="nav-icon fas fa-user-plus"></i>
               <p>Create Account</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#listofaccounts" id="accList" class="nav-link" onclick="openPage('ListOfAccounts.php')">
+            <a href="#listofaccounts" id="accList" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>List of Accounts</p>
             </a>
@@ -253,27 +251,11 @@ if(isset($_POST['enroll'])) {
     <!-- Control sidebar content goes here -->
   </aside>
   <!-- /.control-sidebar -->
+
 </div>
 <!-- ./wrapper -->
 
-<script>
-$(document).ready(function() {
-    if (location.hash) {
-        $("a[href='" + location.hash + "']").tab("show");
-    }
-    $(document.body).on("click", "a[data-toggle='tab']", function(event) {
-        location.hash = this.getAttribute("href");
-    });
-});
-$(window).on("popstate", function() {
-    var anchor = location.hash || $("a[data-toggle='tab']").first().attr("href");
-    $("a[href='" + anchor + "']").tab("show");
-});
-</script>
 
-
-<!-- Open new page -->
-<script src="../Resources/js/displaypage.js"></script>
 <!-- jQuery -->
 <script src="../Resources/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -308,5 +290,10 @@ $(window).on("popstate", function() {
 <script src="../Resources/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../Resources/dist/js/demo.js"></script>
+<!-- Load new page into #contents div -->
+<script src="disp.js"></script>
+<!-- DataTables plugin -->
+<script type="text/javascript" charset="utf8" src="../Resources/plugins/bootstrap/js/DataTables/datatables.js"></script>
+
 </body>
 </html>
