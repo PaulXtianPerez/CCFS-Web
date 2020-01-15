@@ -71,11 +71,9 @@ $result = mysqli_query($connect, $query);
                       </div>
                     </form>
                   </div>
-<<<<<<< HEAD
                 </form>
               </div> <br>
               <div>
-=======
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -103,7 +101,6 @@ $result = mysqli_query($connect, $query);
                   </table>
                 </div>
                 <!-- /.card-body -->
->>>>>>> aa7f8cf0b0c54b5126246f6aac7b55ff9e3c6fb0
               </div>
               <!-- /.card -->
             </div>
@@ -125,29 +122,29 @@ $result = mysqli_query($connect, $query);
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          <table id="attTable" class="table-sm table-bordered table-hover">
+          <table id="attTable" class="table-lg table-bordered table-hover" style="text-align:center">
             <tr>
               <th>Months</th>
               <th>Days Present</th>
               <th>Days Tardy</th>
               <th>Days Absent</th>
-              <th>Total</th>
+              <th>Total Class Days</th>
               <th></th>
             </tr>
             <tbody>
-              <input type="text" id="studid" disabled>
-              <tr><td>Jan</td><td><input type="number" name="dPres1"></td><td><input type="number" name="dTar1" ></td><td><input type="number" name="dAbs1"></td><td></td><td><button type="submit" class="btn btn-info btn-xs ed" id="1">Save</button></td></tr>
-              <tr><td>Feb</td><td><input type="number" name="dPres2"></td><td><input type="number" name="dTar2" ></td><td><input type="number" name="dAbs2"></td><td></td><td><button type="submit" class="btn btn-info btn-xs ed" id="2">Save</button></td></tr>
-              <tr><td>Mar</td><td><input type="number" name="dPres3"></td><td><input type="number" name="dTar3" ></td><td><input type="number" name="dAbs3"></td><td></td><td><button type="submit" class="btn btn-info btn-xs ed" id="3">Save</button></td></tr>
-              <tr><td>Apr</td><td><input type="number" name="dPres4"></td><td><input type="number" name="dTar4" ></td><td><input type="number" name="dAbs4"></td><td></td><td><button type="submit" class="btn btn-info btn-xs ed" id="4">Save</button></td></tr>
-              <tr><td>May</td><td><input type="number" name="dPres5"></td><td><input type="number" name="dTar5" ></td><td><input type="number" name="dAbs5"></td><td></td><td><button type="submit" class="btn btn-info btn-xs ed" id="5">Save</button></td></tr>
-              <tr><td>Jun</td><td><input type="number" name="dPres6"></td><td><input type="number" name="dTar6" ></td><td><input type="number" name="dAbs6"></td><td></td><td><button type="submit" class="btn btn-info btn-xs ed" id="6">Save</button></td></tr>
-              <tr><td>Jul</td><td><input type="number" name="dPres7"></td><td><input type="number" name="dTar7" ></td><td><input type="number" name="dAbs7"></td><td></td><td><button type="submit" class="btn btn-info btn-xs ed" id="7">Save</button></td></tr>
-              <tr><td>Aug</td><td><input type="number" name="dPres8"></td><td><input type="number" name="dTar8" ></td><td><input type="number" name="dAbs8"></td><td></td><td><button type="submit" class="btn btn-info btn-xs ed" id="8">Save</button></td></tr>
-              <tr><td>Sep</td><td><input type="number" name="dPres9"></td><td><input type="number" name="dTar9" ></td><td><input type="number" name="dAbs9"></td><td></td><td><button type="submit" class="btn btn-info btn-xs ed" id="9">Save</button></td></tr>
-              <tr><td>Oct</td><td><input type="number" name="dPres10"></td><td><input type="number" name="dTar10" ></td><td><input type="number" name="dAbs10"></td><td></td><td><button type="submit" class="btn btn-info btn-xs ed" id="10">Save</button></td></tr>
-              <tr><td>Nov</td><td><input type="number" name="dPres11"></td><td><input type="number" name="dTar11" ></td><td><input type="number" name="dAbs11"></td><td></td><td><button type="submit" class="btn btn-info btn-xs ed" id="11">Save</button></td></tr>
-              <tr><td>Dec</td><td><input type="number" name="dPres12"></td><td><input type="number" name="dTar12" ></td><td><input type="number" name="dAbs12"></td><td></td><td><button type="submit" class="btn btn-info btn-xs ed" id="12">Save</button></td></tr>
+              <input type="text" size="3" id="studid" disabled>
+              <tr><td>Jan</td><td><input type="number" size="3" name="dPres1"></td><td><input type="number" size="3" name="dTar1" ></td><td><input type="number" size="3" name="dAbs1"></td><td><input type="text" size="7" id="total1" disabled></td><td><button type="submit" class="btn btn-info btn-xs ed" id="1">Save</button></td></tr>
+              <tr><td>Feb</td><td><input type="number" size="3" name="dPres2"></td><td><input type="number" size="3" name="dTar2" ></td><td><input type="number" size="3" name="dAbs2"></td><td><input type="text" size="7" id="total2" disabled></td><td><button type="submit" class="btn btn-info btn-xs ed" id="2">Save</button></td></tr>
+              <tr><td>Mar</td><td><input type="number" size="3" name="dPres3"></td><td><input type="number" size="3" name="dTar3" ></td><td><input type="number" size="3" name="dAbs3"></td><td><input type="text" size="7" id="total3" disabled></td><td><button type="submit" class="btn btn-info btn-xs ed" id="3">Save</button></td></tr>
+              <tr><td>Apr</td><td><input type="number" size="3" name="dPres4"></td><td><input type="number" size="3" name="dTar4" ></td><td><input type="number" size="3" name="dAbs4"></td><td><input type="text" size="7" id="total4" disabled></td><td><button type="submit" class="btn btn-info btn-xs ed" id="4">Save</button></td></tr>
+              <tr><td>May</td><td><input type="number" size="3" name="dPres5"></td><td><input type="number" size="3" name="dTar5" ></td><td><input type="number" size="3" name="dAbs5"></td><td><input type="text" size="7" id="total5" disabled></td><td><button type="submit" class="btn btn-info btn-xs ed" id="5">Save</button></td></tr>
+              <tr><td>Jun</td><td><input type="number" size="3" name="dPres6"></td><td><input type="number" size="3" name="dTar6" ></td><td><input type="number" size="3" name="dAbs6"></td><td><input type="text" size="7" id="total6" disabled></td><td><button type="submit" class="btn btn-info btn-xs ed" id="6">Save</button></td></tr>
+              <tr><td>Jul</td><td><input type="number" size="3" name="dPres7"></td><td><input type="number" size="3" name="dTar7" ></td><td><input type="number" size="3" name="dAbs7"></td><td><input type="text" size="7" id="total7" disabled></td><td><button type="submit" class="btn btn-info btn-xs ed" id="7">Save</button></td></tr>
+              <tr><td>Aug</td><td><input type="number" size="3" name="dPres8"></td><td><input type="number" size="3" name="dTar8" ></td><td><input type="number" size="3" name="dAbs8"></td><td><input type="text" size="7" id="total8" disabled></td><td><button type="submit" class="btn btn-info btn-xs ed" id="8">Save</button></td></tr>
+              <tr><td>Sep</td><td><input type="number" size="3" name="dPres9"></td><td><input type="number" size="3" name="dTar9" ></td><td><input type="number" size="3" name="dAbs9"></td><td><input type="text" size="7" id="total9" disabled></td><td><button type="submit" class="btn btn-info btn-xs ed" id="9">Save</button></td></tr>
+              <tr><td>Oct</td><td><input type="number" size="3" name="dPres10"></td><td><input type="number" size="3" name="dTar10" ></td><td><input type="number" size="3" name="dAbs10"></td><td><input type="text" size="7" id="total10" disabled></td><td><button type="submit" class="btn btn-info btn-xs ed" id="10">Save</button></td></tr>
+              <tr><td>Nov</td><td><input type="number" size="3" name="dPres11"></td><td><input type="number" size="3" name="dTar11" ></td><td><input type="number" size="3" name="dAbs11"></td><td><input type="text" size="7" id="total11" disabled></td><td><button type="submit" class="btn btn-info btn-xs ed" id="11">Save</button></td></tr>
+              <tr><td>Dec</td><td><input type="number" size="3" name="dPres12"></td><td><input type="number" size="3" name="dTar12" ></td><td><input type="number" size="3" name="dAbs12"></td><td><input type="text" size="7" id="total12" disabled></td><td><button type="submit" class="btn btn-info btn-xs ed" id="12">Save</button></td></tr>
             </tbody>
           </table>
         </div>
@@ -169,6 +166,9 @@ $(document).ready(function(){
       dataType:"json",
       success:function(data){
         $('#studid').val(data[0].IDno);
+        //
+        $('#total1').val(parseInt(data[0].daysPres)+parseInt(data[0].daysAbs));
+        //
         $("input[name=dPres1]").val(data[0].daysPres);
         $("input[name=dPres2]").val(data[1].daysPres);
         $("input[name=dPres3]").val(data[2].daysPres);
@@ -207,6 +207,8 @@ $(document).ready(function(){
         $("input[name=dAbs10]").val(data[9].daysAbs);
         $("input[name=dAbs11]").val(data[10].daysAbs);
         $("input[name=dAbs12]").val(data[11].daysAbs);
+        //
+        $
       }
     });
   });
