@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 15, 2020 at 11:43 AM
+-- Generation Time: Jan 15, 2020 at 11:55 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.18
 
@@ -314,6 +314,7 @@ CREATE TABLE IF NOT EXISTS `feestudent` (
   `misc` double NOT NULL,
   `tuition` double NOT NULL,
   `service` double DEFAULT NULL,
+  `balance` int(11) NOT NULL,
   `IDno` int(11) NOT NULL,
   `yearid` int(11) NOT NULL,
   PRIMARY KEY (`feestID`),
