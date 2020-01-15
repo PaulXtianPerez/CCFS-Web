@@ -168,6 +168,17 @@ $(document).ready(function(){
         $('#studid').val(data[0].IDno);
         //
         $('#total1').val(parseInt(data[0].daysPres)+parseInt(data[0].daysAbs));
+        $('#total2').val(parseInt(data[1].daysPres)+parseInt(data[1].daysAbs));
+        $('#total3').val(parseInt(data[2].daysPres)+parseInt(data[2].daysAbs));
+        $('#total4').val(parseInt(data[3].daysPres)+parseInt(data[3].daysAbs));
+        $('#total5').val(parseInt(data[4].daysPres)+parseInt(data[4].daysAbs));
+        $('#total6').val(parseInt(data[5].daysPres)+parseInt(data[5].daysAbs));
+        $('#total7').val(parseInt(data[6].daysPres)+parseInt(data[6].daysAbs));
+        $('#total8').val(parseInt(data[7].daysPres)+parseInt(data[7].daysAbs));
+        $('#total9').val(parseInt(data[8].daysPres)+parseInt(data[8].daysAbs));
+        $('#total10').val(parseInt(data[9].daysPres)+parseInt(data[9].daysAbs));
+        $('#total11').val(parseInt(data[10].daysPres)+parseInt(data[10].daysAbs));
+        $('#total12').val(parseInt(data[11].daysPres)+parseInt(data[11].daysAbs));
         //
         $("input[name=dPres1]").val(data[0].daysPres);
         $("input[name=dPres2]").val(data[1].daysPres);
