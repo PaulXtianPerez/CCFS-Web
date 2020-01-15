@@ -9,9 +9,9 @@ $activeYrStart = "SELECT `yearstart` FROM `schoolyear` WHERE `scstatus`='active'
 
 // result for method
 $result1 = $connect->query($activeYrStart);
-$data1 = array();
+$data3 = array();
 while($row = $result1->fetch_assoc()) {
-    $data1[0] = $row['yearstart'];
+    $data3[0] = $row['yearstart'];
 }
 
 // mysql select query

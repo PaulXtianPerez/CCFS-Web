@@ -104,7 +104,7 @@
         <h5>School Year: <?php if(empty($data1[0])) {
           echo "--";
         }else {
-          echo $data1[0];
+          echo $data3[0];
         }
         ; echo "-" ; if(empty($data2[1])){echo "--";}else {echo $data2[1];}?></h5>
     </ul>
