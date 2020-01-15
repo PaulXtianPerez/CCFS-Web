@@ -6,7 +6,7 @@ if(isset($input["student_id"])) {
     $chkAtt = "SELECT IDno FROM attendance WHERE IDno=".$input['student_id']."";
     $getYID = "SELECT yearid FROM schoolyear WHERE scstatus = 'ACTIVE'";
     $result = $connect->query($getYID); 
-    $result1 = $connect->query($chkAtt); 
+    $result1 = $connect->query($chkAtt);
     $data = array();
     $data1 = array();
     while($row = $result->fetch_assoc()) {
@@ -22,7 +22,15 @@ if(isset($input["student_id"])) {
             $insert_row = $connect->query($insAtt);
         }
     }
-    echo $input['student_id'];
+    $getAtt = "SELECT IDno,daysPres,daysTar,daysAbs FROM attendance WHERE IDno=".$input["student_id"]."";
+    $rows = array();
+    $result2 = $connect->query($getAtt); 
+    $rows = [];
+    while($row = mysqli_fetch_array($result2))
+    {
+        $rows[] = $row;
+    }
+    echo json_encode($rows);
     
 }else if(isset($input['id'])) {
     

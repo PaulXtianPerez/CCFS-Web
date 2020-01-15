@@ -81,7 +81,6 @@ $result = mysqli_query($connect, $query);
                 </form>
               </div> <br>
               <div>
-                <h3 class="card-title">Student: [Name] | [Grade Lv.]</h3><br>
               </div>
             </div>
             <!-- /.card-header -->
@@ -172,7 +171,45 @@ $(document).ready(function(){
       data:{student_id:student_id},
       dataType:"json",
       success:function(data){
-        $('#studid').val(data);
+        $('#studid').val(data[0].IDno);
+        $("input[name=dPres1]").val(data[0].daysPres);
+        $("input[name=dPres2]").val(data[1].daysPres);
+        $("input[name=dPres3]").val(data[2].daysPres);
+        $("input[name=dPres4]").val(data[3].daysPres);
+        $("input[name=dPres5]").val(data[4].daysPres);
+        $("input[name=dPres6]").val(data[5].daysPres);
+        $("input[name=dPres7]").val(data[6].daysPres);
+        $("input[name=dPres8]").val(data[7].daysPres);
+        $("input[name=dPres9]").val(data[8].daysPres);
+        $("input[name=dPres10]").val(data[9].daysPres);
+        $("input[name=dPres11]").val(data[10].daysPres);
+        $("input[name=dPres12]").val(data[11].daysPres);
+        //
+        $("input[name=dTar1]").val(data[0].daysTar);
+        $("input[name=dTar2]").val(data[1].daysTar);
+        $("input[name=dTar3]").val(data[2].daysTar);
+        $("input[name=dTar4]").val(data[3].daysTar);
+        $("input[name=dTar5]").val(data[4].daysTar);
+        $("input[name=dTar6]").val(data[5].daysTar);
+        $("input[name=dTar7]").val(data[6].daysTar);
+        $("input[name=dTar8]").val(data[7].daysTar);
+        $("input[name=dTar9]").val(data[8].daysTar);
+        $("input[name=dTar10]").val(data[9].daysTar);
+        $("input[name=dTar11]").val(data[10].daysTar);
+        $("input[name=dTar12]").val(data[11].daysTar);
+        //
+        $("input[name=dAbs1]").val(data[0].daysAbs);
+        $("input[name=dAbs2]").val(data[1].daysAbs);
+        $("input[name=dAbs3]").val(data[2].daysAbs);
+        $("input[name=dAbs4]").val(data[3].daysAbs);
+        $("input[name=dAbs5]").val(data[4].daysAbs);
+        $("input[name=dAbs6]").val(data[5].daysAbs);
+        $("input[name=dAbs7]").val(data[6].daysAbs);
+        $("input[name=dAbs8]").val(data[7].daysAbs);
+        $("input[name=dAbs9]").val(data[8].daysAbs);
+        $("input[name=dAbs10]").val(data[9].daysAbs);
+        $("input[name=dAbs11]").val(data[10].daysAbs);
+        $("input[name=dAbs12]").val(data[11].daysAbs);
       }
     });
   });
