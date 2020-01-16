@@ -4,11 +4,9 @@
     
  
 
-  for ($x = 0; $x <= 8; $x++) {
     $query = "INSERT INTO `curriculum`(curname, grade, subjname1, subjname2, subjname3, subjname4, subjname5, subjname6, subjname7, subjname8, subjname9, subjname10, subjname11, subjname12, subjname13, subjname14, subjname15, subjname16, subjname17, subjname18, subjname19, subjname20, yearid) values ('$_POST[curname]', '$_POST[grade]', '$_POST[subjname1]', '$_POST[subjname2]', '$_POST[subjname3]', '$_POST[subjname4]', '$_POST[subjname5]', '$_POST[subjname6]', '$_POST[subjname7]', '$_POST[subjname8]', '$_POST[subjname9]', '$_POST[subjname10]', '$_POST[subjname11]', '$_POST[subjname12]', '$_POST[subjname13]', '$_POST[subjname14]', '$_POST[subjname15]', '$_POST[subjname16]', '$_POST[subjname17]', '$_POST[subjname18]', '$_POST[subjname19]', '$_POST[subjname20]', '$_POST[yearid]')";
 
         $insert_row = $mysqli->query($query) or die($mysqli->error.__LINE__);
-}
 
 
   $message = 'Curriculum have been added';
@@ -96,7 +94,15 @@
                   <div class="form-group col-3">
                         <label for="grade">Grade level:</label>
                     <select class="form-control" id="inputGradeLevel" name ="grade">
-                        <option>NURSERY</option>
+                        <option>Nursery</option>
+                        <option>Pre-Kinder</option>
+                        <option>Kinder</option>
+                        <option>GRADE 1</option>
+                        <option>GRADE 2</option>
+                        <option>GRADE 3</option>
+                        <option>GRADE 4</option>
+                        <option>GRADE 5</option>
+                        <option>GRADE 6</option>
                     </select>
                     </div>
                   </div>
@@ -155,7 +161,7 @@
               </div>
               </div>
             </div>
-            <div class="card card-primary">
+ <!--            <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title">Create Curriculum</h3>
               </div>
@@ -640,6 +646,14 @@
                   <div class="form-group col-3">
                         <label for="grade">Grade level:</label>
                     <select class="form-control" id="inputGradeLevel" name ="grade">
+                        <option>Nursery</option>
+                        <option>Pre-Kinder</option>
+                        <option>Kinder</option>
+                        <option>GRADE 1</option>
+                        <option>GRADE 2</option>
+                        <option>GRADE 3</option>
+                        <option>GRADE 4</option>
+                        <option>GRADE 5</option>
                         <option>GRADE 6</option>
                     </select>
                     </div>
@@ -698,7 +712,7 @@
                   </div>
               </div>
               </div>
-            </div>  
+            </div>   -->
                   <div class="form-group col-3">
                     <label for="yearid"> School Year: </label>
                   <?php $query2 = "Select yearid from schoolyear where scstatus = 'ACTIVE'";
