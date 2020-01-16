@@ -53,10 +53,10 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-        <h5>School Year: <?php if(empty($data1[0])) {
+        <h5>School Year: <?php if(empty($data3[0])) {
           echo "--";
         }else {
-          echo $data1[0];
+          echo $data3[0];
         }
         ; echo "-" ; if(empty($data2[1])){echo "--";}else {echo $data2[1];}?></h5>
     </ul>
@@ -82,7 +82,7 @@
         <div class="info">
           <a class="d-block agray" style="font-size: 20px" tabindex="-1" href="#"><?php echo $_SESSION['username']; ?></a>
               <?php  if (isset($_SESSION['username'])) : ?>
-           <i class="fa fa-cogs" aria-hidden="true" style="color: white"></i><a style="font-size: 15px" tabindex="-1" href="../login.php">    Log Out<?php endif ?></a>
+           <i class="fa fa-cogs" aria-hidden="true" style="color: white"></i><a style="font-size: 15px" tabindex="-1" href="../index.php">    Log Out<?php endif ?></a>
         </div>
       </div>
 
@@ -104,9 +104,9 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#reports" id="reports" class="nav-link">
+            <a href="#StudentFees" id="StudentFees" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
-              <p>Generate Reports</p>
+              <p>Student Fees</p>
             </a>
           </li>
       </nav>
@@ -196,5 +196,6 @@
 <script src="../Resources/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../Resources/dist/js/demo.js"></script>
+<script src="disp.js"></script>
 </body>
 </html>
