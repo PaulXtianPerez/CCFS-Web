@@ -3,6 +3,7 @@
  if(!empty($_POST)) {
       $output = '';
       $message = '';
+      $scstatus = mysqli_real_escape_string($connect, $_POST["scstatus"]);
       $janAtt = mysqli_real_escape_string($connect, $_POST["janAtt"]);
       $febAtt = mysqli_real_escape_string($connect, $_POST["febAtt"]);
       $marAtt = mysqli_real_escape_string($connect, $_POST["marAtt"]);
@@ -46,7 +47,8 @@
       if($_POST["schoolYear_id"] != '') {
            $query = "
            UPDATE schoolyear
-           SET janAtt='$janAtt',
+           SET  scstatus='$scstatus',
+           janAtt='$janAtt',
            febAtt='$febAtt',
            marAtt='$marAtt',
            aprAtt='$aprAtt',

@@ -83,8 +83,8 @@ $result = mysqli_query($mysqli, $query);
                       <?php while($row = $result->fetch_assoc()) { ?>
                         <tr ondblclick="openPage('../Registrar/ListOfArchivedStudents.php');">
                           <td><?php echo $row["yearstart"]; echo "-"; echo $row["yearend"];?></td>
-                          <td><?php echo $row["scstatus"];?> <button class='btn btn-info btn-xs edit_data'>Activate</button></td>
-                          <td style="text-align: center;"><input type="button" name="edit" value="Edit" id="<?php echo $row["yearid"]; ?>" class="btn btn-info btn-xs edit_data"  data-target="#add_data_Modal" data-toggle="modal" /></td>
+                          <td><?php echo $row["scstatus"];?>
+                          <td style="text-align: center;"><input type="button" name="edit" value="Edit" id="<?php echo $row["yearid"]; ?>" class="btn btn-info btn-xs edit_data" /></td>
                         </tr>
                         <?php }?>
                     </tbody>
@@ -131,6 +131,14 @@ $result = mysqli_query($mysqli, $query);
               <input class="form-control" type="text" name="dateEnd" id="dateEnd" disabled/>
             </div>
           </div>
+          <div class="form-group col-3">
+          <label>Change Status</label>
+            <select name="scstatus" id="scstatus" class="form-control">
+              <option value="ACTIVE">ACTIVE</option>
+              <option value="INACTIVE">INACTIVE</option>
+            </select>
+          </div>
+          <br>
 
           <label>Number of Days per Month</label>
           <br>
@@ -321,7 +329,7 @@ $result = mysqli_query($mysqli, $query);
           </div>
 
           <input type="hidden" name="schoolYear_id" id="schoolYear_id" />
-          <input type="submit" name="update" id="update" value="Update" class="btn btn-success" />
+          <input type="submit" name="update" id="update" value="SAVE" class="btn btn-success" />
         </form>
       </div>
 
@@ -386,6 +394,7 @@ $(document).ready(function(){
         $('#inputgrade6TFee').val(data.gradetui6);
         $('#inputgrade6MiscFee').val(data.grademisc6);
         $('#inputgrade6BookFee').val(data.gradebook6);
+        $('#scstatus').val(data.scstatus);
         $('#schoolYear_id').val(data.yearid);
         $('#add_data_Modal').modal('show');
       }
