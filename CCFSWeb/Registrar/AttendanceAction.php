@@ -30,7 +30,7 @@ if(isset($input["student_id"])) {
     {
         $rows[] = $row;
     }
-    echo "json_encode($rows)";
+    echo json_encode($rows);
     
 }else if(isset($input['id'])) {
     

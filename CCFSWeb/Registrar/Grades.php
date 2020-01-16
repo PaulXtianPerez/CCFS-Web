@@ -6,16 +6,17 @@ include("../ActiveSchoolYear.php");
 $query = "SELECT * FROM `grades`";
 $query1 = "SELECT sename FROM `section`";
 $query2 = "SELECT subname FROM `subject`";
+$query3 = "SELECT curstudent.IDno,enstudent.surname FROM curstudent,enstudent WHERE curstudent.IDno = enstudent.IDno";
 // result for method
 $result = mysqli_query($conn, $query);
 $result1 = mysqli_query($conn, $query1);
 $result2 = mysqli_query($conn, $query2);
+$result3 = mysqli_query($conn, $query3);
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-<input type="text" id="e">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>CCFS Student Information System</title>
@@ -125,7 +126,7 @@ $result2 = mysqli_query($conn, $query2);
                       <tr>
                         <th colspan="2">Student Information</th>
                         <th colspan="4">Periodic Rating</th>
-                        <th colspan="2"></th>
+                        <th colspan="2" id="n"></th>
                       </tr>
                       <tr>
                         <th style="display:none">Grade ID</th>
@@ -137,6 +138,7 @@ $result2 = mysqli_query($conn, $query2);
                         <th>4th</th>
                         <th>Final Grade</th>
                         <th>Remarks</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody> <!-- Populate from database. -->
@@ -174,10 +176,10 @@ $result2 = mysqli_query($conn, $query2);
 <!-- Initialize DataTables plugin -->
 <script type="text/javascript">
 
-$("#gradesTable").DataTable({
-  "pagingType": "full_numbers", //'First', 'Previous', 'Next' and 'Last' buttons plus page numbers
-  "destroy": true //for reinitialization
-});
+// $("#gradesTable").DataTable({
+//   "pagingType": "full_numbers", //'First', 'Previous', 'Next' and 'Last' buttons plus page numbers
+//   "destroy": true //for reinitialization
+// });
 </script>
 
 <!--Tabledit plugin -->
@@ -193,30 +195,41 @@ $(document).ready(function(){
       data:{grLvl:grLvl,section:section,subject:subject},
       dataType:"json",
       success:function(data){
-        console.log(data[0]);
-      }
-      // error: function(jqXHR, textStatus, errorThrown){
-      //     alert(textStatus);
-      // }   
+        if(data.length == 0){
+          $(".p").remove();
+          $('tbody').append("<tr class='p'><td width='100%' colspan='8' id='i' style='text-align: center;'>No Result</td></tr>");
+          $("#n").html("No Result");  
+        }else {
+          $(".p").remove();
+          for(var i = 0 ; i < data.length;i++){
+            $('tbody').append("<tr class='p'><td>"+data[i].IDno+"</td><td>"+data[i].GivenName+" "+data[i].SurName+"</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+            console.log(data[i]);
+            $("#n").html(data.length+" Results");  
+          }
+        }
+      },
+      error: function(jqXHR, textStatus, errorThrown){
+          alert(textStatus);
+      }   
     });
   });
   
-    $('#gradesTable').Tabledit({
-     url:'GradesAction.php',
-     deleteButton: false,
-     hideIdentifier: true,
-     buttons: {
-        edit: {
-            class: 'btn btn-info btn-xs edit_data',
-            html: '<span data-toggle="tooltip" title="Edit"><i class="fas fa-edit" aria-hidden="true"></i></span>',
-            action: 'edit'
-        }
-    },
-     columns:{
-       identifier:[1, "gradeid"], //gradeid or subjID?
-       editable:[[3, 'firstquartergrade'], [4, 'secondquartergrade'], [5, 'thirdquartergrade'], [6, 'fourthquartergrade']]
-     },
-    });
+    // $('#gradesTable').Tabledit({
+    //  url:'GradesAction.php',
+    //  deleteButton: false,
+    //  hideIdentifier: true,
+    //  buttons: {
+    //     edit: {
+    //         class: 'btn btn-info btn-xs edit_data',
+    //         html: '<span data-toggle="tooltip" title="Edit"><i class="fas fa-edit" aria-hidden="true"></i></span>',
+    //         action: 'edit'
+    //     }
+    // },
+    //  columns:{
+    //    identifier:[1, "gradeid"], //gradeid or subjID?
+    //    editable:[[3, 'firstquartergrade'], [4, 'secondquartergrade'], [5, 'thirdquartergrade'], [6, 'fourthquartergrade']]
+    //  },
+    // });
 
 });
 // if($("#grLvl option:selected").text() == 'Nursery') {
