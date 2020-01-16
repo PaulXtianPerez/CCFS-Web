@@ -4,14 +4,18 @@ include("../ActiveSchoolYear.php");
 
 // mysql select query
 $query = "SELECT * FROM `grades`";
-
+$query1 = "SELECT sename FROM `section`";
+$query2 = "SELECT subname FROM `subject`";
 // result for method
 $result = mysqli_query($conn, $query);
+$result1 = mysqli_query($conn, $query1);
+$result2 = mysqli_query($conn, $query2);
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
+<input type="text" id="e">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>CCFS Student Information System</title>
@@ -67,12 +71,11 @@ $result = mysqli_query($conn, $query);
             <div class="col-12">
               <div class="card card-primary">
                 <div class="card-header">
-                  <form>
                     <div class="row">
                       <!-- SELECT GRADE LEVEL -->
                       <div class="form-group col-3">
                         <label>Grade Level</label>
-                        <select id="grLvl" class="form-control" name="grLvl">
+                        <select id="grLvl" class="form-control e" name="grLvl">
                           <option>Nursery</option>
                           <option>Pre-Kinder</option>
                           <option>Kinder</option>
@@ -88,22 +91,32 @@ $result = mysqli_query($conn, $query);
                       <div class="form-group col-3">
                         <label>Section</label>
                         <select id="section" class="form-control" name="section">
-                          <option></option>
+                        <?php
+                          while($row = mysqli_fetch_array($result1)) {
+                            echo "<option>".$row['sename']."</option>";
+
+                          }
+                        ?>
                         </select>
                       </div>
                       <!-- SELECT SUBJECT -->
                       <div class="form-group col-3">
                         <label>Subject</label>
                         <select id="subject" class="form-control" name="subject">
-                          <option></option>
+                          <?php
+                            while($row = mysqli_fetch_array($result2)) {
+                              echo "<option>".$row['subname']."</option>";
+  
+                            }
+                          ?>
                         </select>
                       </div>
                       <!-- SUBMIT -->
                       <div class="form-group col-3">
-                        <br><input class="btn btn-default" type="submit" name="submit" value="Go">
+                        <br><input class="btn btn-default elon" type="button"  name="submit" value="Go">
                       </div>
                     </div>
-                  </form>
+      
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -160,6 +173,7 @@ $result = mysqli_query($conn, $query);
 
 <!-- Initialize DataTables plugin -->
 <script type="text/javascript">
+
 $("#gradesTable").DataTable({
   "pagingType": "full_numbers", //'First', 'Previous', 'Next' and 'Last' buttons plus page numbers
   "destroy": true //for reinitialization
@@ -169,6 +183,24 @@ $("#gradesTable").DataTable({
 <!--Tabledit plugin -->
 <script>
 $(document).ready(function(){
+  $(document).on('click','.elon',function(){
+    var grLvl = $("#grLvl option:selected").text();
+    var section = $("#section option:selected").text();
+    var subject = $("#subject option:selected").text();
+    $.ajax({
+      url:"GradeSearch.php",
+      method:"POST",
+      data:{grLvl:grLvl,section:section,subject:subject},
+      dataType:"json",
+      success:function(data){
+        console.log(data[0]);
+      }
+      // error: function(jqXHR, textStatus, errorThrown){
+      //     alert(textStatus);
+      // }   
+    });
+  });
+  
     $('#gradesTable').Tabledit({
      url:'GradesAction.php',
      deleteButton: false,
@@ -187,6 +219,23 @@ $(document).ready(function(){
     });
 
 });
+// if($("#grLvl option:selected").text() == 'Nursery') {
+    
+  // }
+  // var d = "e";
+  //   $.ajax({
+  //     url:"GradeSearch.php",
+  //     method:"POST",
+  //     data:{d:d},
+  //     dataType:"json",
+  //     success:function(data){
+  //       $("#e").val("E");
+  //     });
+  //   }
+  // }
+  // $("select.e").change(function(){
+  //   console.log($(this).children("option:selected").text());
+  // });
 </script>
 
 
