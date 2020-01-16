@@ -67,8 +67,9 @@
     								<label>Account Type</label>
     								<div class="input-group mb-3">
     									<select name="type" id="type" class="form-control">
-    										<option value="Registrar">Registrar</option>
-    										<option value="Accounting">Accounting</option>
+                        <option value="ADMIN">Admin</option>
+    										<option value="REGISTRAR">Registrar</option>
+    										<option value="ACCOUNTING">Accounting</option>
     									</select>
     									<div class="input-group-append">
     										<div class="input-group-text">
