@@ -15,7 +15,6 @@
            WHERE secID='".$_POST["secID"]."'";
            $message = 'Account updated.';
       }
-
       if(mysqli_query($connect, $query)) {
            $output .= '<label class="text-success">' . $message . '</label>';
            $select_query = "SELECT * FROM section";
@@ -23,9 +22,7 @@
            $output .= '
                 <table class="table table-bordered table-hover">
                      <tr>
-                       <th>Section ID</th>
                        <th>Section Name</th>
-                       <th>Grade Level</th>
                        <th>Adviser Name</th>
                        <th>School Year</th>
                        <th></th>
@@ -34,9 +31,7 @@
            while($row = mysqli_fetch_array($result)) {
                 $output .= '
                      <tr>
-                          <td>' . $row["secID"] . '</td>
-                          <td>' . $row["sename"] . '</td>
-                          <td>' . $row["gradelvl"] . '</td>
+                          <td>' . $row["gradelvl"] . ' - ' . $row["sename"] . '</td>
                           <td>' . $row["adviserlname"] . '</td>
                           <td>' . $row["yearid"] . '</td>
                           <td><input type="button" name="edit" value="Edit" id="'.$row["secID"] .'" class="btn btn-info btn-xs edit_data" /></td>

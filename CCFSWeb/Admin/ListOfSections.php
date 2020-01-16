@@ -76,9 +76,7 @@ $result = mysqli_query($mysqli, $query);
               <table id="secListTable" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>Section ID</th>
                   <th>Section Name</th>
-                  <th>Grade Level</th>
                   <th>Adviser Name</th>
                   <th>School Year</th>
                   <th></th>
@@ -87,9 +85,7 @@ $result = mysqli_query($mysqli, $query);
                <tbody> <!-- Populate from database. -->
                   <?php while($row = mysqli_fetch_array($result)):;?>
                     <tr>
-                      <td><?php echo $row["secID"];?></td>
-                      <td><?php echo $row["sename"];?></td>
-                      <td><?php echo $row["gradelvl"];?></td>
+                      <td><?php echo $row["gradelvl"]; echo " - "; echo $row["sename"];?></td>
                       <td><?php echo $row["adviserlname"];?></td>
                       <td><?php echo $row["yearid"];?></td>
                       <td><input type="button" name="edit" value="Edit" id="<?php echo $row["secID"]; ?>" class="btn btn-info btn-xs edit_data" /></td>
@@ -115,8 +111,8 @@ $result = mysqli_query($mysqli, $query);
         <form method="post" id="insert_form">
           <div class="row">
             <div class="form-group col-6">
-              <label>Section ID</label> <i class="fa fa-lock" aria-hidden="true"></i>
-              <input class="form-control" type="text" name="secID" id="secID">
+              <label style="display:none">Section ID</label> <i class="fa fa-lock" style="display:none" aria-hidden="true"></i>
+              <input class="form-control" type="text" name="secID" id="secID" style="display:none">
             </div>
           </div>
           <div class="row">
@@ -209,17 +205,21 @@ password.onchange = validatePassword;
 confirm_password.onkeyup = validatePassword;
 </script>
 
+<!-- Initialize DataTables plugin -->
 <script type="text/javascript">
-// Basic example
-$(document).ready(function () {
-$('#secListTable').DataTable({
-  "pagingType": "simple" // "simple" option for 'Previous' and 'Next' buttons only
+var table = $("#secListTable").DataTable();
+$("#searchInput").on("keyup", function() {
+  table.search(this.value).draw(); //search/filter functionality using DataTables search API
 });
-$('.dataTables_length').addClass('bs-select');
+table.destroy(); //for reinitialization
+
+$("#secListTable").DataTable({
+  "pagingType": "full_numbers", //'First', 'Previous', 'Next' and 'Last' buttons plus page numbers
+  "bFilter": false, //remove default search/filter
+  "destroy": true //for reinitialization
 });
 </script>
 
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
 
 <!-- jQuery -->
 <script src="../Resources/plugins/jquery/jquery.min.js"></script>
@@ -255,5 +255,7 @@ $('.dataTables_length').addClass('bs-select');
 <script src="../Resources/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../Resources/dist/js/demo.js"></script>
+<script type="text/javascript" charset="utf8" src="../Resources/plugins/bootstrap/js/DataTables/datatables.js"></script>
+
 </body>
 </html>
