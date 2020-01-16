@@ -68,19 +68,19 @@
                   <div class="row">
                   <div class="form-group col-3">
                     <label for="Yearstart">Year Start: </label>
-                    <input class="form-control" id="inputYearStart" placeholder="Enter Year Start" type= "number" name ="yearstart" min = "0">
+                    <input class="form-control" id="inputYearStart" placeholder="Enter Year Start" type="number" name="yearstart" min="0" required>
                   </div>
                   <div class="form-group col-3">
                     <label for="Yearend">Year End</label>
-                    <input class="form-control" id="inputYearEnd" placeholder="Enter Year Start" type= "number" name ="yearend" min = "0">
+                    <input class="form-control" id="inputYearEnd" placeholder="Enter Year Start" type="number" name="yearend" min="0" required>
                   </div>
                   <div class="form-group col-3">
                     <label for="dateStart"> Date Start</label>
-                    <input class="form-control" id="inputDateStart" placeholder="Enter first day" type= "date" name ="dateStart" min = "0">
+                    <input class="form-control" id="inputDateStart" placeholder="Enter first day" type="date" name="dateStart" min="0" required>
                   </div>
                   <div class="form-group col-3">
                     <label for="dateEnd"> Date End</label>
-                    <input class="form-control" id="inputDateStart" placeholder="Enter last day" type= "date" name ="dateEnd" min = "0">
+                    <input class="form-control" id="inputDateStart" placeholder="Enter last day" type="date" name="dateEnd" min="0" required>
                   </div>
                 </div>
               </div>
