@@ -101,7 +101,7 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-        <h5>School Year: <?php if(empty($data3[0])) {
+        <h5>School Year: <?php if(empty($data1[0])) {
           echo "--";
         }else {
           echo $data3[0];
@@ -186,12 +186,6 @@
             <a href="#observedvalues" id="observedValues" class="nav-link">
               <i class="nav-icon fas fa-check"></i>
               <p>Learner's Observed Values</p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview">
-            <a href="../Admin/#discountsponsor" id="discSpons" class="nav-link">
-              <i class="nav-icon fas fa-percent"></i>
-              <p>Discounts & Sponsorship</p>
             </a>
           </li>
           <li class="nav-item has-treeview">

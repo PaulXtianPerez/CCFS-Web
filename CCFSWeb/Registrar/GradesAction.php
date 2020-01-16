@@ -18,7 +18,7 @@ if($input["action"] === 'edit'){
  thirdquartergrade = '".$thirdGr."',
  fourthquartergrade = '".$fourthGr."',
  remarks = '".$remarks."'
- WHERE subjID = '".$input["subjID"]."'
+ WHERE gradeid = '".$input["gradeid"]."'
  ";
 
  mysqli_query($connect, $query);
