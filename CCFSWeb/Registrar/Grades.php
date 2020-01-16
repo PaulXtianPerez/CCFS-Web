@@ -7,7 +7,8 @@ $query = "SELECT * FROM `grades`";
 $query1 = "SELECT sename FROM `section`";
 $query2 = "SELECT subname FROM `subject`";
 $query3 = "SELECT curstudent.IDno,enstudent.surname FROM curstudent,enstudent WHERE curstudent.IDno = enstudent.IDno";
-
+$query4 = "SELECT subjID,subname FROM subject";
+$query5 = "SELECT sename FROM section";
 // result for method
 $result = mysqli_query($conn, $query);
 $result1 = mysqli_query($conn, $query1);
@@ -48,6 +49,7 @@ $result3 = mysqli_query($conn, $query3);
   <!-- CSS for DataTables plugin -->
   <link rel="stylesheet" type="text/css" href="../Resources/plugins/bootstrap/js/DataTables/datatables.css">
 </head>
+<input type="text" name="" id="WELON">
 <body class="hold-transition sidebar-mini layout-fixed">
 <div id="contents" class="wrapper">
 
@@ -121,6 +123,7 @@ $result3 = mysqli_query($conn, $query3);
       
                 </div>
                 <!-- /.card-header -->
+                
                 <div class="card-body">
                   <table id="gradesTable" class="table table-bordered table-hover">
                     <thead style="text-align:center;">
@@ -159,6 +162,7 @@ $result3 = mysqli_query($conn, $query3);
                           ';
                         }
                         ?>
+                        
                     </tbody>
                     </tfoot>
                   </table>
@@ -203,16 +207,17 @@ $(document).ready(function(){
         }else {
           $(".p").remove();
           for(var i = 0 ; i < data.length;i++){
-            $('tbody').append("<tr class='p'><td>"+data[i].IDno+"</td><td></td><td>"+data[i].GivenName+" "+data[i].SurName+"</td><td></td><td></td><td></td><td></td><td></td><td><input type='button' class='m' id="+data[i].IDno+" value='Save'></td></tr>");
+            $('tbody').append("<tr class='p'><td>"+data[i].IDno+"</td><td>"+data[i].GivenName+" "+data[i].SurName+"</td><td></td><td></td><td></td><td></td><td></td><td></td><td><input type='button' class='m' id="+data[i].IDno+" value='Save'></td></tr>");
             console.log(data[i]);
             $("#n").html(data.length+" Results");  
           }
         }
       }
     });
-    $document.on('click','.m' function(){
-      
-    });
+  });
+  $(document).on('click','.m',function(){
+    var student_id = $(this).attr("id");
+    $("#WELON").val(student_id);
   });
   
     // $('#gradesTable').Tabledit({
