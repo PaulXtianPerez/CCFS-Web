@@ -7,6 +7,7 @@ $query = "SELECT * FROM `grades`";
 $query1 = "SELECT sename FROM `section`";
 $query2 = "SELECT subname FROM `subject`";
 $query3 = "SELECT curstudent.IDno,enstudent.surname FROM curstudent,enstudent WHERE curstudent.IDno = enstudent.IDno";
+
 // result for method
 $result = mysqli_query($conn, $query);
 $result1 = mysqli_query($conn, $query1);
@@ -202,15 +203,15 @@ $(document).ready(function(){
         }else {
           $(".p").remove();
           for(var i = 0 ; i < data.length;i++){
-            $('tbody').append("<tr class='p'><td>"+data[i].IDno+"</td><td>"+data[i].GivenName+" "+data[i].SurName+"</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+            $('tbody').append("<tr class='p'><td>"+data[i].IDno+"</td><td></td><td>"+data[i].GivenName+" "+data[i].SurName+"</td><td></td><td></td><td></td><td></td><td></td><td><input type='button' class='m' id="+data[i].IDno+" value='Save'></td></tr>");
             console.log(data[i]);
             $("#n").html(data.length+" Results");  
           }
         }
-      },
-      error: function(jqXHR, textStatus, errorThrown){
-          alert(textStatus);
-      }   
+      }
+    });
+    $document.on('click','.m' function(){
+      
     });
   });
   
