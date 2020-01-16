@@ -145,6 +145,7 @@ $result = mysqli_query($connect, $query);
               <tr><td>Oct</td><td><input type="number" size="3" name="dPres10"></td><td><input type="number" size="3" name="dTar10" ></td><td><input type="number" size="3" name="dAbs10"></td><td><input type="text" size="7" id="total10" disabled></td><td><button type="submit" class="btn btn-info btn-xs ed" id="10">Save</button></td></tr>
               <tr><td>Nov</td><td><input type="number" size="3" name="dPres11"></td><td><input type="number" size="3" name="dTar11" ></td><td><input type="number" size="3" name="dAbs11"></td><td><input type="text" size="7" id="total11" disabled></td><td><button type="submit" class="btn btn-info btn-xs ed" id="11">Save</button></td></tr>
               <tr><td>Dec</td><td><input type="number" size="3" name="dPres12"></td><td><input type="number" size="3" name="dTar12" ></td><td><input type="number" size="3" name="dAbs12"></td><td><input type="text" size="7" id="total12" disabled></td><td><button type="submit" class="btn btn-info btn-xs ed" id="12">Save</button></td></tr>
+              <tr><td></td><td></td><td></td><td>Total Days</td><td><input type="text" id="tl" size="3" disabled></td></tr>
             </tbody>
           </table>
         </div>
@@ -159,13 +160,13 @@ $result = mysqli_query($connect, $query);
 $(document).ready(function(){
   $(document).on('click','.edit_data',function(){
     var student_id = $(this).attr("id");
+    $('#studid').val(student_id);
     $.ajax({
       url:"AttendanceAction.php",
       method:"POST",
       data:{student_id:student_id},
       dataType:"json",
       success:function(data){
-        $('#studid').val(data[0].IDno);
         //
         $('#total1').val(parseInt(data[0].daysPres)+parseInt(data[0].daysAbs));
         $('#total2').val(parseInt(data[1].daysPres)+parseInt(data[1].daysAbs));
@@ -219,7 +220,9 @@ $(document).ready(function(){
         $("input[name=dAbs11]").val(data[10].daysAbs);
         $("input[name=dAbs12]").val(data[11].daysAbs);
         //
-        $
+        if(!isNaN(parseInt($('#total1').val())+parseInt($('#total2').val())+parseInt($('#total3').val())+parseInt($('#total4').val())+parseInt($('#total5').val())+parseInt($('#total6').val())+parseInt($('#total7').val())+parseInt($('#total8').val())+parseInt($('#total9').val())+parseInt($('#total10').val())+parseInt($('#total11').val())+parseInt($('#total12').val()))) {
+          $("#tl").val(parseInt($('#total1').val())+parseInt($('#total2').val())+parseInt($('#total3').val())+parseInt($('#total4').val())+parseInt($('#total5').val())+parseInt($('#total6').val())+parseInt($('#total7').val())+parseInt($('#total8').val())+parseInt($('#total9').val())+parseInt($('#total10').val())+parseInt($('#total11').val())+parseInt($('#total12').val()));
+        }
       }
     });
   });
@@ -264,6 +267,23 @@ $(document).ready(function(){
     var daysAbs10 = $("input[name=dAbs10]").val();
     var daysAbs11 = $("input[name=dAbs11]").val();
     var daysAbs12 = $("input[name=dAbs12]").val();
+    //
+    //
+    $('#total1').val(parseInt($("input[name=dPres1]").val())+parseInt($("input[name=dAbs1]").val()));
+    $('#total2').val(parseInt($("input[name=dPres2]").val())+parseInt($("input[name=dAbs2]").val()));
+    $('#total3').val(parseInt($("input[name=dPres3]").val())+parseInt($("input[name=dAbs3]").val()));
+    $('#total4').val(parseInt($("input[name=dPres4]").val())+parseInt($("input[name=dAbs4]").val()));
+    $('#total5').val(parseInt($("input[name=dPres5]").val())+parseInt($("input[name=dAbs5]").val()));
+    $('#total6').val(parseInt($("input[name=dPres6]").val())+parseInt($("input[name=dAbs6]").val()));
+    $('#total7').val(parseInt($("input[name=dPres7]").val())+parseInt($("input[name=dAbs7]").val()));
+    $('#total8').val(parseInt($("input[name=dPres8]").val())+parseInt($("input[name=dAbs8]").val()));
+    $('#total9').val(parseInt($("input[name=dPres9]").val())+parseInt($("input[name=dAbs9]").val()));
+    $('#total10').val(parseInt($("input[name=dPres10]").val())+parseInt($("input[name=dAbs10]").val()));
+    $('#total11').val(parseInt($("input[name=dPres11]").val())+parseInt($("input[name=dAbs11]").val()));
+    $('#total12').val(parseInt($("input[name=dPres12]").val())+parseInt($("input[name=dAbs12]").val()));
+    if(!isNaN(parseInt($('#total1').val())+parseInt($('#total2').val())+parseInt($('#total3').val())+parseInt($('#total4').val())+parseInt($('#total5').val())+parseInt($('#total6').val())+parseInt($('#total7').val())+parseInt($('#total8').val())+parseInt($('#total9').val())+parseInt($('#total10').val())+parseInt($('#total11').val())+parseInt($('#total12').val()))) {
+          $("#tl").val(parseInt($('#total1').val())+parseInt($('#total2').val())+parseInt($('#total3').val())+parseInt($('#total4').val())+parseInt($('#total5').val())+parseInt($('#total6').val())+parseInt($('#total7').val())+parseInt($('#total8').val())+parseInt($('#total9').val())+parseInt($('#total10').val())+parseInt($('#total11').val())+parseInt($('#total12').val()));
+        }
     $.ajax({
       url:"AttendanceAction.php",
       method:"POST",

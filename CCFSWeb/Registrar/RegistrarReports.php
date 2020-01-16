@@ -1,3 +1,8 @@
+<?php
+include('../ActiveSchoolYear.php');
+include("Connection.php");
+$query = "SELECT sename,section.gradelvl,curstudent.IDno FROM curstudent,section,enstudent";
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -22,7 +27,7 @@
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="../Resources/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Daterange picker -->
-    <link rel="stylesheet" href="../Resources/plugins/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="../Resources/ plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="../Resources/plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
@@ -38,7 +43,12 @@
           <div class="row mb-2">
             <div class="col-sm-6">
               <h1 class="m-0 text-dark">Summary of Students</h1>
-              <h5 class="m-0 text-dark">School Year: [Sch Yr]</h5>
+              <h5 class="m-0 text-dark">School Year: <?php if(empty($data3[0])) {
+          echo "--";
+        }else {
+          echo $data3[0];
+        }
+        ; echo "-" ; if(empty($data2[1])){echo "--";}else {echo $data2[1];}?></h5>
             </div><!-- /.col -->
           </div><!-- /.row -->
           <!-- Main content -->
@@ -65,19 +75,31 @@
                       <tbody> <!-- Populate from database. -->
                         <tr>
                           <td>Nursery</td>
-                          <td>[Section]</td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
                         </tr>
                         <tr>
                           <td>Pre-Kinder</td>
-                          <td>[Section]</td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
                         </tr>
                         <tr>
                           <td>Kinder</td>
-                          <td>[Section]</td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
                         </tr>
-                        <tr>
+                        <tr>  
+                          <td></td>
+                          <td></td>
                           <td></td>
                           <td><b>Total</b></td>
+                          <td></td>
                         </tr>
                       </tbody>
                     </table>
