@@ -1,5 +1,6 @@
 <?php
   include("Connection.php");
+  include 'database.php';
 
   if(isset($_POST['searcher'])){
     $f = $_POST['search'];
@@ -12,6 +13,8 @@
       $message = 'Em';
     }
   }
+  $query = "SELECT * FROM `section`";
+  $result = mysqli_query($mysqli, $query);
 
   
 ?>
@@ -135,7 +138,20 @@
                       </div>
                     <div class="form-group col-md-3">
                         <label>Section</label>
-                        <select class="form-control" name="section">
+                <?php $query1 = "Select sename from section";
+                $result = $mysqli->query($query1) or die($mysqli->error.__LINE__);
+                ?>  
+                <div class="input-group mb-3">
+                <select name="sename" id="sename" class="form-control">
+                <?php while ($row1 = mysqli_fetch_array($result)):;?>
+                <option name = "sename"><?php echo $row1[0];?></option>
+                <?php endwhile;?>
+                </select>
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                    </div>
+                  </div>
+                </div>
                         </select>
                       </div>
                     </div>
