@@ -53,6 +53,9 @@ $result = mysqli_query($mysqli, $query);
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">List of School Years</h1>
+                              <div>
+                    <span id="successmsg"></span>
+                  </div>
           </div><!-- /.col -->
         </div><!-- /.row -->
         <!-- Main content -->
@@ -62,7 +65,7 @@ $result = mysqli_query($mysqli, $query);
               <div class="card card-primary">
                 <div class="card-header">
                   <!-- SEARCH FORM -->
-                  <form class="form-inline ml-3">
+                  <form class="form-inline ml-1 form-group">
                     <div class="input-group input-group-sm">
                       <input id="searchInput" class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"/>
                     </div>
@@ -413,8 +416,12 @@ $(document).ready(function(){
         success:function(data){
           $('#insert_form')[0].reset();
           $('#add_data_Modal').modal('hide');
-          $('#schyrTable').html(data);
-          $('#update').val("Update");
+          bootbox.alert({
+            message: "<i class=\"fa fa-check\"></i> Successfully Updated School Year.",
+            callback: function(){
+              location.reload();
+            }
+          });
         }
       });
     });
@@ -443,6 +450,8 @@ $("#schyrTable").DataTable({
 <script src="../Resources/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="../Resources/plugins/jquery-ui/jquery-ui.min.js"></script>
+<!--Bootbox library for dialog box.-->
+<script src="../Resources/plugins/bootstrap/js/bootbox/bootbox.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)
