@@ -45,7 +45,7 @@
           . "'$_POST[motherFirst]','$_POST[motherLast]',"
           . "'$_POST[motherAdd]','$_POST[motherMobNum]',"
           . "'$_POST[motherEmAdd]','$_POST[motherOcc]','','','2020-12-12','',"
-          . "'$data1[0]','".date("Y-d-m")."','$_POST[guardianName]','$_POST[guardianAddress]','$_POST[guardianContact]')";
+          . "'$data1[0]','".date("Y-m-d")."','$_POST[guardianName]','$_POST[guardianAddress]','$_POST[guardianContact]')";
   $insert_row = $conn->query($enstud) or die($conn->error.__LINE__);
   $message = "successfully enrolled a student";
 }
@@ -130,7 +130,7 @@
         <div class="info">
           <a class="d-block agray" style="font-size: 20px" tabindex="-1" href="#"><?php echo $_SESSION['username']; ?></a>
               <?php  if (isset($_SESSION['username'])) : ?>
-           <i class="fa fa-cogs" aria-hidden="true" style="color: white"></i><a style="font-size: 15px" tabindex="-1" href="../login.php">    Log Out<?php endif ?></a>
+           <i class="fa fa-cogs" aria-hidden="true" style="color: white"></i><a style="font-size: 15px" tabindex="-1" href="../index.php">    Log Out<?php endif ?></a>
         </div>
       </div>
 
