@@ -70,7 +70,7 @@ if (isset($_POST['login_user'])) {
 
   if (count($errors) == 0) {
   
-  	$query = "SELECT * FROM accounts WHERE username='$username' AND password='$password'";
+  	$query = "SELECT * FROM accounts WHERE username='$username' AND password='$password' AND accstatus='active'";
   	$results = mysqli_query($db, $query);
   	$r = mysqli_fetch_array($results);
 	$_SESSION['type']=$r['type'];
@@ -88,8 +88,9 @@ if (isset($_POST['login_user'])) {
       $_SESSION['success'] = "You are now logged in";
       header('location: Accounting/AccountingHome.php');
   }
-  	}else {
-  		array_push($errors, "Wrong username/password combination");
+  	}
+    else {
+  		array_push($errors, "Wrong credentials or account inactive.");
   	}
   }
 }
