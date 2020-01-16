@@ -50,7 +50,7 @@
     				<h3 class="card-title">Fill up the fields below.</h3>
     				</div>
     				<div class="card-body">
-    					<form id="frmBox" class="needs-validation" method="post" action="Insert.php" onsubmit="return formSubmit();">
+    					<form id="frmBox" class="needs-validation" method="post" action="AccountInsert.php" onsubmit="return formSubmit();">
     						<div class="row">
     	            <div class="form-group col-6">
     								<label>Employee ID</label>
@@ -158,8 +158,6 @@
     	</div>
     </div>
   </div>
-
-
 
 <!-- Username validation. -->
 <script type="text/javascript">
