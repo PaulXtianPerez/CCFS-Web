@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 15, 2020 at 11:55 AM
--- Server version: 5.7.26
--- PHP Version: 7.2.18
+-- Generation Time: Jan 17, 2020 at 03:23 AM
+-- Server version: 5.7.24
+-- PHP Version: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -90,14 +90,25 @@ CREATE TABLE IF NOT EXISTS `attendance` (
   PRIMARY KEY (`attid`) USING BTREE,
   KEY `studid` (`IDno`,`yearid`) USING BTREE,
   KEY `idyear` (`yearid`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `attendance`
 --
 
 INSERT INTO `attendance` (`attid`, `IDno`, `yearid`, `month`, `daysPres`, `daysTar`, `daysAbs`) VALUES
-(1, 1, 1, '1', 1, 0, NULL);
+(122, 210001, 10, 'Jan', 1, 1, 1),
+(123, 210001, 10, 'Feb', NULL, NULL, NULL),
+(124, 210001, 10, 'Mar', NULL, NULL, NULL),
+(125, 210001, 10, 'Apr', NULL, NULL, NULL),
+(126, 210001, 10, 'May', NULL, NULL, NULL),
+(127, 210001, 10, 'Jun', NULL, NULL, NULL),
+(128, 210001, 10, 'Jul', NULL, NULL, NULL),
+(129, 210001, 10, 'Aug', NULL, NULL, NULL),
+(130, 210001, 10, 'Sep', NULL, NULL, NULL),
+(131, 210001, 10, 'Oct', NULL, NULL, NULL),
+(132, 210001, 10, 'Nov', NULL, NULL, NULL),
+(133, 210001, 10, 'Dec', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -157,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `curriculum` (
   PRIMARY KEY (`curid`),
   KEY `idyear` (`yearid`) USING BTREE,
   KEY `curname` (`curname`)
-) ENGINE=InnoDB AUTO_INCREMENT=243 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -182,7 +193,7 @@ CREATE TABLE IF NOT EXISTS `curstudent` (
   KEY `yearID_idx` (`yearid`),
   KEY `enrID_idx` (`enrID`),
   KEY `IDno` (`IDno`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `curstudent`
@@ -204,13 +215,7 @@ INSERT INTO `curstudent` (`studentid`, `IDno`, `gradelvl`, `section`, `teacher`,
 (13, 210013, 'GRADE 1', '1', '1', 1, '2019-11-19', 3, 13),
 (14, 210014, 'GRADE 6', '1', '1', 1, '2019-11-20', 3, 14),
 (15, 210015, 'KINDER', '1', '1', 1, '2019-11-20', 3, 15),
-(16, 210016, 'KINDER', '1', '1', 1, '2019-11-27', 3, 16),
-(17, 210017, 'Preschool', '1', '1', 1, '2020-03-01', 11, 17),
-(18, 210018, 'Preschool', '1', '1', 1, '2020-03-01', 11, 18),
-(19, 210019, 'Preschool', '1', '1', 1, '2020-03-01', 11, 19),
-(20, 210020, 'Grade 1', '1', '1', 1, '2020-01-14', 13, 20),
-(21, 210021, 'Grade 2', '1', '1', 1, '2020-01-14', 13, 21),
-(22, 210022, 'Section', '1', '1', 1, '2020-01-15', 10, 22);
+(16, 210016, 'KINDER', '1', '1', 1, '2019-11-27', 3, 16);
 
 -- --------------------------------------------------------
 
@@ -332,6 +337,7 @@ DROP TABLE IF EXISTS `grades`;
 CREATE TABLE IF NOT EXISTS `grades` (
   `gradeid` int(11) NOT NULL AUTO_INCREMENT,
   `subjID` int(90) NOT NULL,
+  `sename` varchar(11) NOT NULL,
   `firstquartergrade` int(11) DEFAULT NULL,
   `secondquartergrade` int(11) DEFAULT NULL,
   `thirdquartergrade` int(11) DEFAULT NULL,
@@ -468,20 +474,22 @@ CREATE TABLE IF NOT EXISTS `section` (
   `yearid` int(11) NOT NULL,
   PRIMARY KEY (`secID`),
   KEY `yearid` (`yearid`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `section`
 --
 
 INSERT INTO `section` (`secID`, `sename`, `gradelvl`, `adviserlname`, `yearid`) VALUES
-(11, 'Undo', 'Grade 1', 'TOLENTINO', 10),
-(13, 'asd', 'Grade 2', 'TOLENTINO', 10),
-(14, 'Master', 'Grade 3', 'PEREZ', 10),
-(16, 'Yorne', 'Grade 5', 'MAHMOOD', 2020),
-(17, 'AASD', 'Kinder', 'TAASIN', 2020),
-(18, 'AASDasd', 'Kinder', 'TAASIN', 2020),
-(45, 'Hand', 'Kinder', 'MAHMOOD', 12);
+(46, 'Aleph', 'Nursery', 'CARINIO', 2020),
+(47, 'Alpha', 'Pre-Kinder', 'MARSAN', 2020),
+(48, 'Beta', 'Kinder', 'ARYOLA', 2020),
+(49, 'Gamma', 'Grade 1', 'DEGUZMAN', 2020),
+(51, 'Delta', 'Grade 2', 'ABALOS', 2020),
+(52, 'Epsilon', 'Grade 3', 'PUGADO', 2020),
+(53, 'Zeta', 'Grade 4', 'BONA', 2020),
+(54, 'Eta', 'Grade 5', 'SORIANO', 2020),
+(55, 'Theta', 'Grade 6', 'LERNON', 2020);
 
 -- --------------------------------------------------------
 
@@ -497,15 +505,75 @@ CREATE TABLE IF NOT EXISTS `subject` (
   `yearid` int(11) NOT NULL,
   PRIMARY KEY (`subjID`),
   KEY `yeaid` (`yearid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `subject`
 --
 
 INSERT INTO `subject` (`subjID`, `subname`, `adviserLname`, `yearid`) VALUES
-(1, 'math', 'TOLENTINO', 12),
-(2, 'English', 'SOBREMONTE', 13);
+(1, 'Math-1', 'Perez', 12),
+(2, 'English-1', 'Portacio', 13),
+(3, 'Filipino-1', 'Boyoten', 10),
+(5, 'Mape-1', 'Galang', 10),
+(6, 'Computer-1', 'Turacao', 10),
+(7, 'Word-1', 'Turao', 10),
+(8, 'Writing-1', 'Lagarde', 10),
+(9, 'Reading-1', 'Piog', 10),
+(10, 'Science-1', 'Flores', 10),
+(11, 'Math-2', 'Perez', 12),
+(12, 'English-2', 'Portacio', 13),
+(13, 'Filipino-2', 'Boyoten', 10),
+(14, 'Mape-2', 'Galang', 10),
+(15, 'Computer-2', 'Turacao', 10),
+(16, 'Word-2', 'Turao', 10),
+(17, 'Writing-2', 'Lagarde', 10),
+(18, 'Reading-2', 'Piog', 10),
+(19, 'Science-2', 'Flores', 10),
+(20, 'Math-3', 'Perez', 12),
+(21, 'English-3', 'Portacio', 13),
+(22, 'Filipino-3', 'Boyoten', 10),
+(23, 'Mape-3', 'Galang', 10),
+(24, 'Computer-3', 'Turacao', 10),
+(25, 'Word-3', 'Turao', 10),
+(26, 'Writing-3', 'Lagarde', 10),
+(27, 'Reading-3', 'Piog', 10),
+(28, 'Science-3', 'Flores', 10),
+(29, 'Math-4', 'Perez', 12),
+(30, 'English-4', 'Portacio', 13),
+(31, 'Filipino-4', 'Boyoten', 10),
+(32, 'Mape-4', 'Galang', 10),
+(33, 'Computer-4', 'Turacao', 10),
+(34, 'Word-4', 'Turao', 10),
+(35, 'Writing-4', 'Lagarde', 10),
+(36, 'Reading-4', 'Piog', 10),
+(37, 'Science-4', 'Flores', 10),
+(38, 'Math-5', 'Perez', 12),
+(39, 'English-5', 'Portacio', 13),
+(40, 'Filipino-5', 'Boyoten', 10),
+(41, 'Mape-5', 'Galang', 10),
+(42, 'Computer-5', 'Turacao', 10),
+(43, 'Word-5', 'Turao', 10),
+(44, 'Writing-4', 'Lagarde', 10),
+(45, 'Reading-5', 'Piog', 10),
+(46, 'Science-5', 'Flores', 10),
+(47, 'Math-6', 'Perez', 12),
+(48, 'English-6', 'Portacio', 13),
+(49, 'Filipino-6', 'Boyoten', 10),
+(50, 'Mape-6', 'Galang', 10),
+(51, 'Computer-6', 'Turacao', 10),
+(52, 'Word-6', 'Turao', 10),
+(53, 'Writing-6', 'Lagarde', 10),
+(54, 'Reading-6', 'Piog', 10),
+(55, 'Science-6', 'Flores', 10),
+(56, 'Writing-N', 'Lagarde', 10),
+(57, 'Reading-N', 'Piog', 10),
+(58, 'Writing-Pk', 'Lagarde', 10),
+(59, 'Reading-Pk', 'Piog', 10),
+(60, 'Math-K', 'Perez', 12),
+(61, 'Word-K', 'Turao', 10),
+(62, 'Writing-K', 'Lagarde', 10),
+(63, 'Reading-K', 'Piog', 10);
 
 --
 -- Constraints for dumped tables
