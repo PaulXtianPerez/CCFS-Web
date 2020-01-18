@@ -86,16 +86,17 @@ $result = mysqli_query($connect, $query);
                 <thead>
                 <tr>
                   <th>Curriculum Name</th>
-                  <th>Status</th>
-                  <th></th>
+                  <th>Grade Level</th>
+                  <th>Subjects</th>
                 </tr>
                 </thead>
                 <tbody> <!-- Populate from database. -->
                   <?php while($row = $result->fetch_assoc()) { ?>
                     <tr>
-                      <td></td>
-                      <td></td>
-                      <td><input type="button" name="edit" value="Edit" id="<?php echo $row["yearid"]; ?>" class="btn btn-info btn-xs edit_data" /></td>
+                      <td><?php echo $row["curname"];?></td>
+                      <td><?php echo $row["grade"];?></td>
+                      <td><?php echo $row["subjname1"]; echo " , "; echo $row["subjname3"]; echo " , "; echo $row["subjname4"]; echo " , "; echo $row["subjname5"]; echo " , "; echo $row["subjname6"]; echo " , "; echo $row["subjname7"]; echo " , "; echo $row["subjname8"]; echo " , "; echo $row["subjname9"]; echo " , "; echo $row["subjname10"]; echo " , "; echo $row["subjname11"]; echo " , "; echo $row["subjname12"]; echo " , "; echo $row["subjname13"]; echo " , "; echo $row["subjname14"]; echo " , "; echo $row["subjname15"]; ?></td>
+                      <td><input type="button" name="edit" value="Edit" id="<?php echo $row["curid"]; ?>" class="btn btn-info btn-xs edit_data" /></td>
                     </tr>
                     <?php }?>
                 </tbody>

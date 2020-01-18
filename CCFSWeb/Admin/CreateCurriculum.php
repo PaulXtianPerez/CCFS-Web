@@ -1,22 +1,40 @@
-<?php include 'database.php'; ?>
 <?php 
-  if(isset($_POST['submit'])){
-    
- 
+  include 'database.php';
 
-    $query = "INSERT INTO `curriculum`(curname, grade, subjname1, subjname2, subjname3, subjname4, subjname5, subjname6, subjname7, subjname8, subjname9, subjname10, subjname11, subjname12, subjname13, subjname14, subjname15, subjname16, subjname17, subjname18, subjname19, subjname20, yearid) values ('$_POST[curname]', '$_POST[grade]', '$_POST[subjname1]', '$_POST[subjname2]', '$_POST[subjname3]', '$_POST[subjname4]', '$_POST[subjname5]', '$_POST[subjname6]', '$_POST[subjname7]', '$_POST[subjname8]', '$_POST[subjname9]', '$_POST[subjname10]', '$_POST[subjname11]', '$_POST[subjname12]', '$_POST[subjname13]', '$_POST[subjname14]', '$_POST[subjname15]', '$_POST[subjname16]', '$_POST[subjname17]', '$_POST[subjname18]', '$_POST[subjname19]', '$_POST[subjname20]', '$_POST[yearid]')";
+  $grades = array( 'NURSERY', 'PRE-KINDER', 'KINDER', 'GRADE 1', 'GRADE 2', 'GRADE 3', 'GRADE 4', 'GRADE 5', 'GRADE 6' );
 
-        $insert_row = $mysqli->query($query) or die($mysqli->error.__LINE__);
+  if(isset($_POST['submit']) && isset($_POST['grade'])){
+    foreach ($_POST['grade'] as $grade_id => $grade_r) {
+      $grade     = $grades[$grade_id];
+      $subjname1 = $grade_r['subject'][1];
+      $subjname2 = $grade_r['subject'][2];
+      $subjname3 = $grade_r['subject'][3];
+      $subjname4 = $grade_r['subject'][4];
+      $subjname5 = $grade_r['subject'][5];
+      $subjname6 = $grade_r['subject'][6];
+      $subjname7 = $grade_r['subject'][7];
+      $subjname8 = $grade_r['subject'][8];
+      $subjname9 = $grade_r['subject'][9];
+      $subjname10 = $grade_r['subject'][10];
+      $subjname11 = $grade_r['subject'][11];
+      $subjname12 = $grade_r['subject'][12];
+      $subjname13 = $grade_r['subject'][13];
+      $subjname14 = $grade_r['subject'][14];
+      $subjname15 = $grade_r['subject'][15];
+      $subjname16 = $grade_r['subject'][16];
+      $subjname17 = $grade_r['subject'][17];
+      $subjname18 = $grade_r['subject'][18];
+      $subjname19 = $grade_r['subject'][19];
+      $subjname20 = $grade_r['subject'][20];
 
+      $query = "INSERT INTO `curriculum`(curname, grade, subjname1, subjname2, subjname3, subjname4, subjname5, subjname6, subjname7, subjname8, subjname9, subjname10, subjname11, subjname12, subjname13, subjname14, subjname15, subjname16, subjname17, subjname18, subjname19, subjname20, yearid) 
+                VALUES ('$_POST[curname]', '$grade', '$subjname1', '$subjname2', '$subjname3', '$subjname4', '$subjname5', '$subjname6', '$subjname7', '$subjname8', '$subjname9', '$subjname10', '$subjname11', '$subjname12', '$subjname13', '$subjname14', '$subjname15', '$subjname16', '$subjname17', '$subjname18', '$subjname19', '$subjname20', '$_POST[yearid]')";
+      $insert_row = $mysqli->query($query) or die($mysqli->error.__LINE__);
+    }
 
-  $message = 'Curriculum have been added';
-  
+    $message = 'Curriculum have been added';
   }
-  
-  
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang=en>
@@ -66,668 +84,80 @@
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
+      <!-- /.card-header -->
 
-              <!-- /.card-header -->
+      <?php if(isset($message)) echo '<p>' .$message.'</p>';?>
 
-<!--  <form class="form-inline ml-3" action="CreateSchoolYear.php"> -->
-    <div>
-  <?php if(isset($message)){
-      echo '<p>' .$message.'</p>';
-
-  }else {}?>
-  <form method="post" action="CreateCurriculum.php">
+      <form method="post" action="CreateCurriculum.php">
         <div class="row">
           <!-- left column -->
           <div class="col-md-12">
             <!-- general form elements -->
             <!-- Curriculum content -->
-                <div class="card card-primary">
+            <?php foreach ( $grades as $grade_id => $grade ) {?>
+            <input type="hidden" id="inputGradeLevel" name ="grade[<?php echo $grade_id; ?>]" value="<?php echo $grade; ?>">
+            <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Create Curriculum</h3>
+                <h3 class="card-title">Create Curriculum for <?php echo $grade; ?></h3>
               </div>
               <div class="card-body">
-                  <div class="row">
-                  <div class="form-group col-3">
-                    <label for="curid">Curriculum Name: </label>
-                    <input class="form-control" id="inputCurriculumID" placeholder="Enter Curriculum Name" type= "text" name ="curname" min = "0">
-                  </div>
-                  <div class="form-group col-3">
-                        <label for="grade">Grade level:</label>
-                    <select class="form-control" id="inputGradeLevel" name ="grade">
-                        <option>Nursery</option>
-                        <option>Pre-Kinder</option>
-                        <option>Kinder</option>
-                        <option>GRADE 1</option>
-                        <option>GRADE 2</option>
-                        <option>GRADE 3</option>
-                        <option>GRADE 4</option>
-                        <option>GRADE 5</option>
-                        <option>GRADE 6</option>
-                    </select>
-                    </div>
-                  </div>
-                  <div class="row">
+                <div class="row">
                   <div class="form-group col-3" id="adding">
                     <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname1">
+                    <?php for ($x=1; $x<=5; $x++) { ?>
+                    <input class="form-control" id="subject" placeholder="Enter Subject" type="type" name="grade[<?php echo $grade_id; ?>][subject][<?php echo $x; ?>]">
                     <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname2">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname3">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname4">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname5">
+                    <?php } ?>
                   </div>
-                    <div class="form-group col-3">
+                  <div class="form-group col-3">
                     <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname6">
+                    <?php for ($x=6; $x<=10; $x++) { ?>
+                    <input class="form-control" id="subject" placeholder="Enter Subject" type="type" name="grade[<?php echo $grade_id; ?>][subject][<?php echo $x; ?>]">
                     <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname7">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname8">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname9">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname10">
-                    <br>
+                    <?php } ?>
                   </div>
-                    <div class="form-group col-3">
+                  <div class="form-group col-3">
                     <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname11">
+                    <?php for ($x=11; $x<=15; $x++) { ?>
+                    <input class="form-control" id="subject" placeholder="Enter Subject" type="type" name="grade[<?php echo $grade_id; ?>][subject][<?php echo $x; ?>]">
                     <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname12">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname13">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname14">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname15">
-                    <br>
+                    <?php } ?>
                   </div>
-                    <div class="form-group col-3">
+                  <div class="form-group col-3">
                     <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname16">
+                    <?php for ($x=16; $x<=20; $x++) { ?>
+                    <input class="form-control" id="subject" placeholder="Enter Subject" type="type" name="grade[<?php echo $grade_id; ?>][subject][<?php echo $x; ?>]">
                     <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname17">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname18">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname19">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname20">
-                    <br>
+                    <?php } ?>
                   </div>
-              </div>
+                </div>
               </div>
             </div>
- <!--            <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Create Curriculum</h3>
+            <?php } ?>  
+            
+            <div class="row form-inline">
+              <div class="form-group col-5">
+                <label for="curid">Curriculum Name: </label>
+                <input class="form-control" id="inputCurriculumID" placeholder="Enter Curriculum Name" type="text" name ="curname" min="0" style="margin-left: 10px;">
               </div>
-              <div class="card-body">
-                  <div class="row">
-                  <div class="form-group col-3">
-                        <label for="grade">Grade level:</label>
-                    <select class="form-control" id="inputGradeLevel" name ="grade">
-                        <option>PRE-KINDER</option>
-                    </select>
-                    </div>
-                  </div>
-                  <div class="row">
-                  <div class="form-group col-3" id="adding">
-                    <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname1">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname2">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname3">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname4">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname5">
-                  </div>
-                    <div class="form-group col-3">
-                    <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname6">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname7">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname8">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname9">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname10">
-                    <br>
-                  </div>
-                    <div class="form-group col-3">
-                    <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname11">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname12">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname13">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname14">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname15">
-                    <br>
-                  </div>
-                    <div class="form-group col-3">
-                    <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname16">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname17">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname18">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname19">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname20">
-                    <br>
-                  </div>
-              </div>
-              </div>
-            </div>
-            <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Create Curriculum</h3>
-              </div>
-              <div class="card-body">
-                  <div class="row">
-                  <div class="form-group col-3">
-                        <label for="grade">Grade level:</label>
-                    <select class="form-control" id="inputGradeLevel" name ="grade">
-                        <option>KINDER</option>
-                    </select>
-                    </div>
-                  </div>
-                  <div class="row">
-                  <div class="form-group col-3" id="adding">
-                    <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname1">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname2">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname3">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname4">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname5">
-                  </div>
-                    <div class="form-group col-3">
-                    <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname6">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname7">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname8">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname9">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname10">
-                    <br>
-                  </div>
-                    <div class="form-group col-3">
-                    <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname11">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname12">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname13">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname14">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname15">
-                    <br>
-                  </div>
-                    <div class="form-group col-3">
-                    <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname16">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname17">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname18">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname19">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname20">
-                    <br>
-                  </div>
-              </div>
-              </div>
-            </div>   
-            <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Create Curriculum</h3>
-              </div>
-              <div class="card-body">
-                  <div class="row">
-                  <div class="form-group col-3">
-                        <label for="grade">Grade level:</label>
-                    <select class="form-control" id="inputGradeLevel" name ="grade">
-                        <option>GRADE 1</option>
-                    </select>
-                    </div>
-                  </div>
-                  <div class="row">
-                  <div class="form-group col-3" id="adding">
-                    <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname1">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname2">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname3">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname4">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname5">
-                  </div>
-                    <div class="form-group col-3">
-                    <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname6">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname7">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname8">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname9">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname10">
-                    <br>
-                  </div>
-                    <div class="form-group col-3">
-                    <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname11">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname12">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname13">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname14">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname15">
-                    <br>
-                  </div>
-                    <div class="form-group col-3">
-                    <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname16">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname17">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname18">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname19">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname20">
-                    <br>
-                  </div>
-              </div>
-              </div>
-            </div>   
-            <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Create Curriculum</h3>
-              </div>
-              <div class="card-body">
-                  <div class="row">
-                  <div class="form-group col-3">
-                        <label for="grade">Grade level:</label>
-                    <select class="form-control" id="inputGradeLevel" name ="grade">
-                        <option>GRADE 2</option>
-                    </select>
-                    </div>
-                  </div>
-                  <div class="row">
-                  <div class="form-group col-3" id="adding">
-                    <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname1">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname2">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname3">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname4">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname5">
-                  </div>
-                    <div class="form-group col-3">
-                    <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname6">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname7">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname8">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname9">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname10">
-                    <br>
-                  </div>
-                    <div class="form-group col-3">
-                    <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname11">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname12">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname13">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname14">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname15">
-                    <br>
-                  </div>
-                    <div class="form-group col-3">
-                    <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname16">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname17">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname18">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname19">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname20">
-                    <br>
-                  </div>
-              </div>
-              </div>
-            </div>   
-            <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Create Curriculum</h3>
-              </div>
-              <div class="card-body">
-                  <div class="row">
-                  <div class="form-group col-3">
-                        <label for="grade">Grade level:</label>
-                    <select class="form-control" id="inputGradeLevel" name ="grade">
-                        <option>GRADE 3</option>
-                    </select>
-                    </div>
-                  </div>
-                  <div class="row">
-                  <div class="form-group col-3" id="adding">
-                    <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname1">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname2">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname3">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname4">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname5">
-                  </div>
-                    <div class="form-group col-3">
-                    <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname6">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname7">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname8">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname9">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname10">
-                    <br>
-                  </div>
-                    <div class="form-group col-3">
-                    <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname11">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname12">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname13">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname14">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname15">
-                    <br>
-                  </div>
-                    <div class="form-group col-3">
-                    <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname16">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname17">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname18">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname19">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname20">
-                    <br>
-                  </div>
-              </div>
-              </div>
-            </div>           
-            <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Create Curriculum</h3>
-              </div>
-              <div class="card-body">
-                  <div class="row">
-                  <div class="form-group col-3">
-                        <label for="grade">Grade level:</label>
-                    <select class="form-control" id="inputGradeLevel" name ="grade">
-                        <option>GRADE 4</option>
-                    </select>
-                    </div>
-                  </div>
-                  <div class="row">
-                  <div class="form-group col-3" id="adding">
-                    <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname1">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname2">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname3">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname4">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname5">
-                  </div>
-                    <div class="form-group col-3">
-                    <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname6">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname7">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname8">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname9">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname10">
-                    <br>
-                  </div>
-                    <div class="form-group col-3">
-                    <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname11">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname12">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname13">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname14">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname15">
-                    <br>
-                  </div>
-                    <div class="form-group col-3">
-                    <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname16">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname17">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname18">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname19">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname20">
-                    <br>
-                  </div>
-              </div>
-              </div>
-            </div>  
-            <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Create Curriculum</h3>
-              </div>
-              <div class="card-body">
-                  <div class="row">
-                  <div class="form-group col-3">
-                        <label for="grade">Grade level:</label>
-                    <select class="form-control" id="inputGradeLevel" name ="grade">
-                        <option>GRADE 5</option>
-                    </select>
-                    </div>
-                  </div>
-                  <div class="row">
-                  <div class="form-group col-3" id="adding">
-                    <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname1">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname2">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname3">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname4">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname5">
-                  </div>
-                    <div class="form-group col-3">
-                    <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname6">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname7">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname8">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname9">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname10">
-                    <br>
-                  </div>
-                    <div class="form-group col-3">
-                    <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname11">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname12">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname13">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname14">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname15">
-                    <br>
-                  </div>
-                    <div class="form-group col-3">
-                    <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname16">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname17">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname18">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname19">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname20">
-                    <br>
-                  </div>
-              </div>
-              </div>
-            </div>  
-            <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Create Curriculum</h3>
-              </div>
-              <div class="card-body">
-                  <div class="row">
-                  <div class="form-group col-3">
-                        <label for="grade">Grade level:</label>
-                    <select class="form-control" id="inputGradeLevel" name ="grade">
-                        <option>Nursery</option>
-                        <option>Pre-Kinder</option>
-                        <option>Kinder</option>
-                        <option>GRADE 1</option>
-                        <option>GRADE 2</option>
-                        <option>GRADE 3</option>
-                        <option>GRADE 4</option>
-                        <option>GRADE 5</option>
-                        <option>GRADE 6</option>
-                    </select>
-                    </div>
-                  </div>
-                  <div class="row">
-                  <div class="form-group col-3" id="adding">
-                    <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname1">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname2">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname3">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname4">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname5">
-                  </div>
-                    <div class="form-group col-3">
-                    <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname6">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname7">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname8">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname9">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname10">
-                    <br>
-                  </div>
-                    <div class="form-group col-3">
-                    <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname11">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname12">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname13">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname14">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname15">
-                    <br>
-                  </div>
-                    <div class="form-group col-3">
-                    <label for="subjid"> Subjects: </label>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname16">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname17">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname18">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname19">
-                    <br>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type= "string" name ="subjname20">
-                    <br>
-                  </div>
-              </div>
-              </div>
-            </div>   -->
-                  <div class="form-group col-3">
-                    <label for="yearid"> School Year: </label>
-                  <?php $query2 = "Select yearid from schoolyear where scstatus = 'ACTIVE'";
+
+              <div class="form-group col-3">
+                <label for="yearid">School Year:</label>
+                <?php 
+                  $query2 = "Select yearid from schoolyear where scstatus = 'ACTIVE'";
                   $result2 = $mysqli->query($query2) or die($mysqli->error.__LINE__);
-                  ?>  
-                  
-                  <select name = "yearid" type = "hidden">
+                ?>  
+                <select name="yearid" class="form-control" style="margin-left: 10px;">
                   <?php while ($row2 = mysqli_fetch_array($result2)):;?>
                   <option name = "yearid" type = "hidden" class="form-control"><?php echo $row2[0];?></option>
                   <?php endwhile;?>
-                  </div>
-                  <div class="form-group col-3">  
-                  <input type = "submit" name = "submit" class="btn btn-success" value = "Create" min ="0"/>
-                </div>
+                </select>
+
+                <input type = "submit" name="submit" class="btn btn-success" value = "Create" min ="0" style="margin-left: 10px;"/>
               </div>
-            </div>   
-        </body>
+            </div>
+          </div>
+        </div>  
+      </form> 
+  </body>
 </html>
