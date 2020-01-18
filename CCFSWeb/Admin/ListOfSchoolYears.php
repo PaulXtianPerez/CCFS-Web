@@ -439,6 +439,9 @@ $(document).ready(function(){
         $('#inputgrade6BookFee').val(data.gradebook6);
         $('#scstatus').val(data.scstatus);
         $('#schoolYear_id').val(data.yearid);
+        if (data.scstatus=='INACTIVE'){
+          $('#yearStart, #yearEnd, #dateStart, #dateEnd, #inputnurseryTuition, #inputnurseryBook, #inputnurseryMisc1, #inputpreKinTuition, #inputpreKinBook, #inputnurseryMisc2, #inputKinTuition, #inputKinBook, #inputnurseryMisc3, #janAtt, #febAtt, #marAtt, #aprAtt, #mayAtt, #junAtt, #julAtt, #augAtt, #sepAtt, #octAtt, #novAtt, #decAtt, #inputgrade1TFee, #inputgrade1MiscFee, #inputgrade1BookFee, #inputgrade2TFee, #inputgrade2MiscFee, #inputgrade2BookFee, #inputgrade3TFee, #inputgrade3MiscFee, #inputgrade3BookFee, #inputgrade4TFee, #inputgrade4MiscFee, #inputgrade4BookFee, #inputgrade5TFee, #inputgrade5MiscFee, #inputgrade5BookFee, #inputgrade6TFee, #inputgrade6MiscFee, #inputgrade6BookFee, #scstatus, #schoolYear_id').attr( 'disabled', true );
+        }
         $('#add_data_Modal').modal('show');
       }
     });

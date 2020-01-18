@@ -85,7 +85,7 @@ $result = mysqli_query($mysqli, $query);
                <tbody> <!-- Populate from database. -->
                   <?php while($row = mysqli_fetch_array($result)):;?>
                     <tr>
-                      <td><?php echo $row["gradelvl"]; echo " - "; echo $row["sename"];?></td>
+                      <td><?php echo trim( str_replace( 'Grade', '', $row["gradelvl"] ) ) . " - " . $row["sename"];?></td>
                       <td><?php echo $row["adviserlname"];?></td>
                       <td><?php echo $row["yearid"];?></td>
                       <td><input type="button" name="edit" value="Edit" id="<?php echo $row["secID"]; ?>" class="btn btn-info btn-xs edit_data" /></td>

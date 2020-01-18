@@ -45,6 +45,9 @@
       $inputgrade6BookFee = mysqli_real_escape_string($connect, $_POST["gradebook6"]);
 
       if($_POST["schoolYear_id"] != '') {
+            $query = "UPDATE schoolyear SET scstatus='INACTIVE'";
+            mysqli_query($connect, $query);
+
            $query = "
            UPDATE schoolyear
            SET  scstatus='$scstatus',

@@ -94,55 +94,55 @@
                   <div class="row">
                   <div class="form-group col-3">
                     <label for="Yearstart">January </label>
-                    <input class="form-control attNum" id="inputYearStart" placeholder="Number of days" type="number" step="0.01" name="janAtt" min="0">
+                    <input class="form-control attNum years year-1" id="inputYearStart" placeholder="Number of days" type="number" step="0.01" name="janAtt" min="0">
                   </div>
                   <div class="form-group col-3">
                     <label for="Yearend">February</label>
-                    <input class="form-control attNum" id="inputYearEnd" placeholder="Number of days" type="number" step="0.01"  name="febAtt" min="0">
+                    <input class="form-control attNum years year-2" id="inputYearEnd" placeholder="Number of days" type="number" step="0.01"  name="febAtt" min="0">
                   </div>
                   <div class="form-group col-3">
                     <label for="Yearstart">March</label>
-                    <input class="form-control attNum" id="inputYearStart" placeholder="Number of days" type="number" step="0.01"  name="marAtt" min="0">
+                    <input class="form-control attNum years year-3" id="inputYearStart" placeholder="Number of days" type="number" step="0.01"  name="marAtt" min="0">
                   </div>
                   <div class="form-group col-3">
                     <label for="Yearend">April</label>
-                    <input class="form-control attNum" id="inputYearEnd" placeholder="Number of days" type="number" step="0.01"  name="aprAtt" min="0">
+                    <input class="form-control attNum years year-4" id="inputYearEnd" placeholder="Number of days" type="number" step="0.01"  name="aprAtt" min="0">
                   </div>
                 </div>
                   <div class="row">
                   <div class="form-group col-3">
                     <label for="Yearstart">May</label>
-                    <input class="form-control attNum" id="inputYearStart" placeholder="Number of days" type="number" step="0.01"  name="mayAtt" min="0">
+                    <input class="form-control attNum years year-5" id="inputYearStart" placeholder="Number of days" type="number" step="0.01"  name="mayAtt" min="0">
                   </div>
                   <div class="form-group col-3">
                     <label for="Yearend">June</label>
-                    <input class="form-control attNum" id="inputYearEnd" placeholder="Number of days" type="number" step="0.01"  name="junAtt" min="0">
+                    <input class="form-control attNum years year-6" id="inputYearEnd" placeholder="Number of days" type="number" step="0.01"  name="junAtt" min="0">
                   </div>
                   <div class="form-group col-3">
                     <label for="Yearstart">July </label>
-                    <input class="form-control attNum" id="inputYearStart" placeholder="Number of days" type="number" step="0.01" name="julAtt" min="0">
+                    <input class="form-control attNum years year-7" id="inputYearStart" placeholder="Number of days" type="number" step="0.01" name="julAtt" min="0">
                   </div>
                   <div class="form-group col-3">
                     <label for="Yearend">August</label>
-                    <input class="form-control attNum" id="inputYearEnd" placeholder="Number of days" type="number" step="0.01" name="augAtt" min="0">
+                    <input class="form-control attNum years year-8" id="inputYearEnd" placeholder="Number of days" type="number" step="0.01" name="augAtt" min="0">
                   </div>
                 </div>
                   <div class="row">
                   <div class="form-group col-3">
                     <label for="Yearstart">September </label>
-                    <input class="form-control attNum" id="inputYearStart" placeholder="Number of days" type="number" step="0.01" name="sepAtt" min="0">
+                    <input class="form-control attNum years year-9" id="inputYearStart" placeholder="Number of days" type="number" step="0.01" name="sepAtt" min="0">
                   </div>
                   <div class="form-group col-3">
                     <label for="Yearend">October</label>
-                    <input class="form-control attNum" id="inputYearEnd" placeholder="Number of days" type="number" step="0.01" name="octAtt" min="0">
+                    <input class="form-control attNum years year-10" id="inputYearEnd" placeholder="Number of days" type="number" step="0.01" name="octAtt" min="0">
                   </div>
                   <div class="form-group col-3">
                     <label for="Yearstart">November </label>
-                    <input class="form-control attNum" id="inputYearStart" placeholder="Number of days" type="number" step="0.01" name="novAtt" min="0">
+                    <input class="form-control attNum years year-11" id="inputYearStart" placeholder="Number of days" type="number" step="0.01" name="novAtt" min="0">
                   </div>
                   <div class="form-group col-3">
                     <label for="Yearend">December</label>
-                    <input class="form-control attNum" id="inputYearEnd" placeholder="Number of days" type="number" step="0.01" name="decAtt" min="0">
+                    <input class="form-control attNum years year-12" id="inputYearEnd" placeholder="Number of days" type="number" step="0.01" name="decAtt" min="0">
                   </div>
                 </div>
                 <div class="row">
@@ -355,10 +355,10 @@
   function formSubmit(){
     var yrStart = document.getElementById("inputYearStart").value;
     var yrEnd = document.getElementById("inputYearEnd").value;
-  	bootbox.confirm({
-  		message: "Create school year " + yrStart + "-" + yrEnd + "?",
-  		buttons: {
-  			confirm: {
+    bootbox.confirm({
+      message: "Create school year " + yrStart + "-" + yrEnd + "?",
+      buttons: {
+        confirm: {
           label: "Yes",
           className: "btn-success"
       },
@@ -366,45 +366,68 @@
           label: "No",
           className: "btn-danger"
       }
-  	},
-  	callback: function(result){
-  		if(result){
-  			$.ajax({
-  				type: "POST",
-  				url: "SchoolYearInsert.php",
-  				data: $("#frmBox").serialize(),
-  				success: function(response){
-  					$("#success").html(response);
-  					if(response.includes("Successfully created a new school year.")){
-  						document.getElementById("frmBox").reset();
-  					}
-  				}
-  			});
-  		}
-  	}
-  	});
-  	return false;
+    },
+    callback: function(result){
+      if(result){
+        $.ajax({
+          type: "POST",
+          url: "SchoolYearInsert.php",
+          data: $("#frmBox").serialize(),
+          success: function(response){
+            $("#success").html(response);
+            if(response.includes("Successfully created a new school year.")){
+              document.getElementById("frmBox").reset();
+            }
+          }
+        });
+      }
+    }
+    });
+    return false;
   }
+
+  $('document').ready( function ( ) {
+    $( '[name=dateStart]' ).on( 'blur', function ( ) {
+      dateStartEndChange();
+    });
+
+    $( '[name=dateEnd]' ).on( 'blur', function ( ) {
+      dateStartEndChange();
+    });
+
+    function dateStartEndChange ( ) {
+      var date_start = $( '[name=dateStart]' ).val( );
+      var date_end = $( '[name=dateEnd]' ).val( );
+      var date_start_month = new Date( date_start ).getMonth( ) + 1;
+      var date_end_month = new Date( date_end ).getMonth( ) + 1;
+
+      $( '.years' ).closest( '.form-group' ).hide();
+
+      for ( $d = date_start_month; $d <= date_end_month; $d++ ) {
+        $( '.year-' + $d ).closest( '.form-group' ).show();
+      }
+    }
+  });
   </script>
 
   <!--===============================================================================================-->
   <script src="../Resources/vendor/jquery/jquery-3.2.1.min.js"></script>
   <!--Bootbox library for dialog box.-->
-  	<script src="../Resources/plugins/bootstrap/js/bootbox/bootbox.min.js"></script>
+    <script src="../Resources/plugins/bootstrap/js/bootbox/bootbox.min.js"></script>
   <!--===============================================================================================-->
-  	<script src="../Resources/vendor/animsition/js/animsition.min.js"></script>
+    <script src="../Resources/vendor/animsition/js/animsition.min.js"></script>
   <!--===============================================================================================-->
-  	<script src="../Resources/vendor/bootstrap/js/popper.js"></script>
-  	<script src="../Resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../Resources/vendor/bootstrap/js/popper.js"></script>
+    <script src="../Resources/vendor/bootstrap/js/bootstrap.min.js"></script>
   <!--===============================================================================================-->
-  	<script src="../Resources/vendor/select2/select2.min.js"></script>
+    <script src="../Resources/vendor/select2/select2.min.js"></script>
   <!--===============================================================================================-->
-  	<script src="../Resources/vendor/daterangepicker/moment.min.js"></script>
-  	<script src="../Resources/vendor/daterangepicker/daterangepicker.js"></script>
+    <script src="../Resources/vendor/daterangepicker/moment.min.js"></script>
+    <script src="../Resources/vendor/daterangepicker/daterangepicker.js"></script>
   <!--===============================================================================================-->
-  	<script src="../Resources/vendor/countdowntime/countdowntime.js"></script>
+    <script src="../Resources/vendor/countdowntime/countdowntime.js"></script>
   <!--===============================================================================================-->
-  	<script src="../Resources/js/main.js"></script>
+    <script src="../Resources/js/main.js"></script>
     <!--Compute total days and total fees in ui.-->
     <script src="../Resources/js/compute-total.js"></script>
 </body>
