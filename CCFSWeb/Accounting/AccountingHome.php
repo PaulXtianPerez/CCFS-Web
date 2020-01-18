@@ -80,9 +80,9 @@
           <img src="../Resources/dist/img/users.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a class="d-block agray" style="font-size: 20px" tabindex="-1" href="#"><?php echo $_SESSION['username']; ?></a>
-              <?php  if (isset($_SESSION['username'])) : ?>
-           <i class="fa fa-cogs" aria-hidden="true" style="color: white"></i><a style="font-size: 15px" tabindex="-1" href="../index.php">    Log Out<?php endif ?></a>
+          <a class="d-block agray" style="font-size: 20px" tabindex="-1" href="#"><?php echo $_SESSION['USERNAME']; ?></a>
+              <?php  if (isset($_SESSION['LOGIN']) && $_SESSION['LOGIN'] == true ) : ?>
+           <i class="fa fa-cogs" aria-hidden="true" style="color: white"></i><a style="font-size: 15px" tabindex="-1" href="../logout.php">    Log Out<?php endif ?></a>
         </div>
       </div>
 
