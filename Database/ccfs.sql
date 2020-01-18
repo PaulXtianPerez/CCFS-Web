@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 18, 2020 at 01:13 PM
--- Server version: 5.7.26
--- PHP Version: 7.2.18
+-- Generation Time: Jan 18, 2020 at 07:55 PM
+-- Server version: 5.7.24
+-- PHP Version: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `accounts` (
   `accstatus` varchar(11) DEFAULT 'Active',
   PRIMARY KEY (`accid`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `accounts`
@@ -50,12 +50,11 @@ INSERT INTO `accounts` (`accid`, `empid`, `username`, `password`, `fname`, `lnam
 (1, 'CCFS-001', 'REGISTRAR', 'REGISTRAR', 'ADAM', 'SOBREMONTE', 'REGISTRAR', 'Active'),
 (2, 'CCFS-002', 'Paul_Acc', 'a123', 'PAUL', 'PEREZ', 'REGISTRAR', 'Inactive'),
 (3, 'CCFS-003', 'ACCOUNTING', 'ACCOUNTING', 'JARGON', 'TAASIN', 'ACCOUNTING', 'Active'),
-(4, 'CCFS-004', 'vinceAcc', 'running', 'VINCENT', 'TOLENTINO', 'ACCOUNTING', 'Active'),
+(4, 'CCFS-004', 'vinceAcc', 'running', 'VINCENT', 'TOLENTINO', 'ACCOUNTING', 'Inactive'),
 (5, 'CCFS-005', 'ADMIN', 'ADMIN', 'ADMIN', 'ADMIN', 'ADMIN', 'Active'),
 (6, 'CCFS-008', 'ACC_IMRAN', '12345', 'IMRAN', 'MAHMOOD', 'ACCOUNTING', 'Active'),
 (7, 'CCFS-009', 'TEST', 'TEST', 'TEST', 'TEST', 'ADMIN', 'Active'),
-(8, '30', 'JacobAnderson', '123456', 'Jacob ', 'Anderson', 'Registrar', 'Active'),
-(9, 'CCFS-006', 'Georgy', '123456', 'George', 'Washington', 'ADMIN', 'Active');
+(8, '30', 'JacobAnderson', '123456', 'Jacob ', 'Anderson', 'Registrar', 'Active');
 
 -- --------------------------------------------------------
 
@@ -91,47 +90,25 @@ CREATE TABLE IF NOT EXISTS `attendance` (
   PRIMARY KEY (`attid`) USING BTREE,
   KEY `studid` (`IDno`,`yearid`) USING BTREE,
   KEY `idyear` (`yearid`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `attendance`
 --
 
 INSERT INTO `attendance` (`attid`, `IDno`, `yearid`, `month`, `daysPres`, `daysTar`, `daysAbs`) VALUES
-(27, 210001, 16, 'Mar', NULL, NULL, NULL),
-(28, 210001, 16, 'Apr', NULL, NULL, NULL),
-(29, 210001, 16, 'May', NULL, NULL, NULL),
-(30, 210001, 16, 'Jun', NULL, NULL, NULL),
-(31, 210001, 16, 'Jul', NULL, NULL, NULL),
-(32, 210001, 16, 'Aug', NULL, NULL, NULL),
-(33, 210001, 16, 'Sep', 1, 1, 1),
-(34, 210001, 16, 'Oct', NULL, NULL, NULL),
-(35, 210001, 16, 'Nov', NULL, NULL, NULL),
-(36, 210001, 16, 'Dec', NULL, NULL, NULL),
-(37, 210014, 18, 'Jan', 12, 1, 10),
-(38, 210014, 18, 'Feb', NULL, NULL, NULL),
-(39, 210014, 18, 'Mar', NULL, NULL, NULL),
-(40, 210014, 18, 'Apr', NULL, NULL, NULL),
-(41, 210014, 18, 'May', NULL, NULL, NULL),
-(42, 210014, 18, 'Jun', NULL, NULL, NULL),
-(43, 210014, 18, 'Jul', NULL, NULL, NULL),
-(44, 210014, 18, 'Aug', NULL, NULL, NULL),
-(45, 210014, 18, 'Sep', NULL, NULL, NULL),
-(46, 210014, 18, 'Oct', NULL, NULL, NULL),
-(47, 210014, 18, 'Nov', NULL, NULL, NULL),
-(48, 210014, 18, 'Dec', NULL, NULL, NULL),
-(49, 210002, 19, 'Jan', NULL, NULL, NULL),
-(50, 210002, 19, 'Feb', NULL, NULL, NULL),
-(51, 210002, 19, 'Mar', NULL, NULL, NULL),
-(52, 210002, 19, 'Apr', NULL, NULL, NULL),
-(53, 210002, 19, 'May', NULL, NULL, NULL),
-(54, 210002, 19, 'Jun', NULL, NULL, NULL),
-(55, 210002, 19, 'Jul', NULL, NULL, NULL),
-(56, 210002, 19, 'Aug', NULL, NULL, NULL),
-(57, 210002, 19, 'Sep', NULL, NULL, NULL),
-(58, 210002, 19, 'Oct', NULL, NULL, NULL),
-(59, 210002, 19, 'Nov', NULL, NULL, NULL),
-(60, 210002, 19, 'Dec', NULL, NULL, NULL);
+(122, 210001, 10, 'Jan', 1, 1, 1),
+(123, 210001, 10, 'Feb', NULL, NULL, NULL),
+(124, 210001, 10, 'Mar', NULL, NULL, NULL),
+(125, 210001, 10, 'Apr', NULL, NULL, NULL),
+(126, 210001, 10, 'May', NULL, NULL, NULL),
+(127, 210001, 10, 'Jun', NULL, NULL, NULL),
+(128, 210001, 10, 'Jul', NULL, NULL, NULL),
+(129, 210001, 10, 'Aug', NULL, NULL, NULL),
+(130, 210001, 10, 'Sep', NULL, NULL, NULL),
+(131, 210001, 10, 'Oct', NULL, NULL, NULL),
+(132, 210001, 10, 'Nov', NULL, NULL, NULL),
+(133, 210001, 10, 'Dec', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -191,22 +168,7 @@ CREATE TABLE IF NOT EXISTS `curriculum` (
   PRIMARY KEY (`curid`),
   KEY `idyear` (`yearid`) USING BTREE,
   KEY `curname` (`curname`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `curriculum`
---
-
-INSERT INTO `curriculum` (`curid`, `curname`, `subjname1`, `subjname2`, `subjname3`, `subjname4`, `subjname5`, `subjname6`, `subjname7`, `subjname8`, `subjname9`, `subjname10`, `subjname11`, `subjname12`, `subjname13`, `subjname14`, `subjname15`, `subjname16`, `subjname17`, `subjname18`, `subjname19`, `subjname20`, `grade`, `yearid`) VALUES
-(1, 'DEPED', 'ENGLISH', 'ENGLISH', 'jhgjhg', 'kjhkhjk', 'jghjhgj', 'hg', 'jhg', 'jhgjhg', 'jhg', 'jh', 'gjh', 'gj', 'hgj', 'hgj', 'hg', 'jhg', 'jhg', 'jhg', 'jhg', 'jh', 'NURSERY', 19),
-(2, 'DEPED', 'gj', 'hgj', 'hg', 'jhg', 'jhg', 'jhg', 'jhg', 'jhg', 'jh', 'gj', 'hgjh', 'gj', 'hg', 'jhg', 'jhg', 'jhg', 'jhg', 'jhg', 'jhg', 'jhg', 'PRE-KINDER', 19),
-(3, 'DEPED', 'jh', 'gjh', 'gj', 'hg', 'jhg', 'jhg', 'jhg', 'jhg', 'jhg', 'jhg', 'jh', 'gj', 'hgj', 'hgj', 'hgj', 'hg', 'jhg', 'jhgj', 'hgj', 'hgjh', 'KINDER', 19),
-(4, 'DEPED', 'gjhg', 'jhg', 'jh', 'gj', 'hgjh', 'gjh', 'gj', 'hgj', 'hgj', 'hgj', 'hgj', 'hg', 'jhg', 'jhg', 'jhg', 'jhg', 'jhg', 'jh', 'gj', 'hgj', 'GRADE 1', 19),
-(5, 'DEPED', 'hg', 'jhgjhg', 'j', 'hgj', 'hgj', 'hg', 'jhgj', 'hg', 'jhg', 'jhg', 'jhg', 'jhg', 'jhg', 'jhg', 'j', 'ghj', 'hg', 'jhg', 'jhg', 'jhg', 'GRADE 2', 19),
-(6, 'DEPED', 'jhg', 'jhg', 'jh', 'gj', 'hgj', 'hgj', 'hg', 'jhg', 'jhg', 'jhg', 'jhg', 'jh', 'gj', 'hg', 'jhg', 'jhg', 'jhg', 'jhg', 'jhg', 'jh', 'GRADE 3', 19),
-(7, 'DEPED', 'gjh', 'gj', 'hgj', 'hgj', 'hgj', 'hgj', 'hgj', 'hgj', 'hg', 'jhg', 'jhg', 'jhg', 'jhg', 'jhg', 'jhg', 'jh', 'gj', 'hgj', 'hg', 'jhg', 'GRADE 4', 19),
-(8, 'DEPED', 'jhg', 'jhg', 'jhg', 'jhgj', 'hgjh', 'j', 'hg', 'ghjghj', 'jgh', 'jhg', 'ghj', 'jhg', 'ghj', 'jgh', 'jhg', 'hjg', 'gjh', 'ghjjgh', 'jgh', 'ghj', 'GRADE 5', 19),
-(9, 'DEPED', 'ghj', 'ghj', 'ghj', 'gjh', 'ghj', 'jgh', 'hgj', 'hjg', 'ghj', 'ghj', 'hgj', 'hgjgh', 'jhjg', 'ghj', 'asdasd', 'hjghjg', 'jhgg', 'hjh', 'gjghj', 'hjg', 'GRADE 6', 19);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -231,7 +193,7 @@ CREATE TABLE IF NOT EXISTS `curstudent` (
   KEY `yearID_idx` (`yearid`),
   KEY `enrID_idx` (`enrID`),
   KEY `IDno` (`IDno`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `curstudent`
@@ -239,24 +201,21 @@ CREATE TABLE IF NOT EXISTS `curstudent` (
 
 INSERT INTO `curstudent` (`studentid`, `IDno`, `gradelvl`, `section`, `teacher`, `totalpayment`, `dateenrolled`, `yearid`, `enrID`) VALUES
 (1, 210001, 'KINDER', '1', '1', 1, '2019-11-14', 3, 1),
-(2, 210002, 'Grade 2', '1', '1', 1, '2019-11-19', 3, 2),
-(3, 210003, 'Grade 2', '1', '1', 1, '2019-11-19', 3, 3),
-(4, 210004, 'Grade 2', '1', '1', 1, '2019-11-19', 3, 4),
-(6, 210006, 'Grade 2', '1', '1', 1, '2019-11-19', 3, 6),
-(7, 210007, 'Grade 2', '1', '1', 1, '2019-11-19', 3, 7),
-(8, 210008, 'Grade 2', '1', '1', 1, '2019-11-19', 3, 8),
+(2, 210002, 'GRADE 1', '1', '1', 1, '2019-11-19', 3, 2),
+(3, 210003, 'GRADE 1', '1', '1', 1, '2019-11-19', 3, 3),
+(4, 210004, 'GRADE 1', '1', '1', 1, '2019-11-19', 3, 4),
+(5, 210005, 'GRADE 1', '1', '1', 1, '2019-11-19', 3, 5),
+(6, 210006, 'GRADE 1', '1', '1', 1, '2019-11-19', 3, 6),
+(7, 210007, 'GRADE 1', '1', '1', 1, '2019-11-19', 3, 7),
+(8, 210008, 'GRADE 1', '1', '1', 1, '2019-11-19', 3, 8),
 (9, 210009, 'KINDER', '1', '1', 1, '2019-11-19', 3, 9),
-(10, 210010, 'Grade 2', '1', '1', 1, '2019-11-19', 3, 10),
-(11, 210011, 'Grade 2', '1', '1', 1, '2019-11-19', 3, 11),
-(12, 210012, 'Grade 2', '1', '1', 1, '2019-11-19', 3, 12),
-(13, 210013, 'Grade 2', '1', '1', 1, '2019-11-19', 3, 13),
-(16, 210016, 'KINDER', '1', '1', 1, '2019-11-27', 3, 16),
-(26, 210026, 'Section', '1', '1', 1, '2020-01-16', 15, 26),
-(27, 210027, 'Section', '1', '1', 1, '2020-01-16', 15, 27),
-(28, 210028, 'Section', '1', '1', 1, '2020-01-16', 15, 28),
-(29, 210029, 'Section', '1', '1', 1, '2020-01-16', 15, 29),
-(36, 210014, 'Grade 2', '1', '1', 1, '2020-01-16', 18, 23),
-(39, 210015, 'Grade 2', '1', '1', 1, '2020-01-18', 20, 26);
+(10, 210010, 'GRADE 1', '1', '1', 1, '2019-11-19', 3, 10),
+(11, 210011, 'GRADE 1', '1', '1', 1, '2019-11-19', 3, 11),
+(12, 210012, 'GRADE 1', '1', '1', 1, '2019-11-19', 3, 12),
+(13, 210013, 'GRADE 1', '1', '1', 1, '2019-11-19', 3, 13),
+(14, 210014, 'GRADE 6', '1', '1', 1, '2019-11-20', 3, 14),
+(15, 210015, 'KINDER', '1', '1', 1, '2019-11-20', 3, 15),
+(16, 210016, 'KINDER', '1', '1', 1, '2019-11-27', 3, 16);
 
 -- --------------------------------------------------------
 
@@ -308,7 +267,7 @@ CREATE TABLE IF NOT EXISTS `enstudent` (
   KEY `gradelvl` (`gradelvl`),
   KEY `YearID_idx` (`yearid`),
   KEY `studIDno_idx` (`IDno`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `enstudent`
@@ -328,7 +287,15 @@ INSERT INTO `enstudent` (`enid`, `IDno`, `GivenName`, `MiddleName`, `SurName`, `
 (11, 210011, 'XERR JHAKE', 'DUMAPIS', 'BANTIAN', 'GRADE 1', '2020-12-12', 'BEGH', 'M', '', '09074243658 / 09266474312', 'PUROK 6, APUGAN, IRISAN, BAGUIO CITY', 'UCAB ELEMENTARY SCHOOL', 'Enrolled', NULL, 'JESSIE', 'BANTIAN', 'PUROK 6, APUGAN, IRISAN, BAGUIO CITY', '09196901341', '', 'POLICE OFFICER', 'JENNIFER', 'BANTIAN', 'PUROK 6, APUGAN, IRISAN, BAGUIO CITY', '09074243658', 'JENNIFER.BANTIAN@YAHOO.COM', 'HOUSEKEEPER', NULL, NULL, NULL, NULL, 3, '2019-11-19', ' ', ' ', ' '),
 (12, 210012, 'MERLA ZYLIE', 'LLACUNA', 'TALLOCOY', 'GRADE 1', '2020-12-12', 'LA TRINIDAD, BENGUET', 'F', '', '09294029140', '#96 PUROK 17, IRISAN, BAGUIO CITY', 'CCFS', 'Enrolled', NULL, 'PETER', 'TALLOCOY', '#96 PUROK 17, IRISAN, BAGUIO CITY', '', 'PJ.TALLOCOY@YAHOO.COM', 'OFW', 'FARRA MAE', 'TALLOCOY', '#96 PUROK 17, IRISAN, BAGUIO CITY', '09294029140', 'FM.TALLOCOY@YAHOO.COM', 'HOUSEKEEPER', NULL, NULL, NULL, NULL, 3, '2019-11-19', ' ', ' ', ' '),
 (13, 210013, 'CEEJAY', 'BUENAVISTA', 'MORALES', 'GRADE 1', '2020-12-12', 'BENGUET', 'M', '', '09103323015', '011A PUROK 12, IRISAN, BAGUIO CITY', 'CCFS', 'Enrolled', NULL, 'SEVERINO', 'MORALES', '011A PUROK 12, IRISAN, BAGUIO CITY', '', '', 'WELDER', 'MARIVIC', 'MORALES', '011A PUROK 12, IRISAN, BAGUIO CITY', '09103323015', '', 'HOUSEWIFE', 'JOY MARRIE', 'MORALES', '1999-12-08', 'UC', 3, '2019-11-19', ' ', ' ', ' '),
-(23, 210014, 'NATALIE HYMES', 'BAGANO', 'MARZAN', 'Grade 2', '2020-12-12', 'BENGUET GEN, LA TRINIDAD', 'Female', '', '09999032717', '#32 PUROK 15, BALBOA, IRISAN, BAGUIO CITY', 'LECA', 'Enrolled', '', 'ANDRES', 'MARZAN JR.', '#32 PUROK 15, BALBOA, IRISAN, BAGUIO CITY', '', '', 'TAXI DRIVER', 'EVA', 'BAGANO', '#32 PUROK 15, BALBOA, IRISAN, BAGUIO CITY', '', '', '', '', '', '2020-12-12', '', 20, '2020-01-18', 'JULIET CAPUYAN MARZAN', '#32 PUROK 15, BALBOA, IRISAN, BAGUIO CITY', '09999032717');
+(14, 210014, 'ADAM', 'NAVARRO', 'SOBREMONT', 'GRADE 6', '2020-12-12', 'BAGUIO CITY ', 'M', '', '0995635694', '06B LOAKAN BAGUIO CITY', 'CCFS', 'Enrolled', NULL, 'ARIEL', 'SOBREMONTE', '06B LOAKAN BAGUIO CITY', '09560595161', '', 'TAXI DRIVER', 'LILIA', 'NAVARRO', '06B LOAKAN BAGUIO CITY', '', '', 'OFW', NULL, NULL, NULL, NULL, 3, '2019-11-20', 'PAUL CHRISTIAN PEREZ', 'AWLFJAW', '09999999999'),
+(15, 210015, 'CHRISTINE MAE ANNE', 'SANGGA', 'PEREZ', 'NURSERY', '2020-12-12', 'BAGUIO CITY', 'F', NULL, '09614286968', 'IRISAN, BAGUIO CITY', ' ', 'Enrolled', NULL, NULL, NULL, NULL, NULL, NULL, 'ENGINEER', NULL, NULL, NULL, NULL, NULL, 'NURSE', NULL, NULL, NULL, NULL, 3, '2019-11-01', 'PAUL ROLAND ', '#31 PUROK 15, BALABOA, IRISAN BAGUIO CITY', '099939294913'),
+(16, 210016, 'IMRAN', 'DIXON', 'MAHMOOD', 'NURSERY', '2020-12-12', 'BAGUIO CITY', 'M', '', '', 'BAGUIO CITY', '', 'Enrolled', NULL, '', '', 'BAGUIO CITY', '', '', '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, 3, '2019-11-27', 'PAUL PEREZ', 'BAGUIO CITY', '0912345678'),
+(17, 210017, 'aawd', 'awd', 'awd', 'Preschool', '2020-12-12', 'awd', 'Male', 'awd', 'awwd', 'awd', 'awd', 'Enrolled', '', 'awd', 'awd', 'awd', 'awwd', 'awd', 'awd', 'awd', 'awd', 'awwd', 'awd', 'awd', 'awd', '', '', '2020-12-12', '', 11, '2020-03-01', '', '', ''),
+(18, 210018, 'awd', 'awd', 'awd', 'Preschool', '2020-12-12', 'awd', 'Male', 'awwd', 'awd', 'wd', 'awd', 'Enrolled', '', 'awd', 'aawd', 'awd', 'awd', 'awd', 'awwd', 'awawd', 'awwd', 'awd', 'awd', 'awd', 'awd', '', '', '2020-12-12', '', 11, '2020-03-01', 'awd', 'awd', 'awd'),
+(19, 210019, 'awd', 'awd', 'awd', 'Preschool', '2020-12-12', 'awd', 'Male', 'awd', 'awd', 'awd', 'awd', 'Enrolled', '', 'awd', 'khk', 'hk', 'hkh', 'kh', 'hk', 'khk', 'hk', 'hk', 'khk', 'hk', 'hkh', '', '', '2020-12-12', '', 11, '2020-03-01', 'h', 'khh', 'kh'),
+(20, 210020, 'HDin', 'aosidlsd', 'Hander', 'Grade 1', '1998-01-21', 'qweqwe', 'Male', '123', '123', 'qwe', 'asd', 'Enrolled', '', 'jhkjh', 'kjh', 'kjh', '123', 'kjh', 'kjh', 'kjh', 'kjh', 'kjh', '123', 'jkasjd', 'kjh', '', '', '2020-12-12', '', 13, '2020-01-14', 'kjhkjh', 'kjhkh', '123'),
+(21, 210021, 'asdasd', 'asdasd', 'Hander', 'Grade 2', '1998-01-21', 'asdasd', 'Male', '123', '123', 'asdasd', 'jasdj', 'Enrolled', '', 'kjhkjh', 'kh', 'kjh', '123', 'kjh', 'kjh', 'kjhkjh', 'kjkjh', 'kjhkjh', '123', 'kjhkj', 'khjkjh', '', '', '2020-12-12', '', 13, '2020-01-14', 'kjhjkh', 'kjh', '132'),
+(22, 210022, 'HDin', 'aosidlsd', 'Hander', 'Section', '1998-01-21', 'lklkj', 'Female', 'k123123', '12312', 'lkjl', 'kjhkjh', 'Enrolled', '', 'jhkjhkjh', 'kjh', 'kjh', '123123', 'jhgjhgjhg', 'kjhk', 'jhgjhg', 'jhgj', 'hgjhg', '123', 'jhgjhg', 'jhgjhgjhg', '', '', '2020-12-12', '', 10, '2020-01-15', 'hkjhkjh', 'kjhkjhkjh', '12313');
 
 --
 -- Triggers `enstudent`
@@ -370,6 +337,7 @@ DROP TABLE IF EXISTS `grades`;
 CREATE TABLE IF NOT EXISTS `grades` (
   `gradeid` int(11) NOT NULL AUTO_INCREMENT,
   `subjID` int(90) NOT NULL,
+  `sename` varchar(11) NOT NULL,
   `firstquartergrade` int(11) DEFAULT NULL,
   `secondquartergrade` int(11) DEFAULT NULL,
   `thirdquartergrade` int(11) DEFAULT NULL,
@@ -379,10 +347,140 @@ CREATE TABLE IF NOT EXISTS `grades` (
   `IDno` int(11) NOT NULL,
   `yearid` int(11) NOT NULL,
   PRIMARY KEY (`gradeid`),
-  UNIQUE KEY `yid` (`yearid`),
   KEY `studid_idx` (`IDno`),
-  KEY `suID` (`subjID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `suID` (`subjID`),
+  KEY `yid` (`yearid`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `grades`
+--
+
+INSERT INTO `grades` (`gradeid`, `subjID`, `sename`, `firstquartergrade`, `secondquartergrade`, `thirdquartergrade`, `fourthquartergrade`, `finalgrade`, `remarks`, `IDno`, `yearid`) VALUES
+(1, 60, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 210001, 10),
+(2, 61, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 210001, 10),
+(3, 62, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 210001, 10),
+(4, 63, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 210001, 10),
+(5, 1, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210002, 10),
+(6, 2, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210002, 10),
+(7, 3, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210002, 10),
+(8, 5, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210002, 10),
+(9, 6, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210002, 10),
+(10, 7, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210002, 10),
+(11, 8, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210002, 10),
+(12, 9, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210002, 10),
+(13, 10, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210002, 10),
+(14, 1, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210003, 10),
+(15, 2, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210003, 10),
+(16, 3, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210003, 10),
+(17, 5, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210003, 10),
+(18, 6, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210003, 10),
+(19, 7, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210003, 10),
+(20, 8, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210003, 10),
+(21, 9, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210003, 10),
+(22, 10, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210003, 10),
+(23, 1, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210004, 10),
+(24, 2, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210004, 10),
+(25, 3, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210004, 10),
+(26, 5, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210004, 10),
+(27, 6, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210004, 10),
+(28, 7, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210004, 10),
+(29, 8, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210004, 10),
+(30, 9, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210004, 10),
+(31, 10, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210004, 10),
+(32, 1, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210005, 10),
+(33, 2, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210005, 10),
+(34, 3, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210005, 10),
+(35, 5, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210005, 10),
+(36, 6, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210005, 10),
+(37, 7, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210005, 10),
+(38, 8, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210005, 10),
+(39, 9, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210005, 10),
+(40, 10, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210005, 10),
+(41, 1, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210006, 10),
+(42, 2, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210006, 10),
+(43, 3, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210006, 10),
+(44, 5, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210006, 10),
+(45, 6, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210006, 10),
+(46, 7, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210006, 10),
+(47, 8, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210006, 10),
+(48, 9, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210006, 10),
+(49, 10, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210006, 10),
+(50, 1, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210007, 10),
+(51, 2, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210007, 10),
+(52, 3, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210007, 10),
+(53, 5, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210007, 10),
+(54, 6, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210007, 10),
+(55, 7, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210007, 10),
+(56, 8, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210007, 10),
+(57, 9, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210007, 10),
+(58, 10, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210007, 10),
+(59, 1, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210008, 10),
+(60, 2, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210008, 10),
+(61, 3, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210008, 10),
+(62, 5, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210008, 10),
+(63, 6, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210008, 10),
+(64, 7, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210008, 10),
+(65, 8, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210008, 10),
+(66, 9, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210008, 10),
+(67, 10, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210008, 10),
+(68, 60, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 210009, 10),
+(69, 61, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 210009, 10),
+(70, 62, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 210009, 10),
+(71, 63, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 210009, 10),
+(72, 1, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210010, 10),
+(73, 2, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210010, 10),
+(74, 3, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210010, 10),
+(75, 5, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210010, 10),
+(76, 6, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210010, 10),
+(77, 7, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210010, 10),
+(78, 8, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210010, 10),
+(79, 9, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210010, 10),
+(80, 10, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210010, 10),
+(81, 1, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210011, 10),
+(82, 2, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210011, 10),
+(83, 3, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210011, 10),
+(84, 5, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210011, 10),
+(85, 6, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210011, 10),
+(86, 7, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210011, 10),
+(87, 8, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210011, 10),
+(88, 9, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210011, 10),
+(89, 10, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210011, 10),
+(90, 1, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210012, 10),
+(91, 2, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210012, 10),
+(92, 3, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210012, 10),
+(93, 5, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210012, 10),
+(94, 6, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210012, 10),
+(95, 7, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210012, 10),
+(96, 8, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210012, 10),
+(97, 9, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210012, 10),
+(98, 10, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210012, 10),
+(99, 1, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210013, 10),
+(100, 2, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210013, 10),
+(101, 3, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210013, 10),
+(102, 5, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210013, 10),
+(103, 6, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210013, 10),
+(104, 7, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210013, 10),
+(105, 8, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210013, 10),
+(106, 9, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210013, 10),
+(107, 10, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210013, 10),
+(108, 60, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 210015, 10),
+(109, 61, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 210015, 10),
+(110, 62, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 210015, 10),
+(111, 63, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 210015, 10),
+(112, 60, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 210016, 10),
+(113, 61, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 210016, 10),
+(114, 62, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 210016, 10),
+(115, 63, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 210016, 10),
+(116, 47, 'THETA', NULL, NULL, NULL, NULL, NULL, NULL, 210014, 10),
+(117, 48, 'THETA', NULL, NULL, NULL, NULL, NULL, NULL, 210014, 10),
+(118, 49, 'THETA', NULL, NULL, NULL, NULL, NULL, NULL, 210014, 10),
+(119, 50, 'THETA', NULL, NULL, NULL, NULL, NULL, NULL, 210014, 10),
+(120, 51, 'THETA', NULL, NULL, NULL, NULL, NULL, NULL, 210014, 10),
+(121, 52, 'THETA', NULL, NULL, NULL, NULL, NULL, NULL, 210014, 10),
+(122, 53, 'THETA', NULL, NULL, NULL, NULL, NULL, NULL, 210014, 10),
+(123, 54, 'THETA', NULL, NULL, NULL, NULL, NULL, NULL, 210014, 10),
+(124, 55, 'THETA', NULL, NULL, NULL, NULL, NULL, NULL, 210014, 10);
 
 -- --------------------------------------------------------
 
@@ -428,18 +526,18 @@ CREATE TABLE IF NOT EXISTS `schoolyear` (
   `yearid` int(11) NOT NULL AUTO_INCREMENT,
   `yearstart` int(10) NOT NULL,
   `yearend` int(10) NOT NULL,
-  `janAtt` int(11) DEFAULT '0',
-  `febAtt` int(11) DEFAULT '0',
-  `marAtt` int(11) DEFAULT '0',
-  `aprAtt` int(11) DEFAULT '0',
-  `mayAtt` int(11) DEFAULT '0',
-  `junAtt` int(11) DEFAULT '0',
-  `julAtt` int(11) DEFAULT '0',
-  `augAtt` int(11) DEFAULT '0',
-  `sepAtt` int(11) DEFAULT '0',
-  `octAtt` int(11) DEFAULT '0',
-  `novAtt` int(11) DEFAULT '0',
-  `decAtt` int(11) DEFAULT '0',
+  `janAtt` float NOT NULL,
+  `febAtt` float NOT NULL,
+  `marAtt` float NOT NULL,
+  `aprAtt` float NOT NULL,
+  `mayAtt` float NOT NULL,
+  `junAtt` float NOT NULL,
+  `julAtt` float NOT NULL,
+  `augAtt` float NOT NULL,
+  `sepAtt` float NOT NULL,
+  `octAtt` float NOT NULL,
+  `novAtt` float NOT NULL,
+  `decAtt` float NOT NULL,
   `dateStart` date DEFAULT NULL,
   `dateEnd` date DEFAULT NULL,
   `pretui1` float DEFAULT NULL,
@@ -474,16 +572,22 @@ CREATE TABLE IF NOT EXISTS `schoolyear` (
   PRIMARY KEY (`yearid`),
   KEY `yearstart` (`yearstart`),
   KEY `yearend` (`yearend`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `schoolyear`
 --
 
 INSERT INTO `schoolyear` (`yearid`, `yearstart`, `yearend`, `janAtt`, `febAtt`, `marAtt`, `aprAtt`, `mayAtt`, `junAtt`, `julAtt`, `augAtt`, `sepAtt`, `octAtt`, `novAtt`, `decAtt`, `dateStart`, `dateEnd`, `pretui1`, `premisc1`, `prebook1`, `pretui2`, `premisc2`, `prebook2`, `pretui3`, `premisc3`, `prebook3`, `gradetui1`, `gradebook1`, `grademisc1`, `gradetui2`, `grademisc2`, `gradebook2`, `gradetui3`, `grademisc3`, `gradebook3`, `gradetui4`, `grademisc4`, `gradebook4`, `gradetui5`, `grademisc5`, `gradebook5`, `gradetui6`, `grademisc6`, `gradebook6`, `scfee`, `scstatus`) VALUES
-(18, 2019, 2020, 20, 20, 20, 20, 20, 15, 20, 20, 20, 20, 20, 15, '2019-05-15', '2020-04-15', 10000, 1500, 1000, 10000, 1500, 1000, 10000, 1500, 1000, 10000, 1500, 1000, 10000, 1000, 1500, 10000, 1000, 1500, 10000, 1000, 1500, 10000, 1000, 1501, 11000, 1000, 1500, NULL, 'INACTIVE'),
-(19, 2019, 2020, 8, 78, 78787, 88, 78, 78, 787, 87, 87, 87, 87, 878, '2019-12-01', '2020-12-01', 7, 87, 87, 87, 87, 87, 887, 87, 87, 87, 87, 7, 87, 87, 87, 87, 87, 87, 8, 78, 78, 7, 87, 8, 78, 7, 87, NULL, 'ACTIVE'),
-(20, 2019, 2020, 0, 0, 0, 0, 0, 12, 12, 12, 12, 12, 12, 12, '2019-06-12', '2020-12-01', 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 1, 2, 2, 2, 2, 2, 2, 2, 12, 12, 12, NULL, 'INACTIVE');
+(1, 2019, 2020, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INACTIVE'),
+(2, 2020, 2021, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INACTIVE'),
+(3, 2021, 2022, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INACTIVE'),
+(7, 2019, 2020, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 20115, 'INACTIVE'),
+(10, 2020, 2021, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2020-06-30', '2021-04-15', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5632, 'ACTIVE'),
+(11, 2222, 22223, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2222-05-04', '2223-06-02', 1, 123, 12, 2, 213, 21, 0, 0, 0, 1, 123, 12, 2, 21, 213, 3, 31, 312, 4, 41, 412, 5, 51, 512, 6, 61, 612, 6215, 'INACTIVE'),
+(12, 2023, 2024, 20, 25, 26, 23, 21, 51, 2, 56, 1, 56, 5, 4, '2023-06-02', '2024-05-25', 51548, 5484, 5484, 545, 545, 5454, 0, 0, 0, 545, 54, 54, 54, 54, 54, 54, 54, 545, 45, 454, 545, 45, 45, 454, 545, 45, 54, 545, 'INACTIVE'),
+(13, 9010, 9011, 54541, 545, 45, 454, 54, 54, 54, 54, 54, 54, 5, 45, '9010-01-21', '9011-01-21', 45, 4, 54, 54, 54, 54, 54, 5, 45, 45, 54, 4, 54, 54, 54, 54, 54, 54, 5, 45, 4, 54123, 54, 54, 54, 5, 45, 4, 'INACTIVE'),
+(14, 3019, 3020, 654564, 654, 654, 654, 654, 645, 654, 654, 6, 546, 54, 654, '3019-12-01', '3020-12-01', 654, 6, 54, 654, 654, 654, 654, 546, 6, 546, 654, 54, 654, 654, 654, 65, 46, 54, 654, 654, 6, 54, 654, 654, 654, 65, 465, NULL, 'INACTIVE');
 
 -- --------------------------------------------------------
 
@@ -500,23 +604,22 @@ CREATE TABLE IF NOT EXISTS `section` (
   `yearid` int(11) NOT NULL,
   PRIMARY KEY (`secID`),
   KEY `yearid` (`yearid`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `section`
 --
 
 INSERT INTO `section` (`secID`, `sename`, `gradelvl`, `adviserlname`, `yearid`) VALUES
-(11, 'Undo', '1', 'TOLENTINO', 2020),
-(13, 'Omega', '2', 'TOLENTINO', 2020),
-(14, 'Hebrew', '3', 'PEREZ', 2020),
-(16, 'Alpha', '5', 'MAHMOOD', 2020),
-(17, 'Brew', 'Kinder 1', 'TAASIN', 2020),
-(18, 'Beta', '6', 'TAASIN', 2020),
-(45, 'Georgia', '4', 'MAHMOOD', 2020),
-(46, 'Alpha', '6', 'TOLENTINO', 2019),
-(47, 'Java', 'Grade 3', 'SOBREMONTE', 2019),
-(48, 'Hambop', 'Pre-Kinder', 'SOBREMONTE', 2019);
+(46, 'ALEPH', 'NURSERY', 'CARINIO', 2020),
+(47, 'ALPHA', 'PRE-KINDER', 'MARSAN', 2020),
+(48, 'BETA', 'KINDER', 'ARYOLA', 2020),
+(49, 'GAMMA', 'GRADE 1', 'DEGUZMAN', 2020),
+(51, 'DELTA', 'GRADE 2', 'ABALOS', 2020),
+(52, 'EPSILON', 'GRADE 3', 'PUGADO', 2020),
+(53, 'ZETA', 'GRADE 4', 'BONA', 2020),
+(54, 'ETA', 'GRADE 5', 'SORIANO', 2020),
+(55, 'THETA', 'GRADE 6', 'LERNON', 2020);
 
 -- --------------------------------------------------------
 
@@ -532,17 +635,75 @@ CREATE TABLE IF NOT EXISTS `subject` (
   `yearid` int(11) NOT NULL,
   PRIMARY KEY (`subjID`),
   KEY `yeaid` (`yearid`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `subject`
 --
 
 INSERT INTO `subject` (`subjID`, `subname`, `adviserLname`, `yearid`) VALUES
-(1, 'Math', 'TOLENTINO', 12),
-(2, 'English', 'SOBREMONTE', 13),
-(3, 'Science', 'MAHMOOD', 16),
-(4, 'TLE', 'TOLENTINO', 16);
+(1, 'Math-1', 'Perez', 12),
+(2, 'English-1', 'Portacio', 13),
+(3, 'Filipino-1', 'Boyoten', 10),
+(5, 'Mape-1', 'Galang', 10),
+(6, 'Computer-1', 'Turacao', 10),
+(7, 'Word-1', 'Turao', 10),
+(8, 'Writing-1', 'Lagarde', 10),
+(9, 'Reading-1', 'Piog', 10),
+(10, 'Science-1', 'Flores', 10),
+(11, 'Math-2', 'Perez', 12),
+(12, 'English-2', 'Portacio', 13),
+(13, 'Filipino-2', 'Boyoten', 10),
+(14, 'Mape-2', 'Galang', 10),
+(15, 'Computer-2', 'Turacao', 10),
+(16, 'Word-2', 'Turao', 10),
+(17, 'Writing-2', 'Lagarde', 10),
+(18, 'Reading-2', 'Piog', 10),
+(19, 'Science-2', 'Flores', 10),
+(20, 'Math-3', 'Perez', 12),
+(21, 'English-3', 'Portacio', 13),
+(22, 'Filipino-3', 'Boyoten', 10),
+(23, 'Mape-3', 'Galang', 10),
+(24, 'Computer-3', 'Turacao', 10),
+(25, 'Word-3', 'Turao', 10),
+(26, 'Writing-3', 'Lagarde', 10),
+(27, 'Reading-3', 'Piog', 10),
+(28, 'Science-3', 'Flores', 10),
+(29, 'Math-4', 'Perez', 12),
+(30, 'English-4', 'Portacio', 13),
+(31, 'Filipino-4', 'Boyoten', 10),
+(32, 'Mape-4', 'Galang', 10),
+(33, 'Computer-4', 'Turacao', 10),
+(34, 'Word-4', 'Turao', 10),
+(35, 'Writing-4', 'Lagarde', 10),
+(36, 'Reading-4', 'Piog', 10),
+(37, 'Science-4', 'Flores', 10),
+(38, 'Math-5', 'Perez', 12),
+(39, 'English-5', 'Portacio', 13),
+(40, 'Filipino-5', 'Boyoten', 10),
+(41, 'Mape-5', 'Galang', 10),
+(42, 'Computer-5', 'Turacao', 10),
+(43, 'Word-5', 'Turao', 10),
+(44, 'Writing-4', 'Lagarde', 10),
+(45, 'Reading-5', 'Piog', 10),
+(46, 'Science-5', 'Flores', 10),
+(47, 'Math-6', 'Perez', 12),
+(48, 'English-6', 'Portacio', 13),
+(49, 'Filipino-6', 'Boyoten', 10),
+(50, 'Mape-6', 'Galang', 10),
+(51, 'Computer-6', 'Turacao', 10),
+(52, 'Word-6', 'Turao', 10),
+(53, 'Writing-6', 'Lagarde', 10),
+(54, 'Reading-6', 'Piog', 10),
+(55, 'Science-6', 'Flores', 10),
+(56, 'Writing-N', 'Lagarde', 10),
+(57, 'Reading-N', 'Piog', 10),
+(58, 'Writing-Pk', 'Lagarde', 10),
+(59, 'Reading-Pk', 'Piog', 10),
+(60, 'Math-K', 'Perez', 12),
+(61, 'Word-K', 'Turao', 10),
+(62, 'Writing-K', 'Lagarde', 10),
+(63, 'Reading-K', 'Piog', 10);
 
 --
 -- Constraints for dumped tables
