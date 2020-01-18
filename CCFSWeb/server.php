@@ -69,30 +69,18 @@ if (isset($_POST['login_user'])) {
   }
 
   if (count($errors) == 0) {
-  
   	$query = "SELECT * FROM accounts WHERE username='$username' AND password='$password' AND accstatus='active'";
   	$results = mysqli_query($db, $query);
   	$r = mysqli_fetch_array($results);
-	$_SESSION['type']=$r['type'];
-	if (mysqli_num_rows($results) == 1) {
-	if($r['type']=='ADMIN'){
-	  $_SESSION['username'] = $username;
-  	  $_SESSION['success'] = "You are now logged in";
-  	  header('location: Admin/AdminHome.php');
-	}elseif($r['type']=='REGISTRAR'){
-	  $_SESSION['username'] = $username;
-  	  $_SESSION['success'] = "You are now logged in";
-  	  header('location: Registrar/RegistrarHome.php');
-	}else{
-    $_SESSION['username'] = $username;
-      $_SESSION['success'] = "You are now logged in";
-      header('location: Accounting/AccountingHome.php');
-  }
-  	}
-    else {
-  		array_push($errors, "Wrong credentials or account inactive.");
-  	}
+  	$_SESSION['TYPE']=$r['type'];
+
+  	if (mysqli_num_rows($results) == 1) {
+      $_SESSION['ID'] = $r['accid'];
+      $_SESSION['USERNAME'] = $r['username'];
+      $_SESSION['LOGIN'] = true;
+  	} else {
+    		array_push($errors, "Wrong credentials or account inactive.");
+    }
   }
 }
-
 ?>

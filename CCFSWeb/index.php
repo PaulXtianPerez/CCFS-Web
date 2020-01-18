@@ -1,4 +1,16 @@
-<?php include('server.php') ?>
+<?php 
+	include('server.php');
+
+	if (isset($_SESSION['LOGIN']) && $_SESSION['LOGIN']){
+	  if($_SESSION['TYPE']=='ADMIN'){
+	    header('location: Admin/AdminHome.php');
+	  }elseif($_SESSION['TYPE']=='REGISTRAR'){
+	    header('location: Registrar/RegistrarHome.php');
+	  }else{
+	    header('location: Accounting/AccountingHome.php');
+	  }
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
