@@ -156,7 +156,7 @@
           <li class="nav-item has-treeview">
           <form action="../Enrollment/EnrollmentNew.php" method="post">
           <input type="hidden" name="varname" value="R">
-            <button type="submit" class="nav-link" id="newEnroll" href="'../Enrollment/EnrollmentNew.php'">Enroll Student</button>
+            <button type="submit" class="nav-link" id="newEnroll" href="'../Enrollment/EnrollmentNew.php'"><i class="nav-icon fas fa-id-badge"></i>Enroll Student</button>
           </form>
           </li>
 
