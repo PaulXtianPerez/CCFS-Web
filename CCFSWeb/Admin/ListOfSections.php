@@ -141,7 +141,7 @@ $result = mysqli_query($mysqli, $query);
           </div>
 
           <input type="hidden" name="sec_ID" id="sec_ID" />
-          <input type="submit" name="update" id="update" value="Update" class="btn btn-success" />
+          <input type="submit" name="update" id="update" value="Save Changes" class="btn btn-success" />
         </form>
       </div>
 
@@ -186,7 +186,7 @@ $(document).ready(function(){
           $('#insert_form')[0].reset();
           $('#add_data_Modal').modal('hide');
           $('#secListTable').html(data);
-          $('#update').val("Update");
+          $('#update').val("Save Changes");
         }
       });
     });

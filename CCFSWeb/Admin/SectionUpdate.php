@@ -10,10 +10,10 @@
            $query = "
            UPDATE section
            SET sename='$sename',
-           gradelvl='$gradelvl', 
+           gradelvl='$gradelvl',
            adviserlname='$adviserlname'
            WHERE secID='".$_POST["secID"]."'";
-           $message = 'Account updated.';
+           $message = 'Section updated.';
       }
       if(mysqli_query($connect, $query)) {
            $output .= '<label class="text-success">' . $message . '</label>';
