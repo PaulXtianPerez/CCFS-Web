@@ -2,7 +2,7 @@
 $connect = mysqli_connect('localhost', 'root', '', 'ccfs');
 $input = filter_input_array(INPUT_POST);
 if(isset($input['subject'])) {
-    $sql = "SELECT grades.IDno,GivenName,SurName,subject.subname 
+    $sql = "SELECT grades.IDno,GivenName,SurName,subject.subname,firstquartergrade,secondquartergrade,thirdquartergrade,fourthquartergrade,finalgrade,remarks,grades.subjID
     FROM grades,enstudent,subject,section 
     WHERE grades.sename = section.sename 
     AND grades.sename = '".$input['section']."' 

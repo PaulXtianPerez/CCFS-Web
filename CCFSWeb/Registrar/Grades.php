@@ -300,6 +300,7 @@ $result3 = mysqli_query($conn, $query3);
                     </tbody>
                     </tfoot>
                   </table>
+                  <input type='submit' class='m' value='Save'>
                   </form>
                 </div>
                 <!-- /.card-body -->
@@ -328,6 +329,8 @@ $result3 = mysqli_query($conn, $query3);
 $(document).ready(function() {
   $(".p").remove();
   $("#WELON").val($("#grLvl option:selected").text());
+  $(".m").hide();
+    
   $(document).on('click','.elon',function(){
     var grLvl = $("#grLvl option:selected").text();
     var section = $("#section option:selected").text();
@@ -338,6 +341,56 @@ $(document).ready(function() {
       data:{grLvl:grLvl,section:section,subject:subject},
       dataType:"json",
       success:function(data) {
+        var e = [];
+        var f = [];
+        var g = [];
+        var h = [];
+        var z = [];
+        var j = [];
+        for(var d = 0;d < data.length;d++) {
+          if(data[d].firstquartergrade != null) {
+            e[d] = data[d].firstquartergrade;
+          }else if(data[d].firstquartergrade == null) {
+            e[d] = 0;
+          }
+        }
+        for(var d = 0;d < data.length;d++) {
+          if(data[d].secondquartergrade != null) {
+            f[d] = data[d].secondquartergrade;
+          }else if(data[d].secondquartergrade == null) {
+            f[d] = 0;
+          }
+        }
+        for(var d = 0;d < data.length;d++) {
+          if(data[d].thirdquartergrade != null) {
+            g[d] = data[d].thirdquartergrade;
+          }else if(data[d].thirdquartergrade == null) {
+            g[d] = 0;
+          }
+        }
+        for(var d = 0;d < data.length;d++) {
+          if(data[d].fourthquartergrade != null) {
+            h[d] = data[d].fourthquartergrade;
+          }else if(data[d].fourthquartergrade == null) {
+            h[d] = 0;
+          }
+        }
+        for(var d = 0;d < data.length;d++) {
+          if(data[d].finalgrade != null) {
+            z[d] = data[d].finalgrade;
+          }else if(data[d].finalgrade == null) {
+            z[d] = 0;
+          }
+        }
+        for(var d = 0;d < data.length;d++) {
+          if(data[d].remarks != null) {
+            j[d] = data[d].remarks;
+          }else if(data[d].remarks == null) {
+            j[d] = "NaN";
+          }
+        }
+        
+        console.log(e);
         if(data.length == 0) {
           $(".p").remove();
           $('tbody').append("<tr class='p'><td width='100%' colspan='8' id='i' style='text-align: center;'>No Result</td></tr>");
@@ -345,9 +398,10 @@ $(document).ready(function() {
         }else {
           $(".p").remove();
           for(var i = 0 ; i < data.length;i++) {
-            $('tbody').append("<tr class='p'><td>"+data[i].IDno+"</td><td>"+data[i].GivenName+" "+data[i].SurName+"</td><td><input type='number id='grades' name='grades[]'style='width: 4em'></td><td><input type='number id='grades' name='grades[]'style='width: 4em'></td><td><input type='number id='grades' name='grades[]'style='width: 4em'></td><td><input type='number id='grades' name='grades[]'style='width: 4em'></td><td><input type='number id='grades' name='grades[]'style='width: 4em'></td><td><input type='number id='grades' name='grades[]'style='width: 4em'></td><td><input type='submit' class='m' id="+data[i].IDno+" value='Save'></td></tr>");
+            $('tbody').append("<tr class='p'><td>"+data[i].IDno+"</td><td>"+data[i].GivenName+" "+data[i].SurName+"</td><td><input type='number' id='grades' name='grades[]'style='width: 4em' value="+e[i]+"></td><td><input type='number' id='grades' name='grades[]'style='width: 4em' value="+f[i]+"></td><td><input type='number' id='grades' name='grades[]'style='width: 4em' value="+g[i]+"></td><td><input type='number' id='grades' name='grades[]'style='width: 4em' value="+h[i]+"></td><td><input type='number' id='grades' name='grades[]'style='width: 4em' value="+z[i]+"></td><td><input type='text' id='grades' name='grades[]'style='width: 4em' value="+j[i]+"></td><td><input type='hidden' name='IDno[]' class='m' value="+data[i].IDno+"><input type='hidden' name='subjID' class='m' value="+data[0].subjID+"></td></tr>");
             $("#n").html(data.length+" Results");  
           }
+          $(".m").show();
         }
       }
     });
@@ -357,9 +411,8 @@ $(document).on("click", ":submit", 'form',function(e){
   $.ajax({
     type: 'POST',
     url: 'GradesUpdate.php',
-    data: $('form').serialize() + '&IDno='+ $(this).attr('id'),
+    data: $('form').serialize(),
     success: function (data) {
-      console.log(data);
       console.log(data);
     }
   });
