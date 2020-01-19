@@ -41,6 +41,8 @@ $result = mysqli_query($mysqli, $query);
   <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
   <!-- CSS for DataTables plugin -->
   <link rel="stylesheet" type="text/css" href="../Resources/plugins/bootstrap/js/DataTables/datatables.css">
+  <!-- DataTables plugin -->
+  <script type="text/javascript" charset="utf8" src="../Resources/plugins/bootstrap/js/DataTables/datatables.js"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div id="contents" class="wrapper">
@@ -53,9 +55,6 @@ $result = mysqli_query($mysqli, $query);
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">List of School Years</h1>
-                              <div>
-                    <span id="successmsg"></span>
-                  </div>
           </div><!-- /.col -->
         </div><!-- /.row -->
         <!-- Main content -->
@@ -527,7 +526,5 @@ $("#schyrTable").DataTable({
 <script src="../Resources/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../Resources/dist/js/demo.js"></script>
-<!-- DataTables plugin -->
-<script type="text/javascript" charset="utf8" src="../Resources/plugins/bootstrap/js/DataTables/datatables.js"></script>
 </body>
 </html>
