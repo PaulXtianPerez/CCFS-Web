@@ -111,12 +111,11 @@ if(isset($_POST['enroll'])) {
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-        <h5>School Year: <?php if(empty($data1[0])) {
-          echo "--";
-        }else {
-          echo $data3[0];
-        }
-        ; echo "-" ; if(empty($data2[1])){echo "--";}else {echo $data2[1];}?></h5>
+        <h5>School Year: <?php if(empty($data3[0]) || empty($data2[1])) {
+          echo "-----";
+        } else {
+          echo $data3[0]; echo "-"; echo $data2[1];
+        } ?></h5>
     </ul>
   <!--  <h3>Cypress Christian Foundation School</h3> -->
   </nav>
@@ -304,8 +303,6 @@ if(isset($_POST['enroll'])) {
 <script src="../Resources/dist/js/demo.js"></script>
 <!-- Load new page into #contents div -->
 <script src="disp.js"></script>
-<!-- DataTables plugin -->
-<script type="text/javascript" charset="utf8" src="../Resources/plugins/bootstrap/js/DataTables/datatables.js"></script>
 
 </body>
 </html>
