@@ -108,9 +108,9 @@ $result10 = mysqli_query($connect, $queryG6);
                           <td><?php echo $r[1];?></td>
                           <td><?php echo $r[2];?></td>
                           <input type="hidden" name="rep[1][]" value="<?php echo $row['sename'];?>">
-                          <input type="hidden" name="rep[1][]" value="boys <?php echo $r[0];?>">
-                          <input type="hidden" name="rep[1][]" value="girls <?php echo $r[1];?>">
-                          <input type="hidden" name="rep[1][]" value="total <?php echo $r[2];?>">
+                          <input type="hidden" name="rep[1][]" value="<?php echo $r[0];?>">
+                          <input type="hidden" name="rep[1][]" value=" <?php echo $r[1];?>">
+                          <input type="hidden" name="rep[1][]" value=" <?php echo $r[2];?>">
                         </tr>
                         <tr>
                           <td>Pre-Kinder</td>
@@ -123,9 +123,9 @@ $result10 = mysqli_query($connect, $queryG6);
                           <td><?php echo $rw[1];?></td>
                           <td><?php echo $rw[2];?></td>
                           <input type="hidden" name="rep[2][]" value=<?php echo $row['sename'];?>>
-                          <input type="hidden" name="rep[2][]" value="boys <?php echo $rw[0];?>">
-                          <input type="hidden" name="rep[2][]" value="girls <?php echo $rw[1];?>">
-                          <input type="hidden" name="rep[2][]" value="total <?php echo $rw[2];?>">
+                          <input type="hidden" name="rep[2][]" value="<?php echo $rw[0];?>">
+                          <input type="hidden" name="rep[2][]" value=" <?php echo $rw[1];?>">
+                          <input type="hidden" name="rep[2][]" value=" <?php echo $rw[2];?>">
                         </tr>
                         <tr>
                           <td>Kinder</td>
@@ -138,9 +138,9 @@ $result10 = mysqli_query($connect, $queryG6);
                           <td><?php echo $ra[1];?></td>
                           <td><?php echo $ra[2];?></td>
                           <input type="hidden" name="rep[3][]" value=<?php echo $row['sename'];?>>
-                          <input type="hidden" name="rep[3][]" value="boys <?php echo $ra[0];?>">
-                          <input type="hidden" name="rep[3][]" value="girls <?php echo $ra[1];?>">
-                          <input type="hidden" name="rep[3][]" value="total <?php echo $ra[2];?>">
+                          <input type="hidden" name="rep[3][]" value="<?php echo $ra[0];?>">
+                          <input type="hidden" name="rep[3][]" value="<?php echo $ra[1];?>">
+                          <input type="hidden" name="rep[3][]" value="<?php echo $ra[2];?>">
                         </tr>
                         <tr>  
                           <td></td>
@@ -148,7 +148,11 @@ $result10 = mysqli_query($connect, $queryG6);
                           <td></td>
                           <th><b>Total</b></th>
                           <td><?php echo $ra[2]+$rw[2]+$r[2];?></td>
-                          <input type="hidden" name="rep[4][]" value="TOTAL <?php echo $ra[2]+$rw[2]+$r[2];?>">
+                          <input type="hidden" name="rep[4][]" value="NURSERY TO KINDER TOTAL">
+                          <input type="hidden" name="rep[4][]" value="">
+                          <input type="hidden" name="rep[4][]" value="">
+                          <input type="hidden" name="rep[4][]" value="<?php echo $ra[2]+$rw[2]+$r[2];?>">
+                          <input type="hidden" name="rep[13][]" value="">
                         </tr>
                       </tbody>
                     </table>
@@ -186,9 +190,9 @@ $result10 = mysqli_query($connect, $queryG6);
                           <td><?php echo $g1[1];?></td>
                           <td><?php echo $g1[2];?></td>
                           <input type="hidden" name="rep[5][]" value=<?php echo $ro['sename'];?>>
-                          <input type="hidden" name="rep[5][]" value="boys <?php echo $g1[0];?>">
-                          <input type="hidden" name="rep[5][]" value="girls <?php echo $g1[1];?>">
-                          <input type="hidden" name="rep[5][]" value="total <?php echo $g1[2];?>">
+                          <input type="hidden" name="rep[5][]" value="<?php echo $g1[0];?>">
+                          <input type="hidden" name="rep[5][]" value=" <?php echo $g1[1];?>">
+                          <input type="hidden" name="rep[5][]" value=" <?php echo $g1[2];?>">
                         </tr>
                         <tr>
                           <td>Grade 2</td>
@@ -200,9 +204,9 @@ $result10 = mysqli_query($connect, $queryG6);
                           <td><?php echo $g2[1];?></td>
                           <td><?php echo $g2[1];?></td>
                           <input type="hidden" name="rep[6][]" value=<?php echo $ro['sename'];?>>
-                          <input type="hidden" name="rep[6][]" value="boys <?php echo $g2[0];?>">
-                          <input type="hidden" name="rep[6][]" value="girls <?php echo $g2[1];?>">
-                          <input type="hidden" name="rep[6][]" value="total <?php echo $g2[2];?>">
+                          <input type="hidden" name="rep[6][]" value="<?php echo $g2[0];?>">
+                          <input type="hidden" name="rep[6][]" value=" <?php echo $g2[1];?>">
+                          <input type="hidden" name="rep[6][]" value=" <?php echo $g2[2];?>">
                         </tr>
                         <tr>
                           <td>Grade 3</td>
@@ -213,9 +217,9 @@ $result10 = mysqli_query($connect, $queryG6);
                           <td><?php echo $g3[1];?></td>
                           <td><?php echo $g3[2];?></td>
                           <input type="hidden" name="rep[7][]" value=<?php echo $ro['sename'];?>>
-                          <input type="hidden" name="rep[7][]" value="boys <?php echo $g3[0];?>">
-                          <input type="hidden" name="rep[7][]" value="girls <?php echo $g3[1];?>">
-                          <input type="hidden" name="rep[7][]" value="total <?php echo $g3[2];?>">
+                          <input type="hidden" name="rep[7][]" value="<?php echo $g3[0];?>">
+                          <input type="hidden" name="rep[7][]" value=" <?php echo $g3[1];?>">
+                          <input type="hidden" name="rep[7][]" value=" <?php echo $g3[2];?>">
                         </tr>
                         <tr>
                           <td>Grade 4</td>
@@ -226,9 +230,9 @@ $result10 = mysqli_query($connect, $queryG6);
                           <td><?php echo $g4[1];?></td>
                           <td><?php echo $g4[2];?></td>
                           <input type="hidden" name="rep[8][]" value=<?php echo $ro['sename'];?>>
-                          <input type="hidden" name="rep[8][]" value="boys <?php echo $g4[0];?>">
-                          <input type="hidden" name="rep[8][]" value="girls <?php echo $g4[1];?>">
-                          <input type="hidden" name="rep[8][]" value="total <?php echo $g4[2];?>">
+                          <input type="hidden" name="rep[8][]" value="<?php echo $g4[0];?>">
+                          <input type="hidden" name="rep[8][]" value=" <?php echo $g4[1];?>">
+                          <input type="hidden" name="rep[8][]" value=" <?php echo $g4[2];?>">
                         </tr>
                         <tr>
                           <td>Grade 5</td>
@@ -239,9 +243,9 @@ $result10 = mysqli_query($connect, $queryG6);
                           <td><?php echo $g5[1];?></td>
                           <td><?php echo $g5[2];?></td>
                           <input type="hidden" name="rep[9][]" value=<?php echo $ro['sename'];?>>
-                          <input type="hidden" name="rep[9][]" value="boys <?php echo $g5[0];?>">
-                          <input type="hidden" name="rep[9][]" value="girls <?php echo $g5[1];?>">
-                          <input type="hidden" name="rep[9][]" value="total <?php echo $g5[2];?>">
+                          <input type="hidden" name="rep[9][]" value="<?php echo $g5[0];?>">
+                          <input type="hidden" name="rep[9][]" value=" <?php echo $g5[1];?>">
+                          <input type="hidden" name="rep[9][]" value=" <?php echo $g5[2];?>">
                         </tr>
                         <tr>
                           <td>Grade 6</td>
@@ -252,9 +256,9 @@ $result10 = mysqli_query($connect, $queryG6);
                           <td><?php echo $g6[1];?></td>
                           <td><?php echo $g6[2];?></td>
                           <input type="hidden" name="rep[10][]" value=<?php echo $ro['sename'];?>>
-                          <input type="hidden" name="rep[10][]" value="boys <?php echo $g6[0];?>">
-                          <input type="hidden" name="rep[10][]" value="girls <?php echo $g6[1];?>">
-                          <input type="hidden" name="rep[10][]" value="total <?php echo $g6[2];?>">
+                          <input type="hidden" name="rep[10][]" value="<?php echo $g6[0];?>">
+                          <input type="hidden" name="rep[10][]" value="<?php echo $g6[1];?>">
+                          <input type="hidden" name="rep[10][]" value="<?php echo $g6[2];?>">
                         </tr>
                         <tr>
                           <td><?php?></td>
@@ -262,7 +266,11 @@ $result10 = mysqli_query($connect, $queryG6);
                           <td></td> 
                           <th><b>Total</b></td>
                           <td><?php echo $g1[2]+$g2[2]+$g3[2]+$g4[2]+$g5[2]+$g6[2];?></td>
-                          <input type="hidden" name="rep[11][]" value="TOTAL <?php echo $g1[2]+$g2[2]+$g3[2]+$g4[2]+$g5[2]+$g6[2];?>">
+                          <input type="hidden" name="rep[11][]" value="GRADE 1 TO GRADE 6 TOTAL">
+                          <input type="hidden" name="rep[11][]" value="">
+                          <input type="hidden" name="rep[11][]" value="">
+                          <input type="hidden" name="rep[11][]" value="<?php echo $g1[2]+$g2[2]+$g3[2]+$g4[2]+$g5[2]+$g6[2];?>">
+                          <input type="hidden" name="rep[14][]" value="">
                         </tr>
                       </tbody>
                     </table>
@@ -295,9 +303,11 @@ $result10 = mysqli_query($connect, $queryG6);
                           <td><?php echo $g1[0]+$g2[0]+$g3[0]+$g4[0]+$g5[0]+$g6[0]+$r[0]+$rw[0]+$ra[0]?></td>
                           <td><?php echo $g1[1]+$g2[1]+$g3[1]+$g4[1]+$g5[1]+$g6[1]+$r[1]+$rw[1]+$ra[1]?></td>
                           <td><?php echo $g1[2]+$g2[2]+$g3[2]+$g4[2]+$g5[2]+$g6[2]+$r[2]+$rw[2]+$ra[2]?></td>
-                          <input type="hidden" name="rep[12][]" value="TOTAL boys <?php echo $g1[0]+$g2[0]+$g3[0]+$g4[0]+$g5[0]+$g6[0]+$r[0]+$rw[0]+$ra[0]?>">
-                          <input type="hidden" name="rep[12][]" value="TOTAL girls <?php echo $g1[1]+$g2[1]+$g3[1]+$g4[1]+$g5[1]+$g6[1]+$r[1]+$rw[1]+$ra[1]?>">
-                          <input type="hidden" name="rep[12][]" value="TOTAL <?php echo $g1[2]+$g2[2]+$g3[2]+$g4[2]+$g5[2]+$g6[2]+$r[2]+$rw[2]+$ra[2]?>">
+                          <input type="hidden" name="rep[15][]" value="">
+                          <input type="hidden" name="rep[12][]" value="OVERALL TOTAL">
+                          <input type="hidden" name="rep[12][]" value="<?php echo $g1[0]+$g2[0]+$g3[0]+$g4[0]+$g5[0]+$g6[0]+$r[0]+$rw[0]+$ra[0]?>">
+                          <input type="hidden" name="rep[12][]" value="<?php echo $g1[1]+$g2[1]+$g3[1]+$g4[1]+$g5[1]+$g6[1]+$r[1]+$rw[1]+$ra[1]?>">
+                          <input type="hidden" name="rep[12][]" value="<?php echo $g1[2]+$g2[2]+$g3[2]+$g4[2]+$g5[2]+$g6[2]+$r[2]+$rw[2]+$ra[2]?>">
                       </tbody>
                     </table>
                   </div>
