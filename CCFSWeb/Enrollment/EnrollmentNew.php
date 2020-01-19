@@ -41,6 +41,7 @@
     <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
 </head>
 <body>
+<form>
   <!-- Content Wrapper. Contains page content -->
   <div id="contents">
     <!-- Content Header (Page header) -->
@@ -75,7 +76,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="EnrollmentSave.php" method="post">
+              <form>
                 <input type="hidden" name="studentIDno" value="">
                 <input type="hidden" name="redirect_to" value="<?php echo $_SESSION['TYPE'] == 'ADMIN' ? '../Admin/AdminHome.php' : '../Registrar/RegistrarHome.php'; ?>">
 
@@ -114,6 +115,7 @@
                     <div class="form-group col-md-3">
                         <label>Grade Level</label>
                         <select class="form-control" name="gradeLevel">
+                          <option>Nursery</option>
                           <option>Preschool</option>
                           <option>Kinder</option>
                           <option>Grade 1</option>
@@ -287,35 +289,42 @@
       </div><!-- /.container-fluid -->
     </div>
       <div class="card-footer">
-          <button type="submit" class="btn btn-success" data-toggle="modal" name="enroll" value="enroll" data-target="#myModal1" style="float: right;">Submit</button>
+          <button type="submit" class="btn btn-success" data-toggle="modal" name="enroll" data-target="#myModal1" style="float: right;">Enroll</button>
       </div>
           </form>
 
 
           <!-- The Modal -->
-  <div class="modal fade" id="myModal1">
+  <div class="modal fade Weeb" id="myModal1" data-backdrop="static">
     
     <div class="modal-dialog">
       <div class="modal-content">
 
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">Enroll this Student?</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title kk">Success</h4>
         </div>
 
         <!-- Modal body -->
         <div class="modal-body">
 
-          <center>Student Information</center>
-          <hr>
-          <!-- Put Student Information here-->
+          <center>Fill up this form</center>
+          <input type="hidden" name="yerrr">
+          <label>Tuition</label>
+          <input class="form-control" type="number" name="tuition">
+          <label>Books</label>
+          <input class="form-control" type="number" name="books">
+          <label>Mics</label>
+          <input class="form-control" type="number" name="mics" id="grenades">
+          <label>service</label>
+          <input class="form-control" type="number" name="service">
+          <label>balance</label>
+          <input class="form-control" type="number" name="balance">
         </div>
 
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-success" data-dismiss="modal">Confirm</button>
+          <button type="button" class="btn btn-success elon-chan" data-dismiss="modal">Confirm</button>
         </div>
 
       </div>
@@ -381,11 +390,11 @@
     <!-- AdminLTE for demo purposes -->
     <script src="../Resources/dist/js/demo.js"></script>
 
-    <script type="text/javascript">
-      $('document').ready(function () {
+    <script>
+      $(document).ready(function () {
+        
         $('[name=searcher]').on('click', function () {
           var search = $('[name=search]').val();
-
           $.ajax({
             url: 'searchStudent.php',
             data: { s: search },
@@ -400,9 +409,9 @@
                 $('[name=studentSurname]').val(student.SurName);
                 $('[name=studentGivenName]').val(student.GivenName);
                 $('[name=studentMiddleName]').val(student.MiddleName);
-                $('[name=gender]').val(student.gender);
+                $('[name=gender] option:selected').val(student.gender);
                 $('[name=studentBirthDate]').val(student.birthdate);
-                $('[name=gradeLevel]').val(student.gradelvl);
+                $('[name=gradeLevel] option:selected').val(student.gradelvl);
                 $('[name=sename]').val(student.sename);
                 $('[name=studentBirthPlace]').val(student.birthplace);
                 $('[name=studentAddress]').val(student.studaddress);
@@ -428,8 +437,53 @@
                 alert( data.message );
               }
           });
-
           return false;
+        });
+        $(document).on('click',':submit','form',function(e){
+          e.preventDefault();
+          if(!$('input[name=studentBirthPlace]').val()) {
+            $('.kk').text('Not Success');
+            $('input[name=tuition]').prop('disabled',true);
+            $('input[name=books]').prop('disabled',true);
+            $('input[name=mics]').prop('disabled',true);
+            $('input[name=service]').prop('disabled',true);
+            $('input[name=balance]').prop('disabled',true);
+          }else {
+            $('.kk').text('Success');
+            $('input[name=tuition]').prop('disabled',false);
+            $('input[name=books]').prop('disabled',false);
+            $('input[name=mics]').prop('disabled',false);
+            $('input[name=service]').prop('disabled',false);
+            $('input[name=balance]').prop('disabled',false);
+          }
+          $.ajax({
+            type:'POST',
+            url:'EnrollmentSave.php',
+            data: $('form').serialize(),
+            success:function(data) {
+              $('input[name=yerrr]').val(data);
+            }
+          });
+        });
+        $(document).on('click','.elon-chan',function(e) {
+          e.preventDefault();
+          var idno = $('input[name=studentIDno]').val();
+          var yearid = $('input[name=yerrr]').val();
+          var t = $('input[name=tuition]').val();
+          var b = $('input[name=books]').val();
+          var m = $('input[name=mics]').val();
+          var s = $('input[name=service]').val();
+          var ba = $('input[name=balance]').val();
+          var redirect = $('input[name=redirect_to]').val();
+          $.ajax({
+            url:'EnrollFees.php',
+            type:'POST',
+            data:{idno:idno,yearid:yearid,t:t,b:b,m:m,s:s,ba:ba},
+            dataType:"json",
+            success:function(data) {
+              console.log(data)
+            }
+          });
         });
       });
     </script>
