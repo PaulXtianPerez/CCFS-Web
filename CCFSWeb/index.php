@@ -1,4 +1,4 @@
-<?php 
+<?php
 	include('server.php');
 
 	if (isset($_SESSION['LOGIN']) && $_SESSION['LOGIN']){
@@ -15,7 +15,7 @@
 <html lang="en">
 <head>
 	<title>CCFS Login</title>
-	<link rel="icon" href="../Resources/dist/img/CCFS_logo.png" type="image/icon type">
+	<link rel="icon" href="Resources/dist/img/CCFS_logo.png" type="image/icon type">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -52,7 +52,7 @@
 						Cypress Christian Foundation School
 					</span>
 
-					 
+
 					<div class="wrap-input100 validate-input" data-validate="Username is required">
 						<input class="input100" type="text" name="username" placeholder="Username">
 						<span class="focus-input100-1"></span>
