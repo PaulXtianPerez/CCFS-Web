@@ -1,7 +1,18 @@
-<?php include '../ActiveSchoolYear.php';
- include ('../edit.php');
+<?php
+ include('../ActiveSchoolYear.php');
+ include('../edit.php');
  include('../server.php');
  include('Connection.php');
+
+ if (isset($_SESSION['LOGIN']) && $_SESSION['LOGIN']){
+   if($_SESSION['TYPE']=='REGISTRAR'){
+     header('location: ../Registrar/RegistrarHome.php');
+   }elseif($_SESSION['TYPE']=='ACCOUNTING'){
+     header('location: ../Accounting/AccountingHome.php');
+   }
+ } else {
+   header('location: ../index.php');
+ }
 
  $lastID = 'SELECT IDno FROM enstudent ORDER BY IDno DESC LIMIT 1';
  $result = $conn->query($lastID);
@@ -50,6 +61,7 @@ if(isset($_POST['enroll'])) {
  $message = "successfully enrolled a student";
 }
  ?>
+
 <!DOCTYPE html>
 <html>
 <head>
