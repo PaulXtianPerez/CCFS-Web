@@ -83,7 +83,7 @@ while($row = mysqli_fetch_array($result16)) {
 for($i = 0; $i < sizeof($data6);$i++) {
   $query7 = "SELECT IDno,subjID,sename FROM grades WHERE IDno = ".$data6[$i]['IDno']."";
   $result7 = mysqli_query($conn,$query7);
-  if (mysqli_num_rows($result7) == 0) { 
+  if (mysqli_num_rows($result7) == 0) {
     switch($data6[$i]['gradelvl']) {
       case 'NURSERY':
         for($in = 0; $in < sizeof($data8);$in++) {
@@ -133,7 +133,7 @@ for($i = 0; $i < sizeof($data6);$i++) {
           $conn->query($sqlN);
         }
       break;
-      case 'GRADE 6':    
+      case 'GRADE 6':
         for($in = 0; $in < sizeof($data16);$in++) {
           $sqlN = "INSERT INTO `grades`(`subjID`, `sename`,`IDno`, `yearid`) VALUES ('".$data16[$in]['subjID']."','THETA','".$data6[$i]['IDno']."','".$data5[0]['yearid']."')";
         }
@@ -182,6 +182,8 @@ $result3 = mysqli_query($conn, $query3);
   <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
   <!-- CSS for DataTables plugin -->
   <link rel="stylesheet" type="text/css" href="../Resources/plugins/bootstrap/js/DataTables/datatables.css">
+  <!-- DataTables plugin -->
+  <script type="text/javascript" charset="utf8" src="../Resources/plugins/bootstrap/js/DataTables/datatables.js"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div id="contents" class="wrapper">
@@ -244,7 +246,7 @@ $result3 = mysqli_query($conn, $query3);
                           <?php
                             while($row = mysqli_fetch_array($result2)) {
                               echo "<option>".$row['subname']."</option>";
-  
+
                             }
                           ?>
                         </select>
@@ -254,10 +256,10 @@ $result3 = mysqli_query($conn, $query3);
                         <br><input class="btn btn-default elon" type="button"  name="submit" value="Go">
                       </div>
                     </div>
-      
+
                 </div>
                 <!-- /.card-header -->
-                
+
                 <div class="card-body">
                   <table id="gradesTable" class="table table-bordered table-hover">
                     <thead style="text-align:center;">
@@ -296,11 +298,11 @@ $result3 = mysqli_query($conn, $query3);
                           ';
                         }
                         ?>
-                        
+
                     </tbody>
                     </tfoot>
                   </table>
-                  <input type='submit' class='m' value='Save'>
+                  <input type='submit' class='m btn btn-success' value='Save'>
                   </form>
                 </div>
                 <!-- /.card-body -->
@@ -312,7 +314,7 @@ $result3 = mysqli_query($conn, $query3);
       </div><!-- /.container-fluid -->
     </div>
   </div>
-  
+
 </div> <!-- ./wrapper -->
 
 <!-- Initialize DataTables plugin -->
@@ -330,7 +332,7 @@ $(document).ready(function() {
   $(".p").remove();
   $("#WELON").val($("#grLvl option:selected").text());
   $(".m").hide();
-    
+
   $(document).on('click','.elon',function(){
     var grLvl = $("#grLvl option:selected").text();
     var section = $("#section option:selected").text();
@@ -389,17 +391,17 @@ $(document).ready(function() {
             j[d] = "NaN";
           }
         }
-        
+
         console.log(e);
         if(data.length == 0) {
           $(".p").remove();
           $('tbody').append("<tr class='p'><td width='100%' colspan='8' id='i' style='text-align: center;'>No Result</td></tr>");
-          $("#n").html("No Result");  
+          $("#n").html("No Result");
         }else {
           $(".p").remove();
           for(var i = 0 ; i < data.length;i++) {
             $('tbody').append("<tr class='p'><td>"+data[i].IDno+"</td><td>"+data[i].GivenName+" "+data[i].SurName+"</td><td><input type='number' id='grades' min='0' name='grades[]'style='width: 4em' value="+e[i]+"></td><td><input type='number' id='grades' name='grades[]'style='width: 4em' value="+f[i]+"></td><td><input type='number' id='grades' name='grades[]'style='width: 4em' value="+g[i]+"></td><td><input type='number' id='grades' name='grades[]'style='width: 4em' value="+h[i]+"></td><td><input type='number' id='grades' name='grades[]'style='width: 4em' value="+z[i]+"></td><td><input type='text' id='grades' name='grades[]'style='width: 4em' value="+j[i]+"></td><td><input type='hidden' name='IDno[]' class='m' value="+data[i].IDno+"><input type='hidden' name='subjID' class='m' value="+data[0].subjID+"></td></tr>");
-            $("#n").html(data.length+" Results");  
+            $("#n").html(data.length+" Results");
           }
           $(".m").show();
         }
@@ -439,7 +441,7 @@ $(document).on("click", ":submit", 'form',function(e){
   // $(document).on('click','.m',function() {
   //   var student_id = $(this).attr("id");
   // });
-  
+
     // $('#gradesTable').Tabledit({
     //  url:'GradesAction.php',
     //  deleteButton: false,
@@ -459,7 +461,7 @@ $(document).on("click", ":submit", 'form',function(e){
 
 });
 // if($("#grLvl option:selected").text() == 'Nursery') {
-    
+
   // }
   // var d = "e";
   //   $.ajax({
@@ -512,8 +514,6 @@ $(document).on("click", ":submit", 'form',function(e){
 <script src="../Resources/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../Resources/dist/js/demo.js"></script>
-<!-- DataTables plugin -->
-<script type="text/javascript" charset="utf8" src="../Resources/plugins/bootstrap/js/DataTables/datatables.js"></script>
 <!-- JQuery Inline Table Editor Plugin -->
 <script src="../Resources/plugins/jquery/jquery.tabledit.js"></script>
 <script src="../Resources/plugins/jquery/jquery.tabledit.min.js"></script>
