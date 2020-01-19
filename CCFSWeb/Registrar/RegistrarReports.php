@@ -1,7 +1,30 @@
 <?php
+$connect = mysqli_connect("localhost", "root", "", "ccfs");
+
 include('../ActiveSchoolYear.php');
-include("Connection.php");
-$query = "SELECT sename,section.gradelvl,curstudent.IDno FROM curstudent,section,enstudent";
+$query = "SELECT sename FROM section WHERE gradelvl='NURSERY' OR gradelvl='PRE-KINDER' or gradelvl='KINDER'";
+$query1 = "SELECT sename FROM section WHERE gradelvl='GRADE 1' OR gradelvl='GRADE 2' or gradelvl='GRADE 3' or gradelvl='GRADE 4' or gradelvl='GRADE 5' or gradelvl='GRADE 6'";
+$queryN = "SELECT COUNT(CASE WHEN gender='M' THEN 1 END)MAIL, COUNT(CASE WHEN gender='F' THEN 1 END)FEMALE, COUNT(*)TOTAL FROM enstudent,curstudent WHERE enstudent.IDno = curstudent.IDno AND curstudent.gradelvl = 'NURSERY'";
+$queryPK = "SELECT COUNT(CASE WHEN gender='M' THEN 1 END)MAIL, COUNT(CASE WHEN gender='F' THEN 1 END)FEMALE, COUNT(*)TOTAL FROM enstudent,curstudent WHERE enstudent.IDno = curstudent.IDno AND curstudent.gradelvl = 'PRE-KINDER'";
+$queryK = "SELECT COUNT(CASE WHEN gender='M' THEN 1 END)MAIL, COUNT(CASE WHEN gender='F' THEN 1 END)FEMALE, COUNT(*)TOTAL FROM enstudent,curstudent WHERE enstudent.IDno = curstudent.IDno AND curstudent.gradelvl = 'KINDER'";
+$queryG1 = "SELECT COUNT(CASE WHEN gender='M' THEN 1 END)MAIL, COUNT(CASE WHEN gender='F' THEN 1 END)FEMALE, COUNT(*)TOTAL FROM enstudent,curstudent WHERE enstudent.IDno = curstudent.IDno AND curstudent.gradelvl = 'GRADE 1'";
+$queryG2 = "SELECT COUNT(CASE WHEN gender='M' THEN 1 END)MAIL, COUNT(CASE WHEN gender='F' THEN 1 END)FEMALE, COUNT(*)TOTAL FROM enstudent,curstudent WHERE enstudent.IDno = curstudent.IDno AND curstudent.gradelvl = 'GRADE 2'";
+$queryG3 = "SELECT COUNT(CASE WHEN gender='M' THEN 1 END)MAIL, COUNT(CASE WHEN gender='F' THEN 1 END)FEMALE, COUNT(*)TOTAL FROM enstudent,curstudent WHERE enstudent.IDno = curstudent.IDno AND curstudent.gradelvl = 'GRADE 3'";
+$queryG4 = "SELECT COUNT(CASE WHEN gender='M' THEN 1 END)MAIL, COUNT(CASE WHEN gender='F' THEN 1 END)FEMALE, COUNT(*)TOTAL FROM enstudent,curstudent WHERE enstudent.IDno = curstudent.IDno AND curstudent.gradelvl = 'GRADE 4'";
+$queryG5 = "SELECT COUNT(CASE WHEN gender='M' THEN 1 END)MAIL, COUNT(CASE WHEN gender='F' THEN 1 END)FEMALE, COUNT(*)TOTAL FROM enstudent,curstudent WHERE enstudent.IDno = curstudent.IDno AND curstudent.gradelvl = 'GRADE 5'";
+$queryG6 = "SELECT COUNT(CASE WHEN gender='M' THEN 1 END)MAIL, COUNT(CASE WHEN gender='F' THEN 1 END)FEMALE, COUNT(*)TOTAL FROM enstudent,curstudent WHERE enstudent.IDno = curstudent.IDno AND curstudent.gradelvl = 'GRADE 6'";
+
+$result = mysqli_query($connect, $query);
+$result1 = mysqli_query($connect, $queryN);
+$result2 = mysqli_query($connect, $queryPK);
+$result3 = mysqli_query($connect, $queryK);
+$result4 = mysqli_query($connect, $query1);
+$result5 = mysqli_query($connect, $queryG1);
+$result6 = mysqli_query($connect, $queryG2);
+$result7 = mysqli_query($connect, $queryG3);
+$result8 = mysqli_query($connect, $queryG4);
+$result9 = mysqli_query($connect, $queryG5);
+$result10 = mysqli_query($connect, $queryG6);
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -35,6 +58,7 @@ $query = "SELECT sename,section.gradelvl,curstudent.IDno FROM curstudent,section
     <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
   </head>
   <body>
+  <form action="DlRep.php" method="post">
     <!-- Content Wrapper. Contains page content -->
     <div id="contents">
       <!-- Content Header (Page header) -->
@@ -62,6 +86,7 @@ $query = "SELECT sename,section.gradelvl,curstudent.IDno FROM curstudent,section
                   </div>
                   <!-- /.card-header -->
                   <div class="card-body">
+                  <form method="post">
                     <table id="preSchSummary" class="table table-bordered table-hover">
                       <thead>
                       <tr>
@@ -75,31 +100,55 @@ $query = "SELECT sename,section.gradelvl,curstudent.IDno FROM curstudent,section
                       <tbody> <!-- Populate from database. -->
                         <tr>
                           <td>Nursery</td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
+                          <td><?php $row = mysqli_fetch_array($result);
+                                    echo $row['sename'];
+                           ?></td>
+                          <td><?php $r = mysqli_fetch_array($result1);
+                          echo $r[0];?></td>
+                          <td><?php echo $r[1];?></td>
+                          <td><?php echo $r[2];?></td>
+                          <input type="hidden" name="rep[1][]" value="<?php echo $row['sename'];?>">
+                          <input type="hidden" name="rep[1][]" value="boys <?php echo $r[0];?>">
+                          <input type="hidden" name="rep[1][]" value="girls <?php echo $r[1];?>">
+                          <input type="hidden" name="rep[1][]" value="total <?php echo $r[2];?>">
                         </tr>
                         <tr>
                           <td>Pre-Kinder</td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
+                          <td><?php $row = mysqli_fetch_array($result);
+                                    echo $row['sename'];
+                           ?></td>
+                          <td><?php $rw = mysqli_fetch_array($result2);
+                                    echo $rw[0];
+                           ?></td>
+                          <td><?php echo $rw[1];?></td>
+                          <td><?php echo $rw[2];?></td>
+                          <input type="hidden" name="rep[2][]" value=<?php echo $row['sename'];?>>
+                          <input type="hidden" name="rep[2][]" value="boys <?php echo $rw[0];?>">
+                          <input type="hidden" name="rep[2][]" value="girls <?php echo $rw[1];?>">
+                          <input type="hidden" name="rep[2][]" value="total <?php echo $rw[2];?>">
                         </tr>
                         <tr>
                           <td>Kinder</td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
+                          <td><?php $row = mysqli_fetch_array($result);
+                                    echo $row['sename'];
+                           ?></td>
+                          <td><?php $ra = mysqli_fetch_array($result3);
+                                    echo $ra[0];
+                           ?></td>
+                          <td><?php echo $ra[1];?></td>
+                          <td><?php echo $ra[2];?></td>
+                          <input type="hidden" name="rep[3][]" value=<?php echo $row['sename'];?>>
+                          <input type="hidden" name="rep[3][]" value="boys <?php echo $ra[0];?>">
+                          <input type="hidden" name="rep[3][]" value="girls <?php echo $ra[1];?>">
+                          <input type="hidden" name="rep[3][]" value="total <?php echo $ra[2];?>">
                         </tr>
                         <tr>  
                           <td></td>
                           <td></td>
                           <td></td>
-                          <td><b>Total</b></td>
-                          <td></td>
+                          <th><b>Total</b></th>
+                          <td><?php echo $ra[2]+$rw[2]+$r[2];?></td>
+                          <input type="hidden" name="rep[4][]" value="TOTAL <?php echo $ra[2]+$rw[2]+$r[2];?>">
                         </tr>
                       </tbody>
                     </table>
@@ -130,31 +179,90 @@ $query = "SELECT sename,section.gradelvl,curstudent.IDno FROM curstudent,section
                       <tbody> <!-- Populate from database. -->
                         <tr>
                           <td>Grade 1</td>
-                          <td>[Section]</td>
+                          <td><?php $ro = mysqli_fetch_array($result4);
+                                    echo $ro['sename'];?></td>
+                          <td><?php $g1 = mysqli_fetch_array($result5);
+                                    echo $g1[0];?></td>
+                          <td><?php echo $g1[1];?></td>
+                          <td><?php echo $g1[2];?></td>
+                          <input type="hidden" name="rep[5][]" value=<?php echo $ro['sename'];?>>
+                          <input type="hidden" name="rep[5][]" value="boys <?php echo $g1[0];?>">
+                          <input type="hidden" name="rep[5][]" value="girls <?php echo $g1[1];?>">
+                          <input type="hidden" name="rep[5][]" value="total <?php echo $g1[2];?>">
                         </tr>
                         <tr>
                           <td>Grade 2</td>
-                          <td>[Section]</td>
+                          <td><?php $ro = mysqli_fetch_array($result4);
+                                    echo $ro['sename'];?></td>
+                          <td><?php $g2 = mysqli_fetch_array($result6);
+                          echo $g2[0];
+                           ?></td>
+                          <td><?php echo $g2[1];?></td>
+                          <td><?php echo $g2[1];?></td>
+                          <input type="hidden" name="rep[6][]" value=<?php echo $ro['sename'];?>>
+                          <input type="hidden" name="rep[6][]" value="boys <?php echo $g2[0];?>">
+                          <input type="hidden" name="rep[6][]" value="girls <?php echo $g2[1];?>">
+                          <input type="hidden" name="rep[6][]" value="total <?php echo $g2[2];?>">
                         </tr>
                         <tr>
                           <td>Grade 3</td>
-                          <td>[Section]</td>
+                          <td><?php $ro = mysqli_fetch_array($result4);
+                                    echo $ro['sename'];?></td>
+                          <td><?php $g3 = mysqli_fetch_array($result7);
+                          echo $g3[0];?></td>
+                          <td><?php echo $g3[1];?></td>
+                          <td><?php echo $g3[2];?></td>
+                          <input type="hidden" name="rep[7][]" value=<?php echo $ro['sename'];?>>
+                          <input type="hidden" name="rep[7][]" value="boys <?php echo $g3[0];?>">
+                          <input type="hidden" name="rep[7][]" value="girls <?php echo $g3[1];?>">
+                          <input type="hidden" name="rep[7][]" value="total <?php echo $g3[2];?>">
                         </tr>
                         <tr>
                           <td>Grade 4</td>
-                          <td>[Section]</td>
+                          <td><?php $ro = mysqli_fetch_array($result4);
+                                    echo $ro['sename'];?></td>
+                          <td><?php $g4 = mysqli_fetch_array($result8);
+                          echo $g4[0];?></td>
+                          <td><?php echo $g4[1];?></td>
+                          <td><?php echo $g4[2];?></td>
+                          <input type="hidden" name="rep[8][]" value=<?php echo $ro['sename'];?>>
+                          <input type="hidden" name="rep[8][]" value="boys <?php echo $g4[0];?>">
+                          <input type="hidden" name="rep[8][]" value="girls <?php echo $g4[1];?>">
+                          <input type="hidden" name="rep[8][]" value="total <?php echo $g4[2];?>">
                         </tr>
                         <tr>
                           <td>Grade 5</td>
-                          <td>[Section]</td>
+                          <td><?php $ro = mysqli_fetch_array($result4);
+                                    echo $ro['sename'];?></td>
+                          <td><?php $g5 = mysqli_fetch_array($result9);
+                          echo $g5[0];?></td>
+                          <td><?php echo $g5[1];?></td>
+                          <td><?php echo $g5[2];?></td>
+                          <input type="hidden" name="rep[9][]" value=<?php echo $ro['sename'];?>>
+                          <input type="hidden" name="rep[9][]" value="boys <?php echo $g5[0];?>">
+                          <input type="hidden" name="rep[9][]" value="girls <?php echo $g5[1];?>">
+                          <input type="hidden" name="rep[9][]" value="total <?php echo $g5[2];?>">
                         </tr>
                         <tr>
                           <td>Grade 6</td>
-                          <td>[Section]</td>
+                          <td><?php $ro = mysqli_fetch_array($result4);
+                                    echo $ro['sename'];?></td>
+                          <td><?php $g6 = mysqli_fetch_array($result10);
+                          echo $g6[0];?></td>
+                          <td><?php echo $g6[1];?></td>
+                          <td><?php echo $g6[2];?></td>
+                          <input type="hidden" name="rep[10][]" value=<?php echo $ro['sename'];?>>
+                          <input type="hidden" name="rep[10][]" value="boys <?php echo $g6[0];?>">
+                          <input type="hidden" name="rep[10][]" value="girls <?php echo $g6[1];?>">
+                          <input type="hidden" name="rep[10][]" value="total <?php echo $g6[2];?>">
                         </tr>
                         <tr>
+                          <td><?php?></td>
                           <td></td>
-                          <td><b>Total</b></td>
+                          <td></td> 
+                          <th><b>Total</b></td>
+                          <td><?php echo $g1[2]+$g2[2]+$g3[2]+$g4[2]+$g5[2]+$g6[2];?></td>
+                          <input type="hidden" name="rep[11][]" value="TOTAL <?php echo $g1[2]+$g2[2]+$g3[2]+$g4[2]+$g5[2]+$g6[2];?>">
                         </tr>
                       </tbody>
                     </table>
@@ -184,6 +292,12 @@ $query = "SELECT sename,section.gradelvl,curstudent.IDno FROM curstudent,section
                       <tbody> <!-- Populate from database. -->
                         <tr>
                           <td><b>Total Students</b></td>
+                          <td><?php echo $g1[0]+$g2[0]+$g3[0]+$g4[0]+$g5[0]+$g6[0]+$r[0]+$rw[0]+$ra[0]?></td>
+                          <td><?php echo $g1[1]+$g2[1]+$g3[1]+$g4[1]+$g5[1]+$g6[1]+$r[1]+$rw[1]+$ra[1]?></td>
+                          <td><?php echo $g1[2]+$g2[2]+$g3[2]+$g4[2]+$g5[2]+$g6[2]+$r[2]+$rw[2]+$ra[2]?></td>
+                          <input type="hidden" name="rep[12][]" value="TOTAL boys <?php echo $g1[0]+$g2[0]+$g3[0]+$g4[0]+$g5[0]+$g6[0]+$r[0]+$rw[0]+$ra[0]?>">
+                          <input type="hidden" name="rep[12][]" value="TOTAL girls <?php echo $g1[1]+$g2[1]+$g3[1]+$g4[1]+$g5[1]+$g6[1]+$r[1]+$rw[1]+$ra[1]?>">
+                          <input type="hidden" name="rep[12][]" value="TOTAL <?php echo $g1[2]+$g2[2]+$g3[2]+$g4[2]+$g5[2]+$g6[2]+$r[2]+$rw[2]+$ra[2]?>">
                       </tbody>
                     </table>
                   </div>
@@ -219,20 +333,80 @@ $query = "SELECT sename,section.gradelvl,curstudent.IDno FROM curstudent,section
                       <tbody> <!-- Populate from database. -->
                         <tr>
                           <td>Academic Scholars</td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
                         </tr>
                         <tr>
                           <td>Paying</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
                         </tr>
                         <tr>
                           <td>Full Sponsors</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
                         </tr>
                         <tr>
                           <td>% Sponsors</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
                         </tr>
                         <tr>
                           <td>Staff Scholar</td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
                         </tr>
                           <td><b>Total</b></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
                         </tr>
                       </tbody>
                     </table>
@@ -262,14 +436,26 @@ $query = "SELECT sename,section.gradelvl,curstudent.IDno FROM curstudent,section
             </div>
 
             <div class="card-footer">
-              <button type="button" class="btn btn-success" name="saveBtn" style="float: right;">Save report as...</button>
+              <input type="submit" class="btn btn-success" name="saveBtn" style="float: right;" value="Save as..">
             </div>
-
+            </form>
           </section>
         </div><!-- /.container-fluid -->
       </div>
-  </div> <!-- /.content-wrapper -->
-
+  </div>
+  </form> <!-- /.content-wrapper -->
+<script>
+// $(document).ready(function(){
+//   $(document).on("click", ":submit", 'form',function(e) {
+//     e.preventDefault();
+//     $.ajax({
+//       type:'POST',
+//       url:"DlRep.php",
+//       data:$('form').serialize()
+//     });
+//   });
+// });
+</script>
     <!-- jQuery -->
     <script src="../Resources/plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
