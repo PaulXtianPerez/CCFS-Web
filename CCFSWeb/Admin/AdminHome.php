@@ -27,39 +27,6 @@
  while($row = $result1->fetch_assoc()) {
      $data1[0] = $row['yearId'];
  }
-
-if(isset($_POST['enroll'])) {
- $enstud = "INSERT INTO `enstudent`(
- IDno, GivenName, MiddleName,
- SurName, gradelvl, birthdate,
- birthplace, gender, homeTelnum,
- mobilenum, studaddress,
- prevschoolattended, studstat,
- sponsor, faFname, falname,
- faAdd, faMobilenum, faEmail,
- faoccupation, moFname, moLname,
- moAdd, momobilenum, moEmail,
- mooccupation, sibFname, sibLname,
- sibBirthdate, sibschoolname,
- yearid, dateenrolled,
- guardianName, guardianAddress,
- guardianContact)
- VALUES ('$data[0]','$_POST[studentGivenName]',"
-         . "'$_POST[studentMiddleName]','$_POST[studentSurname]',"
-         . "'$_POST[gradeLevel]','$_POST[studentBirthDate]',"
-         . "'$_POST[studentBirthPlace]','$_POST[gender]',"
-         . "'$_POST[studentTelNum]','$_POST[studentMobNum]',"
-         . "'$_POST[studentAddress]','$_POST[studentLastSchool]',"
-         . "'Enrolled','','$_POST[fatherFirst]','$_POST[fatherLast]',"
-         . "'$_POST[fatherAdd]','$_POST[fatherMobileNum]',"
-         . "'$_POST[fatherEmailAdd]','$_POST[fatherOcc]',"
-         . "'$_POST[motherFirst]','$_POST[motherLast]',"
-         . "'$_POST[motherAdd]','$_POST[motherMobNum]',"
-         . "'$_POST[motherEmAdd]','$_POST[motherOcc]','','','2020-12-12','',"
-         . "'$data1[0]','".date("Y-m-d")."','$_POST[guardianName]','$_POST[guardianAddress]','$_POST[guardianContact]')";
- $insert_row = $conn->query($enstud) or die($conn->error.__LINE__);
- $message = "successfully enrolled a student";
-}
  ?>
 
 <!DOCTYPE html>
@@ -111,11 +78,12 @@ if(isset($_POST['enroll'])) {
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-        <h5>School Year: <?php if(empty($data3[0]) || empty($data2[1])) {
-          echo "-----";
-        } else {
-          echo $data3[0]; echo "-"; echo $data2[1];
-        } ?></h5>
+        <h5>School Year: <?php if(empty($data1[0])) {
+          echo "--";
+        }else {
+          echo $data3[0];
+        }
+        ; echo "-" ; if(empty($data2[1])){echo "--";}else {echo $data2[1];}?></h5>
     </ul>
   <!--  <h3>Cypress Christian Foundation School</h3> -->
   </nav>
@@ -193,7 +161,7 @@ if(isset($_POST['enroll'])) {
           <li class="nav-item has-treeview">
           <form action="../Enrollment/EnrollmentNew.php" method="post">
           <input type="hidden" name="varname" value="A">
-            <button type="submit" class="nav-link" id="newEnroll" href="'../Enrollment/EnrollmentNew.php'">Enroll Student</button>
+            <button type="submit" class="nav-link" id="newEnroll" href="'../Enrollment/EnrollmentNew.php'"><i class="nav-icon fas fa-id-badge"></i>Enroll Student</button>
           </form>
           </li>
           <li class="nav-item has-treeview">
@@ -303,6 +271,8 @@ if(isset($_POST['enroll'])) {
 <script src="../Resources/dist/js/demo.js"></script>
 <!-- Load new page into #contents div -->
 <script src="disp.js"></script>
+<!-- DataTables plugin -->
+<script type="text/javascript" charset="utf8" src="../Resources/plugins/bootstrap/js/DataTables/datatables.js"></script>
 
 </body>
 </html>
