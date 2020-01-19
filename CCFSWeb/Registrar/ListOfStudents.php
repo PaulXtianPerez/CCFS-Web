@@ -84,7 +84,6 @@
                       <th>Middle Name</th>
                       <th>Grade Level</th>
                       <th>Section</th>
-                      <th>Teacher</th>
                       <th></th>
                     </tr>
                   </thead>
@@ -96,7 +95,6 @@
                         <td><?php echo $row["GivenName"];?></td>
                         <td><?php echo $row["MiddleName"];?></td>
                         <td><?php echo $row["gradelvl"];?></td>
-                        <td></td>
                         <td></td>
                         <td style="text-align:center;"><input type="button" name="edit" value="Edit" id="<?php echo $row["IDno"]; ?>" class="btn btn-info btn-xs edit_data" /></td>
                       </tr>
@@ -266,7 +264,7 @@
           </div>
 
           <input type="hidden" name="student_id" id="student_id" />
-          <input type="submit" name="update" id="update" value="Update" class="btn btn-success" />
+          <input type="submit" name="update" id="update" value="Save Changes" class="btn btn-success" />
         </form>
       </div>
 
@@ -330,7 +328,7 @@ $(document).ready(function(){
           $('#insert_form')[0].reset();
           $('#add_data_Modal').modal('hide');
           $('#studListTable').html(data);
-          $('#update').val("Update");
+          $('#update').val("Save Changes");
         }
       });
     });
@@ -387,7 +385,5 @@ $("#studListTable").DataTable({
 <script src="../Resources/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../Resources/dist/js/demo.js"></script>
-<!-- DataTables plugin -->
-<script type="text/javascript" charset="utf8" src="../Resources/plugins/bootstrap/js/DataTables/datatables.js"></script>
 </body>
 </html>

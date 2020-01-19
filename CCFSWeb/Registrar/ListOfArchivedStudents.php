@@ -30,6 +30,8 @@
   <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
   <!-- CSS for DataTables plugin -->
   <link rel="stylesheet" type="text/css" href="../Resources/plugins/bootstrap/js/DataTables/datatables.css">
+  <!-- DataTables plugin -->
+  <script type="text/javascript" charset="utf8" src="../Resources/plugins/bootstrap/js/DataTables/datatables.js"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div id="contents" class="wrapper">
@@ -139,7 +141,5 @@ $("#studArchTable").DataTable({
 <script src="../Resources/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../Resources/dist/js/demo.js"></script>
-<!-- DataTables plugin -->
-<script type="text/javascript" charset="utf8" src="../Resources/plugins/bootstrap/js/DataTables/datatables.js"></script>
 </body>
 </html>
