@@ -1,6 +1,6 @@
 How to run project:
 
-Open WAMP and create a new database "ccfs" phpyMyAdmin. Import the ccfs sql/database file.
+Open WAMP and create a new database "ccfs" using phpyMyAdmin. Import the ccfs sql/database file.
 
 Copy the project folder (CCFSWeb) to the directory of wamp64>www
 
