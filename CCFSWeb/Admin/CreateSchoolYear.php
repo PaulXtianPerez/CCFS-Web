@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="../Resources/plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-      <link rel="stylesheet" type="text/css" href="dist/css/main.css">
+      <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
 <head>
 
 <body>
@@ -385,8 +385,9 @@
     });
     return false;
   }
-
+/*
   $('document').ready( function ( ) {
+    $( '.years' ).closest( '.form-group' ).hide();
     $( '[name=dateStart]' ).on( 'blur', function ( ) {
       dateStartEndChange();
     });
@@ -407,7 +408,7 @@
         $( '.year-' + $d ).closest( '.form-group' ).show();
       }
     }
-  });
+  });*/
   </script>
 
   <!--===============================================================================================-->
