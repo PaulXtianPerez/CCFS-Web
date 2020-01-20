@@ -134,15 +134,9 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#createsection" id="crSection" class="nav-link">
-              <i class="nav-icon fas fa-book"></i>
-              <p>Create Section</p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview">
-            <a href="#listofsections" id="sectionsList" class="nav-link">
+            <a href="#sections" id="sectionsList" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
-              <p>List Of Sections</p>
+              <p>Class Sections</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
