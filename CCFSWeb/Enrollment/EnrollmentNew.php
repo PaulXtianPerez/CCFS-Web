@@ -116,15 +116,15 @@
                     <div class="form-group col-md-3">
                         <label>Grade Level</label>
                         <select class="form-control" name="gradeLevel">
-                          <option>Nursery</option>
-                          <option>Preschool</option>
-                          <option>Kinder</option>
-                          <option>Grade 1</option>
-                          <option>Grade 2</option>
-                          <option>Grade 3</option>
-                          <option>Grade 4</option>
-                          <option>Grade 5</option>
-                          <option>Grade 6</option>
+                          <option>NURSERY</option>
+                          <option>PRESCHOOL</option>
+                          <option>KINDER</option>
+                          <option>GRADE 1</option>
+                          <option>GRADE 2</option>
+                          <option>GRADE 3</option>
+                          <option>GRADE 4</option>
+                          <option>GRADE 5</option>
+                          <option>GRADE 6</option>
                         </select>
                       </div>
                     <div class="form-group col-md-3">
@@ -309,7 +309,7 @@
         <!-- Modal body -->
         <div class="modal-body">
 
-          <center>Fill up this form</center>
+          <center>Student Fee</center>
           <input type="hidden" name="yerrr">
           <label>Tuition</label>
           <input class="form-control" type="number" name="tuition">
@@ -321,7 +321,6 @@
           <input class="form-control" type="number" name="service">
           <label>balance</label>
           <input class="form-control" type="number" name="balance">
-          <input type="text" name="LERO" id="">
         </div>
 
         <!-- Modal footer -->
@@ -466,6 +465,117 @@
             success:function(data) {
               $('input[name=yerrr]').val(data['em']);
               $('input[name=studentIDnoNew]').val(data['me'])
+              console.log(data['ELONTUSK']);
+              switch($('[name=gradeLevel] option:selected').val()) {
+                case 'NURSERY':
+                  $('input[name=tuition]').val(data['ELONTUSK']['pretui1']);
+                  $('input[name=books]').val(data['ELONTUSK']['prebook1']);
+                  $('input[name=mics]').val(data['ELONTUSK']['premisc1']);
+                  if(!$('input[name=service]').val() || !$('input[name=tuition]').val() || !$('input[name=books]').val() || !$('input[name=mics]').val()) {
+                    $('input[name=service]').val(0);
+                    $('input[name=books]').val(0);
+                    $('input[name=mics]').val(0);
+                    $('input[name=tuition]').val(0);
+                    $('input[name=balance]').val(parseInt($('input[name=tuition]').val())+parseInt($('input[name=books]').val())+parseInt($('input[name=mics]').val())+parseInt($('input[name=service]').val()));
+                  }
+                break;
+                case 'PRESCHOOL':
+                  $('input[name=tuition]').val(data['ELONTUSK']['pretui2']);
+                  $('input[name=books]').val(data['ELONTUSK']['prebook2']);
+                  $('input[name=mics]').val(data['ELONTUSK']['premisc2']);
+                  if(!$('input[name=service]').val() || !$('input[name=tuition]').val() || !$('input[name=books]').val() || !$('input[name=mics]').val()) {
+                    $('input[name=service]').val(0);
+                    $('input[name=books]').val(0);
+                    $('input[name=mics]').val(0);
+                    $('input[name=tuition]').val(0);
+                    $('input[name=balance]').val(parseInt($('input[name=tuition]').val())+parseInt($('input[name=books]').val())+parseInt($('input[name=mics]').val())+parseInt($('input[name=service]').val()));
+                  }
+                break;
+                case 'KINDER':
+                  $('input[name=tuition]').val(data['ELONTUSK']['pre3']);
+                  $('input[name=books]').val(data['ELONTUSK']['pre3']);
+                  $('input[name=mics]').val(data['ELONTUSK']['pre3']);
+                  if(!$('input[name=service]').val() || !$('input[name=tuition]').val() || !$('input[name=books]').val() || !$('input[name=mics]').val()) {
+                    $('input[name=service]').val(0);
+                    $('input[name=books]').val(0);
+                    $('input[name=mics]').val(0);
+                    $('input[name=tuition]').val(0);
+                    $('input[name=balance]').val(parseInt($('input[name=tuition]').val())+parseInt($('input[name=books]').val())+parseInt($('input[name=mics]').val())+parseInt($('input[name=service]').val()));
+                  }
+                break;
+                case 'GRADE 1':
+                  $('input[name=tuition]').val(data['ELONTUSK']['gradetui1']);
+                  $('input[name=books]').val(data['ELONTUSK']['gradebook1']);
+                  $('input[name=mics]').val(data['ELONTUSK']['grademisc123456']);
+                  if(!$('input[name=service]').val() || !$('input[name=tuition]').val() || !$('input[name=books]').val() || !$('input[name=mics]').val()) {
+                    $('input[name=service]').val(0);
+                    $('input[name=books]').val(0);
+                    $('input[name=mics]').val(0);
+                    $('input[name=tuition]').val(0);
+                    $('input[name=balance]').val(parseInt($('input[name=tuition]').val())+parseInt($('input[name=books]').val())+parseInt($('input[name=mics]').val())+parseInt($('input[name=service]').val()));
+                  }
+                break;
+                case 'GRADE 2':
+                  $('input[name=tuition]').val(data['ELONTUSK']['gradetui23456']);
+                  $('input[name=books]').val(data['ELONTUSK']['gradebook23456']);
+                  $('input[name=mics]').val(data['ELONTUSK']['grademisc23456']);
+                  if(!$('input[name=service]').val() || !$('input[name=tuition]').val() || !$('input[name=books]').val() || !$('input[name=mics]').val()) {
+                    $('input[name=service]').val(0);
+                    $('input[name=books]').val(0);
+                    $('input[name=mics]').val(0);
+                    $('input[name=tuition]').val(0);
+                    $('input[name=balance]').val(parseInt($('input[name=tuition]').val())+parseInt($('input[name=books]').val())+parseInt($('input[name=mics]').val())+parseInt($('input[name=service]').val()));
+                  }
+                break;
+                case 'GRADE 3':
+                  $('input[name=tuition]').val(data['ELONTUSK']['gradetui3456']);
+                  $('input[name=books]').val(data['ELONTUSK']['gradebook3456']);
+                  $('input[name=mics]').val(data['ELONTUSK']['grademisc3456']);
+                  if(!$('input[name=service]').val() || !$('input[name=tuition]').val() || !$('input[name=books]').val() || !$('input[name=mics]').val()) {
+                    $('input[name=service]').val(0);
+                    $('input[name=books]').val(0);
+                    $('input[name=mics]').val(0);
+                    $('input[name=tuition]').val(0);
+                    $('input[name=balance]').val(parseInt($('input[name=tuition]').val())+parseInt($('input[name=books]').val())+parseInt($('input[name=mics]').val())+parseInt($('input[name=service]').val()));
+                  }
+                break;
+                case 'GRADE 4':
+                  $('input[name=tuition]').val(data['ELONTUSK']['gradetui456']);
+                  $('input[name=books]').val(data['ELONTUSK']['gradebook456']);
+                  $('input[name=mics]').val(data['ELONTUSK']['grademisc456']);
+                  if(!$('input[name=service]').val() || !$('input[name=tuition]').val() || !$('input[name=books]').val() || !$('input[name=mics]').val()) {
+                    $('input[name=service]').val(0);
+                    $('input[name=books]').val(0);
+                    $('input[name=mics]').val(0);
+                    $('input[name=tuition]').val(0);
+                    $('input[name=balance]').val(parseInt($('input[name=tuition]').val())+parseInt($('input[name=books]').val())+parseInt($('input[name=mics]').val())+parseInt($('input[name=service]').val()));
+                  }
+                break;
+                case 'GRADE 5':
+                  $('input[name=tuition]').val(data['ELONTUSK']['gradetui56']);
+                  $('input[name=books]').val(data['ELONTUSK']['gradebook56']);
+                  $('input[name=mics]').val(data['ELONTUSK']['grademisc56']);
+                  if(!$('input[name=service]').val() || !$('input[name=tuition]').val() || !$('input[name=books]').val() || !$('input[name=mics]').val()) {
+                    $('input[name=service]').val(0);
+                    $('input[name=books]').val(0);
+                    $('input[name=mics]').val(0);
+                    $('input[name=tuition]').val(0);
+                    $('input[name=balance]').val(parseInt($('input[name=tuition]').val())+parseInt($('input[name=books]').val())+parseInt($('input[name=mics]').val())+parseInt($('input[name=service]').val()));
+                  }
+                break;
+                case 'GRADE 6':
+                  $('input[name=tuition]').val(data['ELONTUSK']['gradetui6']);
+                  $('input[name=books]').val(data['ELONTUSK']['gradebook6']);
+                  $('input[name=mics]').val(data['ELONTUSK']['grademisc6']);
+                  if(!$('input[name=service]').val() || !$('input[name=tuition]').val() || !$('input[name=books]').val() || !$('input[name=mics]').val()) {
+                    $('input[name=service]').val(0);
+                    $('input[name=books]').val(0);
+                    $('input[name=mics]').val(0);
+                    $('input[name=tuition]').val(0);
+                    $('input[name=balance]').val(parseInt($('input[name=tuition]').val())+parseInt($('input[name=books]').val())+parseInt($('input[name=mics]').val())+parseInt($('input[name=service]').val()));
+                  }
+                break;
+              }
             }
           });
         });
@@ -487,7 +597,8 @@
             type:'POST',
             data:{idno:idno,yearid:yearid,t:t,b:b,m:m,s:s,ba:ba},
             success:function(data) {
-              window.location.href = $('input[name=redirect_to]').val();
+              console.log(data);
+              //window.location.href = $('input[name=redirect_to]').val();
             }
           });
         });
