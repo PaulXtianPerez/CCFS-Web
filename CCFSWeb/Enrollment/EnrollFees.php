@@ -8,6 +8,5 @@ if(isset($input['idno'])) {
     '".$input['ba']."', '".$input['idno']."', 
     '".$input['yearid']."')";
     mysqli_query($conn, $query);
-    echo mysqli_error($conn);
 }
 ?>
