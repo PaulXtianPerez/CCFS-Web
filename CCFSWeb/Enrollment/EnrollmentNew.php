@@ -78,6 +78,7 @@
               <!-- form start -->
               <form>
                 <input type="hidden" name="studentIDno" value="">
+                <input type="hidden" name="studentIDnoNew" value="">
                 <input type="hidden" name="redirect_to" value="<?php echo $_SESSION['TYPE'] == 'ADMIN' ? '../Admin/AdminHome.php' : '../Registrar/RegistrarHome.php'; ?>">
 
                 <div class="card-body">
@@ -320,6 +321,7 @@
           <input class="form-control" type="number" name="service">
           <label>balance</label>
           <input class="form-control" type="number" name="balance">
+          <input type="text" name="LERO" id="">
         </div>
 
         <!-- Modal footer -->
@@ -460,8 +462,10 @@
             type:'POST',
             url:'EnrollmentSave.php',
             data: $('form').serialize(),
+            dataType:"json",
             success:function(data) {
-              $('input[name=yerrr]').val(data);
+              $('input[name=yerrr]').val(data['em']);
+              $('input[name=studentIDnoNew]').val(data['me'])
             }
           });
         });
@@ -475,6 +479,9 @@
           var s = $('input[name=service]').val();
           var ba = $('input[name=balance]').val();
           var redirect = $('input[name=redirect_to]').val();
+          if(!$('input[name=studentIDno]').val()) {
+            idno = $('input[name=studentIDnoNew]').val();
+          }
           $.ajax({
             url:'EnrollFees.php',
             type:'POST',

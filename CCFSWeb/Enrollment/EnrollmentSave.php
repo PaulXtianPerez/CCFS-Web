@@ -16,8 +16,10 @@ while($row = mysqli_fetch_array($result2)) {
 while($row = mysqli_fetch_array($result1)) {
 	$elongated1[] = $row ;
 }
+$pp = array();
 $evolveID = substr($elongated[0]['yearstart'],2).substr($elongated1[0]['MAX(IDno)'],2)+1;
-echo $elongated[0]['yearid'];
+$pp = array('em'=>$elongated[0]['yearid'],'me'=>$evolveID);
+echo json_encode($pp);
 
 if (mysqli_num_rows($result)==0) {
 	$enstud = "INSERT INTO `enstudent`(
