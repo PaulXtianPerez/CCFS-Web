@@ -54,7 +54,7 @@ if (mysqli_num_rows($result)==0) {
 	$conn->query($enstud);
 }else {
 	$update = "UPDATE enstudent SET GivenName = '".$input['studentGivenName']."', MiddleName = '".$input['studentMiddleName']."',
-	SurName = '".$input['studentSurname']."' , gradelvl = '".$input['gender']."' , birthdate = '".$input['studentBirthDate']."' ,
+	SurName = '".$input['studentSurname']."' , gradelvl = '".$input['gradeLevel']."' , birthdate = '".$input['studentBirthDate']."' ,
 	birthplace = '".$input['studentBirthPlace']."' , gender = '".$input['gender']."' , homeTelnum = '".$input['studentTelNum']."' ,
 	mobilenum = '".$input['studentMobNum']."' , studaddress = '".$input['studentAddress']."' ,
 	prevschoolattended = '".$input['studentLastSchool']."' ,

@@ -465,7 +465,6 @@
             success:function(data) {
               $('input[name=yerrr]').val(data['em']);
               $('input[name=studentIDnoNew]').val(data['me'])
-              console.log(data['ELONTUSK']);
               switch($('[name=gradeLevel] option:selected').val()) {
                 case 'NURSERY':
                   $('input[name=tuition]').val(data['ELONTUSK']['pretui1']);
