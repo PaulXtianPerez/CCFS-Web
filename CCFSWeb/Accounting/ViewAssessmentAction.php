@@ -1,7 +1,9 @@
 <?php
   include('dbase.php');
-  if(isset($_POST['search'])) {
-    $id = $_POST['id'];
+  $input = filter_input_array(INPUT_POST);
+  if(isset($input['search'])) {
+    echo $input['id'];
+    $id = $input['id'];
     $query = "SELECT yearid FROM schoolyear WHERE scstatus ='ACTIVE'";
     $result = $conn->query($query) or die($conn->error.__LINE__);
     $actyear = mysqli_fetch_array($result);
@@ -19,11 +21,10 @@
                     </tr
                       ';
     }
-    if($_POST['id']!= $idno) {
+    if($input['id']!= $idno) {
       echo "No Match Found";
     }
-  }
-  if(isset($_POST['viewall'])) {
+  }else if(isset($input['viewall'])) {
     $query = "SELECT yearid FROM schoolyear WHERE scstatus ='ACTIVE'";
         $result = $conn->query($query) or die($conn->error.__LINE__);
         $actyear = mysqli_fetch_array($result);

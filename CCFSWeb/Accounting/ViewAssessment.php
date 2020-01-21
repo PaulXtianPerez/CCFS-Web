@@ -56,11 +56,11 @@
       <div class="card card-primary">
         <div class="card-header">
           <div class="input-group input-group-sm">
-            <form method="post" id="search_id">
+            <form id="K">
               <div class="radio">
                 <label><h4><input type="text" name="id" class="id form-control form-control-navbar" placeholder="Enter ID Number"/></h4></label>
               </div>
-              <input type="submit" name="search" class="search btn btn-default" value="Search" onclick="formSubmit();"/>
+              <input type="submit" name="search" class="search btn btn-default" value="Search"/>
               <input type="submit" name="viewall" class="viewall btn btn-default" value="View All"/>
             </form>
             </div>
@@ -90,22 +90,35 @@
 
 <!--Submit form.-->
 <script type="text/javascript">
-function formSubmit(){
+$(document).ready(function(){
    $(document).ready(function(){
-        $('.search').click(function(){
-             var curr_name = $(this).attr("id");
+        $(document).on('click','input[name=search]',function(e){
+          e.preventDefault();
+            var id = $('input[name=id]').val();
+            var search = $('input[name=search]').val();
              $.ajax({
+                  type:"post",
                   url:"ViewAssessmentAction.php",
-                  method:"post",
-                  data:{curr_name:curr_name},
+                  data:{search:search,id:id},
                   success:function(data){
-                       $('#viewAssessment').html(data);
+                    $('#viewAssessment').html(data);
+                  }
+             });
+        });
+        $(document).on('click','input[name=viewall]',function(e){
+          e.preventDefault();
+            var viewall = $('input[name=viewall]').val();
+             $.ajax({
+                  type:"post",
+                  url:"ViewAssessmentAction.php",
+                  data:{viewall:viewall},
+                  success:function(data){
+                    $('#viewAssessment').html(data);
                   }
              });
         });
    });
-   return false;
-}
+});
 </script>
 
 <!--===============================================================================================-->
