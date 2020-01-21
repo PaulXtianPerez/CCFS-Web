@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 18, 2020 at 07:55 PM
--- Server version: 5.7.24
--- PHP Version: 7.3.1
+-- Generation Time: Jan 21, 2020 at 05:54 AM
+-- Server version: 5.7.26
+-- PHP Version: 7.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `attendance` (
   PRIMARY KEY (`attid`) USING BTREE,
   KEY `studid` (`IDno`,`yearid`) USING BTREE,
   KEY `idyear` (`yearid`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=158 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `attendance`
@@ -108,7 +108,31 @@ INSERT INTO `attendance` (`attid`, `IDno`, `yearid`, `month`, `daysPres`, `daysT
 (130, 210001, 10, 'Sep', NULL, NULL, NULL),
 (131, 210001, 10, 'Oct', NULL, NULL, NULL),
 (132, 210001, 10, 'Nov', NULL, NULL, NULL),
-(133, 210001, 10, 'Dec', NULL, NULL, NULL);
+(133, 210001, 10, 'Dec', NULL, NULL, NULL),
+(134, 210004, 15, 'Jan', NULL, NULL, NULL),
+(135, 210004, 15, 'Feb', NULL, NULL, NULL),
+(136, 210004, 15, 'Mar', NULL, NULL, NULL),
+(137, 210004, 15, 'Apr', NULL, NULL, NULL),
+(138, 210004, 15, 'May', NULL, NULL, NULL),
+(139, 210004, 15, 'Jun', NULL, NULL, NULL),
+(140, 210004, 15, 'Jul', NULL, NULL, NULL),
+(141, 210004, 15, 'Aug', NULL, NULL, NULL),
+(142, 210004, 15, 'Sep', NULL, NULL, NULL),
+(143, 210004, 15, 'Oct', NULL, NULL, NULL),
+(144, 210004, 15, 'Nov', NULL, NULL, NULL),
+(145, 210004, 15, 'Dec', NULL, NULL, NULL),
+(146, 190023, 15, 'Jan', NULL, NULL, NULL),
+(147, 190023, 15, 'Feb', NULL, NULL, NULL),
+(148, 190023, 15, 'Mar', NULL, NULL, NULL),
+(149, 190023, 15, 'Apr', NULL, NULL, NULL),
+(150, 190023, 15, 'May', NULL, NULL, NULL),
+(151, 190023, 15, 'Jun', NULL, NULL, NULL),
+(152, 190023, 15, 'Jul', NULL, NULL, NULL),
+(153, 190023, 15, 'Aug', NULL, NULL, NULL),
+(154, 190023, 15, 'Sep', NULL, NULL, NULL),
+(155, 190023, 15, 'Oct', NULL, NULL, NULL),
+(156, 190023, 15, 'Nov', NULL, NULL, NULL),
+(157, 190023, 15, 'Dec', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -168,7 +192,22 @@ CREATE TABLE IF NOT EXISTS `curriculum` (
   PRIMARY KEY (`curid`),
   KEY `idyear` (`yearid`) USING BTREE,
   KEY `curname` (`curname`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `curriculum`
+--
+
+INSERT INTO `curriculum` (`curid`, `curname`, `subjname1`, `subjname2`, `subjname3`, `subjname4`, `subjname5`, `subjname6`, `subjname7`, `subjname8`, `subjname9`, `subjname10`, `subjname11`, `subjname12`, `subjname13`, `subjname14`, `subjname15`, `subjname16`, `subjname17`, `subjname18`, `subjname19`, `subjname20`, `grade`, `yearid`) VALUES
+(19, 'K to 12', 'Word ', 'Mathethamatics', 'Reading & Phonics', 'Language', 'Science', 'Filipino', 'Music', 'Arts', 'PE', 'Writing', 'Computer', '', '', '', '', '', '', '', '', '', 'NURSERY', 14),
+(20, 'K to 12', 'Word ', 'Mathethamatics', 'Reading & Phonics', 'Language', 'Science', 'Filipino', 'Music', 'Arts', 'PE', 'Writing', 'Computer', '', '', '', '', '', '', '', '', '', 'PRE-KINDER', 14),
+(21, 'K to 12', 'Word ', 'Mathethamatics', 'Reading & Phonics', 'Language', 'Science', 'Filipino', 'Music', 'Arts', 'PE', 'Writing', 'Computer', '', '', '', '', '', '', '', '', '', 'KINDER', 14),
+(22, 'K to 12', 'Word ', 'Mathematics ', 'Science ', 'English ', 'Filipino ', 'Araling Panlipunan ', 'Music ', 'Arts ', 'PE ', 'Health ', 'Computer ', 'Mother Tounge ', 'Edukasyon sa Pagpapakatao ', 'Technology and Livelihood Education', 'Edukasyong Pantahanan at Pangkabuhayan', '', '', '', '', '', 'GRADE 1', 14),
+(23, 'K to 12', 'Word ', 'Mathematics ', 'Science ', 'English ', 'Filipino ', 'Araling Panlipunan ', 'Music ', 'Arts ', 'PE ', 'Health ', 'Computer ', 'Mother Tounge ', 'Edukasyon sa Pagpapakatao ', 'Technology and Livelihood Education', 'Edukasyong Pantahanan at Pangkabuhayan', '', '', '', '', '', 'GRADE 2', 14),
+(24, 'K to 12', 'Word ', 'Mathematics ', 'Science ', 'English ', 'Filipino ', 'Araling Panlipunan ', 'Music ', 'Arts ', 'PE ', 'Health ', 'Computer ', 'Mother Tounge ', 'Edukasyon sa Pagpapakatao ', 'Technology and Livelihood Education', 'Edukasyong Pantahanan at Pangkabuhayan', '', '', '', '', '', 'GRADE 3', 14),
+(25, 'K to 12', 'Word ', 'Mathematics ', 'Science ', 'English ', 'Filipino ', 'Araling Panlipunan ', 'Music ', 'Arts ', 'PE ', 'Health ', 'Computer ', 'Mother Tounge ', 'Edukasyon sa Pagpapakatao ', 'Technology and Livelihood Education', 'Edukasyong Pantahanan at Pangkabuhayan', '', '', '', '', '', 'GRADE 4', 14),
+(26, 'K to 12', 'Word ', 'Mathematics ', 'Science ', 'English ', 'Filipino ', 'Araling Panlipunan ', 'Music ', 'Arts ', 'PE ', 'Health ', 'Computer ', 'Mother Tounge ', 'Edukasyon sa Pagpapakatao ', 'Technology and Livelihood Education', 'Edukasyong Pantahanan at Pangkabuhayan', '', '', '', '', '', 'GRADE 5', 14),
+(27, 'K to 12', 'Word ', 'Mathematics', 'Science', 'English ', 'Filipino ', 'Araling Panlipunan ', 'Music ', 'Arts ', 'PE ', 'Health ', 'Computer ', 'Mother Tounge ', 'Edukasyon sa Pagpapakatao ', 'Technology and Livelihood Education', 'Edukasyong Pantahanan at Pangkabuhayan', '', '', '', '', '', 'GRADE 6', 14);
 
 -- --------------------------------------------------------
 
@@ -193,29 +232,19 @@ CREATE TABLE IF NOT EXISTS `curstudent` (
   KEY `yearID_idx` (`yearid`),
   KEY `enrID_idx` (`enrID`),
   KEY `IDno` (`IDno`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `curstudent`
 --
 
 INSERT INTO `curstudent` (`studentid`, `IDno`, `gradelvl`, `section`, `teacher`, `totalpayment`, `dateenrolled`, `yearid`, `enrID`) VALUES
-(1, 210001, 'KINDER', '1', '1', 1, '2019-11-14', 3, 1),
-(2, 210002, 'GRADE 1', '1', '1', 1, '2019-11-19', 3, 2),
-(3, 210003, 'GRADE 1', '1', '1', 1, '2019-11-19', 3, 3),
-(4, 210004, 'GRADE 1', '1', '1', 1, '2019-11-19', 3, 4),
-(5, 210005, 'GRADE 1', '1', '1', 1, '2019-11-19', 3, 5),
-(6, 210006, 'GRADE 1', '1', '1', 1, '2019-11-19', 3, 6),
-(7, 210007, 'GRADE 1', '1', '1', 1, '2019-11-19', 3, 7),
-(8, 210008, 'GRADE 1', '1', '1', 1, '2019-11-19', 3, 8),
-(9, 210009, 'KINDER', '1', '1', 1, '2019-11-19', 3, 9),
-(10, 210010, 'GRADE 1', '1', '1', 1, '2019-11-19', 3, 10),
-(11, 210011, 'GRADE 1', '1', '1', 1, '2019-11-19', 3, 11),
-(12, 210012, 'GRADE 1', '1', '1', 1, '2019-11-19', 3, 12),
-(13, 210013, 'GRADE 1', '1', '1', 1, '2019-11-19', 3, 13),
-(14, 210014, 'GRADE 6', '1', '1', 1, '2019-11-20', 3, 14),
-(15, 210015, 'KINDER', '1', '1', 1, '2019-11-20', 3, 15),
-(16, 210016, 'KINDER', '1', '1', 1, '2019-11-27', 3, 16);
+(1, 200001, 'KINDER', '1', '1', 1, '2019-11-14', 3, 1),
+(9, 200009, 'KINDER', '1', '1', 1, '2019-11-19', 3, 9),
+(39, 200024, 'NURSERY', '1', '1', 1, '2020-01-21', 15, 45),
+(40, 200025, 'NURSERY', '1', '1', 1, '2020-01-21', 15, 46),
+(41, 200026, 'NURSERY', '1', '1', 1, '2020-01-21', 15, 47),
+(42, 200027, 'NURSERY', '1', '1', 1, '2020-01-21', 15, 48);
 
 -- --------------------------------------------------------
 
@@ -267,35 +296,29 @@ CREATE TABLE IF NOT EXISTS `enstudent` (
   KEY `gradelvl` (`gradelvl`),
   KEY `YearID_idx` (`yearid`),
   KEY `studIDno_idx` (`IDno`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `enstudent`
 --
 
 INSERT INTO `enstudent` (`enid`, `IDno`, `GivenName`, `MiddleName`, `SurName`, `gradelvl`, `birthdate`, `birthplace`, `gender`, `homeTelnum`, `mobilenum`, `studaddress`, `prevschoolattended`, `studstat`, `sponsor`, `faFname`, `falname`, `faAdd`, `faMobilenum`, `faEmail`, `faoccupation`, `moFname`, `moLname`, `moAdd`, `momobilenum`, `moEmail`, `mooccupation`, `sibFname`, `sibLname`, `sibBirthdate`, `sibschoolname`, `yearid`, `dateenrolled`, `guardianName`, `guardianAddress`, `guardianContact`) VALUES
-(1, 210001, 'PAUL CHRISTIAN', 'SANGGA', 'PEREZ', 'KINDER', '2020-12-11', 'BAGUIO CITY', 'M', '', '', 'SAN LUIS, BAGUIO CITY', '', 'Enrolled', NULL, 'PAUL', 'PEREZ', 'SAN LUIS, BAGUIO CITY', '09123456789', '', 'ENGINEER', 'MARIA', 'SANGA', '', '', '', '', NULL, NULL, NULL, NULL, 3, '2019-11-14', 'MAHMOOD IMRAN D', '', ''),
-(2, 210002, 'ANJELLA', 'TAYUBA', 'BUAN', 'GRADE 1', '2020-12-12', 'BAGUIO CITY', 'M', '', '09203662849', 'IRISAN, BAGUIO CITY', '', 'Enrolled', NULL, 'ROGER', 'TAYUBA', 'IRISAN, BAGUIO CITY', '09391212196', '', '', 'GRACE', 'BUAN', 'IRISAN, BAGUIO CITY', '09203662844', '', 'HOUSE KEEPER', NULL, NULL, NULL, NULL, 1, '2019-11-19', '', '', ''),
-(3, 210003, 'CHYRIS DUALIE', 'ANGAWA', 'DANG-AY', 'GRADE 1', '2020-12-12', 'BAGUIO CITY', 'F', '', '09999198540', '# 290-D PRK-14-A CYPRESS, IRISAN, BAGUIO CITY', 'PATILONG ELEM. SCHOOL', 'Enrolled', NULL, 'MORRIS', 'DANG-AY', '# 290-D PRK-14-A CYPRESS, IRISAN, BAGUIO CITY', '09128889125', '', 'NURSE', 'CHERRY LOU', 'DANG-AY', '#290-D PRK. 14-A CYPRESS, IRISAN, BAGUIO CITY', '09999198540', '', '', 'OZZY CLYDE', 'DANG-AY', '2005-05-15', 'INHS', 3, '2019-11-19', ' ', ' ', ' '),
-(4, 210004, 'NATALIE HYMES', 'BAGANO', 'MARZAN', 'GRADE 1', '2020-12-12', 'BENGUET GEN, LA TRINIDAD', 'F', '', '09999032717', '#32 PUROK 15, BALBOA, IRISAN, BAGUIO CITY', 'LECA', 'Enrolled', NULL, 'ANDRES', 'MARZAN JR.', '#32 PUROK 15, BALBOA, IRISAN, BAGUIO CITY', '', '', 'TAXI DRIVER', 'EVA', 'BAGANO', '#32 PUROK 15, BALBOA, IRISAN, BAGUIO CITY', '', '', '', NULL, NULL, NULL, NULL, 3, '2019-11-19', 'JULIET CAPUYAN MARZAN', '#32 PUROK 15, BALBOA, IRISAN, BAGUIO CITY', '09999032717'),
-(5, 210005, 'LUZTY LANCE', 'MAYOS', 'BIASCA', 'GRADE 1', '2020-12-12', 'BAGUIO CITY', 'M', '244-7011', '', '01-A, PUROK 18, NAGOYA, IRISAN, BAGUIO CITY', 'EASTER COLLEGE', 'Enrolled', NULL, 'LUISITO', 'BIASCA', '01-A, PUROK 18, NAGOYA, IRISAN, BAGUIO CITY', '09998548911', '', 'BUSINESSMAN', 'ANA MAE', 'MAYOS', '01-A, PUROK 18, NAGOYA, IRISAN, BAGUIO CITY', '09465323005 / 09299717800', '', 'BUSINESSWOMAN', 'ZALOY EMMANUEL', 'BIASCA', '2012-12-30', 'PNHS', 3, '2019-11-19', '', '', ''),
-(6, 210006, 'LIL CIANNE', 'VENTURA', 'BIORE', 'GRADE 1', '2020-12-12', 'BAGUIO CITY', 'F', '', '09129205286', '#114 PUROK 13, CYPRESS POINT, IRISAN, BAGUIO CITY', 'BAGUIO CENTRAL SCHOOL', 'Enrolled', NULL, '', '', '#114 PUROK 13, CYPRESS POINT, IRISAN, BAGUIO CITY', '', '', '', 'CHRESS AN', 'VENTURA', '#114 PUROK 13, CYPRESS POINT, IRISAN, BAGUIO CITY', '09129205286', '', 'SALES ASSOCIATE', NULL, NULL, NULL, NULL, 3, '2019-11-19', 'CRISPIN M. VENTURA', '#114 PUROK 13, CYPRESS POINT, IRISAN, BAGUIO CITY', '09296884634'),
-(7, 210007, 'LJ CELINA', 'PAGADOR', 'TIONGO', 'GRADE 1', '2020-12-12', 'BAGUIO CITY', 'F', '', '09504565950', '#84-B ALLMAES CMPD, IRISAN, BAGUIO CITY', 'CYPRESS CHRISTIAN FOUNDATION SCHOOL', 'Enrolled', NULL, 'B-JAY', 'TIONGO', '#84-B ALLMAES CMPD, IRISAN, BAGUIO CITY', '09082455013', 'B-JAYTIONGO@YAHOO.COM', 'LENDING COLLECTOR', 'JOSEBEN', 'TIONGCO', '#84-B ALLMAES CMPD, IRISAN, BAGUIO CITY', '09504565950', '', 'HOUSEWIFE', NULL, NULL, NULL, NULL, 3, '2019-11-19', ' ', ' ', ' '),
-(8, 210008, 'GHABRIEL ACE', 'SANCHEZ', 'PALOMO', 'GRADE 1', '2020-12-12', 'LA TRINIDAD', 'M', '', '', '#98 AGRO STREET, SAINT JOSEPH VILLAGE, IRISAN, BAGUIO CITY', 'BAGUIO CENTRAL SCHOOL', 'Enrolled', NULL, 'CONSTANTINE', 'PALOMO', '#98 AGRO STREET, SAINT JOSEPH VILLAGE, IRISAN, BAGUIO CITY', '09458150893', 'CONSPALOMO3378@GMAIL.COM', '', 'HEMMINGWAY', 'PALOMO', '#98 AGRO STREET, SAINT JOSEPH VILLAGE, IRISAN, BAGUIO CITY', '09308619368', '', 'HOUSEWIFE', NULL, NULL, NULL, NULL, 3, '2019-11-19', ' ', ' ', ' '),
-(9, 210009, 'RIDDICK LAURENCE', 'DOCYOSEN', 'VIERNES', 'NURSERY', '2020-12-12', 'KIN-IWAY, BESAO', 'M', '', '', '#20 PUROK 17, IRISAN, BAGUIO CITY', 'ICLC', 'Enrolled', NULL, 'JAYSON', 'VIERNES', '#20 PUROK 17, IRISAN, BAGUIO CITY', '', '', 'LABORER', 'JOEYLYN', 'VIERNES', '#20 PUROK 17, IRISAN, BAGUIO CITY', '09088611220', '', 'HOUSEWIFE', NULL, NULL, NULL, NULL, 3, '2019-11-19', ' ', ' ', ' '),
-(10, 210010, 'ASHLYNE ZYNHEL', 'BLAZA', 'CASTRO', 'GRADE 1', '2020-12-12', 'BGH BAGUIO', 'F', '', '09553854056', 'PUROK 15, AGROO, IRISAN, BAGUIO CITY', 'ELPEDIO QUIRINO ELEM SCH', 'Enrolled', NULL, 'ALLAN', 'CASTRO', 'PUROK 15, AGROO, IRISAN, BAGUIO CITY', '', '', 'VENDOR', 'JAYNALYN', 'BLAZA', 'PUROK 15, AGROO, IRISAN, BAGUIO CITY', '09553854056', '', 'HOUSEWIFE', 'ALJHAY', 'CASTRO', '2012-05-12', 'CCFS', 3, '2019-11-19', ' ', ' ', ' '),
-(11, 210011, 'XERR JHAKE', 'DUMAPIS', 'BANTIAN', 'GRADE 1', '2020-12-12', 'BEGH', 'M', '', '09074243658 / 09266474312', 'PUROK 6, APUGAN, IRISAN, BAGUIO CITY', 'UCAB ELEMENTARY SCHOOL', 'Enrolled', NULL, 'JESSIE', 'BANTIAN', 'PUROK 6, APUGAN, IRISAN, BAGUIO CITY', '09196901341', '', 'POLICE OFFICER', 'JENNIFER', 'BANTIAN', 'PUROK 6, APUGAN, IRISAN, BAGUIO CITY', '09074243658', 'JENNIFER.BANTIAN@YAHOO.COM', 'HOUSEKEEPER', NULL, NULL, NULL, NULL, 3, '2019-11-19', ' ', ' ', ' '),
-(12, 210012, 'MERLA ZYLIE', 'LLACUNA', 'TALLOCOY', 'GRADE 1', '2020-12-12', 'LA TRINIDAD, BENGUET', 'F', '', '09294029140', '#96 PUROK 17, IRISAN, BAGUIO CITY', 'CCFS', 'Enrolled', NULL, 'PETER', 'TALLOCOY', '#96 PUROK 17, IRISAN, BAGUIO CITY', '', 'PJ.TALLOCOY@YAHOO.COM', 'OFW', 'FARRA MAE', 'TALLOCOY', '#96 PUROK 17, IRISAN, BAGUIO CITY', '09294029140', 'FM.TALLOCOY@YAHOO.COM', 'HOUSEKEEPER', NULL, NULL, NULL, NULL, 3, '2019-11-19', ' ', ' ', ' '),
-(13, 210013, 'CEEJAY', 'BUENAVISTA', 'MORALES', 'GRADE 1', '2020-12-12', 'BENGUET', 'M', '', '09103323015', '011A PUROK 12, IRISAN, BAGUIO CITY', 'CCFS', 'Enrolled', NULL, 'SEVERINO', 'MORALES', '011A PUROK 12, IRISAN, BAGUIO CITY', '', '', 'WELDER', 'MARIVIC', 'MORALES', '011A PUROK 12, IRISAN, BAGUIO CITY', '09103323015', '', 'HOUSEWIFE', 'JOY MARRIE', 'MORALES', '1999-12-08', 'UC', 3, '2019-11-19', ' ', ' ', ' '),
-(14, 210014, 'ADAM', 'NAVARRO', 'SOBREMONT', 'GRADE 6', '2020-12-12', 'BAGUIO CITY ', 'M', '', '0995635694', '06B LOAKAN BAGUIO CITY', 'CCFS', 'Enrolled', NULL, 'ARIEL', 'SOBREMONTE', '06B LOAKAN BAGUIO CITY', '09560595161', '', 'TAXI DRIVER', 'LILIA', 'NAVARRO', '06B LOAKAN BAGUIO CITY', '', '', 'OFW', NULL, NULL, NULL, NULL, 3, '2019-11-20', 'PAUL CHRISTIAN PEREZ', 'AWLFJAW', '09999999999'),
-(15, 210015, 'CHRISTINE MAE ANNE', 'SANGGA', 'PEREZ', 'NURSERY', '2020-12-12', 'BAGUIO CITY', 'F', NULL, '09614286968', 'IRISAN, BAGUIO CITY', ' ', 'Enrolled', NULL, NULL, NULL, NULL, NULL, NULL, 'ENGINEER', NULL, NULL, NULL, NULL, NULL, 'NURSE', NULL, NULL, NULL, NULL, 3, '2019-11-01', 'PAUL ROLAND ', '#31 PUROK 15, BALABOA, IRISAN BAGUIO CITY', '099939294913'),
-(16, 210016, 'IMRAN', 'DIXON', 'MAHMOOD', 'NURSERY', '2020-12-12', 'BAGUIO CITY', 'M', '', '', 'BAGUIO CITY', '', 'Enrolled', NULL, '', '', 'BAGUIO CITY', '', '', '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, 3, '2019-11-27', 'PAUL PEREZ', 'BAGUIO CITY', '0912345678'),
-(17, 210017, 'aawd', 'awd', 'awd', 'Preschool', '2020-12-12', 'awd', 'Male', 'awd', 'awwd', 'awd', 'awd', 'Enrolled', '', 'awd', 'awd', 'awd', 'awwd', 'awd', 'awd', 'awd', 'awd', 'awwd', 'awd', 'awd', 'awd', '', '', '2020-12-12', '', 11, '2020-03-01', '', '', ''),
-(18, 210018, 'awd', 'awd', 'awd', 'Preschool', '2020-12-12', 'awd', 'Male', 'awwd', 'awd', 'wd', 'awd', 'Enrolled', '', 'awd', 'aawd', 'awd', 'awd', 'awd', 'awwd', 'awawd', 'awwd', 'awd', 'awd', 'awd', 'awd', '', '', '2020-12-12', '', 11, '2020-03-01', 'awd', 'awd', 'awd'),
-(19, 210019, 'awd', 'awd', 'awd', 'Preschool', '2020-12-12', 'awd', 'Male', 'awd', 'awd', 'awd', 'awd', 'Enrolled', '', 'awd', 'khk', 'hk', 'hkh', 'kh', 'hk', 'khk', 'hk', 'hk', 'khk', 'hk', 'hkh', '', '', '2020-12-12', '', 11, '2020-03-01', 'h', 'khh', 'kh'),
-(20, 210020, 'HDin', 'aosidlsd', 'Hander', 'Grade 1', '1998-01-21', 'qweqwe', 'Male', '123', '123', 'qwe', 'asd', 'Enrolled', '', 'jhkjh', 'kjh', 'kjh', '123', 'kjh', 'kjh', 'kjh', 'kjh', 'kjh', '123', 'jkasjd', 'kjh', '', '', '2020-12-12', '', 13, '2020-01-14', 'kjhkjh', 'kjhkh', '123'),
-(21, 210021, 'asdasd', 'asdasd', 'Hander', 'Grade 2', '1998-01-21', 'asdasd', 'Male', '123', '123', 'asdasd', 'jasdj', 'Enrolled', '', 'kjhkjh', 'kh', 'kjh', '123', 'kjh', 'kjh', 'kjhkjh', 'kjkjh', 'kjhkjh', '123', 'kjhkj', 'khjkjh', '', '', '2020-12-12', '', 13, '2020-01-14', 'kjhjkh', 'kjh', '132'),
-(22, 210022, 'HDin', 'aosidlsd', 'Hander', 'Section', '1998-01-21', 'lklkj', 'Female', 'k123123', '12312', 'lkjl', 'kjhkjh', 'Enrolled', '', 'jhkjhkjh', 'kjh', 'kjh', '123123', 'jhgjhgjhg', 'kjhk', 'jhgjhg', 'jhgj', 'hgjhg', '123', 'jhgjhg', 'jhgjhgjhg', '', '', '2020-12-12', '', 10, '2020-01-15', 'hkjhkjh', 'kjhkjhkjh', '12313');
+(1, 200001, 'PAUL CHRISTIAN', 'SANGGA', 'PEREZ', 'KINDER', '2020-12-11', 'BAGUIO CITY', 'M', '', '', 'SAN LUIS, BAGUIO CITY', '', 'Enrolled', NULL, 'PAUL', 'PEREZ', 'SAN LUIS, BAGUIO CITY', '09123456789', '', 'ENGINEER', 'MARIA', 'SANGA', '', '', '', '', NULL, NULL, NULL, NULL, 15, '2019-11-14', 'MAHMOOD IMRAN D', '', ''),
+(2, 200002, 'ANJELLA', 'TAYUBA', 'BUAN', 'GRADE 1', '2020-12-12', 'BAGUIO CITY', 'M', '', '09203662849', 'IRISAN, BAGUIO CITY', '', 'Enrolled', NULL, 'ROGER', 'TAYUBA', 'IRISAN, BAGUIO CITY', '09391212196', '', '', 'GRACE', 'BUAN', 'IRISAN, BAGUIO CITY', '09203662844', '', 'HOUSE KEEPER', NULL, NULL, NULL, NULL, 15, '2019-11-19', '', '', ''),
+(3, 200003, 'CHYRIS DUALIE', 'ANGAWA', 'DANG-AY', 'GRADE 1', '2020-12-12', 'BAGUIO CITY', 'F', '', '09999198540', '# 290-D PRK-14-A CYPRESS, IRISAN, BAGUIO CITY', 'PATILONG ELEM. SCHOOL', 'Enrolled', NULL, 'MORRIS', 'DANG-AY', '# 290-D PRK-14-A CYPRESS, IRISAN, BAGUIO CITY', '09128889125', '', 'NURSE', 'CHERRY LOU', 'DANG-AY', '#290-D PRK. 14-A CYPRESS, IRISAN, BAGUIO CITY', '09999198540', '', '', 'OZZY CLYDE', 'DANG-AY', '2005-05-15', 'INHS', 15, '2019-11-19', ' ', ' ', ' '),
+(4, 200004, 'NATALIE HYMES', 'BAGANO', 'MARZAN', 'GRADE 1', '2020-12-12', 'BENGUET GEN, LA TRINIDAD', 'F', '', '09999032717', '#32 PUROK 15, BALBOA, IRISAN, BAGUIO CITY', 'LECA', 'Enrolled', NULL, 'ANDRES', 'MARZAN JR.', '#32 PUROK 15, BALBOA, IRISAN, BAGUIO CITY', '', '', 'TAXI DRIVER', 'EVA', 'BAGANO', '#32 PUROK 15, BALBOA, IRISAN, BAGUIO CITY', '', '', '', NULL, NULL, NULL, NULL, 15, '2019-11-19', 'JULIET CAPUYAN MARZAN', '#32 PUROK 15, BALBOA, IRISAN, BAGUIO CITY', '09999032717'),
+(5, 200005, 'LUZTY LANCE', 'MAYOS', 'BIASCA', 'GRADE 1', '2020-12-12', 'BAGUIO CITY', 'M', '244-7011', '', '01-A, PUROK 18, NAGOYA, IRISAN, BAGUIO CITY', 'EASTER COLLEGE', 'Enrolled', NULL, 'LUISITO', 'BIASCA', '01-A, PUROK 18, NAGOYA, IRISAN, BAGUIO CITY', '09998548911', '', 'BUSINESSMAN', 'ANA MAE', 'MAYOS', '01-A, PUROK 18, NAGOYA, IRISAN, BAGUIO CITY', '09465323005 / 09299717800', '', 'BUSINESSWOMAN', 'ZALOY EMMANUEL', 'BIASCA', '2012-12-30', 'PNHS', 15, '2019-11-19', '', '', ''),
+(6, 200006, 'LIL CIANNE', 'VENTURA', 'BIORE', 'GRADE 1', '2020-12-12', 'BAGUIO CITY', 'F', '', '09129205286', '#114 PUROK 13, CYPRESS POINT, IRISAN, BAGUIO CITY', 'BAGUIO CENTRAL SCHOOL', 'Enrolled', NULL, '', '', '#114 PUROK 13, CYPRESS POINT, IRISAN, BAGUIO CITY', '', '', '', 'CHRESS AN', 'VENTURA', '#114 PUROK 13, CYPRESS POINT, IRISAN, BAGUIO CITY', '09129205286', '', 'SALES ASSOCIATE', NULL, NULL, NULL, NULL, 15, '2019-11-19', 'CRISPIN M. VENTURA', '#114 PUROK 13, CYPRESS POINT, IRISAN, BAGUIO CITY', '09296884634'),
+(7, 200007, 'LJ CELINA', 'PAGADOR', 'TIONGO', 'GRADE 1', '2020-12-12', 'BAGUIO CITY', 'F', '', '09504565950', '#84-B ALLMAES CMPD, IRISAN, BAGUIO CITY', 'CYPRESS CHRISTIAN FOUNDATION SCHOOL', 'Enrolled', NULL, 'B-JAY', 'TIONGO', '#84-B ALLMAES CMPD, IRISAN, BAGUIO CITY', '09082455013', 'B-JAYTIONGO@YAHOO.COM', 'LENDING COLLECTOR', 'JOSEBEN', 'TIONGCO', '#84-B ALLMAES CMPD, IRISAN, BAGUIO CITY', '09504565950', '', 'HOUSEWIFE', NULL, NULL, NULL, NULL, 15, '2019-11-19', ' ', ' ', ' '),
+(8, 200008, 'GHABRIEL ACE', 'SANCHEZ', 'PALOMO', 'GRADE 1', '2020-12-12', 'LA TRINIDAD', 'M', '', '', '#98 AGRO STREET, SAINT JOSEPH VILLAGE, IRISAN, BAGUIO CITY', 'BAGUIO CENTRAL SCHOOL', 'Enrolled', NULL, 'CONSTANTINE', 'PALOMO', '#98 AGRO STREET, SAINT JOSEPH VILLAGE, IRISAN, BAGUIO CITY', '09458150893', 'CONSPALOMO3378@GMAIL.COM', '', 'HEMMINGWAY', 'PALOMO', '#98 AGRO STREET, SAINT JOSEPH VILLAGE, IRISAN, BAGUIO CITY', '09308619368', '', 'HOUSEWIFE', NULL, NULL, NULL, NULL, 15, '2019-11-19', ' ', ' ', ' '),
+(9, 200009, 'RIDDICK LAURENCE', 'DOCYOSEN', 'VIERNES', 'NURSERY', '2020-12-12', 'KIN-IWAY, BESAO', 'M', '', '', '#20 PUROK 17, IRISAN, BAGUIO CITY', 'ICLC', 'Enrolled', NULL, 'JAYSON', 'VIERNES', '#20 PUROK 17, IRISAN, BAGUIO CITY', '', '', 'LABORER', 'JOEYLYN', 'VIERNES', '#20 PUROK 17, IRISAN, BAGUIO CITY', '09088611220', '', 'HOUSEWIFE', NULL, NULL, NULL, NULL, 15, '2019-11-19', ' ', ' ', ' '),
+(10, 200010, 'ASHLYNE ZYNHEL', 'BLAZA', 'CASTRO', 'GRADE 1', '2020-12-12', 'BGH BAGUIO', 'F', '', '09553854056', 'PUROK 15, AGROO, IRISAN, BAGUIO CITY', 'ELPEDIO QUIRINO ELEM SCH', 'Enrolled', NULL, 'ALLAN', 'CASTRO', 'PUROK 15, AGROO, IRISAN, BAGUIO CITY', '', '', 'VENDOR', 'JAYNALYN', 'BLAZA', 'PUROK 15, AGROO, IRISAN, BAGUIO CITY', '09553854056', '', 'HOUSEWIFE', 'ALJHAY', 'CASTRO', '2012-05-12', 'CCFS', 15, '2019-11-19', ' ', ' ', ' '),
+(11, 200011, 'XERR JHAKE', 'DUMAPIS', 'BANTIAN', 'GRADE 1', '2020-12-12', 'BEGH', 'M', '', '09074243658 / 09266474312', 'PUROK 6, APUGAN, IRISAN, BAGUIO CITY', 'UCAB ELEMENTARY SCHOOL', 'Enrolled', NULL, 'JESSIE', 'BANTIAN', 'PUROK 6, APUGAN, IRISAN, BAGUIO CITY', '09196901341', '', 'POLICE OFFICER', 'JENNIFER', 'BANTIAN', 'PUROK 6, APUGAN, IRISAN, BAGUIO CITY', '09074243658', 'JENNIFER.BANTIAN@YAHOO.COM', '', NULL, NULL, NULL, NULL, 3, '2019-11-19', ' ', ' ', ' '),
+(38, 200023, 'd', 'd', 'd', 'NURSERY', '2020-12-12', 'd', 'Male', 'd', 'd', 'd', 'd', 'Enrolled', '', 'd', 'd', 'd', 'd', 'd', 'd', 'd', 'd', 'd', 'd', 'd', 'qd', NULL, NULL, NULL, NULL, 15, '2020-01-21', 'd', 'd', 'd'),
+(45, 200024, 'p', 'p', 'p', 'NURSERY', '2020-12-12', 'p', 'Male', 'p', 'p', 'p', 'p', 'Enrolled', '', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', NULL, NULL, NULL, NULL, 15, '2020-01-21', '', '', ''),
+(46, 200025, 'p', 'p', 'p', 'NURSERY', '2020-12-12', 'w', 'Male', 'w', 'w', 'w', 'w', 'Enrolled', '', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', 'w', NULL, NULL, NULL, NULL, 15, '2020-01-21', 'w', 'w', 'w'),
+(47, 200026, 'l', 'l', 'l', 'NURSERY', '2020-12-12', 'l', 'Male', 'l', 'l', 'l', 'l', 'Enrolled', '', 'l', 'l', 'l', 'l', 'l', 'l', 'l', 'l', 'l', 'l', 'l', 'l', NULL, NULL, NULL, NULL, 15, '2020-01-21', 'l', 'l', 'l'),
+(48, 200027, 'd', 'd', 'd', 'NURSERY', '2020-12-12', 'd', 'Male', 'd', 'd', 'd', 'd', 'Enrolled', '', 'd', 'd', '', 'd', 'd', 'd', 'd', 'd', 'd', 'd', 'd', 'd', NULL, NULL, NULL, NULL, 15, '2020-01-21', 'd', 'd', 'd');
 
 --
 -- Triggers `enstudent`
@@ -314,7 +337,7 @@ DELIMITER ;
 
 DROP TABLE IF EXISTS `feestudent`;
 CREATE TABLE IF NOT EXISTS `feestudent` (
-  `feestID` int(40) NOT NULL,
+  `feestID` int(40) NOT NULL AUTO_INCREMENT,
   `books` double NOT NULL,
   `misc` double NOT NULL,
   `tuition` double NOT NULL,
@@ -325,7 +348,15 @@ CREATE TABLE IF NOT EXISTS `feestudent` (
   PRIMARY KEY (`feestID`),
   KEY `estudyID` (`IDno`),
   KEY `theyear_idx` (`yearid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `feestudent`
+--
+
+INSERT INTO `feestudent` (`feestID`, `books`, `misc`, `tuition`, `service`, `balance`, `IDno`, `yearid`) VALUES
+(2, 0, 0, 0, 3, 0, 200024, 15),
+(3, 0, 2, 0, 0, 0, 200025, 15);
 
 -- --------------------------------------------------------
 
@@ -357,130 +388,14 @@ CREATE TABLE IF NOT EXISTS `grades` (
 --
 
 INSERT INTO `grades` (`gradeid`, `subjID`, `sename`, `firstquartergrade`, `secondquartergrade`, `thirdquartergrade`, `fourthquartergrade`, `finalgrade`, `remarks`, `IDno`, `yearid`) VALUES
-(1, 60, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 210001, 10),
-(2, 61, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 210001, 10),
-(3, 62, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 210001, 10),
-(4, 63, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 210001, 10),
-(5, 1, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210002, 10),
-(6, 2, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210002, 10),
-(7, 3, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210002, 10),
-(8, 5, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210002, 10),
-(9, 6, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210002, 10),
-(10, 7, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210002, 10),
-(11, 8, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210002, 10),
-(12, 9, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210002, 10),
-(13, 10, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210002, 10),
-(14, 1, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210003, 10),
-(15, 2, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210003, 10),
-(16, 3, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210003, 10),
-(17, 5, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210003, 10),
-(18, 6, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210003, 10),
-(19, 7, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210003, 10),
-(20, 8, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210003, 10),
-(21, 9, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210003, 10),
-(22, 10, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210003, 10),
-(23, 1, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210004, 10),
-(24, 2, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210004, 10),
-(25, 3, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210004, 10),
-(26, 5, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210004, 10),
-(27, 6, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210004, 10),
-(28, 7, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210004, 10),
-(29, 8, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210004, 10),
-(30, 9, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210004, 10),
-(31, 10, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210004, 10),
-(32, 1, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210005, 10),
-(33, 2, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210005, 10),
-(34, 3, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210005, 10),
-(35, 5, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210005, 10),
-(36, 6, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210005, 10),
-(37, 7, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210005, 10),
-(38, 8, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210005, 10),
-(39, 9, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210005, 10),
-(40, 10, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210005, 10),
-(41, 1, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210006, 10),
-(42, 2, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210006, 10),
-(43, 3, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210006, 10),
-(44, 5, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210006, 10),
-(45, 6, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210006, 10),
-(46, 7, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210006, 10),
-(47, 8, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210006, 10),
-(48, 9, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210006, 10),
-(49, 10, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210006, 10),
-(50, 1, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210007, 10),
-(51, 2, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210007, 10),
-(52, 3, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210007, 10),
-(53, 5, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210007, 10),
-(54, 6, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210007, 10),
-(55, 7, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210007, 10),
-(56, 8, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210007, 10),
-(57, 9, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210007, 10),
-(58, 10, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210007, 10),
-(59, 1, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210008, 10),
-(60, 2, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210008, 10),
-(61, 3, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210008, 10),
-(62, 5, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210008, 10),
-(63, 6, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210008, 10),
-(64, 7, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210008, 10),
-(65, 8, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210008, 10),
-(66, 9, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210008, 10),
-(67, 10, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210008, 10),
-(68, 60, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 210009, 10),
-(69, 61, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 210009, 10),
-(70, 62, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 210009, 10),
-(71, 63, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 210009, 10),
-(72, 1, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210010, 10),
-(73, 2, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210010, 10),
-(74, 3, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210010, 10),
-(75, 5, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210010, 10),
-(76, 6, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210010, 10),
-(77, 7, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210010, 10),
-(78, 8, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210010, 10),
-(79, 9, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210010, 10),
-(80, 10, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210010, 10),
-(81, 1, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210011, 10),
-(82, 2, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210011, 10),
-(83, 3, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210011, 10),
-(84, 5, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210011, 10),
-(85, 6, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210011, 10),
-(86, 7, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210011, 10),
-(87, 8, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210011, 10),
-(88, 9, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210011, 10),
-(89, 10, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210011, 10),
-(90, 1, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210012, 10),
-(91, 2, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210012, 10),
-(92, 3, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210012, 10),
-(93, 5, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210012, 10),
-(94, 6, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210012, 10),
-(95, 7, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210012, 10),
-(96, 8, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210012, 10),
-(97, 9, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210012, 10),
-(98, 10, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210012, 10),
-(99, 1, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210013, 10),
-(100, 2, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210013, 10),
-(101, 3, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210013, 10),
-(102, 5, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210013, 10),
-(103, 6, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210013, 10),
-(104, 7, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210013, 10),
-(105, 8, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210013, 10),
-(106, 9, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210013, 10),
-(107, 10, 'GAMMA', NULL, NULL, NULL, NULL, NULL, NULL, 210013, 10),
-(108, 60, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 210015, 10),
-(109, 61, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 210015, 10),
-(110, 62, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 210015, 10),
-(111, 63, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 210015, 10),
-(112, 60, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 210016, 10),
-(113, 61, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 210016, 10),
-(114, 62, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 210016, 10),
-(115, 63, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 210016, 10),
-(116, 47, 'THETA', NULL, NULL, NULL, NULL, NULL, NULL, 210014, 10),
-(117, 48, 'THETA', NULL, NULL, NULL, NULL, NULL, NULL, 210014, 10),
-(118, 49, 'THETA', NULL, NULL, NULL, NULL, NULL, NULL, 210014, 10),
-(119, 50, 'THETA', NULL, NULL, NULL, NULL, NULL, NULL, 210014, 10),
-(120, 51, 'THETA', NULL, NULL, NULL, NULL, NULL, NULL, 210014, 10),
-(121, 52, 'THETA', NULL, NULL, NULL, NULL, NULL, NULL, 210014, 10),
-(122, 53, 'THETA', NULL, NULL, NULL, NULL, NULL, NULL, 210014, 10),
-(123, 54, 'THETA', NULL, NULL, NULL, NULL, NULL, NULL, 210014, 10),
-(124, 55, 'THETA', NULL, NULL, NULL, NULL, NULL, NULL, 210014, 10);
+(1, 60, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 200001, 10),
+(2, 61, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 200001, 10),
+(3, 62, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 200001, 10),
+(4, 63, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 200001, 10),
+(68, 60, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 200009, 10),
+(69, 61, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 200009, 10),
+(70, 62, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 200009, 10),
+(71, 63, 'BETA', NULL, NULL, NULL, NULL, NULL, NULL, 200009, 10);
 
 -- --------------------------------------------------------
 
@@ -572,22 +487,15 @@ CREATE TABLE IF NOT EXISTS `schoolyear` (
   PRIMARY KEY (`yearid`),
   KEY `yearstart` (`yearstart`),
   KEY `yearend` (`yearend`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `schoolyear`
 --
 
 INSERT INTO `schoolyear` (`yearid`, `yearstart`, `yearend`, `janAtt`, `febAtt`, `marAtt`, `aprAtt`, `mayAtt`, `junAtt`, `julAtt`, `augAtt`, `sepAtt`, `octAtt`, `novAtt`, `decAtt`, `dateStart`, `dateEnd`, `pretui1`, `premisc1`, `prebook1`, `pretui2`, `premisc2`, `prebook2`, `pretui3`, `premisc3`, `prebook3`, `gradetui1`, `gradebook1`, `grademisc1`, `gradetui2`, `grademisc2`, `gradebook2`, `gradetui3`, `grademisc3`, `gradebook3`, `gradetui4`, `grademisc4`, `gradebook4`, `gradetui5`, `grademisc5`, `gradebook5`, `gradetui6`, `grademisc6`, `gradebook6`, `scfee`, `scstatus`) VALUES
-(1, 2019, 2020, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INACTIVE'),
-(2, 2020, 2021, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INACTIVE'),
-(3, 2021, 2022, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INACTIVE'),
-(7, 2019, 2020, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 20115, 'INACTIVE'),
-(10, 2020, 2021, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2020-06-30', '2021-04-15', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5632, 'ACTIVE'),
-(11, 2222, 22223, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2222-05-04', '2223-06-02', 1, 123, 12, 2, 213, 21, 0, 0, 0, 1, 123, 12, 2, 21, 213, 3, 31, 312, 4, 41, 412, 5, 51, 512, 6, 61, 612, 6215, 'INACTIVE'),
-(12, 2023, 2024, 20, 25, 26, 23, 21, 51, 2, 56, 1, 56, 5, 4, '2023-06-02', '2024-05-25', 51548, 5484, 5484, 545, 545, 5454, 0, 0, 0, 545, 54, 54, 54, 54, 54, 54, 54, 545, 45, 454, 545, 45, 45, 454, 545, 45, 54, 545, 'INACTIVE'),
-(13, 9010, 9011, 54541, 545, 45, 454, 54, 54, 54, 54, 54, 54, 5, 45, '9010-01-21', '9011-01-21', 45, 4, 54, 54, 54, 54, 54, 5, 45, 45, 54, 4, 54, 54, 54, 54, 54, 54, 5, 45, 4, 54123, 54, 54, 54, 5, 45, 4, 'INACTIVE'),
-(14, 3019, 3020, 654564, 654, 654, 654, 654, 645, 654, 654, 6, 546, 54, 654, '3019-12-01', '3020-12-01', 654, 6, 54, 654, 654, 654, 654, 546, 6, 546, 654, 54, 654, 654, 654, 65, 46, 54, 654, 654, 6, 54, 654, 654, 654, 65, 465, NULL, 'INACTIVE');
+(15, 2020, 2021, 20, 20, 20, 10, 0, 15, 20, 20, 20, 20, 20, 15, '2020-06-08', '2021-04-15', 10888.7, 2095, 3600, 10888.7, 2095, 3600, 10888.7, 3600, 2095, 10888.7, 3900, 2095, 10888.7, 2095, 3900, 10888.7, 2095, 3900, 10888.7, 2095, 3900, 10888.7, 2095, 3900, 10888.7, 2095, 3900, NULL, 'ACTIVE'),
+(16, 2019, 2020, 20, 20, 20, 10, 0, 15, 20, 20, 20, 20, 20, 15, '2019-06-10', '2020-04-13', 10888.7, 2095, 3600, 10888.7, 2095, 3600, 10888.7, 3600, 2095, 10888.7, 3900, 2095, 10888.7, 2095, 3900, 10888.7, 2095, 3900, 10888.7, 2095, 3900, 10888.7, 2095, 3900, 10888.7, 2095, 3900, NULL, 'INACTIVE');
 
 -- --------------------------------------------------------
 
@@ -604,22 +512,22 @@ CREATE TABLE IF NOT EXISTS `section` (
   `yearid` int(11) NOT NULL,
   PRIMARY KEY (`secID`),
   KEY `yearid` (`yearid`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `section`
 --
 
 INSERT INTO `section` (`secID`, `sename`, `gradelvl`, `adviserlname`, `yearid`) VALUES
-(46, 'ALEPH', 'NURSERY', 'CARINIO', 2020),
-(47, 'ALPHA', 'PRE-KINDER', 'MARSAN', 2020),
-(48, 'BETA', 'KINDER', 'ARYOLA', 2020),
-(49, 'GAMMA', 'GRADE 1', 'DEGUZMAN', 2020),
-(51, 'DELTA', 'GRADE 2', 'ABALOS', 2020),
-(52, 'EPSILON', 'GRADE 3', 'PUGADO', 2020),
-(53, 'ZETA', 'GRADE 4', 'BONA', 2020),
-(54, 'ETA', 'GRADE 5', 'SORIANO', 2020),
-(55, 'THETA', 'GRADE 6', 'LERNON', 2020);
+(46, 'ALEPH', 'NURSERY', 'CARINIO ESTEBAN', 15),
+(47, 'ALPHA', 'PRE-KINDER', 'JOMARI MARSAN', 15),
+(48, 'BETA', 'KINDER', 'ADAM ARYOLA', 15),
+(49, 'GAMMA', 'GRADE 1', 'MARIO DEGUZMAN', 15),
+(51, 'DELTA', 'GRADE 2', 'KIM ABALOS', 15),
+(52, 'EPSILON', 'GRADE 3', 'MAY PUGADO', 15),
+(54, 'ETA', 'GRADE 5', 'LAURENCE SORIANO', 15),
+(55, 'THETA', 'GRADE 6', 'STEPHANIE ERNON', 15),
+(56, 'BONA', 'GRADE 4', 'TRACIE HORN', 15);
 
 -- --------------------------------------------------------
 
@@ -737,10 +645,9 @@ ALTER TABLE `curriculum`
 -- Constraints for table `curstudent`
 --
 ALTER TABLE `curstudent`
-  ADD CONSTRAINT `IDno` FOREIGN KEY (`IDno`) REFERENCES `enstudent` (`IDno`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `enrID` FOREIGN KEY (`enrID`) REFERENCES `enstudent` (`enid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `gradlvl` FOREIGN KEY (`gradelvl`) REFERENCES `enstudent` (`gradelvl`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `yearID` FOREIGN KEY (`yearid`) REFERENCES `schoolyear` (`yearid`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `IDno` FOREIGN KEY (`IDno`) REFERENCES `enstudent` (`IDno`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `enrID` FOREIGN KEY (`enrID`) REFERENCES `enstudent` (`enid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `gradlvl` FOREIGN KEY (`gradelvl`) REFERENCES `enstudent` (`gradelvl`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `enstudent`
@@ -752,14 +659,14 @@ ALTER TABLE `enstudent`
 -- Constraints for table `feestudent`
 --
 ALTER TABLE `feestudent`
-  ADD CONSTRAINT `estudyID` FOREIGN KEY (`IDno`) REFERENCES `curstudent` (`IDno`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `theyear` FOREIGN KEY (`yearid`) REFERENCES `schoolyear` (`yearid`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `estudyID` FOREIGN KEY (`IDno`) REFERENCES `curstudent` (`IDno`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `theyear` FOREIGN KEY (`yearid`) REFERENCES `schoolyear` (`yearid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `grades`
 --
 ALTER TABLE `grades`
-  ADD CONSTRAINT `IDofNumber` FOREIGN KEY (`IDno`) REFERENCES `curstudent` (`IDno`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `IDofNumber` FOREIGN KEY (`IDno`) REFERENCES `curstudent` (`IDno`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `suID` FOREIGN KEY (`subjID`) REFERENCES `subject` (`subjID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `yID` FOREIGN KEY (`yearid`) REFERENCES `schoolyear` (`yearid`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
