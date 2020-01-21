@@ -1,6 +1,6 @@
 <?php
 // connect to database
-include 'database.php';
+include 'dbase.php';
 // mysql select query
 $query = "SELECT * FROM `feestudent`";
 // result for method
