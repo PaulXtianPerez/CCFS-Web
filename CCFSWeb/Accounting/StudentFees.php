@@ -1,3 +1,11 @@
+<?php
+// connect to database
+include 'database.php';
+// mysql select query
+$query = "SELECT * FROM `feestudent`";
+// result for method
+$result = mysqli_query($mysqli, $query);
+?>
 <html>
 <head>
   <meta charset="utf-8">
@@ -80,31 +88,16 @@
                     </tr>
                     </thead>
 				<tbody> <!-- Populate from database. -->
-				<?php
-								include('connection.php');  
-								if(isset($_POST['id'])) {
-									$id = $_POST['id'];
-									$idnum = "SELECT IDno, books, misc, tuition, service, balance FROM feestudent WHERE IDno = '$id' ";
-									$idno = "SELECT IDno from feestudent";
-									$query_run = mysqli_query($conn,$idnum);
-									while($row = mysqli_fetch_array($query_run)) {
-											echo ' <br />
-							                   		<tr>
-							                    	<td>'.$row["IDno"].'</td>
-							                    	<td>'.$row["books"].'</td>
-							                    	<td>'.$row["misc"].'</td>
-							                   	 	<td>'.$row["tuition"].'</td>
-							                    	<td>'.$row["service"].'</td>
-							                    	<td>'.$row["balance"].'</td>
-							                    </tr
-							                      ';
-									}
-									if($_POST['id']!= $idno) {
-										echo "No Match Found";
-									}
-								}
-								
-							?>
+                  <?php while($row = mysqli_fetch_array($result)):;?>
+                    <tr>
+                      <td><?php echo $row["IDno"];?></td>
+                      <td><?php echo $row["books"];?></td>
+                      <td><?php echo $row["misc"];?></td>
+                      <td><?php echo $row["tuition"];?></td>
+                     <td><?php echo $row["balance"];?></td>
+                      <td><input type="button" name="edit" value="Edit" id="<?php echo $row["feestID"]; ?>" class="btn btn-info btn-xs edit_data" /></td>
+                    </tr>
+                  <?php endwhile;?>
                     </tbody>
                 <!-- /.card-body -->
               </div>
