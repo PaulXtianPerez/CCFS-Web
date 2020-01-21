@@ -3,6 +3,7 @@
 
   include('Connection.php');
   include('database.php');
+  include('../ActiveSchoolYear.php');
 
   $query = "SELECT * FROM `section`";
   $result = mysqli_query($mysqli, $query);
@@ -65,7 +66,15 @@
               <li class="breadcrumb-item active">Enrollment Form Page</li>
             </ol>
           </div><!-- /.col -->
+        <ul class="navbar-nav ml-auto">
+            <h5>School Year: <?php if(empty($data3[0]) || empty($data2[1])) {
+              echo "-----";
+            } else {
+              echo $data3[0]; echo "-"; echo $data2[1];
+            } ?></h5>
+          </ul>         
         </div><!-- /.row -->
+
         <div class="row">
           <!-- left column -->
           <div class="col-md-12">
@@ -463,6 +472,7 @@
             data: $('form').serialize(),
             dataType:"json",
             success:function(data) {
+              console.log(data['error']);
               $('input[name=yerrr]').val(data['em']);
               $('input[name=studentIDnoNew]').val(data['me'])
               switch($('[name=gradeLevel] option:selected').val()) {
@@ -596,7 +606,8 @@
             type:'POST',
             data:{idno:idno,yearid:yearid,t:t,b:b,m:m,s:s,ba:ba},
             success:function(data) {
-              window.location.href = $('input[name=redirect_to]').val();
+              console.log(data);
+              // window.location.href = $('input[name=redirect_to]').val();
             }
           });
         });
