@@ -60,8 +60,8 @@
               <div class="radio">
                 <label><h4><input type="text" name="id" class="id form-control form-control-navbar" placeholder="Enter ID Number"/></h4></label>
               </div>
-              <input type="submit" name="search" class="search btn btn-default" value="Search"/>
-              <input type="submit" name="viewall" class="viewall btn btn-default" value="View All"/>
+              <input type="submit" name="search" class="search btn btn-default" value="search"/>
+              <input type="submit" name="viewall" class="viewall btn btn-default" value="viewall"/>
             </form>
             </div>
           </div><!-- /.card-header -->
@@ -78,7 +78,7 @@
                 </tr>
               </thead>
       				<tbody id="viewAssessment"> <!-- Populate from database. -->
-                
+
               </tbody>
             <!-- /.card-body -->
             </div>
@@ -90,7 +90,6 @@
 
 <!--Submit form.-->
 <script type="text/javascript">
-$(document).ready(function(){
    $(document).ready(function(){
         $(document).on('click','input[name=search]',function(e){
           e.preventDefault();
@@ -101,6 +100,7 @@ $(document).ready(function(){
                   url:"ViewAssessmentAction.php",
                   data:{search:search,id:id},
                   success:function(data){
+                    console.log(data);
                     $('#viewAssessment').html(data);
                   }
              });
@@ -113,12 +113,12 @@ $(document).ready(function(){
                   url:"ViewAssessmentAction.php",
                   data:{viewall:viewall},
                   success:function(data){
+                    console.log(data);
                     $('#viewAssessment').html(data);
                   }
              });
         });
    });
-});
 </script>
 
 <!--===============================================================================================-->
