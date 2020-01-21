@@ -596,8 +596,7 @@
             type:'POST',
             data:{idno:idno,yearid:yearid,t:t,b:b,m:m,s:s,ba:ba},
             success:function(data) {
-              console.log(data);
-              //window.location.href = $('input[name=redirect_to]').val();
+              window.location.href = $('input[name=redirect_to]').val();
             }
           });
         });
