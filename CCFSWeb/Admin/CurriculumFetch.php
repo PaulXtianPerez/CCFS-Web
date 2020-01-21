@@ -20,7 +20,7 @@
            $output .= '
                 <tr>
                      <td width="30%">'.$row["grade"].'</td>
-                     <td>'
+                     <td id="WELON">'
                      .$row["subjname1"]." , ". $row["subjname2"]." , ".$row["subjname3"]." , ". $row["subjname4"]." , ".$row["subjname5"]." , ". $row["subjname6"]." , "
                      .$row["subjname7"]." , ". $row["subjname8"]." , ".$row["subjname9"]." , ". $row["subjname10"]." , ".$row["subjname11"]." , ". $row["subjname12"]." , "
                      .$row["subjname13"]." , ". $row["subjname14"]." , ".$row["subjname15"]." , ". $row["subjname16"]." , ".$row["subjname17"]." , ". $row["subjname18"]." , "

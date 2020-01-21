@@ -103,7 +103,7 @@ $resultCurr = mysqli_query($mysqli, $queryCurr);
 
 <!-- Modal to display curriculum information. -->
 <div id="dataModal" class="modal fade">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">Curriculum Subjects</h4>
@@ -121,6 +121,7 @@ $resultCurr = mysqli_query($mysqli, $queryCurr);
 <!-- View curriculum information through modal. -->
 <script>
  $(document).ready(function(){
+      
       $('.view_data').click(function(){
            var curr_name = $(this).attr("id");
            $.ajax({
@@ -130,6 +131,10 @@ $resultCurr = mysqli_query($mysqli, $queryCurr);
                 success:function(data){
                      $('#currData').html(data);
                      $('#dataModal').modal("show");
+                     $("td:contains(, )").each(function(){
+                        var e = $(this).text().replace(/,/g,"");
+                        $(this).text(e);
+                      });
                 }
            });
       });
