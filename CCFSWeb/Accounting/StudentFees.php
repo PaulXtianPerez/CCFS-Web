@@ -2,9 +2,9 @@
 // connect to database
 include 'dbase.php';
 // mysql select query
-$query = "SELECT * FROM `feestudent`";
+$query = "SELECT * FROM feestudent";
 // result for method
-$result = mysqli_query($mysqli, $query);
+$result = mysqli_query($conn, $query);
 ?>
 <html>
 <head>
@@ -37,7 +37,7 @@ $result = mysqli_query($mysqli, $query);
   <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
   <!-- CSS for DataTables plugin -->
   <link rel="stylesheet" type="text/css" href="../Resources/plugins/bootstrap/js/DataTables/datatables.css">
-</head>  
+</head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div id="contents" class="wrapper">
 
@@ -49,7 +49,7 @@ $result = mysqli_query($mysqli, $query);
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">Student Fees</h1>
-                             
+
                     <span id="successmsg"></span>
                   </div>
           </div><!-- /.col -->
@@ -58,7 +58,7 @@ $result = mysqli_query($mysqli, $query);
 		</div>
         <!-- Main content -->
        <section class="content">
-          
+
             <div class="col-12">
               <div class="card card-primary">
                 <div class="card-header">
@@ -109,7 +109,5 @@ $result = mysqli_query($mysqli, $query);
     </div>
   </div>
 </div> <!-- ./wrapper -->
-    </body>  
-</html>  
-
-        
+    </body>
+</html>
