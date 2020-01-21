@@ -119,6 +119,12 @@
               <p>Student Fees</p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="#ViewAssessment" class="nav-link">
+              <i class="nav-icon fa fa-money-bill-alt"></i>
+              <p>View Assessment</p>
+            </a>
+          </li>
       </nav>
       <!-- /.sidebar-menu -->
     </div>
@@ -141,6 +147,7 @@
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
+        <?php include("Assessment.php"); ?>
       </div><!-- /.container-fluid -->
     </div>
   </div>
