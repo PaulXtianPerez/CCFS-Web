@@ -87,7 +87,7 @@ for($i = 0; $i < sizeof($data6);$i++) {
     switch($data6[$i]['gradelvl']) {
       case 'NURSERY':
         for($in = 0; $in < sizeof($data8);$in++) {
-          $sqlN = "INSERT INTO 'grades'(`subjID`,`sename`,`IDno`,`yearId`) VALUES (".$data8[$in][`subjID`].",'ALEPH',".$data6[$i]['IDno'].",".$data5[0]['yearid'].")";
+          $sqlN = "INSERT INTO 'grades'(`subjID`,`sename`,`IDno`,`yearId`) VALUES ('".$data8[$in]['subjID']."','ALEPH','".$data6[$i]['IDno']."','".$data5[0]['yearid']."')";
           $conn->query($sqlN);
         }
       break;
@@ -152,7 +152,6 @@ $result3 = mysqli_query($conn, $query3);
 <!DOCTYPE html>
 <html>
 <head>
-<input type="text" name="grades" id="grade" style="width: 4em">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>CCFS Student Information System</title>
