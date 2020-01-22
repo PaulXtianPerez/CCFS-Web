@@ -1,5 +1,4 @@
 <?php
- include('../ActiveSchoolYear.php');
  include('../edit.php');
  include('../server.php');
  include('Connection.php');
@@ -78,11 +77,7 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <h5>School Year: <?php if(empty($data3[0]) || empty($data2[1])) {
-        echo "-----";
-      } else {
-        echo $data3[0]; echo "-"; echo $data2[1];
-      } ?></h5>
+      <h5>School Year: <?php include("../ActiveSchoolYear.php") ?></h5>
     </ul>
   <!--  <h3>Cypress Christian Foundation School</h3> -->
   </nav>
@@ -113,8 +108,6 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false" id="menus">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
           <li class="nav-item">
             <a href="AdminHome.php" class="nav-link active">
               <i class="nav-icon fas fa-home"></i>
@@ -152,10 +145,10 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-          <form action="../Enrollment/EnrollmentNew.php" method="post">
-          <input type="hidden" name="varname" value="A">
-            <button type="submit" class="nav-link" id="newEnroll" href="'../Enrollment/EnrollmentNew.php'"><i class="nav-icon fas fa-id-badge"></i>Enroll Student</button>
-          </form>
+            <form action="../Enrollment/EnrollmentNew.php" method="post">
+            <input type="hidden" name="varname" value="A">
+              <button type="submit" class="nav-link" id="newEnroll" href="'../Enrollment/EnrollmentNew.php'"><i class="nav-icon fas fa-id-badge"></i>Enroll Student</button>
+            </form>
           </li>
           <li class="nav-item has-treeview">
             <a href="#discountsponsor" id="discSpons" class="nav-link">
@@ -175,6 +168,7 @@
               <p>List of Accounts</p>
             </a>
           </li>
+        </ul>
       </nav>
       <!-- /.sidebar-menu -->
     </div>
@@ -198,9 +192,7 @@
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
-    </div>
-  </div>
-    <!-- /.content-header -->
+    </div><!-- /.content-header -->
 
     <!-- Main content -->
     <section class="content">
@@ -208,10 +200,10 @@
         <!-- Small boxes (Stat box) -->
         <div class="row">
           <!-- Left col -->
-    <!-- /.content -->
-  </section>
-  </div>
-  <!-- /.content-wrapper -->
+        </div>
+      </div>
+    </section><!-- /.content -->
+  </div><!-- /.content-wrapper -->
   <footer class="main-footer">
     <strong>Cypress Christian Foundation School.</strong>
     <div class="float-right d-none d-sm-inline-block">
@@ -223,7 +215,6 @@
     <!-- Control sidebar content goes here -->
   </aside>
   <!-- /.control-sidebar -->
-
 </div>
 <!-- ./wrapper -->
 
@@ -264,8 +255,6 @@
 <script src="../Resources/dist/js/demo.js"></script>
 <!-- Load new page into #contents div -->
 <script src="disp.js"></script>
-<!-- DataTables plugin -->
-<script type="text/javascript" charset="utf8" src="../Resources/plugins/bootstrap/js/DataTables/datatables.js"></script>
 
 </body>
 </html>

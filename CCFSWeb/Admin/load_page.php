@@ -6,12 +6,7 @@ $page = (String)$_POST['page'];
 if(file_exists($page.'.php'))
 include($page.'.php');
 
-else { ?>
-  <script type="text/javascript">
-    document.getElementById('contents').style.backgroundColor = '#3CB371';
-  </script>
-
-<?php
+else {
   echo '
       <div style="text-align: center; padding-top: 100px;">
         <h1 style="color: #8B0000;">Error 404: Page not found</h1>
