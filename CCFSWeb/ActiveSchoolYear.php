@@ -4,7 +4,6 @@
 $connect = mysqli_connect("localhost", "root", "", "ccfs");
 
 // mysql select query
-//$activeSchYr = "SELECT CONCAT(`yearstart`, '-',`yearend`) FROM `schoolyear` WHERE `scstatus`='active'";
 $activeYrStart = "SELECT `yearstart` FROM `schoolyear` WHERE `scstatus`='active'";
 
 // result for method
@@ -23,5 +22,10 @@ $data2 = array();
 while($row = $result2->fetch_assoc()) {
     $data2[1] = $row['yearend'];
 }
-
+// print the active school year
+if(empty($data3[0]) || empty($data2[1])) {
+  echo "-----";
+} else {
+  echo $data3[0]; echo "-"; echo $data2[1];
+}
 ?>
