@@ -1,5 +1,4 @@
 <?php
- include('../ActiveSchoolYear.php');
  include('../edit.php');
  include('../server.php');
  include('Connection.php');
@@ -110,11 +109,7 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <h5>School Year: <?php if(empty($data3[0]) || empty($data2[1])) {
-        echo "-----";
-      } else {
-        echo $data3[0]; echo "-"; echo $data2[1];
-      } ?></h5>
+      <h5>School Year: <?php include('../ActiveSchoolYear.php'); ?></h5>
     </ul>
   <!--  <h3>Cypress Christian Foundation School</h3> -->
   </nav>
@@ -202,6 +197,7 @@
               <p>Generate Reports</p>
             </a>
           </li>
+        </ul>
       </nav>
       <!-- /.sidebar-menu -->
     </div>
@@ -225,9 +221,7 @@
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
-    </div>
-  </div>
-    <!-- /.content-header -->
+    </div><!-- /.content-header -->
 
     <!-- Main content -->
     <section class="content">
@@ -235,11 +229,11 @@
         <!-- Small boxes (Stat box) -->
         <div class="row">
           <!-- Left col -->
-    <!-- /.content -->
-  </section>
-  </div>
-  <!-- /.content-wrapper -->
-<footer class="main-footer">
+        </div>
+      </div><!-- /.content -->
+    </section>
+  </div><!-- /.content-wrapper -->
+  <footer class="main-footer">
     <strong>Cypress Christian Foundation School.</strong>
     <div class="float-right d-none d-sm-inline-block">
     </div>
@@ -254,8 +248,6 @@
 <!-- ./wrapper -->
 
 
-<!-- Open new page -->
-<script src="../Resources/js/displaypage.js"></script>
 <!-- jQuery -->
 <script src="../Resources/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
