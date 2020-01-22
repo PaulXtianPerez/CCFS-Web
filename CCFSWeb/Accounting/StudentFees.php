@@ -1,6 +1,6 @@
 <?php
 // connect to database
-include 'dbase.php';
+include("dbase.php");
 // mysql select query
 $query = "SELECT * FROM feestudent";
 // result for method
@@ -37,6 +37,8 @@ $result = mysqli_query($conn, $query);
   <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
   <!-- CSS for DataTables plugin -->
   <link rel="stylesheet" type="text/css" href="../Resources/plugins/bootstrap/js/DataTables/datatables.css">
+  <!-- DataTables plugin -->
+  <script type="text/javascript" charset="utf8" src="../Resources/plugins/bootstrap/js/DataTables/datatables.js"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div id="contents" class="wrapper">
@@ -49,65 +51,108 @@ $result = mysqli_query($conn, $query);
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">Student Fees</h1>
-
-                    <span id="successmsg"></span>
-                  </div>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-		</div>
-		</div>
+            <span id="successmsg"></span>
+          </div> <!-- /.col -->
+        </div>
         <!-- Main content -->
-       <section class="content">
-
+        <section class="content">
+          <div class="row">
             <div class="col-12">
               <div class="card card-primary">
                 <div class="card-header">
-				<div class="input-group input-group-sm">
-				<form class="form-inline ml-1 form-group">
-				  </div>
-				  <div class="input-group input-group-sm">
-						<div class="radio">
-						<label><h4><input type="text" name="id" class="id" placeholder="Enter Id Number"/></h4></label>
-						</div>
-						</div>
-					</form>
-                </div>
-                  <!-- SEARCH FORM -->
-			<!-- Balance -->
-                <!-- /.card-header -->
+                  <div> <!-- SEARCH FORM -->
+                    <form class="form-inline ml-1 form-group">
+                      <div class="input-group input-group-sm">
+                        <div class="radio">
+                          <input type="text" name="id" id="searchInput" class="id form-control form-control-navbar" placeholder="Search"/>
+                        </div>
+                      </div>
+                    </form>
+                  </div> <!-- /.SEARCH FORM -->
+                </div> <!-- /.card-header -->
                 <div class="card-body">
-                  <table id="schyrTable" class="table table-bordered table-hover">
+                  <table id="feesTable" class="table table-bordered table-hover">
                     <thead>
-                    <tr>
-					<th>ID Number </th>
-					<th>Books Fee </th>
-					<th>Misc Fee </th>
-					<th>Tuition Fee </th>
-					<th>Service Fee </th>
-					<th>Remaining Balance </th>
-                    </tr>
+                      <tr>
+                        <th>ID Number </th>
+        					      <th>Books Fee </th>
+        					      <th>Misc Fee </th>
+        					      <th>Tuition Fee </th>
+        					      <th>Service Fee </th>
+        					      <th>Remaining Balance </th>
+                      </tr>
                     </thead>
-				<tbody> <!-- Populate from database. -->
-                  <?php while($row = mysqli_fetch_array($result)):;?>
-                    <tr>
-                      <td><?php echo $row["IDno"];?></td>
-                      <td><?php echo $row["books"];?></td>
-                      <td><?php echo $row["misc"];?></td>
-                      <td><?php echo $row["tuition"];?></td>
-                     <td><?php echo $row["balance"];?></td>
-                      <td><input type="button" name="edit" value="Edit" id="<?php echo $row["feestID"]; ?>" class="btn btn-info btn-xs edit_data" /></td>
-                    </tr>
-                  <?php endwhile;?>
+        				    <tbody> <!-- Populate from database. -->
+                      <?php while($row = mysqli_fetch_array($result)):;?>
+                        <tr>
+                          <td><?php echo $row["IDno"];?></td>
+                          <td><?php echo $row["books"];?></td>
+                          <td><?php echo $row["misc"];?></td>
+                          <td><?php echo $row["tuition"];?></td>
+                          <td><?php echo $row["balance"];?></td>
+                          <td><input type="button" name="edit" value="Edit" id="<?php echo $row["feestID"]; ?>" class="btn btn-info btn-xs edit_data" /></td>
+                        </tr>
+                      <?php endwhile;?>
                     </tbody>
-                <!-- /.card-body -->
+                  </div> <!-- /.card-body -->
+                </div> <!-- /.card -->
               </div>
-              <!-- /.card -->
             </div>
-          </div>
-        </section>
-      </div><!-- /.container-fluid -->
-    </div>
-  </div>
+          </section>
+        </div><!-- /.row -->
+		 </div>
+	</div>
 </div> <!-- ./wrapper -->
-    </body>
+
+<!-- Initialize DataTables plugin -->
+<script type="text/javascript">
+var table = $("#feesTable").DataTable();
+$("#searchInput").on("keyup", function() {
+  table.search(this.value).draw(); //search/filter functionality using DataTables search API
+});
+table.destroy(); //for reinitialization
+
+$("#feesTable").DataTable({
+  "pagingType": "full_numbers", //'First', 'Previous', 'Next' and 'Last' buttons plus page numbers
+  "bFilter": false, //remove default search/filter
+  "destroy": true //for reinitialization
+});
+</script>
+
+
+<!-- jQuery -->
+<script src="../Resources/plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="../Resources/plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="../Resources/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="../Resources/plugins/chart.js/Chart.min.js"></script>
+<!-- Sparkline -->
+<script src="../Resources/plugins/sparklines/sparkline.js"></script>
+<!-- JQVMap -->
+<script src="../Resources/plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="../Resources/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="../Resources/plugins/jquery-knob/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="../Resources/plugins/moment/moment.min.js"></script>
+<script src="../Resources/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="../Resources/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Summernote -->
+<script src="../Resources/plugins/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="../Resources/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../Resources/dist/js/adminlte.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="../Resources/dist/js/pages/dashboard.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../Resources/dist/js/demo.js"></script>
+  </body>
 </html>

@@ -32,18 +32,13 @@
     $query_run = mysqli_query($conn,$idnum);
     while($row = mysqli_fetch_array($query_run)) {
         echo '
-          <tr>
-            <th>ID Number </th>
-            <th>Assessed For </th>
-            <th>Amount </th>
-            <th>Due Date </th>
-          </tr> <br />
+          <br />
                       <tr>
                       <td>'.$row["IDno"].'</td>
                       <td>'.$row["assessfor"].'</td>
                       <td>'.$row["amount"].'</td>
                       <td>'.$row["duedate"].'</td>
-                    </tr
+                    </tr>
                       ';
     }
   }

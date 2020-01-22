@@ -42,51 +42,51 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Student Fees</h1>
+            <h1 class="m-0 text-dark">Assessment of Fees</h1>
             <span id="successmsg"></span>
           </div>
         </div><!-- /.col -->
-      </div><!-- /.container-fluid -->
-		</div>
-	</div>
+        <?php include("Assessment.php"); ?>
+        <!-- Main content -->
+        <section class="content">
+          <div class="row">
+            <div class="col-12">
+              <div class="card card-primary">
+                <div class="card-header">
+                  <div class="input-group input-group-sm">
+                    <form id="K"> <!-- SEARCH FORM -->
+                      <div class="radio">
+                        <label><h4><input type="text" name="id" class="id form-control form-control-navbar" placeholder="Enter ID Number"/></h4></label>
+                      </div>
+                      <input type="submit" name="search" class="search btn btn-default" value="Search"/>
+                      <input type="submit" name="viewall" class="viewall btn btn-default" value="View All"/>
+                    </form>
+                    </div>
+                  </div><!-- /.card-header -->
+        			    <!-- Balance -->
+                  <div class="card-body">
+                    <table id="assessmentTable" class="table table-bordered table-hover">
+                      <thead>
+                        <tr>
+                          <th>ID Number </th>
+        					        <th>Assessed For </th>
+        					        <th>Amount </th>
+        					        <th>Due Date </th>
+                        </tr>
+                      </thead>
+              				<tbody id="viewAssessment"> <!-- Populate from database. -->
 
-  <!-- Main content -->
-  <section class="content">
-    <div class="col-12">
-      <div class="card card-primary">
-        <div class="card-header">
-          <div class="input-group input-group-sm">
-            <form id="K">
-              <div class="radio">
-                <label><h4><input type="text" name="id" class="id form-control form-control-navbar" placeholder="Enter ID Number"/></h4></label>
+                      </tbody>
+                    </table>
+                  </div><!-- /.card-body -->
+                </div><!-- /.card -->
               </div>
-              <input type="submit" name="search" class="search btn btn-default" value="search"/>
-              <input type="submit" name="viewall" class="viewall btn btn-default" value="viewall"/>
-            </form>
             </div>
-          </div><!-- /.card-header -->
-          <!-- SEARCH FORM -->
-			    <!-- Balance -->
-          <div class="card-body">
-            <table id="schyrTable" class="table table-bordered table-hover">
-              <thead>
-                <tr>
-                  <th>ID Number </th>
-					        <th>Assessed For </th>
-					        <th>Amount </th>
-					        <th>Due Date </th>
-                </tr>
-              </thead>
-      				<tbody id="viewAssessment"> <!-- Populate from database. -->
-
-              </tbody>
-            <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-        </div>
-      </section>
-    </div> <!-- ./wrapper -->
+          </section>
+        </div><!-- /.container-fluid -->
+      </div>
+    </div>
+  </div> <!-- ./wrapper -->
 
 <!--Submit form.-->
 <script type="text/javascript">
@@ -120,6 +120,17 @@
         });
    });
 </script>
+
+<!-- Initialize DataTables plugin
+<script type="text/javascript">
+$("#assessmentTable").DataTable({
+  "pagingType": "full_numbers", //'First', 'Previous', 'Next' and 'Last' buttons plus page numbers
+  "processing": true,
+  "serverSide": true,
+  "ajax": "ViewAssessmentAction.php",
+  "destroy": true //for reinitialization
+});
+</script> -->
 
 <!--===============================================================================================-->
   <script src="../Resources/vendor/jquery/jquery-3.2.1.min.js"></script>

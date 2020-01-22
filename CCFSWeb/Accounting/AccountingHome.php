@@ -1,5 +1,4 @@
 <?php
- include('../ActiveSchoolYear.php');
  include('../edit.php');
  include('../server.php');
 
@@ -64,11 +63,7 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <h5>School Year: <?php if(empty($data3[0]) || empty($data2[1])) {
-        echo "-----";
-      } else {
-        echo $data3[0]; echo "-"; echo $data2[1];
-      } ?></h5>
+      <h5>School Year: <?php include('../ActiveSchoolYear.php'); ?></h5>
     </ul>
   <!--  <h3>Cypress Christian Foundation School</h3> -->
   </nav>
@@ -122,9 +117,10 @@
           <li class="nav-item">
             <a href="#ViewAssessment" class="nav-link">
               <i class="nav-icon fa fa-money-bill-alt"></i>
-              <p>View Assessment</p>
+              <p>Assessment of Fees</p>
             </a>
           </li>
+        </ul>
       </nav>
       <!-- /.sidebar-menu -->
     </div>
@@ -147,11 +143,8 @@
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
-        <?php include("Assessment.php"); ?>
       </div><!-- /.container-fluid -->
-    </div>
-  </div>
-    <!-- /.content-header -->
+    </div><!-- /.content-header -->
 
     <!-- Main content -->
     <section class="content">
@@ -159,10 +152,10 @@
         <!-- Small boxes (Stat box) -->
         <div class="row">
           <!-- Left col -->
-    <!-- /.content -->
-  </section>
-  </div>
-  <!-- /.content-wrapper -->
+        </div>
+      </div>
+    </section><!-- /.content -->
+  </div><!-- /.content-wrapper -->
    <footer class="main-footer">
     <strong>Cypress Christian Foundation School.</strong>
     <div class="float-right d-none d-sm-inline-block">
@@ -177,8 +170,7 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- Open new page -->
-<script src="../Resources/js/displaypage.js"></script>
+
 <!-- jQuery -->
 <script src="../Resources/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -213,6 +205,7 @@
 <script src="../Resources/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../Resources/dist/js/demo.js"></script>
+<!-- Load new page into #contents div -->
 <script src="disp.js"></script>
 </body>
 </html>
