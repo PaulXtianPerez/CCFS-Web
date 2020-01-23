@@ -1,8 +1,11 @@
 <?php
     include('../ActiveSchoolYear.php');
     include("Connection.php");
-    $qearStud = "SELECT IDno, SurName, GivenName, MiddleName, gradelvl FROM `enstudent`";
+    $qearStud = "SELECT IDno, enstudent.SurName, enstudent.GivenName, enstudent.MiddleName, enstudent.gradelvl,section.sename FROM enstudent,section WHERE enstudent.gradelvl = section.gradelvl";
     $result = $conn->query($qearStud);
+
+    $query = "SELECT * FROM `section`";
+    $result1 = $conn->query($query);
 ?>
 <!DOCTYPE html>
 <html>
@@ -88,6 +91,7 @@
                     </tr>
                   </thead>
                   <tbody> <!-- Populate from database. -->
+                    
                     <?php while($row = $result->fetch_assoc()) { ?>
                       <tr>
                         <td><?php echo $row["IDno"];?></td>
@@ -95,6 +99,7 @@
                         <td><?php echo $row["GivenName"];?></td>
                         <td><?php echo $row["MiddleName"];?></td>
                         <td><?php echo $row["gradelvl"];?></td>
+                        <td><?php echo $row["sename"];?></td>
                         <td></td>
                         <td style="text-align:center;"><input type="button" name="edit" value="Edit" id="<?php echo $row["IDno"]; ?>" class="btn btn-info btn-xs edit_data" /></td>
                       </tr>
