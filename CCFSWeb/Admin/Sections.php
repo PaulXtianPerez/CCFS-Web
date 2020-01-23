@@ -1,7 +1,6 @@
 <?php
 // connect to database
 include("database.php");
-include("../ActiveSchoolYear.php");
 // mysql select query
 $query = "SELECT * FROM `section`";
 // result for method
@@ -51,62 +50,61 @@ $result = mysqli_query($mysqli, $query);
 
   <!-- Content Wrapper. Contains page content -->
   <div>
-    <!-- Main content -->
-  <section class="content">
+    <!-- Content Header (Page header) -->
     <div class="content-header">
-      <div class="row mb-2">
+      <div class="container-fluid">
+        <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">Class Sections</h1>
-            <h5>School Year: <?php if(empty($data3[0]) || empty($data2[1])) {
-              echo "-----";
-            } else {
-              echo $data3[0]; echo "-"; echo $data2[1];
-            } ?></h5>
+            <h5>School Year: <?php include("../ActiveSchoolYear.php"); ?></h5>
           </div><!-- /.col -->
         </div><!-- /.row -->
-    </div>
-
-        <div class="col-12">
-          <div class="card card-primary">
-            <div class="card-header">
+        <!-- Main content -->
+        <section class="content">
+          <div class="row">
+          <div class="col-12">
+            <div class="card card-primary">
+              <div class="card-header">
+                <div>
+                  <!-- SEARCH FORM -->
+                  <form class="form-inline ml-3">
+                    <div class="input-group input-group-sm">
+                      <input id="searchInput" class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"/>
+                    </div>
+                  </form>
+                </div>
+              </div> <!-- /.card-header -->
               <div>
-                <!-- SEARCH FORM -->
-                <form class="form-inline ml-3">
-                  <div class="input-group input-group-sm">
-                    <input id="searchInput" class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"/>
-                  </div>
-                </form>
+                <button type="button" name="section" id="section" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-info" style="float:right; margin-top:5px; margin-right:20px;">Create Section</button>
+              </div>
+              <div class="card-body">
+                <table id="secListTable" class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th style="display:none;">Section ID</th>
+                      <th width="40%">Section Name</th>
+                      <th>Adviser Name</th>
+                    </tr>
+                  </thead>
+                   <tbody> <!-- Populate from database. -->
+                      <?php while($row = mysqli_fetch_array($result)):;?>
+                        <tr>
+                          <td style="display:none;"><?php echo $row["secID"];?></td>
+                          <td><?php echo trim( str_replace( 'Grade', '', $row["gradelvl"] ) ) . " - " . $row["sename"];?></td>
+                          <td><?php echo $row["adviserlname"];?></td>
+                        </tr>
+                      <?php endwhile;?>
+                    </tbody>
+                  </table>
+                </div> <!-- /.card-body -->
               </div>
             </div>
-            <div>
-              <button type="button" name="section" id="section" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-info" style="float:right; margin-top:5px; margin-right:20px;">Create Section</button>
-            </div>
-
-            <!-- /.card-header -->
-            <div class="card-body">
-              <table id="secListTable" class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                  <th style="display:none;">Section ID</th>
-                  <th width="40%">Section Name</th>
-                  <th>Adviser Name</th>
-                </tr>
-                </thead>
-               <tbody> <!-- Populate from database. -->
-                  <?php while($row = mysqli_fetch_array($result)):;?>
-                    <tr>
-                      <td style="display:none;"><?php echo $row["secID"];?></td>
-                      <td><?php echo trim( str_replace( 'Grade', '', $row["gradelvl"] ) ) . " - " . $row["sename"];?></td>
-                      <td><?php echo $row["adviserlname"];?></td>
-                    </tr>
-                  <?php endwhile;?>
-                </tbody>
-              </table>
-            </div>
-            <!-- /.card-body -->
           </div>
+        </section>
+      </div>
     </div>
   </div>
+</div>
 
 <!-- Modal for creating a new section. -->
 <div id="add_data_Modal" class="modal fade">
@@ -121,7 +119,7 @@ $result = mysqli_query($mysqli, $query);
           <div class="row">
             <div class="form-group col-6">
               <label>Section Name</label>
-              <div class="input-group mb-3">
+              <div class="input-group mb-3" class="validate-input" data-validate="Section name is required">
                 <input type="text" name="sename" id="sename" class="form-control" placeholder="Enter Section Name" maxlength="40" required/>
                 <div class="input-group-append">
                   <div class="input-group-text">
@@ -140,7 +138,7 @@ $result = mysqli_query($mysqli, $query);
                   <option value="GRADE 1">GRADE 1</option>
                   <option value="GRADE 2">GRADE 2</option>
                   <option value="GRADE 3">GRADE 3</option>
-                  <option value="GRADE 4">GRADEe 4</option>
+                  <option value="GRADE 4">GRADE 4</option>
                   <option value="GRADE 5">GRADE 5</option>
                   <option value="GRADE 6">GRADE 6</option>
                 </select>
@@ -166,33 +164,33 @@ $result = mysqli_query($mysqli, $query);
             </div>
             </div>
             <div class="row">
-            <div class="form-group col-6" style="display:none">
-              <label>School Year</label>
-              <?php $query2 = "Select yearid from schoolyear where scstatus = 'ACTIVE'";
-              $result2 = $mysqli->query($query2) or die($mysqli->error.__LINE__);
-              ?>
-              <div class="input-group mb-3">
-              <select name = "yearid" type = "hidden" class="form-control" >
-                  <?php while ($row2 = mysqli_fetch_array($result2)):;?>
-                  <option name = "yearid" type = "hidden"><?php echo $row2[0];?></option>
-                  <?php endwhile;?>
-                  </select>
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <span class="fas fa-calendar"></span>
+              <div class="form-group col-6" style="display:none">
+                <label>School Year</label>
+                <?php $query2 = "Select yearid from schoolyear where scstatus = 'ACTIVE'";
+                $result2 = $mysqli->query($query2) or die($mysqli->error.__LINE__);
+                ?>
+                <div class="input-group mb-3">
+                <select name = "yearid" type = "hidden" class="form-control" >
+                    <?php while ($row2 = mysqli_fetch_array($result2)):;?>
+                    <option name = "yearid" type = "hidden"><?php echo $row2[0];?></option>
+                    <?php endwhile;?>
+                    </select>
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-calendar"></span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <!-- /.col -->
-            <div class="col-4">
-              <input type="submit" name="submit" value="Create" min="0" class="btn btn-success"/>
+            <div class="row">
+              <!-- /.col -->
+              <div class="col-4">
+                <input type="submit" name="submit" value="Create" min="0" class="btn btn-success"/>
+              </div>
+              <!-- /.col -->
             </div>
-            <!-- /.col -->
-          </div>
-          <b><p id="success" style="text-align:center; font-size:22px;"></p></b>
+            <b><p id="success" style="text-align:center; font-size:22px;"></p></b>
         </form>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -206,8 +204,9 @@ $result = mysqli_query($mysqli, $query);
 <script type="text/javascript">
 $('#insert_form').on("submit", function(event){
   event.preventDefault();
+  var secname = document.getElementById("sename").value;
 	bootbox.confirm({
-		message: "Create Section?",
+		message: "Create section " +secname+ "?",
 		buttons: {
 			confirm: {
         label: "Yes",
@@ -260,12 +259,12 @@ $('#secListTable').Tabledit({
   buttons: {
      edit: {
          class: 'btn btn-info btn-xs edit_data',
-         html: '<span data-toggle="tooltip" title="Edit"><i class="fas fa-edit" aria-hidden="true"></i></span>',
+         html: '<span data-toggle="tooltip" title="Edit adviser"><i class="fas fa-edit" aria-hidden="true"></i></span>',
          action: 'edit'
      },
      delete: {
          class: 'btn btn-danger btn-xs edit_data',
-         html: '<span data-toggle="tooltip" title="Delete"><i class="fas fa-trash" aria-hidden="true"></i></span>',
+         html: '<span data-toggle="tooltip" title="Delete section"><i class="fas fa-trash" aria-hidden="true"></i></span>',
          action: 'delete'
        },
      },
@@ -280,6 +279,28 @@ $('#secListTable').Tabledit({
   }
 });
 </script>
+
+<!--Force capitalize inputs-->
+<script type="text/javascript">
+function forceKeyPressUppercase(e){
+  var charInput = e.keyCode;
+  if((charInput >= 97) && (charInput <= 122)) { // lowercase
+    if(!e.ctrlKey && !e.metaKey && !e.altKey) { // no modifier key
+      var newChar = charInput - 32;
+      var start = e.target.selectionStart;
+      var end = e.target.selectionEnd;
+      e.target.value = e.target.value.substring(0, start) + String.fromCharCode(newChar) + e.target.value.substring(end);
+      e.target.setSelectionRange(start+1, start+1);
+      e.preventDefault();
+    }
+  }
+}
+var capsFields = document.getElementsByTagName("input");
+for (i = 0; i < capsFields.length; i++) {
+    capsFields[i].addEventListener("keypress", forceKeyPressUppercase, false);
+}
+</script>
+
 
 <!-- jQuery -->
 <script src="../Resources/plugins/jquery/jquery.min.js"></script>
@@ -317,5 +338,6 @@ $('#secListTable').Tabledit({
 <script src="../Resources/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../Resources/dist/js/demo.js"></script>
+
 </body>
 </html>
