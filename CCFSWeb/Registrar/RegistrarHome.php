@@ -131,9 +131,9 @@
           <img src="../Resources/dist/img/users.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a class="d-block agray" style="font-size: 20px" tabindex="-1" href="#"><?php echo $_SESSION['USERNAME']; ?></a>
+          <a class="d-block agray" style="font-size: 20px" tabindex="-1"><?php echo $_SESSION['USERNAME']; ?></a>
               <?php  if (isset($_SESSION['LOGIN']) && $_SESSION['LOGIN'] == true ) : ?>
-           <i class="fa fa-cogs" aria-hidden="true" style="color: white"></i><a style="font-size: 15px" tabindex="-1" href="../logout.php">    Log Out<?php endif ?></a>
+           <i class="fa fa-cogs" aria-hidden="true" style="color: white"></i><a style="font-size: 15px" tabindex="-1" href="../logout.php"> Log Out<?php endif ?></a>
         </div>
       </div>
 
@@ -149,12 +149,16 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-          <form action="../Enrollment/EnrollmentNew.php" method="post">
-          <input type="hidden" name="varname" value="R">
-            <button type="submit" class="nav-link" id="newEnroll" href="'../Enrollment/EnrollmentNew.php'"><i class="nav-icon fas fa-id-badge"></i>Enroll Student</button>
-          </form>
+            <form action="../Enrollment/EnrollmentNew.php" method="post">
+            <input type="hidden" name="varname" value="R">
+              <button type="submit" id="newEnroll" href="'../Enrollment/EnrollmentNew.php'">
+                <a class="nav-link">
+                  <i class="nav-icon fas fa-id-badge"></i>
+                  <p>Enroll Student</p>
+                </a>
+              </button>
+            </form>
           </li>
-
           <li class="nav-item has-treeview">
             <a href="#listofstudents" id="studList" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
@@ -169,31 +173,31 @@
           </li>
           <li class="nav-item has-treeview">
             <a href="#grades" id="studGrd" class="nav-link">
-              <i class="nav-icon fas fa-list"></i>
+              <i class="nav-icon fas fa-pen"></i>
               <p>Student Grades</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
             <a href="#kinderchecklist" id="kinderChecklist" class="nav-link">
-              <i class="nav-icon fas fa-check"></i>
+              <i class="nav-icon fa fa-check-square"></i>
               <p>Kindergarten Checklist</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
             <a href="#kindercompetency" id="kinderCompetency" class="nav-link">
-              <i class="nav-icon fas fa-check"></i>
+              <i class="nav-icon fas fa-shapes"></i>
               <p>Kindergarten Competency</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
             <a href="#observedvalues" id="observedValues" class="nav-link">
-              <i class="nav-icon fas fa-check"></i>
+              <i class="nav-icon fas fa-theater-masks"></i>
               <p>Learner's Observed Values</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
             <a href="#registrarreports" id="reports" class="nav-link">
-              <i class="nav-icon fas fa-list"></i>
+              <i class="nav-icon fas fa-file"></i>
               <p>Generate Reports</p>
             </a>
           </li>
@@ -215,7 +219,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a>Home</a></li>
               <li class="breadcrumb-item active">Welcome Page</li>
             </ol>
           </div><!-- /.col -->
@@ -283,7 +287,6 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../Resources/dist/js/demo.js"></script>
 <!-- Load new page into #contents div -->
-<script src="disp.js"></script>
-
+<script src="../Resources/js/disp.js"></script>
 </body>
 </html>
