@@ -99,9 +99,9 @@
           <img src="../Resources/dist/img/users.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a class="d-block agray" style="font-size: 20px" tabindex="-1" href="#"><?php echo $_SESSION['USERNAME']; ?></a>
+          <a class="d-block agray" style="font-size: 20px" tabindex="-1"><?php echo $_SESSION['USERNAME']; ?></a>
               <?php  if (isset($_SESSION['LOGIN']) && $_SESSION['LOGIN'] == true ) : ?>
-           <i class="fa fa-cogs" aria-hidden="true" style="color: white"></i><a style="font-size: 15px" tabindex="-1" href="../logout.php">    Log Out<?php endif ?></a>
+           <i class="fa fa-cogs" aria-hidden="true" style="color: white"></i><a style="font-size: 15px" tabindex="-1" href="../logout.php"> Log Out<?php endif ?></a>
         </div>
       </div>
 
@@ -116,19 +116,19 @@
           </li>
           <li class="nav-item has-treeview">
             <a href="#createschoolyear" id="crSchYr" class="nav-link">
-              <i class="nav-icon fas fa-calendar"></i>
+              <i class="nav-icon fas fa-calendar-plus"></i>
               <p>Create School Year</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
             <a href="#listofschoolyears" id="schYrsList" class="nav-link">
-              <i class="nav-icon fas fa-list"></i>
+              <i class="nav-icon fas fa-calendar-alt"></i>
               <p>List of School Years</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
             <a href="#sections" id="sectionsList" class="nav-link">
-              <i class="nav-icon fas fa-list"></i>
+              <i class="nav-icon fas fa-chalkboard-teacher"></i>
               <p>Class Sections</p>
             </a>
           </li>
@@ -147,7 +147,12 @@
           <li class="nav-item has-treeview">
             <form action="../Enrollment/EnrollmentNew.php" method="post">
             <input type="hidden" name="varname" value="A">
-              <button type="submit" class="nav-link" id="newEnroll" href="'../Enrollment/EnrollmentNew.php'"><i class="nav-icon fas fa-id-badge"></i>Enroll Student</button>
+              <button type="submit" id="newEnroll" href="'../Enrollment/EnrollmentNew.php'">
+                <a class="nav-link">
+                  <i class="nav-icon fas fa-id-badge"></i>
+                  <p>Enroll Student</p>
+                </a>
+              </button>
             </form>
           </li>
           <li class="nav-item has-treeview">
@@ -186,7 +191,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a>Home</a></li>
               <li class="breadcrumb-item active">Welcome Page</li>
             </ol>
           </div><!-- /.col -->
@@ -254,7 +259,6 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../Resources/dist/js/demo.js"></script>
 <!-- Load new page into #contents div -->
-<script src="disp.js"></script>
-
+<script src="../Resources/js/disp.js"></script>
 </body>
 </html>
