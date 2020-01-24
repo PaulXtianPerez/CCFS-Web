@@ -85,9 +85,9 @@
           <img src="../Resources/dist/img/users.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a class="d-block agray" style="font-size: 20px" tabindex="-1" href="#"><?php echo $_SESSION['USERNAME']; ?></a>
+          <a class="d-block agray" style="font-size: 20px" tabindex="-1"><?php echo $_SESSION['USERNAME']; ?></a>
               <?php  if (isset($_SESSION['LOGIN']) && $_SESSION['LOGIN'] == true ) : ?>
-           <i class="fa fa-cogs" aria-hidden="true" style="color: white"></i><a style="font-size: 15px" tabindex="-1" href="../logout.php">    Log Out<?php endif ?></a>
+           <i class="fa fa-cogs" aria-hidden="true" style="color: white"></i><a style="font-size: 15px" tabindex="-1" href="../logout.php"> Log Out<?php endif ?></a>
         </div>
       </div>
 
@@ -138,7 +138,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a>Home</a></li>
               <li class="breadcrumb-item active">Welcome Page</li>
             </ol>
           </div><!-- /.col -->
@@ -206,6 +206,6 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../Resources/dist/js/demo.js"></script>
 <!-- Load new page into #contents div -->
-<script src="disp.js"></script>
+<script src="../Resources/js/disp.js"></script>
 </body>
 </html>
