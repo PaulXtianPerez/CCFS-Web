@@ -1,7 +1,6 @@
 <?php
 $connect = mysqli_connect("localhost", "root", "", "ccfs");
 
-include('../ActiveSchoolYear.php');
 $query = "SELECT sename FROM section WHERE gradelvl='NURSERY' OR gradelvl='PRE-KINDER' or gradelvl='KINDER'";
 $query1 = "SELECT sename FROM section WHERE gradelvl='GRADE 1' OR gradelvl='GRADE 2' or gradelvl='GRADE 3' or gradelvl='GRADE 4' or gradelvl='GRADE 5' or gradelvl='GRADE 6'";
 $queryN = "SELECT COUNT(CASE WHEN gender='M' THEN 1 END)MAIL, COUNT(CASE WHEN gender='F' THEN 1 END)FEMALE, COUNT(*)TOTAL FROM enstudent,curstudent WHERE enstudent.IDno = curstudent.IDno AND curstudent.gradelvl = 'NURSERY'";
@@ -67,12 +66,7 @@ $result10 = mysqli_query($connect, $queryG6);
           <div class="row mb-2">
             <div class="col-sm-6">
               <h1 class="m-0 text-dark">Summary of Students</h1>
-              <h5 class="m-0 text-dark">School Year: <?php if(empty($data3[0])) {
-          echo "--";
-        }else {
-          echo $data3[0];
-        }
-        ; echo "-" ; if(empty($data2[1])){echo "--";}else {echo $data2[1];}?></h5>
+              <h5 class="m-0 text-dark">School Year: <?php include('../ActiveSchoolYear.php'); ?></h5>
             </div><!-- /.col -->
           </div><!-- /.row -->
           <!-- Main content -->
@@ -142,11 +136,10 @@ $result10 = mysqli_query($connect, $queryG6);
                           <input type="hidden" name="rep[3][]" value="<?php echo $ra[1];?>">
                           <input type="hidden" name="rep[3][]" value="<?php echo $ra[2];?>">
                         </tr>
-                        <tr>  
+                        <tr>
+                          <td colspan="2" style="text-align:center;"><b>Total</b></td>
                           <td></td>
                           <td></td>
-                          <td></td>
-                          <th><b>Total</b></th>
                           <td><?php echo $ra[2]+$rw[2]+$r[2];?></td>
                           <input type="hidden" name="rep[4][]" value="NURSERY TO KINDER TOTAL">
                           <input type="hidden" name="rep[4][]" value="">
@@ -261,10 +254,9 @@ $result10 = mysqli_query($connect, $queryG6);
                           <input type="hidden" name="rep[10][]" value="<?php echo $g6[2];?>">
                         </tr>
                         <tr>
-                          <td><?php?></td>
+                          <td colspan="2" style="text-align:center;"><b>Total</b></td>
                           <td></td>
-                          <td></td> 
-                          <th><b>Total</b></td>
+                          <td></td>
                           <td><?php echo $g1[2]+$g2[2]+$g3[2]+$g4[2]+$g5[2]+$g6[2];?></td>
                           <input type="hidden" name="rep[11][]" value="GRADE 1 TO GRADE 6 TOTAL">
                           <input type="hidden" name="rep[11][]" value="">
