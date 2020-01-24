@@ -22,7 +22,7 @@ function loadPage(url){  //load pages via AJAX
   $.ajax({    //create an ajax request to load_page.php
       type: "POST",
       url: "load_page.php",
-      data: 'page='+url,  //page number as a parameter
+      data: 'page='+url,  //page name as a parameter
       dataType: "html",   //expect html to be returned
       success: function(msg){
           if(parseInt(msg)!=0){    //if no errors
