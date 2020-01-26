@@ -46,47 +46,59 @@
             <span id="successmsg"></span>
           </div>
         </div><!-- /.col -->
-        <?php include("Assessment.php"); ?>
-        <!-- Main content -->
-        <section class="content">
-          <div class="row">
-            <div class="col-12">
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+
+            <?php include("Assessment.php"); ?>
+
               <div class="card card-primary">
                 <div class="card-header">
                   <div class="input-group input-group-sm">
-                    <form id="K"> <!-- SEARCH FORM -->
-                      <div class="radio">
-                        <label><h4><input type="text" name="id" class="id form-control form-control-navbar" placeholder="Enter ID Number"/></h4></label>
+                    <form id="K" class="form-inline"> <!-- SEARCH FORM -->
+                      <div class="input-group">
+                        <div class="input-group input-group-sm">
+                          <input type="text" name="id" class="id form-control form-control-navbar" placeholder="Enter ID Number"/>
+                        </div>
+                        <div class="input-group">
+                          <div class="input-group input-group-sm col-6">
+                            <input type="submit" name="search" class="form-control search btn btn-default" value="Search"/>
+                          </div>
+                          <div class="input-group input-group-sm col-6">
+                            <input type="submit" name="viewall" class="form-control viewall btn btn-default" value="View All"/>
+                          </div>
+                        </div>
                       </div>
-                      <input type="submit" name="search" class="search btn btn-default" value="Search"/>
-                      <input type="submit" name="viewall" class="viewall btn btn-default" value="View All"/>
                     </form>
-                    </div>
-                  </div><!-- /.card-header -->
-        			    <!-- Balance -->
-                  <div class="card-body">
-                    <table id="assessmentTable" class="table table-bordered table-hover">
-                      <thead>
-                        <tr>
-                          <th>ID Number </th>
-        					        <th>Assessed For </th>
-        					        <th>Amount </th>
-        					        <th>Due Date </th>
-                        </tr>
-                      </thead>
-              				<tbody id="viewAssessment"> <!-- Populate from database. -->
-
-                      </tbody>
-                    </table>
-                  </div><!-- /.card-body -->
-                </div><!-- /.card -->
-              </div>
+                  </div>
+                </div><!-- /.card-header -->
+      			    <!-- Balance -->
+                <div class="card-body">
+                  <table id="assessmentTable" class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>ID Number </th>
+      					        <th>Assessed For </th>
+      					        <th>Amount </th>
+      					        <th>Due Date </th>
+                      </tr>
+                    </thead>
+            				<tbody id="viewAssessment"> <!-- Populate from database. -->
+                    </tbody>
+                  </table>
+                </div><!-- /.card-body -->
+              </div><!-- /.card -->
             </div>
-          </section>
-        </div><!-- /.container-fluid -->
-      </div>
-    </div>
-  </div> <!-- ./wrapper -->
+          </div>
+        </div>
+      </section>
+    </div><!-- /.container-fluid -->
+  </div><!-- ./wrapper -->
 
 <!--Submit form.-->
 <script type="text/javascript">

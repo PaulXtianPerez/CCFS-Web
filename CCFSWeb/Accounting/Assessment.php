@@ -14,7 +14,7 @@
   <div class="searchID">
     <form method="post" id="poll_form" onsubmit="return formSubmit();">
       <input type="submit" name="create" class="btn btn-success create" value="Create Assessment"/>
-      <b><p id="success" style="text-align:center; font-size:22px;"></p></b>
+      <b><p id="success" style="text-align:center; color:#0AC02A; font-size:22px;"></p></b>
     </form>
   </div>
   </div>
@@ -42,7 +42,7 @@
   				url: "AssessmentAction.php",
   				data: $("#poll_form").serialize(),
   				success: function(response){
-  					$("#success").html("Successfully created assessment.");
+  					$("#success").html("<i class=\"fa fa-check-circle\"></i> Successfully created assessment.");
   				}
   			});
   		}

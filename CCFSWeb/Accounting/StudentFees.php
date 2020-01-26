@@ -54,55 +54,56 @@ $result = mysqli_query($conn, $query);
             <span id="successmsg"></span>
           </div> <!-- /.col -->
         </div>
-        <!-- Main content -->
-        <section class="content">
-          <div class="row">
-            <div class="col-12">
-              <div class="card card-primary">
-                <div class="card-header">
-                  <div> <!-- SEARCH FORM -->
-                    <form class="form-inline ml-1 form-group">
-                      <div class="input-group input-group-sm">
-                        <div class="radio">
-                          <input type="text" name="id" id="searchInput" class="id form-control form-control-navbar" placeholder="Search"/>
-                        </div>
-                      </div>
-                    </form>
-                  </div> <!-- /.SEARCH FORM -->
-                </div> <!-- /.card-header -->
-                <div class="card-body">
-                  <table id="feesTable" class="table table-bordered table-hover">
-                    <thead>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-primary">
+              <div class="card-header">
+                <div> <!-- SEARCH FORM -->
+                  <form class="form-inline">
+                    <div class="input-group input-group-sm">
+                      <input type="text" name="id" id="searchInput" class="id form-control form-control-navbar" placeholder="Search"/>
+                    </div>
+                  </form>
+                </div> <!-- /.SEARCH FORM -->
+              </div> <!-- /.card-header -->
+              <div class="card-body">
+                <table id="feesTable" class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th>ID Number</th>
+      					      <th>Books Fee</th>
+      					      <th>Misc Fee</th>
+      					      <th>Tuition Fee</th>
+      					      <th>Service Fee</th>
+      					      <th>Remaining Balance</th>
+                    </tr>
+                  </thead>
+      				    <tbody> <!-- Populate from database. -->
+                    <?php while($row = mysqli_fetch_array($result)):;?>
                       <tr>
-                        <th>ID Number </th>
-        					      <th>Books Fee </th>
-        					      <th>Misc Fee </th>
-        					      <th>Tuition Fee </th>
-        					      <th>Service Fee </th>
-        					      <th>Remaining Balance </th>
+                        <td><?php echo $row["IDno"];?></td>
+                        <td><?php echo $row["books"];?></td>
+                        <td><?php echo $row["misc"];?></td>
+                        <td><?php echo $row["tuition"];?></td>
+                        <td><?php echo $row["balance"];?></td>
+                        <td></td>
                       </tr>
-                    </thead>
-        				    <tbody> <!-- Populate from database. -->
-                      <?php while($row = mysqli_fetch_array($result)):;?>
-                        <tr>
-                          <td><?php echo $row["IDno"];?></td>
-                          <td><?php echo $row["books"];?></td>
-                          <td><?php echo $row["misc"];?></td>
-                          <td><?php echo $row["tuition"];?></td>
-                          <td><?php echo $row["balance"];?></td>
-                          <td><input type="button" name="edit" value="Edit" id="<?php echo $row["feestID"]; ?>" class="btn btn-info btn-xs edit_data" /></td>
-                        </tr>
-                      <?php endwhile;?>
-                    </tbody>
-                  </div> <!-- /.card-body -->
-                </div> <!-- /.card -->
-              </div>
+                    <?php endwhile;?>
+                  </tbody>
+                </div> <!-- /.card-body -->
+              </div> <!-- /.card -->
             </div>
-          </section>
-        </div><!-- /.row -->
-		 </div>
-	</div>
-</div> <!-- ./wrapper -->
+          </div>
+        </div>
+      </section>
+    </div><!-- /.row -->
+	</div><!-- ./wrapper -->
 
 <!-- Initialize DataTables plugin -->
 <script type="text/javascript">
