@@ -16,13 +16,18 @@
       $grlvl = mysqli_real_escape_string($connect, $_POST["grdLvl"]);
       $fafirst = mysqli_real_escape_string($connect, $_POST["faFirstName"]);
       $falast = mysqli_real_escape_string($connect, $_POST["faLastName"]);
+      $faadd = mysqli_real_escape_string($connect, $_POST["faAddress"]);
+      $faoccu = mysqli_real_escape_string($connect, $_POST["faOccupation"]);
       $famob = mysqli_real_escape_string($connect, $_POST["faMobile"]);
       $faemail = mysqli_real_escape_string($connect, $_POST["faEmail"]);
       $mofirst = mysqli_real_escape_string($connect, $_POST["moFirstName"]);
       $molast = mysqli_real_escape_string($connect, $_POST["moLastName"]);
+      $moadd = mysqli_real_escape_string($connect, $_POST["moAddress"]);
+      $mooccu = mysqli_real_escape_string($connect, $_POST["moOccupation"]);
       $momob = mysqli_real_escape_string($connect, $_POST["moMobile"]);
       $moemail = mysqli_real_escape_string($connect, $_POST["moEmail"]);
       $guaname = mysqli_real_escape_string($connect, $_POST["guaName"]);
+      $guaaddress = mysqli_real_escape_string($connect, $_POST["guaAddress"]);
       $guacontact = mysqli_real_escape_string($connect, $_POST["guaContact"]);
       if($_POST["student_id"] != '') {
            $query = "
@@ -40,13 +45,18 @@
            mobilenum='$mobile',
            faFname='$fafirst',
            falname='$falast',
+           faAdd='$faadd',
+           faoccupation='$faoccu',
            faMobilenum='$famob',
            faEmail='$faemail',
            moFname='$mofirst',
            moLname='$molast',
+           moAdd='$moadd',
+           mooccupation='$mooccu',
            momobilenum='$momob',
            moEmail='$moemail',
            guardianName='$guaname',
+           guardianAddress='$guaaddress',
            guardianContact='$guacontact'
            WHERE IDno='$_POST[student_id]'";
            $message = 'Successfully updated.';
@@ -54,7 +64,7 @@
 
       if(mysqli_query($connect, $query)) {
            $output .= '<label class="text-success">' . $message . '</label>';
-           $select_query = "SELECT IDno, SurName, GivenName, MiddleName, gradelvl FROM `enstudent`";
+           $select_query = "SELECT IDno, enstudent.SurName, enstudent.GivenName, enstudent.MiddleName, enstudent.gradelvl,section.sename FROM enstudent,section WHERE enstudent.gradelvl = section.gradelvl AND enstudent.yearid IN (SELECT yearid from schoolyear WHERE scstatus='ACTIVE') GROUP BY IDno";
            $result = mysqli_query($connect, $select_query);
            $output .= '
                 <table class="table table-bordered table-hover">
@@ -65,7 +75,6 @@
                        <th>Middle Name</th>
                        <th>Grade Level</th>
                        <th>Section</th>
-                       <th>Teacher</th>
                        <th></th>
                      </tr>
            ';
@@ -77,8 +86,7 @@
                           <td>' . $row["GivenName"] . '</td>
                           <td>' . $row["MiddleName"] . '</td>
                           <td>' . $row["gradelvl"] . '</td>
-                          <td></td>
-                          <td></td>
+                          <td>' . $row["sename"] . '</td>
                           <td><input type="button" name="edit" value="Edit" id="'.$row["IDno"] .'" class="btn btn-info btn-xs edit_data" /></td>
                      </tr>
                 ';

@@ -1,11 +1,10 @@
 <?php
-    include('../ActiveSchoolYear.php');
-    include("Connection.php");
-    $qearStud = "SELECT IDno, enstudent.SurName, enstudent.GivenName, enstudent.MiddleName, enstudent.gradelvl,section.sename FROM enstudent,section WHERE enstudent.gradelvl = section.gradelvl";
-    $result = $conn->query($qearStud);
+  include("Connection.php");
+  $qearStud = "SELECT IDno, enstudent.SurName, enstudent.GivenName, enstudent.MiddleName, enstudent.gradelvl,section.sename FROM enstudent,section WHERE enstudent.gradelvl = section.gradelvl AND enstudent.yearid IN (SELECT yearid from schoolyear WHERE scstatus='ACTIVE') GROUP BY IDno";
+  $result = $conn->query($qearStud);
 
-    $query = "SELECT * FROM `section`";
-    $result1 = $conn->query($query);
+  $query = "SELECT * FROM `section`";
+  $result1 = $conn->query($query);
 ?>
 <!DOCTYPE html>
 <html>
@@ -53,33 +52,32 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">List of Students</h1>
-            <h5 class="m-0 text-dark">School Year: <?php if(empty($data3[0])) {
-              echo "--";
-            }else {
-              echo $data3[0];
-            }
-            ; echo "-" ; if(empty($data2[1])){echo "--";}else {echo $data2[1];}?></h5>
+            <h5 class="m-0 text-dark">School Year: <?php include("../ActiveSchoolYear.php")?></h5>
           </div><!-- /.col -->
         </div><!-- /.row -->
-        <!-- Main content -->
-       <section class="content">
-          <div class="row">
-            <div class="col-12">
-              <div class="card card-primary">
-                <div class="card-header">
-                  <div>
-                    <!-- SEARCH FORM -->
-                    <form class="form-inline ml-3">
-                      <div class="input-group input-group-sm">
-                        <input class="form-control form-control-navbar" id="searchInput" type="search" placeholder="Search" aria-label="Search"/>
-                      </div>
-                    </form>
-                  </div>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-primary">
+              <div class="card-header">
+                <div>
+                  <!-- SEARCH FORM -->
+                  <form class="form-inline">
+                    <div class="input-group input-group-sm">
+                      <input class="form-control form-control-navbar" id="searchInput" type="search" placeholder="Search" aria-label="Search"/>
+                    </div>
+                  </form>
                 </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <table id="studListTable" class="table table-bordered table-hover">
-                    <thead>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="studListTable" class="table table-bordered table-hover">
+                  <thead>
                     <tr>
                       <th>ID Number </th>
                       <th>Surname</th>
@@ -89,45 +87,43 @@
                       <th>Section</th>
                       <th></th>
                     </tr>
-                  </thead>
-                  <tbody> <!-- Populate from database. -->
-                    
-                    <?php while($row = $result->fetch_assoc()) { ?>
-                      <tr>
-                        <td><?php echo $row["IDno"];?></td>
-                        <td><?php echo $row["SurName"];?></td>
-                        <td><?php echo $row["GivenName"];?></td>
-                        <td><?php echo $row["MiddleName"];?></td>
-                        <td><?php echo $row["gradelvl"];?></td>
-                        <td><?php echo $row["sename"];?></td>
-                        <td></td>
-                        <td style="text-align:center;"><input type="button" name="edit" value="Edit" id="<?php echo $row["IDno"]; ?>" class="btn btn-info btn-xs edit_data" /></td>
-                      </tr>
-                      <?php }?>
-                    </tbody>
-                  </table>
-                </div>
-                <!-- /.card-body -->
+                </thead>
+                <tbody> <!-- Populate from database. -->
+                  <?php while($row = $result->fetch_assoc()) { ?>
+                    <tr>
+                      <td><?php echo $row["IDno"];?></td>
+                      <td><?php echo $row["SurName"];?></td>
+                      <td><?php echo $row["GivenName"];?></td>
+                      <td><?php echo $row["MiddleName"];?></td>
+                      <td><?php echo $row["gradelvl"];?></td>
+                      <td><?php echo $row["sename"];?></td>
+                      <td style="text-align:center;"><input type="button" name="edit" value="Edit" id="<?php echo $row["IDno"]; ?>" class="btn btn-info btn-xs edit_data" /></td>
+                    </tr>
+                    <?php }?>
+                  </tbody>
+                </table>
               </div>
-              <!-- /.card -->
+              <!-- /.card-body -->
             </div>
+            <!-- /.card -->
           </div>
-        </section>
+        </div>
       </div><!-- /.container-fluid -->
-    </div>
+    </section>
   </div>
-</div> <!-- ./wrapper -->
+</div><!-- ./wrapper -->
 
-<!-- Modal to display student information. -->
+<!-- Modal to display student details. -->
 <div id="add_data_Modal" class="modal fade">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Student Information</h4>
+        <h4 class="modal-title">Student Details</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
         <form method="post" id="insert_form">
+          <b><p>Basic Information</p></b>
           <div class="row">
             <div class="form-group col-4">
               <label>ID Number</label> <i class="fa fa-lock" aria-hidden="true"></i>
@@ -164,8 +160,8 @@
             <div class="form-group col-2">
               <label>Gender</label>
               <select name="gender" id="gender" class="form-control">
-                <option value="M">MALE</option>
-                <option value="F">FEMALE</option>
+                <option value="MALE">MALE</option>
+                <option value="FEMALE">FEMALE</option>
               </select>
             </div>
             <div class="form-group col-3">
@@ -221,6 +217,7 @@
               <input class="form-control" type="text" name="adviser" id="adviser"/>
             </div>
           </div>
+          <br><b><p>Family Information</p></b>
           <div class="row">
             <div class="form-group col-3">
               <label>Father First Name</label>
@@ -230,11 +227,21 @@
               <label>Father Last Name</label>
               <input class="form-control" type="text" name="faLastName" id="faLastName"/>
             </div>
-            <div class="form-group col-3">
+            <div class="form-group col-6">
+              <label>Father Address</label>
+              <input class="form-control" type="text" name="faAddress" id="faAddress"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-4">
+              <label>Father Occupation</label>
+              <input class="form-control" type="text" name="faOccupation" id="faOccupation"/>
+            </div>
+            <div class="form-group col-4">
               <label>Father Mobile No.</label>
               <input class="form-control" type="text" name="faMobile" id="faMobile"/>
             </div>
-            <div class="form-group col-3">
+            <div class="form-group col-4">
               <label>Father Email Address</label>
               <input class="form-control" type="email" name="faEmail" id="faEmail"/>
             </div>
@@ -248,21 +255,36 @@
               <label>Mother Last Name</label>
               <input class="form-control" type="text" name="moLastName" id="moLastName"/>
             </div>
-            <div class="form-group col-3">
+            <div class="form-group col-6">
+              <label>Mother Address</label>
+              <input class="form-control" type="text" name="moAddress" id="moAddress"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-4">
+              <label>Mother Occupation</label>
+              <input class="form-control" type="text" name="moOccupation" id="moOccupation"/>
+            </div>
+            <div class="form-group col-4">
               <label>Mother Mobile No.</label>
               <input class="form-control" type="text" name="moMobile" id="moMobile"/>
             </div>
-            <div class="form-group col-3">
+            <div class="form-group col-4">
               <label>Mother Email Address</label>
               <input class="form-control" type="email" name="moEmail" id="moEmail"/>
             </div>
           </div>
+          <br><b><p>Guardian Information</p></b>
           <div class="row">
-            <div class="form-group col-6">
+            <div class="form-group col-4">
               <label>Guardian Name</label>
               <input class="form-control" type="text" name="guaName" id="guaName"/>
             </div>
-            <div class="form-group col-6">
+            <div class="form-group col-5">
+              <label>Guardian Address</label>
+              <input class="form-control" type="text" name="guaAddress" id="guaAddress"/>
+            </div>
+            <div class="form-group col-3">
               <label>Guardian Contact No.</label>
               <input class="form-control" type="text" name="guaContact" id="guaContact"/>
             </div>
@@ -274,7 +296,7 @@
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -306,13 +328,18 @@ $(document).ready(function(){
         $('#grdLvl').val(data.gradelvl);
         $('#faFirstName').val(data.faFname);
         $('#faLastName').val(data.falname);
+        $('#faAddress').val(data.faAdd);
+        $('#faOccupation').val(data.faoccupation);
         $('#faMobile').val(data.faMobilenum);
         $('#faEmail').val(data.faEmail);
         $('#moFirstName').val(data.moFname);
         $('#moLastName').val(data.moLname);
+        $('#moAddress').val(data.moAdd);
+        $('#moOccupation').val(data.mooccupation);
         $('#moMobile').val(data.momobilenum);
         $('#moEmail').val(data.moEmail);
         $('#guaName').val(data.guardianName);
+        $('#guaAddress').val(data.guardianAddress);
         $('#guaContact').val(data.guardianContact);
         $('#student_id').val(data.IDno);
         $('#add_data_Modal').modal('show');
@@ -322,18 +349,35 @@ $(document).ready(function(){
 
   $('#insert_form').on("submit", function(event){
     event.preventDefault();
-    $.ajax({
-      url:"StudentUpdate.php",
-      method:"POST",
-      data:$('#insert_form').serialize(),
-      beforeSend:function(){
-        $('#update').val("Updating...");
-        },
-        success:function(data){
-          $('#insert_form')[0].reset();
-          $('#add_data_Modal').modal('hide');
-          $('#studListTable').html(data);
-          $('#update').val("Save Changes");
+    bootbox.confirm({
+    	message: "Are you sure you want to save any changes made to this student's data?",
+  		buttons: {
+  			confirm: {
+          label: "Yes",
+          className: "btn-success"
+      },
+      cancel: {
+          label: "No",
+          className: "btn-danger"
+        }
+      },
+      callback: function(result){
+        if(result){
+          $.ajax({
+            url:"StudentUpdate.php",
+            method:"POST",
+            data:$('#insert_form').serialize(),
+            beforeSend:function(){
+              $('#update').val("Updating...");
+              },
+              success:function(data){
+                $('#insert_form')[0].reset();
+                $('#add_data_Modal').modal('hide');
+                $('#studListTable').html(data);
+                $('#update').val("Save Changes");
+              }
+            });
+          }
         }
       });
     });
@@ -355,11 +399,34 @@ $("#studListTable").DataTable({
 });
 </script>
 
+<!--Force capitalize inputs-->
+<script type="text/javascript">
+function forceKeyPressUppercase(e){
+  var charInput = e.keyCode;
+  if((charInput >= 97) && (charInput <= 122)) { // lowercase
+    if(!e.ctrlKey && !e.metaKey && !e.altKey) { // no modifier key
+      var newChar = charInput - 32;
+      var start = e.target.selectionStart;
+      var end = e.target.selectionEnd;
+      e.target.value = e.target.value.substring(0, start) + String.fromCharCode(newChar) + e.target.value.substring(end);
+      e.target.setSelectionRange(start+1, start+1);
+      e.preventDefault();
+    }
+  }
+}
+var capsFields = document.getElementsByTagName("input");
+for (i = 0; i < capsFields.length; i++) {
+    capsFields[i].addEventListener("keypress", forceKeyPressUppercase, false);
+}
+</script>
+
 
 <!-- jQuery -->
 <script src="../Resources/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="../Resources/plugins/jquery-ui/jquery-ui.min.js"></script>
+<!--Bootbox library for dialog box.-->
+<script src="../Resources/plugins/bootstrap/js/bootbox/bootbox.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)
