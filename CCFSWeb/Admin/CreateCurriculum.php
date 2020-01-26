@@ -42,69 +42,65 @@ include("CurriculumInsert.php");
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">Create Curriculum</h1>
           </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Create Curriculum</li>
-            </ol>
-          </div><!-- /.col -->
         </div><!-- /.row -->
-      <!-- /.card-header -->
+      </div>
+    </div>
 
-      <form id="frmBox" class="needs-validation" method="post" action="CurriculumInsert.php" onsubmit="return formSubmit();">
+    <section class="content">
+      <div class="container-fluid">
         <div class="row">
           <!-- left column -->
           <div class="col-md-12">
-            <!-- general form elements -->
+            <form id="frmBox" class="needs-validation" method="post" action="CurriculumInsert.php" onsubmit="return formSubmit();">
             <!-- Curriculum content -->
             <?php foreach ( $grades as $grade_id => $grade ) {?>
-            <input type="hidden" id="inputGradeLevel" name ="grade[<?php echo $grade_id; ?>]" value="<?php echo $grade; ?>">
-            <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Create Curriculum for <?php echo $grade; ?></h3>
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="form-group col-3" id="adding">
-                    <label for="subjid"> Subjects: </label>
-                    <?php for ($x=1; $x<=5; $x++) { ?>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type="type" name="grade[<?php echo $grade_id; ?>][subject][<?php echo $x; ?>]">
-                    <br>
-                    <?php } ?>
-                  </div>
-                  <div class="form-group col-3">
-                    <label for="subjid"> Subjects: </label>
-                    <?php for ($x=6; $x<=10; $x++) { ?>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type="type" name="grade[<?php echo $grade_id; ?>][subject][<?php echo $x; ?>]">
-                    <br>
-                    <?php } ?>
-                  </div>
-                  <div class="form-group col-3">
-                    <label for="subjid"> Subjects: </label>
-                    <?php for ($x=11; $x<=15; $x++) { ?>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type="type" name="grade[<?php echo $grade_id; ?>][subject][<?php echo $x; ?>]">
-                    <br>
-                    <?php } ?>
-                  </div>
-                  <div class="form-group col-3">
-                    <label for="subjid"> Subjects: </label>
-                    <?php for ($x=16; $x<=20; $x++) { ?>
-                    <input class="form-control" id="subject" placeholder="Enter Subject" type="type" name="grade[<?php echo $grade_id; ?>][subject][<?php echo $x; ?>]">
-                    <br>
-                    <?php } ?>
+              <input type="hidden" id="inputGradeLevel" name ="grade[<?php echo $grade_id; ?>]" value="<?php echo $grade; ?>">
+              <div class="card card-primary">
+                <div class="card-header">
+                  <h3 class="card-title">Create Curriculum for <?php echo $grade; ?></h3>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="form-group col-3" id="adding">
+                      <label for="subjid"> Subjects: </label>
+                      <?php for ($x=1; $x<=5; $x++) { ?>
+                      <input class="form-control" id="subject" placeholder="Enter Subject" type="type" name="grade[<?php echo $grade_id; ?>][subject][<?php echo $x; ?>]">
+                      <br>
+                      <?php } ?>
+                    </div>
+                    <div class="form-group col-3">
+                      <label for="subjid"> Subjects: </label>
+                      <?php for ($x=6; $x<=10; $x++) { ?>
+                      <input class="form-control" id="subject" placeholder="Enter Subject" type="type" name="grade[<?php echo $grade_id; ?>][subject][<?php echo $x; ?>]">
+                      <br>
+                      <?php } ?>
+                    </div>
+                    <div class="form-group col-3">
+                      <label for="subjid"> Subjects: </label>
+                      <?php for ($x=11; $x<=15; $x++) { ?>
+                      <input class="form-control" id="subject" placeholder="Enter Subject" type="type" name="grade[<?php echo $grade_id; ?>][subject][<?php echo $x; ?>]">
+                      <br>
+                      <?php } ?>
+                    </div>
+                    <div class="form-group col-3">
+                      <label for="subjid"> Subjects: </label>
+                      <?php for ($x=16; $x<=20; $x++) { ?>
+                      <input class="form-control" id="subject" placeholder="Enter Subject" type="type" name="grade[<?php echo $grade_id; ?>][subject][<?php echo $x; ?>]">
+                      <br>
+                      <?php } ?>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
             <?php } ?>
 
-            <div class="row form-inline">
+            <div class="row form-inline card-body">
               <div class="form-group col-5">
                 <label for="curid">Curriculum Name: </label>
                 <input class="form-control" id="inputCurriculumID" placeholder="Enter Curriculum Name" type="text" name ="curname" min="0" required style="margin-left: 10px;">
               </div>
 
-              <div class="form-group col-3">
+              <div class="form-group col-3" style="display:none;">
                 <label for="yearid">School Year:</label>
                 <?php
                   $query2 = "Select yearid from schoolyear where scstatus = 'ACTIVE'";
@@ -115,68 +111,77 @@ include("CurriculumInsert.php");
                   <option name = "yearid" type = "hidden" class="form-control"><?php echo $row2[0];?></option>
                   <?php endwhile;?>
                 </select>
-
-                <input type = "submit" name="submit" class="btn btn-success" value = "Create" min ="0" style="margin-left: 10px;"/>
+              </div>
+              <div class="form-group col-3">
+                <input type="submit" name="submit" class="btn btn-success" value = "Create" min ="0" style="margin-left: 10px;"/>
                 <b><p id="success" style="text-align:center; font-size:22px;"></p></b>
               </div>
             </div>
-
           </div>
         </div>
       </form>
+    </div>
+  </section>
+  </div>
 
-      <!--Submit form.-->
-      <script type="text/javascript">
-      function formSubmit(){
-      	bootbox.confirm({
-      		message: "Create curriculum?",
-      		buttons: {
-      			confirm: {
-              label: "Yes",
-              className: "btn-success"
-          },
-          cancel: {
-              label: "No",
-              className: "btn-danger"
+<!--Submit form.-->
+<script type="text/javascript">
+//$('#frmBox').on("submit", function(event){
+  //event.preventDefault();
+  function formSubmit(){
+  var curname = document.getElementById("inputCurriculumID").value;
+  bootbox.confirm({
+  	message: "Create curriculum " +curname+ "?",
+		buttons: {
+			confirm: {
+        label: "Yes",
+        className: "btn-success"
+    },
+    cancel: {
+        label: "No",
+        className: "btn-danger"
+    }
+	},
+  callback: function(result){
+    if(result){
+      $.ajax({
+        type: "POST",
+        url: "CurriculumInsert.php",
+        data: $("#frmBox").serialize(),
+        success: function(response){
+          $('#frmBox')[0].reset();
+          $("#success").html(response);
+          if(response.includes("Successfully created a new curriculum.")){
+            document.getElementById("frmBox").reset();
           }
-      	},
-      	callback: function(result){
-      		if(result){
-      			$.ajax({
-      				type: "POST",
-      				url: "CurriculumInsert.php",
-      				data: $("#frmBox").serialize(),
-      				success: function(response){
-      					$("#success").html(response);
-      					if(response.includes("Successfully created a new curriculum.")){
-      						document.getElementById("frmBox").reset();
-      					}
-      				}
-      			});
-      		}
-      	}
-      	});
-      	//return false;
-      }
-      </script>
+        }
+      });
+    }
+  }
+  });
+  //return false;
+}
+</script>
 
-      <!--===============================================================================================-->
-      	<script src="../Resources/vendor/jquery/jquery-3.2.1.min.js"></script>
-      <!--Bootbox library for dialog box.-->
-      	<script src="../Resources/plugins/bootstrap/js/bootbox/bootbox.min.js"></script>
-      <!--===============================================================================================-->
-      	<script src="../Resources/vendor/animsition/js/animsition.min.js"></script>
-      <!--===============================================================================================-->
-      	<script src="../Resources/vendor/bootstrap/js/popper.js"></script>
-      	<script src="../Resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-      <!--===============================================================================================-->
-      	<script src="../Resources/vendor/select2/select2.min.js"></script>
-      <!--===============================================================================================-->
-      	<script src="../Resources/vendor/daterangepicker/moment.min.js"></script>
-      	<script src="../Resources/vendor/daterangepicker/daterangepicker.js"></script>
-      <!--===============================================================================================-->
-      	<script src="../Resources/vendor/countdowntime/countdowntime.js"></script>
-      <!--===============================================================================================-->
-      	<script src="../Resources/js/main.js"></script>
+
+<!--===============================================================================================-->
+	<script src="../Resources/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--Bootbox library for dialog box.-->
+	<script src="../Resources/plugins/bootstrap/js/bootbox/bootbox.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../Resources/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../Resources/vendor/bootstrap/js/popper.js"></script>
+	<script src="../Resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../Resources/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../Resources/vendor/daterangepicker/moment.min.js"></script>
+	<script src="../Resources/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="../Resources/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="../Resources/js/main.js"></script>
+
   </body>
 </html>

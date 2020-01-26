@@ -56,54 +56,57 @@ $resultCurr = mysqli_query($mysqli, $queryCurr);
             <h1 class="m-0 text-dark">List of Curriculums</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
-        <!-- Main content -->
-       <section class="content">
-          <div class="row">
-            <div class="col-12">
-              <div class="card card-primary">
-                <div class="card-header">
-                  <div>
-                    <!-- SEARCH FORM -->
-                    <form class="form-inline ml-3">
-                      <div class="input-group input-group-sm">
-                        <input class="form-control form-control-navbar" id="searchInput" type="search" placeholder="Search" aria-label="Search"/>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <table id="currListTable" class="table table-bordered table-hover">
-                    <thead>
-                    <tr>
-                      <th>Curriculum Name</th>
-                      <th></th>
-                    </tr>
-                    </thead>
-                    <tbody> <!-- Populate from database. -->
-                      <?php while($row = $resultCurr->fetch_assoc()) { ?>
-                        <tr>
-                          <td><?php echo $row["curname"];?></td>
-                          <td style="text-align:center;"><input type="button" name="view" value="View Subjects" id="<?php echo $row["curname"]; ?>" class="btn btn-info btn-xs view_data" /></td>
-                        </tr>
-                        <?php }?>
-                    </tbody>
-                  </table>
-                </div>
-                <!-- /.card-body -->
-              </div>
-              <!-- /.card -->
-            </div>
-          </div>
-        </section>
-      </div><!-- /.container-fluid -->
+      </div>
     </div>
-  </div>
-</div> <!-- ./wrapper -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-primary">
+              <div class="card-header">
+                <div>
+                  <!-- SEARCH FORM -->
+                  <form class="form-inline">
+                    <div class="input-group input-group-sm">
+                      <input class="form-control form-control-navbar" id="searchInput" type="search" placeholder="Search" aria-label="Search"/>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="currListTable" class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th>Curriculum Name</th>
+                    <th></th>
+                  </tr>
+                  </thead>
+                  <tbody> <!-- Populate from database. -->
+                    <?php while($row = $resultCurr->fetch_assoc()) { ?>
+                      <tr>
+                        <td><?php echo $row["curname"];?></td>
+                        <td style="text-align:center;"><input type="button" name="view" value="View Subjects" id="<?php echo $row["curname"]; ?>" class="btn btn-info btn-xs view_data" /></td>
+                      </tr>
+                      <?php }?>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      </div>
+    </section>
+  </div><!-- /.container-fluid -->
+</div><!-- ./wrapper -->
 
 <!-- Modal to display curriculum information. -->
 <div id="dataModal" class="modal fade">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">Curriculum Subjects</h4>
@@ -112,7 +115,7 @@ $resultCurr = mysqli_query($mysqli, $queryCurr);
       <div class="modal-body" id="currData">
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -121,7 +124,7 @@ $resultCurr = mysqli_query($mysqli, $queryCurr);
 <!-- View curriculum information through modal. -->
 <script>
  $(document).ready(function(){
-      
+
       $('.view_data').click(function(){
            var curr_name = $(this).attr("id");
            $.ajax({

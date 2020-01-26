@@ -1,10 +1,8 @@
 <?php
 // connect to mysql
 include("database.php");
-
 // mysql select query
 $query = "SELECT * FROM `schoolyear`";
-
 // result for method
 $result = mysqli_query($mysqli, $query);
 ?>
@@ -44,7 +42,7 @@ $result = mysqli_query($mysqli, $query);
   <!-- DataTables plugin -->
   <script type="text/javascript" charset="utf8" src="../Resources/plugins/bootstrap/js/DataTables/datatables.js"></script>
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini">
 <div id="contents" class="wrapper">
 
   <!-- Content Wrapper. Contains page content -->
@@ -57,55 +55,56 @@ $result = mysqli_query($mysqli, $query);
             <h1 class="m-0 text-dark">List of School Years</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
-        <!-- Main content -->
-       <section class="content">
-          <div class="row">
-            <div class="col-12">
-              <div class="card card-primary">
-                <div class="card-header">
-                  <!-- SEARCH FORM -->
-                  <form class="form-inline ml-1 form-group">
-                    <div class="input-group input-group-sm">
-                      <input id="searchInput" class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"/>
-                    </div>
-                  </form>
-                  <h3 class="card-title">Double click on a row to view list of archived students.</h3>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <table id="schyrTable" class="table table-bordered table-hover">
-                    <thead>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-12">
+            <div class="card card-primary">
+              <div class="card-header">
+                <!-- SEARCH FORM -->
+                <form class="form-inline form-group">
+                  <div class="input-group input-group-sm">
+                    <input id="searchInput" class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"/>
+                  </div>
+                </form>
+                <h5 class="card-title">Double click on a row to view list of archived students.</h5>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="schyrTable" class="table table-bordered table-hover">
+                  <thead>
                     <tr>
                       <th>School Year</th>
                       <th>Status</th>
                       <th></th>
                     </tr>
-                    </thead>
-                    <tbody> <!-- Populate from database. -->
-                      <?php while($row = $result->fetch_assoc()) { ?>
-                        <tr ondblclick="openPage('../Registrar/ListOfArchivedStudents.php');">
-                          <td><?php echo $row["yearstart"]; echo "-"; echo $row["yearend"];?></td>
-                          <td><?php echo $row["scstatus"];?>
-                          <td style="text-align: center;"><input type="button" name="edit" value="Edit" id="<?php echo $row["yearid"]; ?>" class="btn btn-info btn-xs edit_data" /></td>
-                        </tr>
-                        <?php }?>
-                    </tbody>
-                  </table>
-                </div>
-                <!-- /.card-body -->
-              </div>
-              <!-- /.card -->
-            </div>
+                  </thead>
+                  <tbody> <!-- Populate from database. -->
+                    <?php while($row = $result->fetch_assoc()) { ?>
+                      <tr ondblclick="openPage('../Registrar/ListOfArchivedStudents.php');">
+                        <td><?php echo $row["yearstart"]; echo "-"; echo $row["yearend"];?></td>
+                        <td><?php echo $row["scstatus"];?>
+                        <td style="text-align: center;"><input type="button" name="edit" value="Edit" id="<?php echo $row["yearid"]; ?>" class="btn btn-info btn-xs edit_data" /></td>
+                      </tr>
+                      <?php }?>
+                  </tbody>
+                </table>
+              </div><!-- /.card-body -->
+            </div><!-- /.card -->
           </div>
-        </section>
+        </div>
       </div><!-- /.container-fluid -->
-    </div>
+    </section>
   </div>
-</div> <!-- ./wrapper -->
+</div><!-- ./wrapper -->
 
 <!-- Modal to display school year information. -->
 <div id="add_data_Modal" class="modal fade">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">School Year Information</h4>
@@ -113,8 +112,7 @@ $result = mysqli_query($mysqli, $query);
       </div>
       <div class="modal-body">
         <form method="post" id="insert_form">
-          <label>Date Information</label>
-          <br>
+          <b><p>Date Information</p></b>
           <div class="row">
             <div class="form-group col-3">
               <label>Year Start</label> <i class="fa fa-lock" aria-hidden="true"></i>
@@ -134,16 +132,14 @@ $result = mysqli_query($mysqli, $query);
             </div>
           </div>
           <div class="form-group col-3">
-          <label>Change Status</label>
+            <label>Change Status</label>
             <select name="scstatus" id="scstatus" class="form-control">
               <option value="ACTIVE">Active</option>
               <option value="INACTIVE">Inactive</option>
             </select>
           </div>
-          <br>
 
-          <label>Number of Days per Month</label>
-          <br>
+          <br><b><p>Number of Days per Month</p></b>
             <div class="row">
               <div class="form-group col-3">
                 <label for="nurseryTuition">January</label>
@@ -204,9 +200,8 @@ $result = mysqli_query($mysqli, $query);
               <output class="form-control" id="totalDays"></output>
             </div>
           </div>
-          <br>
 
-          <label>Fees Information</label>
+          <br><b><p>Fees Information</p></b>
             <div class="row">
               <div class="form-group col-3">
                 <label for="nurseryTuition">Nursery Tuition</label>
@@ -376,7 +371,7 @@ $result = mysqli_query($mysqli, $query);
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -448,22 +443,39 @@ $(document).ready(function(){
 
   $('#insert_form').on("submit", function(event){
     event.preventDefault();
-    $.ajax({
-      url:"SchoolYearUpdate.php",
-      method:"POST",
-      data:$('#insert_form').serialize(),
-      beforeSend:function(){
-        $('#update').val("Updating...");
-        },
-        success:function(data){
-          $('#insert_form')[0].reset();
-          $('#add_data_Modal').modal('hide');
-          bootbox.alert({
-            message: "<i class=\"fa fa-check\"></i> Successfully updated school year.",
-            callback: function(){
-              location.reload();
-            }
-          });
+    bootbox.confirm({
+    	message: "Are you sure you want to save any changes made to this school year?",
+  		buttons: {
+  			confirm: {
+          label: "Yes",
+          className: "btn-success"
+      },
+      cancel: {
+          label: "No",
+          className: "btn-danger"
+        }
+      },
+      callback: function(result){
+        if(result){
+          $.ajax({
+            url:"SchoolYearUpdate.php",
+            method:"POST",
+            data:$('#insert_form').serialize(),
+            beforeSend:function(){
+              $('#update').val("Updating...");
+              },
+              success:function(data){
+                $('#insert_form')[0].reset();
+                $('#add_data_Modal').modal('hide');
+                bootbox.alert({
+                  message: "<i class=\"fa fa-check\"></i> Successfully updated school year.",
+                  callback: function(){
+                    location.reload();
+                  }
+                });
+              }
+            });
+          }
         }
       });
     });

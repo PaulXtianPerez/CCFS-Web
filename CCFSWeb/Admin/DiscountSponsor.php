@@ -41,6 +41,8 @@ $result = mysqli_query($mysqli, $query);
   <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
   <!-- CSS for DataTables plugin -->
   <link rel="stylesheet" type="text/css" href="../Resources/plugins/bootstrap/js/DataTables/datatables.css">
+  <!-- DataTables plugin -->
+  <script type="text/javascript" charset="utf8" src="../Resources/plugins/bootstrap/js/DataTables/datatables.js"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div id="contents" class="wrapper">
@@ -55,25 +57,29 @@ $result = mysqli_query($mysqli, $query);
             <h1 class="m-0 text-dark">Student Discounts and Sponsorships</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
-        <!-- Main content -->
-       <section class="content">
-          <div class="row">
-            <div class="col-12">
-              <div class="card card-primary">
-                <div class="card-header">
-                  <div>
-                    <!-- SEARCH FORM -->
-                    <form class="form-inline ml-3">
-                      <div class="input-group input-group-sm">
-                        <input id="searchInput" class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"/>
-                      </div>
-                    </form>
-                  </div>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-primary">
+              <div class="card-header">
+                <div>
+                  <!-- SEARCH FORM -->
+                  <form class="form-inline">
+                    <div class="input-group input-group-sm">
+                      <input id="searchInput" class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"/>
+                    </div>
+                  </form>
                 </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <table id="discSponsTable" class="table table-bordered table-hover">
-                    <thead>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="discSponsTable" class="table table-bordered table-hover">
+                  <thead>
                     <tr>
                       <th>ID Number</th>
                       <th>Surname</th>
@@ -82,20 +88,19 @@ $result = mysqli_query($mysqli, $query);
                       <th>Grade Level</th>
                       <th>Discount Percentage (%)</th>
                       <th>Remarks</th>
-                      <th></th>
                     </tr>
-                    </thead>
-                    <tbody> <!-- Populate from database. -->
-                      <?php while($row = $result->fetch_assoc()) { ?>
-                        <tr>
-                          <td><?php echo $row["IDno"];?></td>
-                          <td><?php echo $row["SurName"];?></td>
-                          <td><?php echo $row["GivenName"];?></td>
-                          <td><?php echo $row["MiddleName"];?></td>
-                          <td><?php echo $row["gradelvl"];?></td>
-                          <td></td>
-                          <td></td>
-                        <?php }?>
+                  </thead>
+                  <tbody> <!-- Populate from database. -->
+                    <?php while($row = $result->fetch_assoc()) { ?>
+                      <tr>
+                        <td><?php echo $row["IDno"];?></td>
+                        <td><?php echo $row["SurName"];?></td>
+                        <td><?php echo $row["GivenName"];?></td>
+                        <td><?php echo $row["MiddleName"];?></td>
+                        <td><?php echo $row["gradelvl"];?></td>
+                        <td></td>
+                        <td></td>
+                      <?php }?>
                     </tbody>
                   </table>
                 </div>
@@ -104,11 +109,10 @@ $result = mysqli_query($mysqli, $query);
               <!-- /.card -->
             </div>
           </div>
-        </section>
-      </div><!-- /.container-fluid -->
+        </div><!-- /.container-fluid -->
+      </section>
     </div>
-  </div>
-</div> <!-- ./wrapper -->
+  </div><!-- ./wrapper -->
 
 <!-- Initialize DataTables plugin -->
 <script type="text/javascript">
@@ -160,7 +164,5 @@ $("#discSponsTable").DataTable({
 <script src="../Resources/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../Resources/dist/js/demo.js"></script>
-<!-- DataTables plugin -->
-<script type="text/javascript" charset="utf8" src="../Resources/plugins/bootstrap/js/DataTables/datatables.js"></script>
 </body>
 </html>

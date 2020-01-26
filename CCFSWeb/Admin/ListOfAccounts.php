@@ -1,6 +1,6 @@
 <?php
 // connect to database
-include 'database.php';
+include("database.php");
 // mysql select query
 $query = "SELECT * FROM `accounts`";
 // result for method
@@ -55,25 +55,29 @@ $result = mysqli_query($mysqli, $query);
             <h1 class="m-0 text-dark">List of Accounts</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
-        <!-- Main content -->
-       <section class="content">
-          <div class="row">
-            <div class="col-12">
-              <div class="card card-primary">
-                <div class="card-header">
-                  <div>
-                    <!-- SEARCH FORM -->
-                    <form class="form-inline ml-3">
-                      <div class="input-group input-group-sm">
-                        <input id="searchInput" class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"/>
-                      </div>
-                    </form>
-                  </div>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-primary">
+              <div class="card-header">
+                <div>
+                  <!-- SEARCH FORM -->
+                  <form class="form-inline">
+                    <div class="input-group input-group-sm">
+                      <input id="searchInput" class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"/>
+                    </div>
+                  </form>
                 </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <table id="accListTable" class="table table-bordered table-hover">
-                    <thead>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="accListTable" class="table table-bordered table-hover">
+                  <thead>
                     <tr>
                       <th>Account ID</th>
                       <th>Name</th>
@@ -82,36 +86,32 @@ $result = mysqli_query($mysqli, $query);
                       <th>Status</th>
                       <th></th>
                     </tr>
-                    </thead>
-                    <tbody> <!-- Populate from database. -->
-                      <?php while($row = mysqli_fetch_array($result)):;?>
-                        <tr>
-                          <td><?php echo $row["accid"];?></td>
-                          <td><?php echo $row["fname"]; echo " "; echo $row["lname"];?></td>
-                          <td><?php echo $row["username"];?></td>
-                          <td><?php echo $row["type"];?></td>
-                          <td><?php echo $row["accstatus"];?></td>
-                          <td style="text-align: center;"><input type="button" name="edit" value="Edit" id="<?php echo $row["accid"]; ?>" class="btn btn-info btn-xs edit_data" /></td>
-                        </tr>
-                      <?php endwhile;?>
-                    </tbody>
-                  </table>
-                </div>
-                <!-- /.card-body -->
-              </div>
-              <!-- /.card -->
-            </div>
+                  </thead>
+                  <tbody> <!-- Populate from database. -->
+                    <?php while($row = mysqli_fetch_array($result)):;?>
+                      <tr>
+                        <td style="text-align: center;"><?php echo $row["accid"];?></td>
+                        <td><?php echo $row["fname"]; echo " "; echo $row["lname"];?></td>
+                        <td><?php echo $row["username"];?></td>
+                        <td><?php echo $row["type"];?></td>
+                        <td><?php echo $row["accstatus"];?></td>
+                        <td style="text-align: center;"><input type="button" name="edit" value="Edit" id="<?php echo $row["accid"]; ?>" class="btn btn-info btn-xs edit_data" /></td>
+                      </tr>
+                    <?php endwhile;?>
+                  </tbody>
+                </table>
+              </div><!-- /.card-body -->
+            </div><!-- /.card -->
           </div>
-        </section>
+        </div>
       </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+    </section>
   </div>
-</div> <!-- ./wrapper -->
+</div><!-- ./wrapper -->
 
 <!-- Modal to display account information. -->
 <div id="add_data_Modal" class="modal fade">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">Account Information</h4>
@@ -172,11 +172,26 @@ $result = mysqli_query($mysqli, $query);
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Initialize DataTables plugin -->
+<script type="text/javascript">
+var table = $("#accListTable").DataTable();
+$("#searchInput").on("keyup", function() {
+  table.search(this.value).draw(); //search/filter functionality using DataTables search API
+});
+table.destroy(); //for reinitialization
+
+$("#accListTable").DataTable({
+  "pagingType": "full_numbers", //'First', 'Previous', 'Next' and 'Last' buttons plus page numbers
+  "bFilter": false, //remove default search/filter
+  "destroy": true //for reinitialization
+});
+</script>
 
 <!-- View and edit account information through modal. -->
 <script type="text/javascript">
@@ -205,22 +220,40 @@ $(document).ready(function(){
 
   $('#insert_form').on("submit", function(event){
     event.preventDefault();
-    $.ajax({
-      url:"AccountUpdate.php",
-      method:"POST",
-      data:$('#insert_form').serialize(),
-      beforeSend:function(){
-        $('#update').val("Updating...");
-        },
-        success:function(data){
-          $('#insert_form')[0].reset();
-          $('#add_data_Modal').modal('hide');
-          $('#accListTable').html(data);
-          $('#update').val("Save Changes");
+    bootbox.confirm({
+    	message: "Are you sure you want to save any changes made to this account?",
+  		buttons: {
+  			confirm: {
+          label: "Yes",
+          className: "btn-success"
+      },
+      cancel: {
+          label: "No",
+          className: "btn-danger"
         }
-      });
+      },
+      callback: function(result){
+        if(result){
+          $.ajax({
+            url:"AccountUpdate.php",
+            method:"POST",
+            data:$('#insert_form').serialize(),
+            beforeSend:function(){
+              $('#update').val("Updating...");
+            },
+            success:function(data){
+              $('#insert_form')[0].reset();
+              $('#add_data_Modal').modal('hide');
+              $("#success").html("<i class=\"fa fa-check-circle\"></i> Account updated.");
+              $('#accListTable').html(data);
+              $('#update').val("Save Changes");
+            }
+          });
+        }
+      }
     });
   });
+});
 </script>
 
 <!-- Password validation. -->
@@ -239,25 +272,13 @@ password.onchange = validatePassword;
 confirm_password.onkeyup = validatePassword;
 </script>
 
-<!-- Initialize DataTables plugin -->
-<script type="text/javascript">
-var table = $("#accListTable").DataTable();
-$("#searchInput").on("keyup", function() {
-  table.search(this.value).draw(); //search/filter functionality using DataTables search API
-});
-table.destroy(); //for reinitialization
-
-$("#accListTable").DataTable({
-  "pagingType": "full_numbers", //'First', 'Previous', 'Next' and 'Last' buttons plus page numbers
-  "bFilter": false, //remove default search/filter
-  "destroy": true //for reinitialization
-});
-</script>
 
 <!-- jQuery -->
 <script src="../Resources/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="../Resources/plugins/jquery-ui/jquery-ui.min.js"></script>
+<!--Bootbox library for dialog box.-->
+<script src="../Resources/plugins/bootstrap/js/bootbox/bootbox.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)

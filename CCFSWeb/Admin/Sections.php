@@ -59,15 +59,19 @@ $result = mysqli_query($mysqli, $query);
             <h5>School Year: <?php include("../ActiveSchoolYear.php"); ?></h5>
           </div><!-- /.col -->
         </div><!-- /.row -->
-        <!-- Main content -->
-        <section class="content">
-          <div class="row">
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
           <div class="col-12">
             <div class="card card-primary">
               <div class="card-header">
                 <div>
                   <!-- SEARCH FORM -->
-                  <form class="form-inline ml-3">
+                  <form class="form-inline">
                     <div class="input-group input-group-sm">
                       <input id="searchInput" class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"/>
                     </div>
@@ -100,15 +104,14 @@ $result = mysqli_query($mysqli, $query);
               </div>
             </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </div>
   </div>
-</div>
 
 <!-- Modal for creating a new section. -->
 <div id="add_data_Modal" class="modal fade">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">Create New Section</h4>
@@ -193,7 +196,7 @@ $result = mysqli_query($mysqli, $query);
             <b><p id="success" style="text-align:center; font-size:22px;"></p></b>
         </form>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
