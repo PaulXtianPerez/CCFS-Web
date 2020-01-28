@@ -1,14 +1,10 @@
 <?php
-// php populate html table from mysql database
-
 // connect to mysql
-$connect = mysqli_connect("localhost", "root", "", "ccfs");
-
+include("Connection.php");
 // mysql select query
-$query = "SELECT * FROM `checklist`";
-
+$query = "SELECT * FROM `checklist` WHERE (competencydesc IS NULL AND valuedesc IS NULL)";
 // result for method
-$result = mysqli_query($connect, $query);
+$result = mysqli_query($conn, $query);
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +49,7 @@ $result = mysqli_query($connect, $query);
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-12">
-            <h1 class="m-0 text-dark">Early Childhood Care and Development and Checklist</h1>
+            <h1 class="m-0 text-dark">Early Childhood Care and Development Checklist</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div>
@@ -82,19 +78,22 @@ $result = mysqli_query($connect, $query);
                 <div>
                   <h3 class="card-title">Student: [Name] | [Grade Lv.]</h3><br>
                 </div>
+              </div><!-- /.card-header -->
+              <div>
+                <button type="button" name="checklist" id="checklist" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-info view_data" style="float:right; margin-top:5px; margin-right:20px;">Edit Checklist</button>
               </div>
-              <!-- /.card-header -->
+            <form method="post" id="checklistForm">
               <div class="card-body">
                 <table id="checklistTable" class="table table-bordered table-hover">
-                  <thead>
+                  <thead style="text-align:center;">
                     <tr>
                       <th>Check ID</th>
-                      <th>Domain</th>
-                      <th>Description</th>
-                      <th>1st</th>
-                      <th>2nd</th>
-                      <th>3rd</th>
-                      <th>4th</th>
+                      <th style="width:20%;">Domain</th>
+                      <th style="width:60%;">Description</th>
+                      <th style="width:5%;">1st</th>
+                      <th style="width:5%;">2nd</th>
+                      <th style="width:5%;">3rd</th>
+                      <th style="width:5%;">4th</th>
                     </tr>
                   </thead>
                   <tbody> <!-- Populate from database. -->
@@ -102,21 +101,25 @@ $result = mysqli_query($connect, $query);
                       while($row = mysqli_fetch_array($result)) {
                         echo '
                         <tr>
-                        <td>'.$row["checkid"].'</td>
-                        <td>'.$row["checkdesc"].'</td>
+                        <td class="ch">'.$row["checkid"].'</td>
                         <td>'.$row["checkvalues"].'</td>
-                        <td>'.$row["firstrating"].'</td>
-                        <td>'.$row["secondrating"].'</td>
-                        <td>'.$row["thirdrating"].'</td>
-                        <td>'.$row["fourthrating"].'</td>
+                        <td>'.$row["checkdesc"].'</td>
+                        <td style="text-align:center;"><input type="checkbox" name="chk" id="chk" data-contact_avl="val" value="1">'.$row["firstrating"].'</td>
+                        <td style="text-align:center;"><input type="checkbox" name="chk" id="chk" data-contact_avl="val" value="1">'.$row["secondrating"].'</td>
+                        <td style="text-align:center;"><input type="checkbox" name="chk" id="chk" data-contact_avl="val" value="1">'.$row["thirdrating"].'</td>
+                        <td style="text-align:center;"><input type="checkbox" name="chk" id="chk" data-contact_avl="val" value="1">'.$row["fourthrating"].'</td>
                         </tr>
                         ';
                       }
+
+                      //if ($row['yesno'] == 'Y') $checked = 'checked="checked"';
                       ?>
                   </tbody>
                 </table>
               </div>
                 <!-- /.card-body -->
+                <input type="submit" class="btn btn-success" name="submit" value="Save">
+              </form>
             </div>
               <!-- /.card -->
           </div>
@@ -126,6 +129,120 @@ $result = mysqli_query($connect, $query);
   </div>
 </div><!-- ./wrapper -->
 
+<!-- Modal for editing checklist. -->
+<div id="add_data_Modal" class="modal fade">
+  <div class="modal-dialog modal-dialog-scrollable modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Checklist</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <form id="insert_form" method="post">
+            <div>
+            <div class="form-group col-6">
+              <label>Domain</label>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" id="domain" name="domain" list="domains" required/>
+                  <?php $query1 = "SELECT checkvalues FROM `checklist` WHERE (competencydesc IS NULL AND valuedesc IS NULL) GROUP BY checkvalues";
+                            $result = $conn->query($query1) or die($conn->error.__LINE__);
+                      ?>
+                  <datalist id="domains">
+                    <?php while ($row1 = mysqli_fetch_array($result)):;?>
+                          <option name = "checkvalues"><?php echo $row1[0];?></option>
+                        <?php endwhile;?>
+                  </datalist>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-11">
+              <label>Description <i>(max 200 words)</i></label>
+              <div class="input-group mb-3">
+                <!--<input type="text" name="description" id="description" class="form-control" maxlength="200" required/>-->
+                <textarea class="form-control" id="description" name="description" rows="3" maxlength="200" required></textarea>
+              </div>
+            </div>
+            <div class="col-1">
+              <input type="submit" name="submit" value="Add" min="0" class="btn btn-success"/>
+            </div>
+          </div>
+
+            </div>
+            <b><p id="success" style="text-align:center; font-size:22px;"></p></b>
+          </form>
+        </div>
+        <div id="checklistData">
+          
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<script type="text/javascript">
+$('#checklistForm').on("submit", function(event){
+  event.preventDefault();
+  $.ajax({
+    type: "POST",
+    url: "KinderChecklistAction.php",
+    data: $("#checklistForm").serialize(),
+    success: function(response){
+      alert("Success");
+    }
+  });
+
+});
+</script>
+
+<script>
+        $(document).on("change", "input[name='chk']", function () {
+            var checkbox = $(this);
+            var checked = checkbox.prop('checked');
+            $.ajax({
+                url:"KinderChecklistAction.php",
+                type: 'post',
+                data: {
+                    action: 'checkbox-select', 
+                    id: checkbox.data('contact_avl'), 
+                    checked: checked
+                      },
+                success: function(data) {
+                    alert(data);
+                },
+                error: function(data) {
+                   // alert(data);
+                    // Revert
+                    checkbox.attr('checked', !checked);
+                }
+            });
+        });
+    </script>-->
+
+<!--
+<script type="text/javascript">
+     // get all chkbox value in current row
+$(function () {
+    $(".btn-success").click(function(){
+            
+        var chk = $(this).closest('tr').find('input:checkbox'); 
+        var chkid=$(this).closest('tr').find('td').val();
+        alert("Check ID : " +chkid);
+        alert("1st :" +chk[3].checked);
+        alert("2nd: " +chk[4].checked);
+        alert("3rd: "+ chk[5].checked);
+        
+    });
+            });
+
+</script> -->
+
+    
+
+<!--
 <script>
 $(document).ready(function(){
     $('#checklistTable').Tabledit({
@@ -146,7 +263,44 @@ $(document).ready(function(){
     });
 
 });
-</script>
+</script>-->
+
+<!-- View/add/edit checklist information through modal . -->
+<script>
+ $(document).ready(function(){
+      $('.view_data').click(function(){
+           //var curr_name = $(this).attr("id");
+           $.ajax({
+                url:"EditKinderChecklist.php",
+                method:"post",
+                //data:{curr_name:curr_name},
+                success:function(response){
+                     $('#checklistData').html(response);
+                     $('#dataModal').modal("show");
+                }
+           });
+      });
+
+      $('#insert_form').on("submit", function(event){
+        event.preventDefault();
+            $.ajax({
+              type: "POST",
+              url: "insert.php",
+              data: $("#insert_form").serialize(),
+              success: function(response){
+                $('#insert_form')[0].reset();
+                //$("#success").html("Success");
+                $('#checklistData').html("");
+                $('#checklistData').html(response);
+                $("#add_data_Modal").on("hidden.bs.modal", function () {
+                  location.reload();
+                });
+              }
+            });
+      });
+ });
+ </script>
+
 
 <!-- jQuery -->
 <script src="../Resources/plugins/jquery/jquery.min.js"></script>

@@ -162,7 +162,7 @@
           <li class="nav-item has-treeview">
             <a href="#listofstudents" id="studList" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
-              <p>List Of Students</p>
+              <p>List of Students</p>
             </a>
           </li>
           <li class="nav-item has-treeview">

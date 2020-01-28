@@ -1,14 +1,10 @@
 <?php
-// php populate html table from mysql database
-
 // connect to mysql
-$connect = mysqli_connect("localhost", "root", "", "ccfs");
-
+include("Connection.php");
 // mysql select query
-$query = "SELECT * FROM `checklist`";
-
+$query = "SELECT * FROM `checklist` WHERE (checkdesc IS NULL AND competencydesc IS NULL)";
 // result for method
-$result = mysqli_query($connect, $query);
+$result = mysqli_query($conn, $query);
 ?>
 
 <!DOCTYPE html>
@@ -84,17 +80,20 @@ $result = mysqli_query($connect, $query);
                 </div>
               </div>
               <!-- /.card-header -->
+              <div>
+                <button type="button" name="obsval" id="obsval" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-info view_data" style="float:right; margin-top:5px; margin-right:20px;">Edit Observed Values</button>
+              </div>
               <div class="card-body">
                 <table id="obsValTable" class="table table-bordered table-hover">
-                  <thead>
+                  <thead style="text-align:center;">
                     <tr>
                       <th>Check ID</th>
-                      <th>Core Values</th>
-                      <th>Behavioral Statements / Description</th>
-                      <th>1st</th>
-                      <th>2nd</th>
-                      <th>3rd</th>
-                      <th>4th</th>
+                      <th style="width:20%;">Core Values</th>
+                      <th style="width:40%;">Behavioral Statements / Description</th>
+                      <th style="width:10%;">1st</th>
+                      <th style="width:10%;">2nd</th>
+                      <th style="width:10%;">3rd</th>
+                      <th style="width:10%;">4th</th>
                     </tr>
                   </thead>
                   <tbody> <!-- Populate from database. -->
@@ -105,10 +104,10 @@ $result = mysqli_query($connect, $query);
                         <td>'.$row["checkid"].'</td>
                         <td>'.$row["corevalues"].'</td>
                         <td>'.$row["valuedesc"].'</td>
-                        <td>'.$row["firstrating"].'</td>
-                        <td>'.$row["secondrating"].'</td>
-                        <td>'.$row["thirdrating"].'</td>
-                        <td>'.$row["fourthrating"].'</td>
+                        <td style="text-align:center;">'.$row["firstrating"].'</td>
+                        <td style="text-align:center;">'.$row["secondrating"].'</td>
+                        <td style="text-align:center;">'.$row["thirdrating"].'</td>
+                        <td style="text-align:center;">'.$row["fourthrating"].'</td>
                         </tr>
                         ';
                       }
@@ -125,6 +124,60 @@ $result = mysqli_query($connect, $query);
     </section>
   </div>
 </div><!-- ./wrapper -->
+
+<!-- Modal for editing competency. -->
+<div id="add_data_Modal" class="modal fade">
+  <div class="modal-dialog modal-dialog-scrollable modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Observed Values</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <form id="insert_form" method="post">
+            <div>
+            <div class="form-group col-6">
+              <label>Domain</label>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" id="domain" name="domain" list="domains" required/>
+                  <?php $query1 = "SELECT corevalues FROM `checklist` WHERE (checkdesc IS NULL AND competencydesc IS NULL) GROUP BY corevalues";
+                            $result = $conn->query($query1) or die($conn->error.__LINE__);
+                      ?>
+                  <datalist id="domains">
+                    <?php while ($row1 = mysqli_fetch_array($result)):;?>
+                          <option name = "competencyvalues"><?php echo $row1[0];?></option>
+                        <?php endwhile;?>
+                  </datalist>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-11">
+              <label>Description <i>(max 200 words)</i></label>
+              <div class="input-group mb-3">
+                <!--<input type="text" name="description" id="description" class="form-control" maxlength="200" required/>-->
+                <textarea class="form-control" id="description" name="description" rows="3" maxlength="200" required></textarea>
+              </div>
+            </div>
+            <div class="col-1">
+              <input type="submit" name="submit" value="Add" min="0" class="btn btn-success"/>
+            </div>
+          </div>
+
+            </div>
+            <b><p id="success" style="text-align:center; font-size:22px;"></p></b>
+          </form>
+        </div>
+        <div id="checklistData">
+          
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
 $(document).ready(function(){
@@ -147,6 +200,25 @@ $(document).ready(function(){
 
 });
 </script>
+
+<!-- View/add/edit observed values through modal . -->
+<script>
+ $(document).ready(function(){
+      $('.view_data').click(function(){
+           //var curr_name = $(this).attr("id");
+           $.ajax({
+                url:"EditObservedValues.php",
+                method:"post",
+                //data:{curr_name:curr_name},
+                success:function(response){
+                     $('#checklistData').html(response);
+                     $('#dataModal').modal("show");
+                }
+           });
+      });
+
+ });
+ </script>
 
 <!-- jQuery -->
 <script src="../Resources/plugins/jquery/jquery.min.js"></script>
