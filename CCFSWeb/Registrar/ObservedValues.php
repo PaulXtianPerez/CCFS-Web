@@ -81,13 +81,13 @@ $result = mysqli_query($conn, $query);
               </div>
               <!-- /.card-header -->
               <div>
-                <button type="button" name="obsval" id="obsval" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-info view_data" style="float:right; margin-top:5px; margin-right:20px;">Edit Observed Values</button>
+                <button type="button" name="obsval" id="obsval" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-info view_data" style="float:right; margin-top:5px; margin-right:20px;">Edit Core Values and Descriptions</button>
               </div>
               <div class="card-body">
                 <table id="obsValTable" class="table table-bordered table-hover">
                   <thead style="text-align:center;">
                     <tr>
-                      <th>Check ID</th>
+                      <th style="display:none;">Check ID</th>
                       <th style="width:20%;">Core Values</th>
                       <th style="width:40%;">Behavioral Statements / Description</th>
                       <th style="width:10%;">1st</th>
@@ -101,7 +101,7 @@ $result = mysqli_query($conn, $query);
                       while($row = mysqli_fetch_array($result)) {
                         echo '
                         <tr>
-                        <td>'.$row["checkid"].'</td>
+                        <td style="display:none;">'.$row["checkid"].'</td>
                         <td>'.$row["corevalues"].'</td>
                         <td>'.$row["valuedesc"].'</td>
                         <td style="text-align:center;">'.$row["firstrating"].'</td>
@@ -125,51 +125,49 @@ $result = mysqli_query($conn, $query);
   </div>
 </div><!-- ./wrapper -->
 
-<!-- Modal for editing competency. -->
-<div id="add_data_Modal" class="modal fade">
+<!-- Modal for editing observed values. -->
+<div id="add_data_Modal" class="modal fade" data-backdrop="static">
   <div class="modal-dialog modal-dialog-scrollable modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Edit Observed Values</h4>
+        <h4 class="modal-title">Edit Core Values and Descriptions</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
         <div>
           <form id="insert_form" method="post">
             <div>
-            <div class="form-group col-6">
-              <label>Domain</label>
-              <div class="input-group mb-3">
-                <input type="text" class="form-control" id="domain" name="domain" list="domains" required/>
-                  <?php $query1 = "SELECT corevalues FROM `checklist` WHERE (checkdesc IS NULL AND competencydesc IS NULL) GROUP BY corevalues";
-                            $result = $conn->query($query1) or die($conn->error.__LINE__);
-                      ?>
+              <div class="form-group col-6">
+                <label>Domain</label>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" id="domain" name="domain" list="domains" required/>
+                    <?php $query1 = "SELECT corevalues FROM `checklist` WHERE (checkdesc IS NULL AND competencydesc IS NULL) GROUP BY corevalues";
+                    $result = $conn->query($query1) or die($conn->error.__LINE__);
+                    ?>
                   <datalist id="domains">
                     <?php while ($row1 = mysqli_fetch_array($result)):;?>
-                          <option name = "competencyvalues"><?php echo $row1[0];?></option>
-                        <?php endwhile;?>
+                    <option name = "competencyvalues"><?php echo $row1[0];?></option>
+                    <?php endwhile;?>
                   </datalist>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-11">
-              <label>Description <i>(max 200 words)</i></label>
-              <div class="input-group mb-3">
-                <!--<input type="text" name="description" id="description" class="form-control" maxlength="200" required/>-->
-                <textarea class="form-control" id="description" name="description" rows="3" maxlength="200" required></textarea>
+              <div class="row">
+                <div class="form-group col-11">
+                  <label>Description <i>(max 200 words)</i></label>
+                  <div class="input-group mb-3">
+                    <textarea class="form-control" id="description" name="description" rows="3" maxlength="200" required></textarea>
+                  </div>
+                </div>
+                <div class="col-1">
+                  <input type="submit" name="submit" value="Add" min="0" class="btn btn-success"/>
+                </div>
               </div>
-            </div>
-            <div class="col-1">
-              <input type="submit" name="submit" value="Add" min="0" class="btn btn-success"/>
-            </div>
-          </div>
-
             </div>
             <b><p id="success" style="text-align:center; font-size:22px;"></p></b>
           </form>
         </div>
         <div id="checklistData">
-          
+
         </div>
       </div>
       <div class="modal-footer">
@@ -179,46 +177,94 @@ $result = mysqli_query($conn, $query);
   </div>
 </div>
 
+<!-- Edit ratings -->
 <script>
 $(document).ready(function(){
-    $('#obsValTable').Tabledit({
-     url:'ObservedValuesAction.php',
-     deleteButton: false,
-    // hideIdentifier: true,
-     buttons: {
-        edit: {
-            class: 'btn btn-info btn-xs edit_data',
-            html: '<span data-toggle="tooltip" title="Edit"><i class="fas fa-edit" aria-hidden="true"></i></span>',
-            action: 'edit'
-        }
-    },
-     columns:{
-      identifier:[0, "checkid"],
-      editable:[[3, 'firstrating'], [4, 'secondrating'], [5, 'thirdrating'], [6, 'fourthrating']]
-     },
-    });
-
+  $('#obsValTable').Tabledit({
+   url:'ChecklistsRatings.php',
+   //eventType: 'dblclick',
+   //editButton: false,
+   deleteButton: false,
+   hideIdentifier: true,
+   buttons: {
+     edit: {
+       class: 'btn btn-info btn-xs edit_data',
+       html: '<span data-toggle="tooltip" title="Edit"><i class="fas fa-edit" aria-hidden="true"></i></span>',
+       action: 'edit'
+     }
+   },
+   columns:{
+     identifier:[0, "checkid"],
+     editable:[[3, 'firstrating'], [4, 'secondrating'], [5, 'thirdrating'], [6, 'fourthrating']]
+   },
+  });
 });
 </script>
 
-<!-- View/add/edit observed values through modal . -->
+<!-- View/add/edit domains and descriptions through modal. -->
 <script>
- $(document).ready(function(){
-      $('.view_data').click(function(){
-           //var curr_name = $(this).attr("id");
-           $.ajax({
-                url:"EditObservedValues.php",
-                method:"post",
-                //data:{curr_name:curr_name},
-                success:function(response){
-                     $('#checklistData').html(response);
-                     $('#dataModal').modal("show");
-                }
-           });
-      });
+$(document).ready(function(){
+  $('.view_data').click(function(){
+    $.ajax({
+      url:"EditObservedValues.php",
+      method:"post",
+      success:function(response){
+        $('#checklistData').html(response);
+        $('#dataModal').modal("show");
 
+        $('#editObsValTable').Tabledit({
+          url: 'EditObservedValues.php',
+          buttons: {
+            edit: {
+              class: 'btn btn-info btn-xs edit_data',
+              html: '<span data-toggle="tooltip" title="Edit description"><i class="fas fa-edit" aria-hidden="true"></i></span>',
+              action: 'edit'
+            },
+            delete: {
+                class: 'btn btn-danger btn-xs edit_data',
+                html: '<span data-toggle="tooltip" title="Delete row"><i class="fas fa-trash" aria-hidden="true"></i></span>',
+                action: 'delete'
+              },
+            },
+            columns: {
+              identifier: [0, 'checkid'],
+              editable: [[1, 'corevalues'], [2, 'valuedesc']]
+            },
+            onSuccess:function(data, textStatus, jqXHR){
+              if(data.action == 'delete'){
+                $('#'+data.id).remove();
+              }
+            }
+          });
+
+        }
+      });
+    });
+});
+</script>
+
+<!-- Submit form -->
+<script type="text/javascript">
+$('#insert_form').on("submit", function(event){
+  event.preventDefault();
+  $.ajax({
+    type: "POST",
+    url: "ChecklistsInsert.php",
+    data: $("#insert_form").serialize(),
+    success: function(response){
+      $("#success").html(response);
+      if(response.includes("Successfully added.")){
+        $('#description').val("");
+        //$('#checklistData').html("");
+        $("#add_data_Modal").on("hidden.bs.modal", function () {
+          location.reload();
+        });
+      }
+   }
  });
- </script>
+});
+</script>
+
 
 <!-- jQuery -->
 <script src="../Resources/plugins/jquery/jquery.min.js"></script>

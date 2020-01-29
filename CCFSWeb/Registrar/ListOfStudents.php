@@ -114,7 +114,7 @@
 </div><!-- ./wrapper -->
 
 <!-- Modal to display student details. -->
-<div id="add_data_Modal" class="modal fade">
+<div id="add_data_Modal" class="modal fade" data-backdrop="static">
   <div class="modal-dialog modal-dialog-scrollable modal-lg">
     <div class="modal-content">
       <div class="modal-header">

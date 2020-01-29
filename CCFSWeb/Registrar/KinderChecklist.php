@@ -1,7 +1,7 @@
 <?php
 // connect to mysql
 include("Connection.php");
-// mysql select query
+// mysql select query  (competencyvalues IS NULL AND competencydesc IS NULL) AND (corevalues IS NULL AND valuedesc IS NULL)
 $query = "SELECT * FROM `checklist` WHERE (competencydesc IS NULL AND valuedesc IS NULL)";
 // result for method
 $result = mysqli_query($conn, $query);
@@ -49,7 +49,7 @@ $result = mysqli_query($conn, $query);
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-12">
-            <h1 class="m-0 text-dark">Early Childhood Care and Development Checklist</h1>
+            <h1 class="m-0 text-dark">Kindergarten Early Childhood Care and Development Checklist</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div>
@@ -80,7 +80,7 @@ $result = mysqli_query($conn, $query);
                 </div>
               </div><!-- /.card-header -->
               <div>
-                <button type="button" name="checklist" id="checklist" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-info view_data" style="float:right; margin-top:5px; margin-right:20px;">Edit Checklist</button>
+                <button type="button" name="checklist" id="checklist" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-info view_data" style="float:right; margin-top:5px; margin-right:20px;">Edit Domains and Descriptions</button>
               </div>
             <form method="post" id="checklistForm">
               <div class="card-body">
@@ -130,50 +130,48 @@ $result = mysqli_query($conn, $query);
 </div><!-- ./wrapper -->
 
 <!-- Modal for editing checklist. -->
-<div id="add_data_Modal" class="modal fade">
+<div id="add_data_Modal" class="modal fade" data-backdrop="static">
   <div class="modal-dialog modal-dialog-scrollable modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Edit Checklist</h4>
+        <h4 class="modal-title">Edit Domains and Descriptions</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
         <div>
           <form id="insert_form" method="post">
             <div>
-            <div class="form-group col-6">
-              <label>Domain</label>
-              <div class="input-group mb-3">
-                <input type="text" class="form-control" id="domain" name="domain" list="domains" required/>
-                  <?php $query1 = "SELECT checkvalues FROM `checklist` WHERE (competencydesc IS NULL AND valuedesc IS NULL) GROUP BY checkvalues";
-                            $result = $conn->query($query1) or die($conn->error.__LINE__);
-                      ?>
+              <div class="form-group col-6">
+                <label>Domain</label>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" id="domain" name="domain" list="domains" required/>
+                    <?php $query1 = "SELECT checkvalues FROM `checklist` WHERE (competencydesc IS NULL AND valuedesc IS NULL) GROUP BY checkvalues";
+                    $result = $conn->query($query1) or die($conn->error.__LINE__);
+                    ?>
                   <datalist id="domains">
                     <?php while ($row1 = mysqli_fetch_array($result)):;?>
-                          <option name = "checkvalues"><?php echo $row1[0];?></option>
-                        <?php endwhile;?>
+                    <option name = "checkvalues"><?php echo $row1[0];?></option>
+                    <?php endwhile;?>
                   </datalist>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-11">
-              <label>Description <i>(max 200 words)</i></label>
-              <div class="input-group mb-3">
-                <!--<input type="text" name="description" id="description" class="form-control" maxlength="200" required/>-->
-                <textarea class="form-control" id="description" name="description" rows="3" maxlength="200" required></textarea>
+              <div class="row">
+                <div class="form-group col-11">
+                  <label>Description <i>(max 200 words)</i></label>
+                  <div class="input-group mb-3">
+                    <textarea class="form-control" id="description" name="description" rows="3" maxlength="200" required></textarea>
+                  </div>
+                </div>
+                <div class="col-1">
+                  <input type="submit" name="submit" value="Add" min="0" class="btn btn-success"/>
+                </div>
               </div>
-            </div>
-            <div class="col-1">
-              <input type="submit" name="submit" value="Add" min="0" class="btn btn-success"/>
-            </div>
-          </div>
-
             </div>
             <b><p id="success" style="text-align:center; font-size:22px;"></p></b>
           </form>
         </div>
         <div id="checklistData">
-          
+
         </div>
       </div>
       <div class="modal-footer">
@@ -206,8 +204,8 @@ $('#checklistForm').on("submit", function(event){
                 url:"KinderChecklistAction.php",
                 type: 'post',
                 data: {
-                    action: 'checkbox-select', 
-                    id: checkbox.data('contact_avl'), 
+                    action: 'checkbox-select',
+                    id: checkbox.data('contact_avl'),
                     checked: checked
                       },
                 success: function(data) {
@@ -227,20 +225,20 @@ $('#checklistForm').on("submit", function(event){
      // get all chkbox value in current row
 $(function () {
     $(".btn-success").click(function(){
-            
-        var chk = $(this).closest('tr').find('input:checkbox'); 
+
+        var chk = $(this).closest('tr').find('input:checkbox');
         var chkid=$(this).closest('tr').find('td').val();
         alert("Check ID : " +chkid);
         alert("1st :" +chk[3].checked);
         alert("2nd: " +chk[4].checked);
         alert("3rd: "+ chk[5].checked);
-        
+
     });
             });
 
 </script> -->
 
-    
+
 
 <!--
 <script>
@@ -265,41 +263,69 @@ $(document).ready(function(){
 });
 </script>-->
 
-<!-- View/add/edit checklist information through modal . -->
+<!-- View/add/edit domains and descriptions through modal. -->
 <script>
- $(document).ready(function(){
-      $('.view_data').click(function(){
-           //var curr_name = $(this).attr("id");
-           $.ajax({
-                url:"EditKinderChecklist.php",
-                method:"post",
-                //data:{curr_name:curr_name},
-                success:function(response){
-                     $('#checklistData').html(response);
-                     $('#dataModal').modal("show");
-                }
-           });
-      });
+$(document).ready(function(){
+  $('.view_data').click(function(){
+    $.ajax({
+      url:"EditKinderChecklist.php",
+      method:"post",
+      success:function(response){
+        $('#checklistData').html(response);
+        $('#dataModal').modal("show");
 
-      $('#insert_form').on("submit", function(event){
-        event.preventDefault();
-            $.ajax({
-              type: "POST",
-              url: "insert.php",
-              data: $("#insert_form").serialize(),
-              success: function(response){
-                $('#insert_form')[0].reset();
-                //$("#success").html("Success");
-                $('#checklistData').html("");
-                $('#checklistData').html(response);
-                $("#add_data_Modal").on("hidden.bs.modal", function () {
-                  location.reload();
-                });
+        $('#editChecklistTable').Tabledit({
+          url: 'EditKinderChecklist.php',
+          buttons: {
+            edit: {
+              class: 'btn btn-info btn-xs edit_data',
+              html: '<span data-toggle="tooltip" title="Edit description"><i class="fas fa-edit" aria-hidden="true"></i></span>',
+              action: 'edit'
+            },
+            delete: {
+                class: 'btn btn-danger btn-xs edit_data',
+                html: '<span data-toggle="tooltip" title="Delete row"><i class="fas fa-trash" aria-hidden="true"></i></span>',
+                action: 'delete'
+              },
+            },
+            columns: {
+              identifier: [0, 'checkid'],
+              editable: [[1, 'checkvalues'], [2, 'checkdesc']]
+            },
+            onSuccess:function(data, textStatus, jqXHR){
+              if(data.action == 'delete'){
+                $('#'+data.id).remove();
               }
-            });
+            }
+          });
+
+        }
       });
+    });
+});
+</script>
+
+<!-- Submit form
+<script type="text/javascript">
+$('#insert_form').on("submit", function(event){
+  event.preventDefault();
+  $.ajax({
+    type: "POST",
+    url: "ChecklistsInsert.php",
+    data: $("#insert_form").serialize(),
+    success: function(response){
+      $("#success").html(response);
+      if(response.includes("Successfully added.")){
+        $('#description').val("");
+        //$('#checklistData').html("");
+        $("#add_data_Modal").on("hidden.bs.modal", function () {
+          location.reload();
+        });
+      }
+   }
  });
- </script>
+});
+</script>-->
 
 
 <!-- jQuery -->
