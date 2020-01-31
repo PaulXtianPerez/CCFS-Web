@@ -140,7 +140,7 @@ $result = mysqli_query($conn, $query);
               <div class="form-group col-6">
                 <label>Domain</label>
                 <div class="input-group mb-3">
-                  <input type="text" class="form-control" id="domain" name="domain" list="domains" required/>
+                  <input type="text" class="form-control" id="domain" name="domain" list="domains" maxlength="45" required/>
                     <?php $query1 = "SELECT corevalues FROM `checklist` WHERE (checkdesc IS NULL AND competencydesc IS NULL) GROUP BY corevalues";
                     $result = $conn->query($query1) or die($conn->error.__LINE__);
                     ?>
@@ -163,7 +163,6 @@ $result = mysqli_query($conn, $query);
                 </div>
               </div>
             </div>
-            <b><p id="success" style="text-align:center; font-size:22px;"></p></b>
           </form>
         </div>
         <div id="checklistData">
@@ -182,8 +181,6 @@ $result = mysqli_query($conn, $query);
 $(document).ready(function(){
   $('#obsValTable').Tabledit({
    url:'ChecklistsRatings.php',
-   //eventType: 'dblclick',
-   //editButton: false,
    deleteButton: false,
    hideIdentifier: true,
    buttons: {
@@ -206,62 +203,31 @@ $(document).ready(function(){
 $(document).ready(function(){
   $('.view_data').click(function(){
     $.ajax({
-      url:"EditObservedValues.php",
-      method:"post",
+      url:"ObservedValuesUpdate.php",
       success:function(response){
         $('#checklistData').html(response);
         $('#dataModal').modal("show");
-
-        $('#editObsValTable').Tabledit({
-          url: 'EditObservedValues.php',
-          buttons: {
-            edit: {
-              class: 'btn btn-info btn-xs edit_data',
-              html: '<span data-toggle="tooltip" title="Edit description"><i class="fas fa-edit" aria-hidden="true"></i></span>',
-              action: 'edit'
-            },
-            delete: {
-                class: 'btn btn-danger btn-xs edit_data',
-                html: '<span data-toggle="tooltip" title="Delete row"><i class="fas fa-trash" aria-hidden="true"></i></span>',
-                action: 'delete'
-              },
-            },
-            columns: {
-              identifier: [0, 'checkid'],
-              editable: [[1, 'corevalues'], [2, 'valuedesc']]
-            },
-            onSuccess:function(data, textStatus, jqXHR){
-              if(data.action == 'delete'){
-                $('#'+data.id).remove();
-              }
-            }
-          });
-
         }
       });
     });
-});
-</script>
-
-<!-- Submit form -->
-<script type="text/javascript">
-$('#insert_form').on("submit", function(event){
-  event.preventDefault();
-  $.ajax({
-    type: "POST",
-    url: "ChecklistsInsert.php",
-    data: $("#insert_form").serialize(),
-    success: function(response){
-      $("#success").html(response);
-      if(response.includes("Successfully added.")){
-        $('#description').val("");
-        //$('#checklistData').html("");
-        $("#add_data_Modal").on("hidden.bs.modal", function () {
-          location.reload();
-        });
+  //Submit form
+  $('#insert_form').on("submit", function(event){
+    event.preventDefault();
+    $.ajax({
+      type: "POST",
+      url: "ObservedValuesUpdate.php",
+      data: $("#insert_form").serialize(),
+      success: function(response){
+        if(response.includes("Successfully added.")){
+          $('#description').val("");
+          $('#checklistData').html(response);
+          $("#add_data_Modal").on("hidden.bs.modal", function () {
+            location.reload();
+          });
+        }
       }
-   }
- });
+    });
+  });
 });
 </script>
 

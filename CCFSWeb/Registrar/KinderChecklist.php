@@ -167,7 +167,6 @@ $result = mysqli_query($conn, $query);
                 </div>
               </div>
             </div>
-            <b><p id="success" style="text-align:center; font-size:22px;"></p></b>
           </form>
         </div>
         <div id="checklistData">
@@ -238,94 +237,38 @@ $(function () {
 
 </script> -->
 
-
-
-<!--
-<script>
-$(document).ready(function(){
-    $('#checklistTable').Tabledit({
-     url:'ObservedValuesAction.php',
-     deleteButton: false,
-    // hideIdentifier: true,
-     buttons: {
-        edit: {
-            class: 'btn btn-info btn-xs edit_data',
-            html: '<span data-toggle="tooltip" title="Edit"><i class="fas fa-edit" aria-hidden="true"></i></span>',
-            action: 'edit'
-        }
-    },
-     columns:{
-      identifier:[0, "checkid"],
-      editable:[[3, 'firstrating'], [4, 'secondrating'], [5, 'thirdrating'], [6, 'fourthrating']]
-     },
-    });
-
-});
-</script>-->
-
 <!-- View/add/edit domains and descriptions through modal. -->
 <script>
 $(document).ready(function(){
   $('.view_data').click(function(){
     $.ajax({
-      url:"EditKinderChecklist.php",
-      method:"post",
+      url:"KinderChecklistUpdate.php",
       success:function(response){
         $('#checklistData').html(response);
         $('#dataModal').modal("show");
-
-        $('#editChecklistTable').Tabledit({
-          url: 'EditKinderChecklist.php',
-          buttons: {
-            edit: {
-              class: 'btn btn-info btn-xs edit_data',
-              html: '<span data-toggle="tooltip" title="Edit description"><i class="fas fa-edit" aria-hidden="true"></i></span>',
-              action: 'edit'
-            },
-            delete: {
-                class: 'btn btn-danger btn-xs edit_data',
-                html: '<span data-toggle="tooltip" title="Delete row"><i class="fas fa-trash" aria-hidden="true"></i></span>',
-                action: 'delete'
-              },
-            },
-            columns: {
-              identifier: [0, 'checkid'],
-              editable: [[1, 'checkvalues'], [2, 'checkdesc']]
-            },
-            onSuccess:function(data, textStatus, jqXHR){
-              if(data.action == 'delete'){
-                $('#'+data.id).remove();
-              }
-            }
-          });
-
         }
       });
     });
+  //Submit form
+  $('#insert_form').on("submit", function(event){
+    event.preventDefault();
+    $.ajax({
+      type: "POST",
+      url: "KinderChecklistUpdate.php",
+      data: $("#insert_form").serialize(),
+      success: function(response){
+        if(response.includes("Successfully added.")){
+          $('#description').val("");
+          $('#checklistData').html(response);
+          $("#add_data_Modal").on("hidden.bs.modal", function () {
+            location.reload();
+          });
+        }
+      }
+    });
+  });
 });
 </script>
-
-<!-- Submit form
-<script type="text/javascript">
-$('#insert_form').on("submit", function(event){
-  event.preventDefault();
-  $.ajax({
-    type: "POST",
-    url: "ChecklistsInsert.php",
-    data: $("#insert_form").serialize(),
-    success: function(response){
-      $("#success").html(response);
-      if(response.includes("Successfully added.")){
-        $('#description').val("");
-        //$('#checklistData').html("");
-        $("#add_data_Modal").on("hidden.bs.modal", function () {
-          location.reload();
-        });
-      }
-   }
- });
-});
-</script>-->
 
 
 <!-- jQuery -->
