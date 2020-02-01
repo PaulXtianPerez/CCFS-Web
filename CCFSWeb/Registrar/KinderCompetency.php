@@ -140,7 +140,7 @@ $result = mysqli_query($conn, $query);
               <div class="form-group col-6">
                 <label>Domain</label>
                 <div class="input-group mb-3">
-                  <input type="text" class="form-control" id="domain" name="domain" list="domains" required/>
+                  <input type="text" class="form-control" id="domain" name="domain" list="domains" maxlength="50" required/>
                     <?php $query1 = "SELECT competencyvalues FROM `checklist` WHERE (checkdesc IS NULL AND valuedesc IS NULL) GROUP BY competencyvalues";
                     $result = $conn->query($query1) or die($conn->error.__LINE__);
                     ?>
@@ -153,9 +153,9 @@ $result = mysqli_query($conn, $query);
               </div>
               <div class="row">
                 <div class="form-group col-11">
-                  <label>Description <i>(max 200 words)</i></label>
+                  <label>Description <i>(max 250 characters)</i></label>
                   <div class="input-group mb-3">
-                    <textarea class="form-control" id="description" name="description" rows="3" maxlength="200" required></textarea>
+                    <textarea class="form-control" id="description" name="description" rows="3" maxlength="250" required></textarea>
                   </div>
                 </div>
                 <div class="col-1">
