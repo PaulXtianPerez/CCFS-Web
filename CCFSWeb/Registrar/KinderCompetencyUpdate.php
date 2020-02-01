@@ -1,6 +1,6 @@
 <?php
 include("Connection.php");
-$select_query = "SELECT * FROM `checklist` WHERE (checkdesc IS NULL AND valuedesc IS NULL)";
+$select_query = "SELECT * FROM `checklist` WHERE (checkdesc IS NULL AND valuedesc IS NULL) ORDER BY competencyvalues";
 $output = '';
 
 if(empty($_POST)){

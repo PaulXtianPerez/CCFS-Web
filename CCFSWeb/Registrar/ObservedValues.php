@@ -2,7 +2,7 @@
 // connect to mysql
 include("Connection.php");
 // mysql select query
-$query = "SELECT * FROM `checklist` WHERE (checkdesc IS NULL AND competencydesc IS NULL)";
+$query = "SELECT * FROM `checklist` WHERE (checkdesc IS NULL AND competencydesc IS NULL) ORDER BY corevalues";
 // result for method
 $result = mysqli_query($conn, $query);
 ?>

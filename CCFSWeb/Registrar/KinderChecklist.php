@@ -1,8 +1,8 @@
 <?php
 // connect to mysql
 include("Connection.php");
-// mysql select query  (competencyvalues IS NULL AND competencydesc IS NULL) AND (corevalues IS NULL AND valuedesc IS NULL)
-$query = "SELECT * FROM `checklist` WHERE (competencydesc IS NULL AND valuedesc IS NULL)";
+// mysql select query
+$query = "SELECT * FROM `checklist` WHERE (competencydesc IS NULL AND valuedesc IS NULL) ORDER BY checkvalues";
 // result for method
 $result = mysqli_query($conn, $query);
 ?>
