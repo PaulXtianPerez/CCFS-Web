@@ -187,12 +187,12 @@
                       <input class="form-control" id="telNumber" placeholder="Enter Telephone Number" name="studentTelNum">
                     </div>
                     <div class="form-group col-md-3">
-                      <label for="studAddress">Mobile Number</label>
-                      <input class="form-control" id="mobileNumber" placeholder="Enter Mobile Number" name="studentMobNum">
+                      <label for="studAddress">Mobile Number<span class="reqAsterisk">*</span></label>
+                      <input class="form-control" id="mobileNumber" placeholder="Enter Mobile Number" name="studentMobNum" required>
                     </div>
                     <div class="form-group col-md-6">
-                      <label for="studAddress">Last School Attended</label>
-                      <input class="form-control" id="lastSchool" placeholder="Enter Last School Attended" name="studentLastSchool">
+                      <label for="studAddress">Last School Attended<span class="reqAsterisk">*</span></label>
+                      <input class="form-control" id="lastSchool" placeholder="Enter Last School Attended" name="studentLastSchool" required>
                     </div>
                   </div>
                 </div>
@@ -295,7 +295,7 @@
                 </div>
               </div>
               <div class="card-footer">
-                <button type="submit" class="btn btn-success" data-toggle="modal" name="enroll" data-target="#myModal1" style="float: right;">Enroll</button>
+                <button type="submit" id='v' class="btn btn-success" data-toggle="modal" name="enroll" data-target="#myModal1" style="float: right;">Enroll</button>
               </div>
             </form>
           </div>
@@ -327,12 +327,13 @@
           <label>Miscellaneous</label>
           <input class="form-control" type="number" name="mics" id="grenades">
           <label>School Service</label>
-          <input class="form-control" type="number" name="service">
+          <input class="form-control" type="number" name="service" required>
           <label>Balance</label>
           <input class="form-control" type="number" name="balance">
         </div>
         <!-- Modal footer -->
         <div class="modal-footer">
+          <button type="button" id="lemon" class="btn btn-danger" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-success elon-chan" data-dismiss="modal">Confirm</button>
         </div>
       </div>
@@ -468,23 +469,25 @@
       });
       $(document).on('click',':submit','form',function(e){
         e.preventDefault();
-        if(!$('input[name=studentBirthPlace]').val()) {
-          $('.kk').text('Unsuccessful');
-          $('input[name=tuition]').prop('disabled',true);
-          $('input[name=books]').prop('disabled',true);
-          $('input[name=mics]').prop('disabled',true);
-          $('input[name=service]').prop('disabled',true);
-          $('input[name=balance]').prop('disabled',true);
+        if(!$('[name=studentSurname]').val() &&
+        !$('[name=studentGivenName]').val() &&
+        !$('[name=studentMiddleName]').val() &&
+        !$('[name=studentBirthDate]').val() &&
+        !$('[name=studentBirthPlace]').val() &&
+        !$('[name=studentAddress]').val() &&
+        !$('[name=studentMobNum]').val() &&
+        !$('[name=studentLastSchool]').val()) {
+        $('.kk').text('Unsuccessful');
+        $('.elon-chan').prop('disabled',true);
         }else {
+          $("#lemon").hide();
           $('.kk').text('Success');
           $('input[name=tuition]').prop('disabled',true);
           $('input[name=books]').prop('disabled',true);
           $('input[name=mics]').prop('disabled',true);
           $('input[name=service]').prop('disabled',false);
           $('input[name=balance]').prop('disabled',true);
-        }
-
-        $.ajax({
+          $.ajax({
           type:'POST',
           url:'EnrollmentSave.php',
           data: $('form').serialize(),
@@ -641,7 +644,7 @@
                   $('input[name=tuition]').val(0);
                   $('input[name=balance]').val(parseFloat($('input[name=tuition]').val())+parseFloat($('input[name=books]').val())+parseFloat($('input[name=mics]').val())+parseFloat($('input[name=service]').val()));
                 }
-                 $('input[name=service]').val(0);
+                $('input[name=service]').val(0);
                 $('input[name=balance]').val(parseFloat($('input[name=tuition]').val())+parseFloat($('input[name=books]').val())+parseFloat($('input[name=mics]').val())+parseFloat($('input[name=service]').val()));
                 $('input[name=service]').keyup(function() {
                   $('input[name=balance]').val(parseFloat($('input[name=tuition]').val())+parseFloat($('input[name=books]').val())+parseFloat($('input[name=mics]').val())+parseFloat($(this).val()));
@@ -650,6 +653,9 @@
             }
           }
         });
+        }
+
+        
       });
       $(document).on('click','.elon-chan',function(e) {
         e.preventDefault();
