@@ -477,11 +477,11 @@
           $('input[name=balance]').prop('disabled',true);
         }else {
           $('.kk').text('Success');
-          $('input[name=tuition]').prop('disabled',false);
-          $('input[name=books]').prop('disabled',false);
-          $('input[name=mics]').prop('disabled',false);
+          $('input[name=tuition]').prop('disabled',true);
+          $('input[name=books]').prop('disabled',true);
+          $('input[name=mics]').prop('disabled',true);
           $('input[name=service]').prop('disabled',false);
-          $('input[name=balance]').prop('disabled',false);
+          $('input[name=balance]').prop('disabled',true);
         }
 
         $.ajax({
@@ -490,117 +490,162 @@
           data: $('form').serialize(),
           dataType:"json",
           success:function(data) {
-            console.log(data['error']);
+            var meow = $('[name=gradeLevel] option:selected').val();
             $('input[name=yerrr]').val(data['em']);
             $('input[name=studentIDnoNew]').val(data['me'])
-            switch($('[name=gradeLevel] option:selected').val()) {
+            switch(meow+'') {
               case 'NURSERY':
                 $('input[name=tuition]').val(data['ELONTUSK']['pretui1']);
                 $('input[name=books]').val(data['ELONTUSK']['prebook1']);
                 $('input[name=mics]').val(data['ELONTUSK']['premisc1']);
-                if(!$('input[name=service]').val() || !$('input[name=tuition]').val() || !$('input[name=books]').val() || !$('input[name=mics]').val()) {
+                if(!$('input[name=tuition]').val() || !$('input[name=books]').val() || !$('input[name=mics]').val()) {
                   $('input[name=service]').val(0);
                   $('input[name=books]').val(0);
                   $('input[name=mics]').val(0);
                   $('input[name=tuition]').val(0);
-                  $('input[name=balance]').val(parseInt($('input[name=tuition]').val())+parseInt($('input[name=books]').val())+parseInt($('input[name=mics]').val())+parseInt($('input[name=service]').val()));
+                  $('input[name=balance]').val(parseFloat($('input[name=tuition]').val())+parseFloat($('input[name=books]').val())+parseFloat($('input[name=mics]').val())+parseFloat($('input[name=service]').val()));
                 }
+                $('input[name=service]').val(0);
+                $('input[name=balance]').val(parseFloat($('input[name=tuition]').val())+parseFloat($('input[name=books]').val())+parseFloat($('input[name=mics]').val())+parseFloat($('input[name=service]').val()));
+                $('input[name=service]').keyup(function() {
+                  $('input[name=balance]').val(parseFloat($('input[name=tuition]').val())+parseFloat($('input[name=books]').val())+parseFloat($('input[name=mics]').val())+parseFloat($(this).val()));
+                });
               break;
               case 'PRESCHOOL':
                 $('input[name=tuition]').val(data['ELONTUSK']['pretui2']);
                 $('input[name=books]').val(data['ELONTUSK']['prebook2']);
                 $('input[name=mics]').val(data['ELONTUSK']['premisc2']);
-                if(!$('input[name=service]').val() || !$('input[name=tuition]').val() || !$('input[name=books]').val() || !$('input[name=mics]').val()) {
+                if(!$('input[name=tuition]').val() || !$('input[name=books]').val() || !$('input[name=mics]').val()) {
                   $('input[name=service]').val(0);
                   $('input[name=books]').val(0);
                   $('input[name=mics]').val(0);
                   $('input[name=tuition]').val(0);
-                  $('input[name=balance]').val(parseInt($('input[name=tuition]').val())+parseInt($('input[name=books]').val())+parseInt($('input[name=mics]').val())+parseInt($('input[name=service]').val()));
+                  $('input[name=balance]').val(parseFloat($('input[name=tuition]').val())+parseFloat($('input[name=books]').val())+parseFloat($('input[name=mics]').val())+parseFloat($('input[name=service]').val()));
                 }
+                $('input[name=service]').val(0);
+                $('input[name=balance]').val(parseFloat($('input[name=tuition]').val())+parseFloat($('input[name=books]').val())+parseFloat($('input[name=mics]').val())+parseFloat($('input[name=service]').val()));
+                $('input[name=service]').keyup(function() {
+                  $('input[name=balance]').val(parseFloat($('input[name=tuition]').val())+parseFloat($('input[name=books]').val())+parseFloat($('input[name=mics]').val())+parseFloat($(this).val()));
+                });
               break;
               case 'KINDER':
                 $('input[name=tuition]').val(data['ELONTUSK']['pre3']);
                 $('input[name=books]').val(data['ELONTUSK']['pre3']);
                 $('input[name=mics]').val(data['ELONTUSK']['pre3']);
-                if(!$('input[name=service]').val() || !$('input[name=tuition]').val() || !$('input[name=books]').val() || !$('input[name=mics]').val()) {
+                if(!$('input[name=tuition]').val() || !$('input[name=books]').val() || !$('input[name=mics]').val()) {
                   $('input[name=service]').val(0);
                   $('input[name=books]').val(0);
                   $('input[name=mics]').val(0);
                   $('input[name=tuition]').val(0);
-                  $('input[name=balance]').val(parseInt($('input[name=tuition]').val())+parseInt($('input[name=books]').val())+parseInt($('input[name=mics]').val())+parseInt($('input[name=service]').val()));
+                  $('input[name=balance]').val(parseFloat($('input[name=tuition]').val())+parseFloat($('input[name=books]').val())+parseFloat($('input[name=mics]').val())+parseFloat($('input[name=service]').val()));
                 }
+                $('input[name=service]').val(0);
+                $('input[name=balance]').val(parseFloat($('input[name=tuition]').val())+parseFloat($('input[name=books]').val())+parseFloat($('input[name=mics]').val())+parseFloat($('input[name=service]').val()));
+                $('input[name=service]').keyup(function() {
+                  $('input[name=balance]').val(parseFloat($('input[name=tuition]').val())+parseFloat($('input[name=books]').val())+parseFloat($('input[name=mics]').val())+parseFloat($(this).val()));
+                });
               break;
               case 'GRADE 1':
                 $('input[name=tuition]').val(data['ELONTUSK']['gradetui1']);
                 $('input[name=books]').val(data['ELONTUSK']['gradebook1']);
                 $('input[name=mics]').val(data['ELONTUSK']['grademisc123456']);
-                if(!$('input[name=service]').val() || !$('input[name=tuition]').val() || !$('input[name=books]').val() || !$('input[name=mics]').val()) {
+                if(!$('input[name=tuition]').val() || !$('input[name=books]').val() || !$('input[name=mics]').val()) {
                   $('input[name=service]').val(0);
                   $('input[name=books]').val(0);
                   $('input[name=mics]').val(0);
                   $('input[name=tuition]').val(0);
-                  $('input[name=balance]').val(parseInt($('input[name=tuition]').val())+parseInt($('input[name=books]').val())+parseInt($('input[name=mics]').val())+parseInt($('input[name=service]').val()));
+                  $('input[name=balance]').val(parseFloat($('input[name=tuition]').val())+parseFloat($('input[name=books]').val())+parseFloat($('input[name=mics]').val())+parseFloat($('input[name=service]').val()));
                 }
+                 $('input[name=service]').val(0);
+                $('input[name=balance]').val(parseFloat($('input[name=tuition]').val())+parseFloat($('input[name=books]').val())+parseFloat($('input[name=mics]').val())+parseFloat($('input[name=service]').val()));
+                $('input[name=service]').keyup(function() {
+                  $('input[name=balance]').val(parseFloat($('input[name=tuition]').val())+parseFloat($('input[name=books]').val())+parseFloat($('input[name=mics]').val())+parseFloat($(this).val()));
+                });
               break;
               case 'GRADE 2':
                 $('input[name=tuition]').val(data['ELONTUSK']['gradetui23456']);
                 $('input[name=books]').val(data['ELONTUSK']['gradebook23456']);
                 $('input[name=mics]').val(data['ELONTUSK']['grademisc23456']);
-                if(!$('input[name=service]').val() || !$('input[name=tuition]').val() || !$('input[name=books]').val() || !$('input[name=mics]').val()) {
+                if(!$('input[name=tuition]').val() || !$('input[name=books]').val() || !$('input[name=mics]').val()) {
                   $('input[name=service]').val(0);
                   $('input[name=books]').val(0);
                   $('input[name=mics]').val(0);
                   $('input[name=tuition]').val(0);
-                  $('input[name=balance]').val(parseInt($('input[name=tuition]').val())+parseInt($('input[name=books]').val())+parseInt($('input[name=mics]').val())+parseInt($('input[name=service]').val()));
+                  $('input[name=balance]').val(parseFloat($('input[name=tuition]').val())+parseFloat($('input[name=books]').val())+parseFloat($('input[name=mics]').val())+parseFloat($('input[name=service]').val()));
                 }
+                 $('input[name=service]').val(0);
+                $('input[name=balance]').val(parseFloat($('input[name=tuition]').val())+parseFloat($('input[name=books]').val())+parseFloat($('input[name=mics]').val())+parseFloat($('input[name=service]').val()));
+                $('input[name=service]').keyup(function() {
+                  $('input[name=balance]').val(parseFloat($('input[name=tuition]').val())+parseFloat($('input[name=books]').val())+parseFloat($('input[name=mics]').val())+parseFloat($(this).val()));
+                });
               break;
               case 'GRADE 3':
                 $('input[name=tuition]').val(data['ELONTUSK']['gradetui3456']);
                 $('input[name=books]').val(data['ELONTUSK']['gradebook3456']);
                 $('input[name=mics]').val(data['ELONTUSK']['grademisc3456']);
-                if(!$('input[name=service]').val() || !$('input[name=tuition]').val() || !$('input[name=books]').val() || !$('input[name=mics]').val()) {
+                if(!$('input[name=tuition]').val() || !$('input[name=books]').val() || !$('input[name=mics]').val()) {
                   $('input[name=service]').val(0);
                   $('input[name=books]').val(0);
                   $('input[name=mics]').val(0);
                   $('input[name=tuition]').val(0);
-                  $('input[name=balance]').val(parseInt($('input[name=tuition]').val())+parseInt($('input[name=books]').val())+parseInt($('input[name=mics]').val())+parseInt($('input[name=service]').val()));
+                  $('input[name=balance]').val(parseFloat($('input[name=tuition]').val())+parseFloat($('input[name=books]').val())+parseFloat($('input[name=mics]').val())+parseFloat($('input[name=service]').val()));
                 }
+                 $('input[name=service]').val(0);
+                $('input[name=balance]').val(parseFloat($('input[name=tuition]').val())+parseFloat($('input[name=books]').val())+parseFloat($('input[name=mics]').val())+parseFloat($('input[name=service]').val()));
+                $('input[name=service]').keyup(function() {
+                  $('input[name=balance]').val(parseFloat($('input[name=tuition]').val())+parseFloat($('input[name=books]').val())+parseFloat($('input[name=mics]').val())+parseFloat($(this).val()));
+                });
               break;
               case 'GRADE 4':
                 $('input[name=tuition]').val(data['ELONTUSK']['gradetui456']);
                 $('input[name=books]').val(data['ELONTUSK']['gradebook456']);
                 $('input[name=mics]').val(data['ELONTUSK']['grademisc456']);
-                if(!$('input[name=service]').val() || !$('input[name=tuition]').val() || !$('input[name=books]').val() || !$('input[name=mics]').val()) {
+                if(!$('input[name=tuition]').val() || !$('input[name=books]').val() || !$('input[name=mics]').val()) {
                   $('input[name=service]').val(0);
                   $('input[name=books]').val(0);
                   $('input[name=mics]').val(0);
                   $('input[name=tuition]').val(0);
-                  $('input[name=balance]').val(parseInt($('input[name=tuition]').val())+parseInt($('input[name=books]').val())+parseInt($('input[name=mics]').val())+parseInt($('input[name=service]').val()));
+                  $('input[name=balance]').val(parseFloat($('input[name=tuition]').val())+parseFloat($('input[name=books]').val())+parseFloat($('input[name=mics]').val())+parseFloat($('input[name=service]').val()));
                 }
+                 $('input[name=service]').val(0);
+                $('input[name=balance]').val(parseFloat($('input[name=tuition]').val())+parseFloat($('input[name=books]').val())+parseFloat($('input[name=mics]').val())+parseFloat($('input[name=service]').val()));
+                $('input[name=service]').keyup(function() {
+                  $('input[name=balance]').val(parseFloat($('input[name=tuition]').val())+parseFloat($('input[name=books]').val())+parseFloat($('input[name=mics]').val())+parseFloat($(this).val()));
+                });
               break;
               case 'GRADE 5':
                 $('input[name=tuition]').val(data['ELONTUSK']['gradetui56']);
                 $('input[name=books]').val(data['ELONTUSK']['gradebook56']);
                 $('input[name=mics]').val(data['ELONTUSK']['grademisc56']);
-                if(!$('input[name=service]').val() || !$('input[name=tuition]').val() || !$('input[name=books]').val() || !$('input[name=mics]').val()) {
+                if(!$('input[name=tuition]').val() || !$('input[name=books]').val() || !$('input[name=mics]').val()) {
                   $('input[name=service]').val(0);
                   $('input[name=books]').val(0);
                   $('input[name=mics]').val(0);
                   $('input[name=tuition]').val(0);
-                  $('input[name=balance]').val(parseInt($('input[name=tuition]').val())+parseInt($('input[name=books]').val())+parseInt($('input[name=mics]').val())+parseInt($('input[name=service]').val()));
+                  $('input[name=balance]').val(parseFloat($('input[name=tuition]').val())+parseFloat($('input[name=books]').val())+parseFloat($('input[name=mics]').val())+parseFloat($('input[name=service]').val()));
                 }
+                 $('input[name=service]').val(0);
+                $('input[name=balance]').val(parseFloat($('input[name=tuition]').val())+parseFloat($('input[name=books]').val())+parseFloat($('input[name=mics]').val())+parseFloat($('input[name=service]').val()));
+                $('input[name=service]').keyup(function() {
+                  $('input[name=balance]').val(parseFloat($('input[name=tuition]').val())+parseFloat($('input[name=books]').val())+parseFloat($('input[name=mics]').val())+parseFloat($(this).val()));
+                });
               break;
               case 'GRADE 6':
                 $('input[name=tuition]').val(data['ELONTUSK']['gradetui6']);
                 $('input[name=books]').val(data['ELONTUSK']['gradebook6']);
                 $('input[name=mics]').val(data['ELONTUSK']['grademisc6']);
-                if(!$('input[name=service]').val() || !$('input[name=tuition]').val() || !$('input[name=books]').val() || !$('input[name=mics]').val()) {
+                if(!$('input[name=tuition]').val() || !$('input[name=books]').val() || !$('input[name=mics]').val()) {
                   $('input[name=service]').val(0);
                   $('input[name=books]').val(0);
                   $('input[name=mics]').val(0);
                   $('input[name=tuition]').val(0);
-                  $('input[name=balance]').val(parseInt($('input[name=tuition]').val())+parseInt($('input[name=books]').val())+parseInt($('input[name=mics]').val())+parseInt($('input[name=service]').val()));
+                  $('input[name=balance]').val(parseFloat($('input[name=tuition]').val())+parseFloat($('input[name=books]').val())+parseFloat($('input[name=mics]').val())+parseFloat($('input[name=service]').val()));
                 }
+                 $('input[name=service]').val(0);
+                $('input[name=balance]').val(parseFloat($('input[name=tuition]').val())+parseFloat($('input[name=books]').val())+parseFloat($('input[name=mics]').val())+parseFloat($('input[name=service]').val()));
+                $('input[name=service]').keyup(function() {
+                  $('input[name=balance]').val(parseFloat($('input[name=tuition]').val())+parseFloat($('input[name=books]').val())+parseFloat($('input[name=mics]').val())+parseFloat($(this).val()));
+                });
               break;
             }
           }
@@ -625,7 +670,7 @@
           data:{idno:idno,yearid:yearid,t:t,b:b,m:m,s:s,ba:ba},
           success:function(data) {
             console.log(data);
-            window.location.href = $('input[name=redirect_to]').val();
+            //window.location.href = $('input[name=redirect_to]').val();
           }
         });
       });
