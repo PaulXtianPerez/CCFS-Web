@@ -48,6 +48,7 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
+  <link rel="stylesheet" href="../Resources/bootstrap-4.4.1/css/bootstrap.css">
 </head>
 <body>
 
@@ -187,11 +188,11 @@
                       <input class="form-control" id="telNumber" placeholder="Enter Telephone Number" name="studentTelNum">
                     </div>
                     <div class="form-group col-md-3">
-                      <label for="studAddress">Mobile Number<span class="reqAsterisk">*</span></label>
+                      <label for="studAddress">Mobile Number <span class="reqAsterisk">*</span></label>
                       <input class="form-control" id="mobileNumber" placeholder="Enter Mobile Number" name="studentMobNum" required>
                     </div>
                     <div class="form-group col-md-6">
-                      <label for="studAddress">Last School Attended<span class="reqAsterisk">*</span></label>
+                      <label for="studAddress">Last School Attended <span class="reqAsterisk">*</span></label>
                       <input class="form-control" id="lastSchool" placeholder="Enter Last School Attended" name="studentLastSchool" required>
                     </div>
                   </div>
@@ -655,7 +656,7 @@
         });
         }
 
-        
+
       });
       $(document).on('click','.elon-chan',function(e) {
         e.preventDefault();
