@@ -15,7 +15,7 @@ if(isset($input['searcher'])) {
     <table id="competencyTable" class="table table-bordered table-hover">
        <thead style="text-align:center;">
          <tr>
-           <th>Check ID</th>
+           <th style="display:none;">Check ID</th>
            <th style="width:20%;">Domain</th>
            <th style="width:40%;">Description</th>
            <th style="width:10%;">1st</th>
@@ -29,7 +29,7 @@ if(mysqli_num_rows($result) > 0){
   while($row = mysqli_fetch_array($result)) {
     $output .= '
     <tr>
-      <td>'.$row["checkid"].'</td>
+      <td style="display:none;">'.$row["checkid"].'</td>
       <td>'.$row["competencyvalues"].'</td>
       <td>'.$row["competencydesc"].'</td>
       <td style="text-align:center;">'.$row["firstrating"].'</td>

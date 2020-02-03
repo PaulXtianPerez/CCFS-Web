@@ -81,7 +81,7 @@ include("Connection.php");
                 <table id="checklistTable" class="table table-bordered table-hover">
                   <thead style="text-align:center;">
                     <tr>
-                      <th>Check ID</th>
+                      <th style="display:none;">Check ID</th>
                       <th style="width:20%;">Domain</th>
                       <th style="width:60%;">Description</th>
                       <th style="width:5%;">1st</th>

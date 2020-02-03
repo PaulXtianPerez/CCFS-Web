@@ -81,7 +81,7 @@ include("Connection.php");
                 <table id="competencyTable" class="table table-bordered table-hover">
                    <thead style="text-align:center;">
                      <tr>
-                       <th>Check ID</th>
+                       <th style="display:none;">Check ID</th>
                        <th style="width:20%;">Domain</th>
                        <th style="width:40%;">Description</th>
                        <th style="width:10%;">1st</th>
