@@ -8,6 +8,7 @@
   <script src="../Resources/plugins/jquery-ui/jquery-ui.min.js"></script>
   <!--Bootbox library for dialog box.-->
   <script src="../Resources/plugins/bootstrap/js/bootbox/bootbox.min.js"></script>
+  <link rel="stylesheet" href="../Resources/bootstrap-4.4.1/css/bootstrap.css">
 </head>
 <body>
   <div class="Balance">
