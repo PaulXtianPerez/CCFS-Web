@@ -183,6 +183,7 @@ $result3 = mysqli_query($conn, $query3);
   <link rel="stylesheet" type="text/css" href="../Resources/plugins/bootstrap/js/DataTables/datatables.css">
   <!-- DataTables plugin -->
   <script type="text/javascript" charset="utf8" src="../Resources/plugins/bootstrap/js/DataTables/datatables.js"></script>
+  <link rel="stylesheet" href="../Resources/bootstrap-4.4.1/css/bootstrap.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div id="contents" class="wrapper">
@@ -203,16 +204,20 @@ $result3 = mysqli_query($conn, $query3);
             ; echo "-" ; if(empty($data2[1])){echo "--";}else {echo $data2[1];}?></h5>
           </div><!-- /.col -->
         </div><!-- /.row -->
-        <!-- Main content -->
-       <section class="content">
-       <form>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <form>
           <div class="row">
             <div class="col-12">
               <div class="card card-primary">
                 <div class="card-header">
-                    <div class="row">
+                    <div class="input-group input-group-sm">
                       <!-- SELECT GRADE LEVEL -->
-                      <div class="form-group col-3">
+                      <div class="input-group input-group-sm col-3">
                         <label>Grade Level</label>
                         <select id="grLvl" class="form-control e" name="grLvl">
                           <option>Nursery</option>
@@ -227,7 +232,7 @@ $result3 = mysqli_query($conn, $query3);
                         </select>
                       </div>
                       <!-- SELECT SECTION -->
-                      <div class="form-group col-3">
+                      <div class="input-group input-group-sm col-3">
                         <label>Section</label>
                         <select id="section" class="form-control" name="section">
                         <?php
@@ -239,7 +244,7 @@ $result3 = mysqli_query($conn, $query3);
                         </select>
                       </div>
                       <!-- SELECT SUBJECT -->
-                      <div class="form-group col-3">
+                      <div class="input-group input-group-sm col-3">
                         <label>Subject</label>
                         <select id="subject" class="form-control" name="subject">
                           <?php
@@ -251,7 +256,7 @@ $result3 = mysqli_query($conn, $query3);
                         </select>
                       </div>
                       <!-- SUBMIT -->
-                      <div class="form-group col-3">
+                      <div class="input-group input-group-sm col-3">
                         <br><input class="btn btn-default elon" type="button"  name="submit" value="Go">
                       </div>
                     </div>
@@ -309,12 +314,10 @@ $result3 = mysqli_query($conn, $query3);
               <!-- /.card -->
             </div>
           </div>
-        </section>
-      </div><!-- /.container-fluid -->
+        </div><!-- /.container-fluid -->
+      </section>
     </div>
-  </div>
-
-</div> <!-- ./wrapper -->
+  </div><!-- ./wrapper -->
 
 <!-- Initialize DataTables plugin -->
 <!-- <script type="text/javascript">

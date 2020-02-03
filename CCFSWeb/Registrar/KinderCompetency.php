@@ -1,10 +1,6 @@
 <?php
 // connect to mysql
 include("Connection.php");
-// mysql select query
-$query = "SELECT * FROM `checklist` WHERE (checkdesc IS NULL AND valuedesc IS NULL) ORDER BY competencyvalues";
-// result for method
-$result = mysqli_query($conn, $query);
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +33,7 @@ $result = mysqli_query($conn, $query);
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
-
+  <link rel="stylesheet" href="../Resources/bootstrap-4.4.1/css/bootstrap.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div id="contents" class="wrapper">
@@ -64,56 +60,39 @@ $result = mysqli_query($conn, $query);
               <div class="card-header">
                 <div>
                   <!-- SEARCH FORM -->
-                  <form class="form-inline">
+                  <form id="searchForm" class="form-inline">
                     <div class="input-group input-group-sm">
-                      <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"/>
-                      <div class="input-group-append">
-                        <button class="btn btn-navbar" type="submit">
-                          <i class="fas fa-search"></i>
-                        </button>
-                      </div>
+                      <input class="id form-control form-control-navbar" type="text" name="id" placeholder="Search ID number" aria-label="Search" required/>
+                    </div>
+                    <div class="input-group input-group-sm col-1">
+                      <input class="form-control search btn btn-default" type="submit" name="searcher" value="Search"/>
                     </div>
                   </form>
                 </div> <br>
                 <div>
-                  <h3 class="card-title">Student: [Name] | [Grade Lv.]</h3><br>
+                  <h3 class="card-title">ID: <p name="studentIDno"></p></h3>
                 </div>
               </div>
               <!-- /.card-header -->
               <div>
                 <button type="button" name="competency" id="competency" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-info view_data" style="float:right; margin-top:5px; margin-right:20px;">Edit Domains and Descriptions</button>
               </div>
-              <div class="card-body">
+              <div id="competencyData" class="card-body">
                 <table id="competencyTable" class="table table-bordered table-hover">
-                  <thead style="text-align:center;">
-                    <tr>
-                      <th>Check ID</th>
-                      <th style="width:20%;">Domain</th>
-                      <th style="width:40%;">Description</th>
-                      <th style="width:10%;">1st</th>
-                      <th style="width:10%;">2nd</th>
-                      <th style="width:10%;">3rd</th>
-                      <th style="width:10%;">4th</th>
-                    </tr>
-                  </thead>
-                  <tbody> <!-- Populate from database. -->
-                    <?php
-                      while($row = mysqli_fetch_array($result)) {
-                        echo '
-                        <tr>
-                        <td>'.$row["checkid"].'</td>
-                        <td>'.$row["competencyvalues"].'</td>
-                        <td>'.$row["competencydesc"].'</td>
-                        <td style="text-align:center;">'.$row["firstrating"].'</td>
-                        <td style="text-align:center;">'.$row["secondrating"].'</td>
-                        <td style="text-align:center;">'.$row["thirdrating"].'</td>
-                        <td style="text-align:center;">'.$row["fourthrating"].'</td>
-                        </tr>
-                        ';
-                      }
-                      ?>
-                  </tbody>
-                </table>
+                   <thead style="text-align:center;">
+                     <tr>
+                       <th>Check ID</th>
+                       <th style="width:20%;">Domain</th>
+                       <th style="width:40%;">Description</th>
+                       <th style="width:10%;">1st</th>
+                       <th style="width:10%;">2nd</th>
+                       <th style="width:10%;">3rd</th>
+                       <th style="width:10%;">4th</th>
+                     </tr>
+                   </thead>
+                   <tbody>
+                   </tbody>
+                 </table>
               </div>
               <!-- /.card-body -->
             </div>
@@ -176,26 +155,24 @@ $result = mysqli_query($conn, $query);
   </div>
 </div>
 
-<!-- Edit ratings -->
-<script>
+<!-- Search student -->
+<script type="text/javascript">
 $(document).ready(function(){
-  $('#competencyTable').Tabledit({
-   url:'ChecklistsRatings.php',
-   deleteButton: false,
-   hideIdentifier: true,
-   buttons: {
-     edit: {
-       class: 'btn btn-info btn-xs edit_data',
-       html: '<span data-toggle="tooltip" title="Edit"><i class="fas fa-edit" aria-hidden="true"></i></span>',
-       action: 'edit'
-     }
-   },
-   columns:{
-     identifier:[0, "checkid"],
-     editable:[[3, 'firstrating'], [4, 'secondrating'], [5, 'thirdrating'], [6, 'fourthrating']]
-   },
+  $('#searchForm').on("submit", function(event){
+    event.preventDefault();
+    var id = $('input[name=id]').val();
+    var searcher = $('input[name=searcher]').val();
+    $.ajax({
+      type:"post",
+      url:"KinderCompetencySearch.php",
+      data:{id:id, searcher:searcher},
+      success:function(data){
+        $('[name=studentIDno]').html(id);
+        $("#competencyData").html(data);
+        }
+      });
+    });
   });
-});
 </script>
 
 <!-- View/add/edit domains and descriptions through modal. -->
@@ -221,7 +198,7 @@ $(document).ready(function(){
         if(response.includes("Successfully added.")){
           $('#description').val("");
           $('#checklistData').html(response);
-          $("#add_data_Modal").on("hidden.bs.modal", function () {
+          $("#add_data_Modal").on("hidden.bs.modal", function(){
             location.reload();
           });
         }
@@ -236,6 +213,8 @@ $(document).ready(function(){
 <script src="../Resources/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="../Resources/plugins/jquery-ui/jquery-ui.min.js"></script>
+<!--Bootbox library for dialog box.-->
+<script src="../Resources/plugins/bootstrap/js/bootbox/bootbox.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)

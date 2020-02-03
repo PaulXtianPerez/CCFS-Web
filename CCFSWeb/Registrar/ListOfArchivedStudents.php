@@ -32,6 +32,7 @@
   <link rel="stylesheet" type="text/css" href="../Resources/plugins/bootstrap/js/DataTables/datatables.css">
   <!-- DataTables plugin -->
   <script type="text/javascript" charset="utf8" src="../Resources/plugins/bootstrap/js/DataTables/datatables.js"></script>
+  <link rel="stylesheet" href="../Resources/bootstrap-4.4.1/css/bootstrap.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div id="contents" class="wrapper">
@@ -47,25 +48,29 @@
             <h5 class="m-0 text-dark">School Year: [Sch Yr]</h5>
           </div><!-- /.col -->
         </div><!-- /.row -->
-        <!-- Main content -->
-       <section class="content">
-          <div class="row">
-            <div class="col-12">
-              <div class="card card-primary">
-                <div class="card-header">
-                  <div>
-                    <!-- SEARCH FORM -->
-                    <form class="form-inline ml-3">
-                      <div class="input-group input-group-sm">
-                        <input id="searchInput" class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"/>
-                      </div>
-                    </form>
-                  </div>
+      </div>
+    </div><!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-primary">
+              <div class="card-header">
+                <div>
+                  <!-- SEARCH FORM -->
+                  <form class="form-inline">
+                    <div class="input-group input-group-sm">
+                      <input id="searchInput" class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"/>
+                    </div>
+                  </form>
                 </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <table id="studArchTable" class="table table-bordered table-hover">
-                    <thead>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="studArchTable" class="table table-bordered table-hover">
+                  <thead>
                     <tr>
                       <th>ID Number</th>
                       <th>Last Name</th>
@@ -74,23 +79,19 @@
                       <th>Grade Level</th>
                       <th>Status</th>
                     </tr>
-                    </thead>
-                    <tbody>
+                  </thead>
+                  <tbody>
 
-                    </tbody>
-                  </table>
-                </div>
-                <!-- /.card-body -->
-              </div>
-              <!-- /.card -->
-            </div>
+                  </tbody>
+                </table>
+              </div><!-- /.card-body -->
+            </div><!-- /.card -->
           </div>
-        </section>
+        </div>
       </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+    </section>
   </div>
-</div> <!-- ./wrapper -->
+</div><!-- ./wrapper -->
 
 <!-- Initialize DataTables plugin -->
 <script type="text/javascript">

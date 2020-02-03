@@ -41,12 +41,12 @@ $result = mysqli_query($connect, $query);
   <link rel="stylesheet" href="../Resources/plugins/summernote/summernote-bs4.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-
   <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
-<!-- CSS for DataTables plugin -->
+  <!-- CSS for DataTables plugin -->
   <link rel="stylesheet" type="text/css" href="../Resources/plugins/bootstrap/js/DataTables/datatables.css">
   <!-- DataTables plugin -->
   <script type="text/javascript" charset="utf8" src="../Resources/plugins/bootstrap/js/DataTables/datatables.js"></script>
+  <link rel="stylesheet" href="../Resources/bootstrap-4.4.1/css/bootstrap.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div id="contents" class="wrapper">
