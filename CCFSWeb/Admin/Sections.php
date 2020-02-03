@@ -44,6 +44,7 @@ $result = mysqli_query($mysqli, $query);
   <!-- JQuery Inline Table Editor Plugin -->
   <script src="../Resources/plugins/jquery/jquery.tabledit.js"></script>
   <script src="../Resources/plugins/jquery/jquery.tabledit.min.js"></script>
+  <link rel="stylesheet" href="../Resources/bootstrap-4.4.1/css/bootstrap.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div id="contents" class="wrapper">

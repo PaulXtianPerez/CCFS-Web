@@ -41,6 +41,7 @@ $result = mysqli_query($mysqli, $query);
   <link rel="stylesheet" type="text/css" href="../Resources/plugins/bootstrap/js/DataTables/datatables.css">
   <!-- DataTables plugin -->
   <script type="text/javascript" charset="utf8" src="../Resources/plugins/bootstrap/js/DataTables/datatables.js"></script>
+  <link rel="stylesheet" href="../Resources/bootstrap-4.4.1/css/bootstrap.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div id="contents" class="wrapper">
@@ -103,7 +104,7 @@ $result = mysqli_query($mysqli, $query);
 </div><!-- ./wrapper -->
 
 <!-- Modal to display school year information. -->
-<div id="add_data_Modal" class="modal fade">
+<div id="add_data_Modal" class="modal fade" data-backdrop="static">
   <div class="modal-dialog modal-dialog-scrollable modal-lg">
     <div class="modal-content">
       <div class="modal-header">
