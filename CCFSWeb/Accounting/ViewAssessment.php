@@ -87,6 +87,7 @@
       					        <th>Assessed For </th>
       					        <th>Amount </th>
       					        <th>Due Date </th>
+                        <th>Status </th>
                       </tr>
                     </thead>
             				<tbody id="viewAssessment"> <!-- Populate from database. -->

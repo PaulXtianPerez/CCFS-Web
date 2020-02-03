@@ -83,6 +83,7 @@ $result = mysqli_query($conn, $query);
       					      <th>Tuition Fee</th>
       					      <th>Service Fee</th>
       					      <th>Remaining Balance</th>
+                      <th>Surcharge</th>
                     </tr>
                   </thead>
       				    <tbody> <!-- Populate from database. -->
@@ -92,7 +93,9 @@ $result = mysqli_query($conn, $query);
                         <td><?php echo $row["books"];?></td>
                         <td><?php echo $row["misc"];?></td>
                         <td><?php echo $row["tuition"];?></td>
+                        <td><?php echo $row["service"];?></td>
                         <td><?php echo $row["balance"];?></td>
+                        <td><?php echo $row["surcharge"];?></td>
                         <td></td>
                       </tr>
                     <?php endwhile;?>
