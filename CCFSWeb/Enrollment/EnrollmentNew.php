@@ -468,7 +468,7 @@
         });
         return false;
       });
-      $(document).on('click',':submit','form',function(e){
+      $(document).on('click',':submit','form',function(e) {
         e.preventDefault();
         if(!$('[name=studentSurname]').val() &&
         !$('[name=studentGivenName]').val() &&
@@ -512,6 +512,11 @@
                 $('input[name=service]').val(0);
                 $('input[name=balance]').val(parseFloat($('input[name=tuition]').val())+parseFloat($('input[name=books]').val())+parseFloat($('input[name=mics]').val())+parseFloat($('input[name=service]').val()));
                 $('input[name=service]').keyup(function() {
+                  if(!$('input[name=service]').val()) {
+                    $(".elon-chan").prop('disabled',true);
+                  }else {
+                    $(".elon-chan").prop('disabled',false);
+                  }
                   $('input[name=balance]').val(parseFloat($('input[name=tuition]').val())+parseFloat($('input[name=books]').val())+parseFloat($('input[name=mics]').val())+parseFloat($(this).val()));
                 });
               break;
