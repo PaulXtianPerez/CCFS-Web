@@ -2,7 +2,7 @@
 // connect to database
 include("database.php");
 // mysql select query
-$query = "SELECT * FROM `section`";
+$query = "SELECT * FROM `section` WHERE yearid IN (SELECT yearid from schoolyear WHERE scstatus='ACTIVE')";
 // result for method
 $result = mysqli_query($mysqli, $query);
 ?>
@@ -279,6 +279,27 @@ $('#secListTable').Tabledit({
    if(data.action == 'delete'){
      $('#'+data.id).remove();
    }
+ },
+  //Prevent empty field
+  onAjax: function(action, data, serialize){
+    console.log('onAjax(action, serialize)');
+    console.log(action);
+    console.log(serialize);
+
+    if (action === 'edit'){
+      var values_1 = data.split('&');
+      var id_1 = values_1[0];
+      var notes_1 = values_1[1];
+
+      var values_2 = notes_1.split('=');
+      var notes_2 = values_2[1];
+
+      if (notes_2 === ""){
+        return false;
+      } else {
+        return true;
+      }
+    }
   }
 });
 </script>
