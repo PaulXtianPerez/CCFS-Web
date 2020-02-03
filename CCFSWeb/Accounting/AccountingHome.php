@@ -151,7 +151,27 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-          <!-- Left col -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Cypress Chrisitan Foundation School</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                    <i class="fas fa-minus"></i></button>
+                </div>
+              </div>
+              <div class="card-body">
+                  <img src="../Resources/dist/img/CCFSLOGO2.png" alt="CCFS Logo" class="pull-left mr-2 float-left" style="max-width: 320px">
+                  <p style="margin-top: 80px; font-size: 21px;"> Cypress Christian Foundation School (CCFS), located at 600 Naguilian Road, Irisan, Baguio City, is a primary school run by Saved of the Lord Ministry. The school was founded in 1999.        
+                  CCFS caters to preschool up to grade school, with an academic calendar that runs from June to April. Although a Christian school, non-Christian students are welcome to enroll in CCFS. As of June of school year 2019-2020, there are 93 students enrolled in the school.
+                 </p>
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer" style="font-style: italic; text-align: center;">
+                "But these are written that you might believe that Jesus is the Christ, the Son of God, and that believing, you might have life through His name"  -  John 20:31
+              </div>
+              <!-- /.card-footer-->
+            </div>   
         </div>
       </div>
     </section><!-- /.content -->
