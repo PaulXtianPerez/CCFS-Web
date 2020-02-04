@@ -115,31 +115,31 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#createschoolyear" id="crSchYr" class="nav-link">
+            <a href="#CreateSchoolyear" id="crSchYr" class="nav-link">
               <i class="nav-icon fas fa-calendar-plus"></i>
               <p>Create School Year</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#listofschoolyears" id="schYrsList" class="nav-link">
+            <a href="#ListOfSchoolyears" id="schYrsList" class="nav-link">
               <i class="nav-icon fas fa-calendar-alt"></i>
               <p>List of School Years</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#sections" id="sectionsList" class="nav-link">
+            <a href="#Sections" id="sectionsList" class="nav-link">
               <i class="nav-icon fas fa-chalkboard-teacher"></i>
               <p>Class Sections</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#createcurriculum" id="crCurr" class="nav-link">
+            <a href="#CreateCurriculum" id="crCurr" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>Create Curriculum</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#listofcurriculums" id="curriculumsList" class="nav-link">
+            <a href="#ListOfCurriculums" id="curriculumsList" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>List of Curriculums</p>
             </a>
@@ -156,19 +156,19 @@
             </form>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#discountsponsor" id="discSpons" class="nav-link">
+            <a href="#DiscountSponsor" id="discSpons" class="nav-link">
               <i class="nav-icon fas fa-percent"></i>
               <p>Discounts & Sponsorships</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#createaccount" id="crAcc" class="nav-link">
+            <a href="#CreateAccount" id="crAcc" class="nav-link">
               <i class="nav-icon fas fa-user-plus"></i>
               <p>Create Account</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#listofaccounts" id="accList" class="nav-link">
+            <a href="#ListOfAccounts" id="accList" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>List of Accounts</p>
             </a>
@@ -215,7 +215,7 @@
               </div>
               <div class="card-body">
                   <img src="../Resources/dist/img/CCFSLOGO2.png" alt="CCFS Logo" class="pull-left mr-2 float-left" style="max-width: 320px">
-                  <p style="margin-top: 100px; foWnt-size: 21px;"> Cypress Christian Foundation School (CCFS), located at 600 Naguilian Road, Irisan, Baguio City, is a primary school run by Saved of the Lord Ministry. The school was founded in 1999.        
+                  <p style="margin-top: 100px; foWnt-size: 21px;"> Cypress Christian Foundation School (CCFS), located at 600 Naguilian Road, Irisan, Baguio City, is a primary school run by Saved of the Lord Ministry. The school was founded in 1999.
                   CCFS caters to preschool up to grade school, with an academic calendar that runs from June to April. Although a Christian school, non-Christian students are welcome to enroll in CCFS.
                  </p>W
               </div>
@@ -224,7 +224,7 @@
                 "But these are written that you might believe that Jesus is the Christ, the Son of God, and that believing, you might have life through His name"  -  John 20:31
               </div>
               <!-- /.card-footer-->
-            </div>       
+            </div>
          </div>
       </div>
     </section><!-- /.content -->
