@@ -5,7 +5,7 @@ include('AttendanceAction.php');
 $connect = mysqli_connect("localhost", "root", "", "ccfs");
 
 // mysql select query
-$query = "SELECT curstudent.IDno,GivenName,MiddleName,SurName FROM `curstudent` JOIN `enstudent` ON enstudent.IDno = curstudent.IDno";
+$query = "SELECT curstudent.IDno,GivenName,MiddleName,SurName FROM `curstudent` JOIN `enstudent` ON enstudent.IDno = curstudent.IDno WHERE curstudent.yearid IN (SELECT yearid from schoolyear WHERE scstatus='ACTIVE')";
 
 // result for method
 $result = mysqli_query($connect, $query);

@@ -77,9 +77,15 @@ include("Connection.php");
               <div>
                 <button type="button" name="obsval" id="obsval" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-info view_data" style="float:right; margin-top:5px; margin-right:20px;">Edit Core Values and Descriptions</button>
               </div>
+              <b><p id="success" style="text-align:center; font-size:15px;"></p></b>
               <div id="obsValData" class="card-body">
                 <table id="obsValTable" class="table table-bordered table-hover">
                   <thead style="text-align:center;">
+                    <tr>
+                      <th colspan="1"></th>
+                      <th colspan="1"></th>
+                      <th colspan="4">Periodic Rating</th>
+                    </tr>
                     <tr>
                       <th style="display:none;">Check ID</th>
                       <th style="width:20%;">Core Values</th>
@@ -208,6 +214,42 @@ $(document).ready(function(){
 });
 </script>
 
+<!-- Inline/live edit ratings -->
+<script>
+$(document).ready(function(){
+  function edit_data(id, text, column_name){
+    $.ajax({
+      url:"ChecklistsRatings.php",
+      method:"POST",
+      data:{id:id, text:text, column_name:column_name},
+      dataType:"text",
+      success:function(data){
+        $("#success").html(data);
+      }
+    });
+  }
+  $(document).on('keyup', '.first', function(){
+    var id = $(this).data("id1");
+    var firstrating = $(this).text();
+    edit_data(id, firstrating, "firstrating");
+  });
+  $(document).on('keyup', '.second', function(){
+    var id = $(this).data("id2");
+    var secondrating = $(this).text();
+    edit_data(id, secondrating, "secondrating");
+  });
+  $(document).on('keyup', '.third', function(){
+    var id = $(this).data("id3");
+    var thirdrating = $(this).text();
+    edit_data(id, thirdrating, "thirdrating");
+  });
+  $(document).on('keyup', '.fourth', function(){
+    var id = $(this).data("id4");
+    var fourthrating = $(this).text();
+    edit_data(id, fourthrating, "fourthrating");
+  });
+});
+ </script>
 
 <!-- jQuery -->
 <script src="../Resources/plugins/jquery/jquery.min.js"></script>

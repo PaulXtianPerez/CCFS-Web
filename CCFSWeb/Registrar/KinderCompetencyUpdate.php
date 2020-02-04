@@ -12,7 +12,7 @@ if(empty($_POST)){
        <tr>
          <th style="display:none">Check ID</th>
          <th>Domain</th>
-         <th>Description</th>
+         <th>Competency / Description</th>
        </tr>
      </thead>
      <tbody>';

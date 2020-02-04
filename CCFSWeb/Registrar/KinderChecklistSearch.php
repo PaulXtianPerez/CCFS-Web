@@ -15,6 +15,11 @@ if(isset($input['searcher'])) {
   <table id="checklistTable" class="table table-bordered table-hover">
     <thead style="text-align:center;">
       <tr>
+        <th colspan="1"></th>
+        <th colspan="1"></th>
+        <th colspan="4">Periodic Rating</th>
+      </tr>
+      <tr>
         <th style="display:none;">Check ID</th>
         <th style="width:20%;">Domain</th>
         <th style="width:60%;">Description</th>
