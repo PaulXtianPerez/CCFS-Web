@@ -161,43 +161,43 @@
             </form>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#listofstudents" id="studList" class="nav-link">
+            <a href="#ListOfStudents" id="studList" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>List of Students</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#attendance" id="studAtt" class="nav-link" onclick="openPage('Attendance.php')">
+            <a href="#Attendance" id="studAtt" class="nav-link" onclick="openPage('Attendance.php')">
               <i class="nav-icon fas fa-user-plus"></i>
               <p>Student Attendance</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#grades" id="studGrd" class="nav-link">
+            <a href="#Grades" id="studGrd" class="nav-link">
               <i class="nav-icon fas fa-pen"></i>
               <p>Student Grades</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#kinderchecklist" id="kinderChecklist" class="nav-link">
+            <a href="#KinderChecklist" id="kinderChecklist" class="nav-link">
               <i class="nav-icon fa fa-check-square"></i>
               <p>Kindergarten Checklist</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#kindercompetency" id="kinderCompetency" class="nav-link">
+            <a href="#KinderCompetency" id="kinderCompetency" class="nav-link">
               <i class="nav-icon fas fa-shapes"></i>
               <p>Kindergarten Competency</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#observedvalues" id="observedValues" class="nav-link">
+            <a href="#ObservedValues" id="observedValues" class="nav-link">
               <i class="nav-icon fas fa-theater-masks"></i>
               <p>Learner's Observed Values</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#registrarreports" id="reports" class="nav-link">
+            <a href="#RegistrarReports" id="reports" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
               <p>Generate Reports</p>
             </a>
@@ -244,7 +244,7 @@
               </div>
               <div class="card-body">
                   <img src="../Resources/dist/img/CCFSLOGO2.png" alt="CCFS Logo" class="pull-left mr-2 float-left" style="max-width: 320px">
-                  <p style="margin-top: 100px; font-size: 21px;"> Cypress Christian Foundation School (CCFS), located at 600 Naguilian Road, Irisan, Baguio City, is a primary school run by Saved of the Lord Ministry. The school was founded in 1999.        
+                  <p style="margin-top: 100px; font-size: 21px;"> Cypress Christian Foundation School (CCFS), located at 600 Naguilian Road, Irisan, Baguio City, is a primary school run by Saved of the Lord Ministry. The school was founded in 1999.
                   CCFS caters to preschool up to grade school, with an academic calendar that runs from June to April. Although a Christian school, non-Christian students are welcome to enroll in CCFS.
                  </p>
               </div>
@@ -253,7 +253,7 @@
                 "But these are written that you might believe that Jesus is the Christ, the Son of God, and that believing, you might have life through His name"  -  John 20:31
               </div>
               <!-- /.card-footer-->
-            </div>    
+            </div>
         </div>
       </div><!-- /.content -->
     </section>
