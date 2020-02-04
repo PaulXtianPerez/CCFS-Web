@@ -103,7 +103,7 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#payments" id="payments" class="nav-link">
+            <a href="#Payments" id="payments" class="nav-link">
               <i class="nav-icon fa fa-money-bill-alt"></i>
               <p>Payments</p>
             </a>
@@ -151,7 +151,7 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-            <div class="card ">
+            <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title">Cypress Chrisitan Foundation School</h3>
 
@@ -162,8 +162,8 @@
               </div>
               <div class="card-body">
                   <img src="../Resources/dist/img/CCFSLOGO2.png" alt="CCFS Logo" class="pull-left mr-2 float-left" style="max-width: 320px">
-                  <p style="margin-top: 100px; font-size: 21px;"> Cypress Christian Foundation School (CCFS), located at 600 Naguilian Road, Irisan, Baguio City, is a primary school run by Saved of the Lord Ministry. The school was founded in 1999.        
-                  CCFS caters to preschool up to grade school, with an academic calendar that runs from June to April. Although a Christian school, non-Christian students are welcome to enroll in CCFS. 
+                  <p style="margin-top: 100px; font-size: 21px;"> Cypress Christian Foundation School (CCFS), located at 600 Naguilian Road, Irisan, Baguio City, is a primary school run by Saved of the Lord Ministry. The school was founded in 1999.
+                  CCFS caters to preschool up to grade school, with an academic calendar that runs from June to April. Although a Christian school, non-Christian students are welcome to enroll in CCFS.
                  </p>
               </div>
               <!-- /.card-body -->
@@ -171,7 +171,7 @@
                 "But these are written that you might believe that Jesus is the Christ, the Son of God, and that believing, you might have life through His name"  -  John 20:31
               </div>
               <!-- /.card-footer-->
-            </div>   
+            </div>
         </div>
       </div>
     </section><!-- /.content -->
