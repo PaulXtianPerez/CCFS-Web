@@ -56,7 +56,9 @@
         <div class="row">
           <div class="col-12">
 
-            <?php include("Assessment.php"); ?>
+            <?php include("Assessment.php");
+                  //include("UpdatePaid.php");
+            ?>
 
               <div class="card card-primary">
                 <div class="card-header">

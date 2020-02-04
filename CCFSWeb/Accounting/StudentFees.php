@@ -63,6 +63,7 @@ $result = mysqli_query($conn, $query);
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
+            <?php include("Surcharge.php"); ?>
             <div class="card card-primary">
               <div class="card-header">
                 <div> <!-- SEARCH FORM -->
