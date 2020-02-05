@@ -55,12 +55,27 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-
             <div class="input-group">
-              <?php include("Assessment.php");
-                    include("UpdatePaid.php");
-                    include("Surcharge.php");
-              ?>
+              <!-- Create assessment -->
+              <div class="Balance">
+                <div class="searchID">
+                  <form id="poll_form">
+                    <input type="submit" name="create" class="btn btn-info create" value="Create Assessment"/>
+                  </form>
+                </div>
+              </div>
+              <!-- Update assessment -->
+              <div class="status">
+                <div class="statusass">
+                  <form method="post" id="statusupdate">
+                    <input type="submit" name="update" class="btn btn-info update" value="Update Assessment"/>
+                  </form>
+                </div>
+              </div>
+
+            </div>
+            <div>
+              <b><p id="success" style="text-align:center; color:#0AC02A; font-size:22px;"></p></b>
             </div>
 
               <div class="card card-primary">
@@ -107,7 +122,7 @@
     </div><!-- /.container-fluid -->
   </div><!-- ./wrapper -->
 
-<!--Submit form.-->
+<!--Submit search form.-->
 <script type="text/javascript">
    $(document).ready(function(){
         $(document).on('click','input[name=search]',function(e){
@@ -139,6 +154,78 @@
         });
    });
 </script>
+
+<!-- Create Assessment -->
+<script type="text/javascript">
+$(document).ready(function(){
+  $('#poll_form').on("submit", function(event){
+    event.preventDefault();
+    var create = $('input[name=create]').val();
+    bootbox.confirm({
+  		message: "Create assessment?",
+  		buttons: {
+  			confirm: {
+          label: "Yes",
+          className: "btn-success"
+      },
+      cancel: {
+          label: "No",
+          className: "btn-danger"
+      }
+  	},
+  	callback: function(result){
+  		if(result){
+        $.ajax({
+          type:"post",
+          url:"AssessmentAction.php",
+          data: {create:create},
+          success:function(data){
+            $("#success").html(data);
+          }
+        });
+      }
+    }
+  });
+  });
+});
+</script>
+
+<!-- Update assessment -->
+<script type="text/javascript">
+$(document).ready(function(){
+  $('#statusupdate').on("submit", function(event){
+    event.preventDefault();
+    var update = $('input[name=update]').val();
+    bootbox.confirm({
+  		message: "Update assessment?",
+  		buttons: {
+  			confirm: {
+          label: "Yes",
+          className: "btn-success"
+      },
+      cancel: {
+          label: "No",
+          className: "btn-danger"
+      }
+  	},
+  	callback: function(result){
+  		if(result){
+        $.ajax({
+          type:"post",
+          url:"UpdatePaidAction.php",
+          data: {update:update},
+          success:function(data){
+            $("#success").html(data);
+          }
+        });
+      }
+    }
+  });
+  });
+});
+</script>
+
+
 
 <!-- Initialize DataTables plugin
 <script type="text/javascript">

@@ -35,5 +35,24 @@
         mysqli_query($conn,$query2);
         mysqli_query($conn,$query3);
         }
+
+        $select_query = "SELECT * FROM feestudent";
+        $result = mysqli_query($conn, $select_query);
+
+        //echo '<i class="fas fa-check-circle"></i>' . " Surcharge added.";
+        while($row = mysqli_fetch_array($result)) {
+            echo "
+                    <tbody>
+                      <tr>
+                        <td>".$row['IDno']."</td>
+                        <td>".$row['books']."</td>
+                        <td>".$row['misc']."</td>
+                        <td>".$row['tuition']."</td>
+                        <td>".$row['service']."</td>
+                        <td>".$row['balance']."</td>
+                        <td>".$row['surcharge']."</td>
+                      </tr>
+                    </tbody>";
+        }
      }
   ?>

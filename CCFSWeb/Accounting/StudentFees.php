@@ -63,6 +63,24 @@ $result = mysqli_query($conn, $query);
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
+
+            <div class="Surchargee">
+              <div class="searchID">
+                <form method="post" id="surch" class="form-inline">
+                  <div class="input-group">
+                    <input type="text" name="idn" class="idn form-control form-control-navbar" placeholder="Enter ID Number" required/>
+                  </div>
+                  <div class="input-group">
+                    <input type="submit" name="surcharge" class="form-control btn btn-info surcharge" value="Add Surcharge"/>
+                  </div>
+                </form>
+              </div>
+            </div>
+            
+            <div>
+              <b><p id="success" style="text-align:center; color:#0AC02A; font-size:22px;"></p></b>
+            </div>
+
             <div class="card card-primary">
               <div class="card-header">
                 <div> <!-- SEARCH FORM -->
@@ -86,7 +104,7 @@ $result = mysqli_query($conn, $query);
                       <th>Surcharge</th>
                     </tr>
                   </thead>
-      				    <tbody> <!-- Populate from database. -->
+      				    <tbody id="feesData"> <!-- Populate from database. -->
                     <?php while($row = mysqli_fetch_array($result)):;?>
                       <tr>
                         <td><?php echo $row["IDno"];?></td>
@@ -109,6 +127,26 @@ $result = mysqli_query($conn, $query);
     </section>
   </div><!-- /.row -->
 </div><!-- ./wrapper -->
+
+<!--Surcharge -->
+<script type="text/javascript">
+$(document).ready(function(){
+  $('#surch').on("submit", function(event){
+    event.preventDefault();
+    var idn = $('input[name=idn]').val();
+    var surcharge = $('input[name=surcharge]').val();
+    $.ajax({
+      type:"post",
+      url:"SurchargeAction.php",
+      data:{idn:idn, surcharge:surcharge},
+      success:function(data){
+        $("#success").html("<i class=\"fa fa-check-circle\"></i> Surcharge added.");
+        $("#feesData").html(data);
+        }
+      });
+    });
+  });
+</script>
 
 <!-- Initialize DataTables plugin -->
 <script type="text/javascript">
