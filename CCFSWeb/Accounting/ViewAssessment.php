@@ -56,9 +56,12 @@
         <div class="row">
           <div class="col-12">
 
-            <?php include("Assessment.php");
-                  //include("UpdatePaid.php");
-            ?>
+            <div class="input-group">
+              <?php include("Assessment.php");
+                    include("UpdatePaid.php");
+                    include("Surcharge.php");
+              ?>
+            </div>
 
               <div class="card card-primary">
                 <div class="card-header">

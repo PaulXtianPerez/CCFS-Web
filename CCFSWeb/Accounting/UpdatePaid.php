@@ -13,7 +13,7 @@
 <body>
   <div class="status">
     <div class="statusass">
-      <form method="post" id="statusupdate" onsubmit="return formSubmit();">
+      <form method="post" id="statusupdate">
         <input type="submit" name="update" class="btn btn-success update" value="Update Assessment"/>
         <b><p id="success" style="text-align:center; color:#0AC02A; font-size:22px;"></p></b>
       </form>
@@ -21,10 +21,12 @@
   </div>
 
 
-  <!--Submit form.-->
-  <script type="text/javascript">
-  function formSubmit(){
-  	bootbox.confirm({
+<script type="text/javascript">
+$(document).ready(function(){
+  $('#statusupdate').on("submit", function(event){
+    event.preventDefault();
+    var update = $('input[name=update]').val();
+    bootbox.confirm({
   		message: "Update assessment?",
   		buttons: {
   			confirm: {
@@ -38,20 +40,20 @@
   	},
   	callback: function(result){
   		if(result){
-  			$.ajax({
-  				type: "POST",
-  				url: "UpdatePaidAction.php",
-  				data: $("#statusupdate").serialize(),
-  				success: function(response){
-  					$("#success").html("<i class=\"fa fa-check-circle\"></i> Successfully updated assessment.");
-  				}
-  			});
-  		}
-  	}
-  	});
-  	return false;
-  }
-  </script>
+        $.ajax({
+          type:"post",
+          url:"UpdatePaidAction.php",
+          data: {update:update},
+          success:function(data){
+            $("#success").html(data);
+          }
+        });
+      }
+    }
+  });
+  });
+});
+</script>
 
   <!--===============================================================================================-->
   	<script src="../Resources/vendor/jquery/jquery-3.2.1.min.js"></script>

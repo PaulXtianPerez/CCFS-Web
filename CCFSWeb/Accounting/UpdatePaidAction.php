@@ -9,10 +9,7 @@ if(isset($_POST['update'])) {
   mysqli_error($conn);
   //get student balance info
   $bal[] = "SELECT * FROM feestudent WHERE yearid = '".$actyear[0]."' ";
-  //please remove this echo when done integrating
-  echo '
-    functioning
-  ';
+
   $result1 = $conn->query($bal[0]) or die($conn->error.__LINE__);
       while($row = mysqli_fetch_array($result1)) {
     //values for status paid or unpaid
@@ -53,7 +50,7 @@ if(isset($_POST['update'])) {
     $query9  = "UPDATE assessment SET asmstatus = '".$set."' WHERE IDno = '".$id."' AND assessfor = 'March' AND yearid = '".$actyear[0]."' ";
     mysqli_error($conn);
     //update status from unpaid to unpaid
-    //NOTE REMOVE ALL ECHO STATEMENT, ECHO STATEMENTS ARE USED ONLY TO CHECK WHAT IF STATEMENT IS BEING EXECUTED thankss
+    //REMOVE ALL ECHO STATEMENT, ECHO STATEMENTS ARE USED ONLY TO CHECK WHAT IF STATEMENT IS BEING EXECUTED thankss
     if($bals <= $check AND $bals > $check1){
       mysqli_query($conn,$query);
       mysqli_error($conn);
@@ -139,3 +136,5 @@ if(isset($_POST['update'])) {
     }
 
   }
+  echo '<i class="fas fa-check-circle"></i>' . " Successfully updated assessment.";
+}

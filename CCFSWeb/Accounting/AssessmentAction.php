@@ -40,10 +40,8 @@ include('dbase.php');
         mysqli_query($conn,$query10);
         $query11 = "INSERT INTO assessment(amount, IDno, assessfor, yearid) VALUES (".$assess2.", ".$id.", 'March', ".$actyear[0].")";
         mysqli_query($conn,$query11);
-        echo'
-            $total
-        ';
-    }
 
+    }
+    echo '<i class="fas fa-check-circle"></i>' . " Successfully created assessment.";
  }
 ?>

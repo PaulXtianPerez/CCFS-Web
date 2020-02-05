@@ -63,7 +63,6 @@ $result = mysqli_query($conn, $query);
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-            <?php include("Surcharge.php"); ?>
             <div class="card card-primary">
               <div class="card-header">
                 <div> <!-- SEARCH FORM -->
@@ -101,14 +100,15 @@ $result = mysqli_query($conn, $query);
                       </tr>
                     <?php endwhile;?>
                   </tbody>
-                </div> <!-- /.card-body -->
-              </div> <!-- /.card -->
-            </div>
+                </table>
+              </div> <!-- /.card-body -->
+            </div> <!-- /.card -->
           </div>
         </div>
-      </section>
-    </div><!-- /.row -->
-	</div><!-- ./wrapper -->
+      </div>
+    </section>
+  </div><!-- /.row -->
+</div><!-- ./wrapper -->
 
 <!-- Initialize DataTables plugin -->
 <script type="text/javascript">

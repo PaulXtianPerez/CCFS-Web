@@ -22,37 +22,6 @@
   </div>
 
 
-  <!--Submit form.-->
-  <script type="text/javascript">
-  function formSubmit(){
-  	bootbox.confirm({
-  		message: "Add surcharge?",
-  		buttons: {
-  			confirm: {
-          label: "Yes",
-          className: "btn-success"
-      },
-      cancel: {
-          label: "No",
-          className: "btn-danger"
-      }
-  	},
-  	callback: function(result){
-  		if(result){
-  			$.ajax({
-  				type: "POST",
-  				url: "SurchargeAction.php",
-  				data: $("#surch").serialize(),
-  				success: function(response){
-  					$("#success").html("<i class=\"fa fa-check-circle\"></i> Successfully added surcharge.");
-  				}
-  			});
-  		}
-  	}
-  	});
-  	return false;
-  }
-  </script>
 
   <!--===============================================================================================-->
   	<script src="../Resources/vendor/jquery/jquery-3.2.1.min.js"></script>

@@ -12,19 +12,20 @@
 </head>
 <body>
   <div class="Balance">
-  <div class="searchID">
-    <form method="post" id="poll_form" onsubmit="return formSubmit();">
-      <input type="submit" name="create" class="btn btn-success create" value="Create Assessment"/>
-      <b><p id="success" style="text-align:center; color:#0AC02A; font-size:22px;"></p></b>
-    </form>
-  </div>
+    <div class="searchID">
+      <form id="poll_form">
+        <input type="submit" name="create" class="btn btn-success create" value="Create Assessment"/>
+        <b><p id="success" style="text-align:center; color:#0AC02A; font-size:22px;"></p></b>
+      </form>
+    </div>
   </div>
 
-
-  <!--Submit form.-->
-  <script type="text/javascript">
-  function formSubmit(){
-  	bootbox.confirm({
+<script type="text/javascript">
+$(document).ready(function(){
+  $('#poll_form').on("submit", function(event){
+    event.preventDefault();
+    var create = $('input[name=create]').val();
+    bootbox.confirm({
   		message: "Create assessment?",
   		buttons: {
   			confirm: {
@@ -38,38 +39,39 @@
   	},
   	callback: function(result){
   		if(result){
-  			$.ajax({
-  				type: "POST",
-  				url: "AssessmentAction.php",
-  				data: $("#poll_form").serialize(),
-  				success: function(response){
-  					$("#success").html("<i class=\"fa fa-check-circle\"></i> Successfully created assessment.");
-  				}
-  			});
-  		}
-  	}
-  	});
-  	return false;
-  }
-  </script>
+        $.ajax({
+          type:"post",
+          url:"AssessmentAction.php",
+          data: {create:create},
+          success:function(data){
+            $("#success").html(data);
+          }
+        });
+      }
+    }
+  });
+  });
+});
+</script>
 
-  <!--===============================================================================================-->
-  	<script src="../Resources/vendor/jquery/jquery-3.2.1.min.js"></script>
-  <!--Bootbox library for dialog box.-->
-  	<script src="../Resources/plugins/bootstrap/js/bootbox/bootbox.min.js"></script>
-  <!--===============================================================================================-->
-  	<script src="../Resources/vendor/animsition/js/animsition.min.js"></script>
-  <!--===============================================================================================-->
-  	<script src="../Resources/vendor/bootstrap/js/popper.js"></script>
-  	<script src="../Resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-  <!--===============================================================================================-->
-  	<script src="../Resources/vendor/select2/select2.min.js"></script>
-  <!--===============================================================================================-->
-  	<script src="../Resources/vendor/daterangepicker/moment.min.js"></script>
-  	<script src="../Resources/vendor/daterangepicker/daterangepicker.js"></script>
-  <!--===============================================================================================-->
-  	<script src="../Resources/vendor/countdowntime/countdowntime.js"></script>
-  <!--===============================================================================================-->
-  	<script src="../Resources/js/main.js"></script>
-    </body>
+
+<!--===============================================================================================-->
+	<script src="../Resources/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--Bootbox library for dialog box.-->
+	<script src="../Resources/plugins/bootstrap/js/bootbox/bootbox.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../Resources/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../Resources/vendor/bootstrap/js/popper.js"></script>
+	<script src="../Resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../Resources/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../Resources/vendor/daterangepicker/moment.min.js"></script>
+	<script src="../Resources/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="../Resources/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="../Resources/js/main.js"></script>
+  </body>
 </html>
