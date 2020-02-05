@@ -72,7 +72,6 @@ $result = mysqli_query($mysqli, $query);
                     <input id="searchInput" class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"/>
                   </div>
                 </form>
-                <h5 class="card-title">Double click on a row to view list of archived students.</h5>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -86,7 +85,7 @@ $result = mysqli_query($mysqli, $query);
                   </thead>
                   <tbody> <!-- Populate from database. -->
                     <?php while($row = $result->fetch_assoc()) { ?>
-                      <tr ondblclick="openPage('../Registrar/ListOfArchivedStudents.php');">
+                      <tr>
                         <td><?php echo $row["yearstart"]; echo "-"; echo $row["yearend"];?></td>
                         <td><?php echo $row["scstatus"];?>
                         <td style="text-align: center;"><input type="button" name="edit" value="Edit" id="<?php echo $row["yearid"]; ?>" class="btn btn-info btn-xs edit_data" /></td>
