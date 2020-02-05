@@ -88,10 +88,10 @@ $result = mysqli_query($connect, $query);
                 <table id="studListTable" class="table table-bordered table-hover">
                   <thead>
                     <tr>
-                      <th>IDno</th>
+                      <th>ID Number</th>
+                      <th>Surname</th> 
                       <th>Given name</th>
                       <th>Middle name</th>
-                      <th>Surname</th>
                       <th></th>
                     </tr>
                   </thead>
@@ -99,9 +99,9 @@ $result = mysqli_query($connect, $query);
                     <?php
                       while($row = mysqli_fetch_array($result)) {
                         echo "<tr><td>".$row['IDno']."</td>
+                        <td>".$row['SurName']."</td>
                         <td>".$row['GivenName']."</td>
                         <td>".$row['MiddleName']."</td>
-                        <td>".$row['SurName']."</td>
                         <td style='text-align: center;'><button type='button' class='btn btn-info btn-xs edit_data' id=".$row['IDno']." data-toggle='modal' data-target='#myModal'>Edit</button></tr>";
                       }
                       ?>
