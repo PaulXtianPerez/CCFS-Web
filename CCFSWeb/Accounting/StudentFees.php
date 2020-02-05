@@ -67,10 +67,10 @@ $result = mysqli_query($conn, $query);
             <div class="Surchargee">
               <div class="searchID">
                 <form method="post" id="surch" class="form-inline">
-                  <div class="input-group">
-                    <input type="text" name="idn" class="idn form-control form-control-navbar" placeholder="Enter ID Number" required/>
+                  <div class="input-group input-group-sm">
+                    <input type="text" name="idn" class="idn form-control form-control-navbar" placeholder="Enter ID Number" style="margin-right: 15px;" required/>
                   </div>
-                  <div class="input-group">
+                  <div class="input-group input-group-sm">
                     <input type="submit" name="surcharge" class="form-control btn btn-info surcharge" value="Add Surcharge"/>
                   </div>
                 </form>
@@ -104,7 +104,7 @@ $result = mysqli_query($conn, $query);
                       <th>Surcharge</th>
                     </tr>
                   </thead>
-      				    <tbody id="feesData"> <!-- Populate from database. -->
+      				    <tbody> <!-- Populate from database. -->
                     <?php while($row = mysqli_fetch_array($result)):;?>
                       <tr>
                         <td><?php echo $row["IDno"];?></td>
@@ -114,7 +114,6 @@ $result = mysqli_query($conn, $query);
                         <td><?php echo $row["service"];?></td>
                         <td><?php echo $row["balance"];?></td>
                         <td><?php echo $row["surcharge"];?></td>
-                        <td></td>
                       </tr>
                     <?php endwhile;?>
                   </tbody>
@@ -141,7 +140,7 @@ $(document).ready(function(){
       data:{idn:idn, surcharge:surcharge},
       success:function(data){
         $("#success").html("<i class=\"fa fa-check-circle\"></i> Surcharge added.");
-        $("#feesData").html(data);
+        $("#feesTable").html(data);
         }
       });
     });

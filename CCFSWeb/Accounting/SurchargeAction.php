@@ -38,21 +38,41 @@
 
         $select_query = "SELECT * FROM feestudent";
         $result = mysqli_query($conn, $select_query);
+        $output = '';
+        if(mysqli_query($conn, $select_query)) {
+        $output .= '
+            <table id="feesTable" class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th>ID Number</th>
+                              <th>Books Fee</th>
+                              <th>Misc Fee</th>
+                              <th>Tuition Fee</th>
+                              <th>Service Fee</th>
+                              <th>Remaining Balance</th>
+                      <th>Surcharge</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+        ';
 
         //echo '<i class="fas fa-check-circle"></i>' . " Surcharge added.";
         while($row = mysqli_fetch_array($result)) {
-            echo "
-                    <tbody>
+            $output .= '
                       <tr>
-                        <td>".$row['IDno']."</td>
-                        <td>".$row['books']."</td>
-                        <td>".$row['misc']."</td>
-                        <td>".$row['tuition']."</td>
-                        <td>".$row['service']."</td>
-                        <td>".$row['balance']."</td>
-                        <td>".$row['surcharge']."</td>
+                        <td>'.$row['IDno'].'</td>
+                        <td>'.$row['books'].'</td>
+                        <td>'.$row['misc'].'</td>
+                        <td>'.$row['tuition'].'</td>
+                        <td>'.$row['service'].'</td>
+                        <td>'.$row['balance'].'</td>
+                        <td>'.$row['surcharge'].'</td>
                       </tr>
-                    </tbody>";
+                    ';
         }
+            $output .= '</tbody></table>';
+        }
+            echo $output;
      }
+
   ?>
