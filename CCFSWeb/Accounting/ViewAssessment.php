@@ -88,10 +88,10 @@
                         </div>
                         <div class="input-group">
                           <div class="input-group input-group-sm col-6">
-                            <input type="submit" name="search" class="form-control search btn btn-default" value="Search"/>
+                            <input type="submit" name="search" class="form-control search btn btn-light" value="Search"/>
                           </div>
                           <div class="input-group input-group-sm col-6">
-                            <input type="submit" name="viewall" class="form-control viewall btn btn-default" value="View All"/>
+                            <input type="submit" name="viewall" class="form-control viewall btn btn-light" value="View All"/>
                           </div>
                         </div>
                       </div>
