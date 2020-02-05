@@ -218,7 +218,7 @@ $result3 = mysqli_query($conn, $query3);
                     <div class="input-group input-group-sm">
                       <!-- SELECT GRADE LEVEL -->
                       <div class="input-group input-group-sm col-3">
-                        <label>Grade Level</label>
+                        <label style="margin-right: 8px; margin-top: 3px;">Grade Level:</label>
                         <select id="grLvl" class="form-control e" name="grLvl">
                           <option>Nursery</option>
                           <option>Pre-Kinder</option>
@@ -233,7 +233,7 @@ $result3 = mysqli_query($conn, $query3);
                       </div>
                       <!-- SELECT SECTION -->
                       <div class="input-group input-group-sm col-3">
-                        <label>Section</label>
+                        <label style="margin-right: 8px; margin-top: 3px;">Section:</label>
                         <select id="section" class="form-control" name="section">
                         <?php
                           while($row = mysqli_fetch_array($result1)) {
@@ -245,7 +245,7 @@ $result3 = mysqli_query($conn, $query3);
                       </div>
                       <!-- SELECT SUBJECT -->
                       <div class="input-group input-group-sm col-3">
-                        <label>Subject</label>
+                        <label style="margin-right: 8px; margin-top: 3px;">Subject:</label>
                         <select id="subject" class="form-control" name="subject">
                           <?php
                             while($row = mysqli_fetch_array($result2)) {
@@ -257,7 +257,7 @@ $result3 = mysqli_query($conn, $query3);
                       </div>
                       <!-- SUBMIT -->
                       <div class="input-group input-group-sm col-3">
-                        <br><input class="btn btn-default elon" type="button"  name="submit" value="Go">
+                        <br><input class="btn btn-primary elon" type="button"  name="submit" value="Go">
                       </div>
                     </div>
 
@@ -282,7 +282,6 @@ $result3 = mysqli_query($conn, $query3);
                         <th>4th</th>
                         <th>Final Grade</th>
                         <th>Remarks</th>
-                        <th></th>
                       </tr>
                     </thead>
                     <tbody> <!-- Populate from database. -->
@@ -297,7 +296,6 @@ $result3 = mysqli_query($conn, $query3);
                           <td>'.$row["fourthquartergrade"].'</td>
                           <td>'.$row["finalgrade"].'</td>
                           <td>'.$row["remarks"].'</td>
-                          <td></td>
                           </tr>
                           ';
                         }
