@@ -137,7 +137,7 @@ $result = mysqli_query($connect, $query);
             <th></th>
           </tr>
           <tbody>
-            <input type="text" size="3" id="studid" disabled>
+            <b><p>ID Number: <input type="text" size="3" id="studid" disabled></p></b>
             <tr><td>Jan</td><td><input type="number" size="3" name="dPres1"></td><td><input type="number" size="3" name="dTar1" ></td><td><input type="number" size="3" name="dAbs1"></td><td><input type="text" size="7" id="total1" disabled></td><td><button type="submit" class="btn btn-info btn-xs ed" id="1">Save</button></td></tr>
             <tr><td>Feb</td><td><input type="number" size="3" name="dPres2"></td><td><input type="number" size="3" name="dTar2" ></td><td><input type="number" size="3" name="dAbs2"></td><td><input type="text" size="7" id="total2" disabled></td><td><button type="submit" class="btn btn-info btn-xs ed" id="2">Save</button></td></tr>
             <tr><td>Mar</td><td><input type="number" size="3" name="dPres3"></td><td><input type="number" size="3" name="dTar3" ></td><td><input type="number" size="3" name="dAbs3"></td><td><input type="text" size="7" id="total3" disabled></td><td><button type="submit" class="btn btn-info btn-xs ed" id="3">Save</button></td></tr>
