@@ -52,6 +52,7 @@ if (mysqli_num_rows($result)==0) {
 		'".$input['guardianName']."','".$input['guardianAddress']."','".$input['guardianContact']."')";
 	$conn->query($enstud);
 	$pp = array('em'=>$elongated[0]['yearid'],'me'=>$evolveID,'ELONTUSK'=>$elongated2[0],'error'=>mysqli_error($conn));
+	
 	echo json_encode($pp);
 }else {
 	$update = "UPDATE enstudent SET GivenName = '".$input['studentGivenName']."', MiddleName = '".$input['studentMiddleName']."',

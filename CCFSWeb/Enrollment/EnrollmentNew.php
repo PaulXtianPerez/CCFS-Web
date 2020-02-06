@@ -712,6 +712,7 @@
         var m = $('input[name=mics]').val();
         var s = $('input[name=service]').val();
         var ba = $('input[name=balance]').val();
+        var gradeLevel = $('[name=gradeLevel] option:selected').val();
         var redirect = $('input[name=redirect_to]').val();
         if(!$('input[name=studentIDno]').val()) {
           idno = $('input[name=studentIDnoNew]').val();
@@ -719,7 +720,7 @@
         $.ajax({
           url:'EnrollFees.php',
           type:'POST',
-          data:{idno:idno,yearid:yearid,t:t,b:b,m:m,s:s,ba:ba},
+          data:{idno:idno,yearid:yearid,t:t,b:b,m:m,s:s,ba:ba,gradeLevel:gradeLevel},
           success:function(data) {
             console.log(data);
             window.location.href = $('input[name=redirect_to]').val();
