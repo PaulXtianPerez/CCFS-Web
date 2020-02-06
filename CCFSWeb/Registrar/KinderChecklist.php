@@ -45,7 +45,7 @@ include("Connection.php");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-12">
-            <h1 class="m-0 text-dark">Kindergarten Early Childhood Care and Development Checklist</h1>
+            <h1 class="m-0 text-dark">Preschool Early Childhood Care and Development Checklist</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div>
