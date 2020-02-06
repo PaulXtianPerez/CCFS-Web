@@ -123,7 +123,7 @@ include("Connection.php");
         <div>
           <form id="insert_form" method="post">
             <div>
-              <div class="form-group col-6">
+              <div class="row form-group col-6">
                 <label>Domain</label>
                 <div class="input-group mb-3">
                   <input type="text" class="form-control" id="domain" name="domain" list="domains" maxlength="50" required/>
