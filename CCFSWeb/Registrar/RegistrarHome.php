@@ -181,7 +181,7 @@
           <li class="nav-item has-treeview">
             <a href="#KinderChecklist" id="kinderChecklist" class="nav-link">
               <i class="nav-icon fa fa-check-square"></i>
-              <p>Kindergarten Checklist</p>
+              <p>Preschool Checklist</p>
             </a>
           </li>
           <li class="nav-item has-treeview">
