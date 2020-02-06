@@ -65,10 +65,10 @@ include("Connection.php");
                       <input class="id form-control form-control-navbar" type="text" name="id" placeholder="Search ID number" aria-label="Search" required/>
                     </div>
                     <div class="input-group input-group-sm col-1">
-                      <input class="form-control search btn btn-default" type="submit" name="searcher" value="Search"/>
+                      <input class="form-control search btn btn-primary" type="submit" name="searcher" value="Search"/>
                     </div>
                   </form>
-                </div> <br>
+                </div>
                 <div>
                   <h3 class="card-title">ID: <p name="studentIDno"></p></h3>
                 </div>
