@@ -184,7 +184,7 @@
               <input class="form-control" type="text" name="address" id="address" required/>
             </div>
             <div class="form-group col-2">
-              <label>Telephone No.</label>
+              <label>Tel No.</label>
               <input class="form-control" type="text" name="telnum" id="telnum"/>
             </div>
             <div class="form-group col-2">
