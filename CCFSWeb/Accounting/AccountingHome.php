@@ -114,7 +114,7 @@
               <p>Student Fees</p>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item has-treeview">
             <a href="#ViewAssessment" class="nav-link">
               <i class="nav-icon fa fa-money-bill-alt"></i>
               <p>Assessment of Fees</p>
