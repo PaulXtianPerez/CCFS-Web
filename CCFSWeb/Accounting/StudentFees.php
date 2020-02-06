@@ -2,7 +2,7 @@
 // connect to database
 include("dbase.php");
 // mysql select query
-$query = "SELECT * FROM feestudent";
+$query = "SELECT * FROM feestudent WHERE yearid IN (SELECT yearid from schoolyear WHERE scstatus='ACTIVE')";
 // result for method
 $result = mysqli_query($conn, $query);
 ?>
