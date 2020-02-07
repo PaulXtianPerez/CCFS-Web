@@ -79,6 +79,7 @@
                           <option value="ADMIN">Admin</option>
       										<option value="REGISTRAR">Registrar</option>
       										<option value="ACCOUNTING">Accounting</option>
+                          <option value="TEACHER">Teacher</option>
       									</select>
       									<div class="input-group-append">
       										<div class="input-group-text">
