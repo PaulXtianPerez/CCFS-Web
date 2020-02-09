@@ -44,7 +44,6 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">Assessment of Fees</h1>
-            <span id="successmsg"></span>
           </div>
         </div><!-- /.col -->
       </div>
@@ -72,7 +71,6 @@
                   </form>
                 </div>
               </div>
-
             </div>
             <div>
               <b><p id="success" style="text-align:center; color:#0AC02A; font-size:22px;"></p></b>
@@ -106,7 +104,7 @@
                         <th>ID Number </th>
       					        <th>Assessed For </th>
       					        <th>Amount </th>
-      					        <th>Due Date </th>
+      					        <th>Due Date <button type="button" name="button" class="btn btn-info" data-toggle="modal" data-target="#add_data_Modal">Set Due Dates</button> </th>
                         <th>Status </th>
                       </tr>
                     </thead>
@@ -121,6 +119,25 @@
       </section>
     </div><!-- /.container-fluid -->
   </div><!-- ./wrapper -->
+
+  <!-- Modal to set due dates -->
+  <div id="add_data_Modal" class="modal fade">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Set Due Dates</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <?php include("DueDate.php"); ?>
+        </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <!--Submit search form.-->
 <script type="text/javascript">
@@ -224,8 +241,6 @@ $(document).ready(function(){
   });
 });
 </script>
-
-
 
 <!-- Initialize DataTables plugin
 <script type="text/javascript">

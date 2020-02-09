@@ -34,101 +34,180 @@
   <link rel="stylesheet" href="../Resources/bootstrap-4.4.1/css/bootstrap.css">
 </head>
 <body>
-        <div class="Balance">
-        <div class="searchID">
-          <form method="post" id="poll_form">
-            <h3>Enter ID Number</h3>
-            <div class="radio">
-            <label><h4><input type="text" name="id" class="id" placeholder="Enter Id Number"/></h4></label>
-            </div>
-            <input type="submit" name="search" class="search" value="Search"/>
-          </form>
-          <br />
-          <form method="post" id="payment_form">
-                          <h3>Enter Payment</h3>
-                          <div class="radio">
-                          <label><h4><input type="text" name="pname" class="pname" placeholder="Enter Name"/></h4></label>
-                          <label><h4><input type="text" name="pay" class="pay" placeholder="Enter Payment"/></h4></label>
-                          </div>
-                          <input type="submit" name="paid" class="paid" value="submit"/>
-                         </form>
-          <table>
-              <?php
-                include('dbase.php');
-                //code for getting ID number and balance
-                if(isset($_POST['search'])) {
-                  $id = $_POST['id'];
-                  $sy = "SELECT yearid FROM schoolyear WHERE scstatus = 'ACTIVE'";
-                  //missing code for fetching active school year data
-                  $idnum = "SELECT IDno, balance FROM feestudent WHERE IDno = '$id'";
-                  $idno = "SELECT IDno from feestudent";
-                  $query_run = mysqli_query($conn,$idnum);
-                  while($row = mysqli_fetch_array($query_run)) {
-                      echo '
-                        <tr>
-                          <th>ID Number </th>
-                          <th>Remaining Balance </th>
-                        </tr> <br />
-                                    <tr>
-                                    <td>'.$row["IDno"].'</td>
-                                    <td>'.$row["balance"].'</td>
-                                  </tr
-                      ';
-                  }
-                  // code for inserting the data
-                  //problems cannot insert and d ako sure dun sa pag kuha nung active school year and feeid
-                  if(isset($_POST['submit'])) {
-                    $pay = $_POST['pay'];
-                    $name = $_POST['pname'];
-                    $date = date('Y, M, d');
-                    $sy = "SELECT yearid FROM schoolyear WHERE scstatus = 'ACTIVE'";
-                    $resultsy = mysqli_query($conn,$sy);
-                    $feeid = "SELECT feestID FROM feestudent WHERE IDno = '$id' ";
-                    $resultfee = mysql_query($conn,$sy);
-                    $sqlpay = "INSERT INTO payment(payname, payamount, paydate, feestID, yearid) VALUES ('$pay', '$name', '$date', '$resultsy','$resultfee')";
-                    mysql_query($conn,$sqlpay);
-                    //missing code for subtracting balance
-                  }
-                }
-              ?>
-          </table>
+
+  <div id="contents" class="wrapper">
+
+    <!-- Content Wrapper. Contains page content -->
+    <div>
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0 text-dark">Payment of Fees</h1>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
         </div>
+      </div>
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+              <!-- Start of Create Account Card -->
+      		    <div class="card card-primary">
+                <div class="card-header">
+                  <h3 class="card-title">Fill up the fields below.</h3>
+      				  </div>
+                <div class="card-body">
+                  <div class="Balance">
+                    <div class="searchID">
+                      <form method="get" id="searchForm" class="form-inline">
+                        <div class="input-group input-group-sm">
+                          <input type="text" name="id" class="id form-control form-control-navbar" placeholder="Enter ID Number" style="margin-right: 15px;" required/>
+                        </div>
+                        <div class="input-group input-group-sm">
+                          <input type="submit" name="search" class="form-control btn btn-info search" value="Search"/>
+                        </div>
+                      </form> <br>
+                      <div id="searchResult">
+                        <?php include("PaymentsSearch.php"); ?>
+                      </div>
+
+                      <form method="post" id="pay_form">
+                        <div>
+                          <b><p>Payment Details:</p></b>
+                        </div>
+                        <div class="row">
+            	            <div class="form-group col-4">
+            								<label>Name of Payee</label>
+                            <input type="text" name="pname" class="form-control pname" placeholder="Enter Name" required/>
+            	            </div>
+                        </div>
+                        <div class="row">
+                          <div class="form-group col-4">
+                            <label>Payment for Remaining Balance</label>
+                            <input type="number" step="0.01" name="pay" class="form-control pay" placeholder="Enter Amount"/>
+                          </div>
+                          <div class="form-group col-4">
+                            <label>Payment for School Service</label>
+                            <input type="number" step="0.01" name="payser" class="form-control payser" placeholder="Enter Amount"/>
+                          </div>
+                          <div class="form-group col-4">
+                            <label>Payment for Surcharge</label>
+                            <input type="number" step="0.01" name="paysur" class="form-control paysur" placeholder="Enter Amount"/>
+                          </div>
+                        </div>
+                        <div class="row col-4">
+                          <input type="submit" name="paid" class="btn btn-success paid" value="Submit"/>
+                        </div>
+                        <b><p id="success" style="text-align:center; font-size:22px;"></p></b>
+                      </form>
+                    </div>
+                  </div>
+        				</div>
+        			</div>
+        		</div>
+        	</div>
+        </div>
+      </section>
     </div>
+  </div>
 
+  <?php include("PaymentsInsert.php"); ?>
 
-    <!-- jQuery -->
-    <script src="../Resources/plugins/jquery/jquery.min.js"></script>
-    <!-- jQuery UI 1.11.4 -->
-    <script src="../Resources/plugins/jquery-ui/jquery-ui.min.js"></script>
-    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-    <script>
-      $.widget.bridge('uibutton', $.ui.button)
-    </script>
-    <!-- Bootstrap 4 -->
-    <script src="../Resources/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- ChartJS -->
-    <script src="../Resources/plugins/chart.js/Chart.min.js"></script>
-    <!-- Sparkline -->
-    <script src="../Resources/plugins/sparklines/sparkline.js"></script>
-    <!-- JQVMap -->
-    <script src="../Resources/plugins/jqvmap/jquery.vmap.min.js"></script>
-    <script src="../Resources/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-    <!-- jQuery Knob Chart -->
-    <script src="../Resources/plugins/jquery-knob/jquery.knob.min.js"></script>
-    <!-- daterangepicker -->
-    <script src="../Resources/plugins/moment/moment.min.js"></script>
-    <script src="../Resources/plugins/daterangepicker/daterangepicker.js"></script>
-    <!-- Tempusdominus Bootstrap 4 -->
-    <script src="../Resources/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-    <!-- Summernote -->
-    <script src="../Resources/plugins/summernote/summernote-bs4.min.js"></script>
-    <!-- overlayScrollbars -->
-    <script src="../Resources/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="../Resources/dist/js/adminlte.js"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="../Resources/dist/js/pages/dashboard.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="../Resources/dist/js/demo.js"></script>
+  <!-- Search student
+  <script type="text/javascript">
+  $(document).ready(function(){
+    $('#searchForm').on("submit", function(event){
+      event.preventDefault();
+      var id = $('input[name=id]').val();
+      var search = $('input[name=search]').val();
+      $.ajax({
+        type:"get",
+        url:"PaymentsSearch.php",
+        data:{id:id, search:search},
+        success:function(data){
+          $("#searchResult").html(data);
+          }
+        });
+      });
+    });
+  </script>-->
+
+  <!--Submit form.
+  <script type="text/javascript">
+  $('#pay_form').on("submit", function(event){
+    event.preventDefault();
+    var id = $('input[name=id]').val();
+    var pname = $('input[name=pname]').val();
+    var paid = $('input[name=paid]').val();
+  	bootbox.confirm({
+  		message: "Submit?",
+  		buttons: {
+  			confirm: {
+          label: "Yes",
+          className: "btn-success"
+      },
+      cancel: {
+          label: "No",
+          className: "btn-danger"
+      }
+  	},
+  	callback: function(result){
+  		if(result){
+  			$.ajax({
+  				type: "POST",
+  				url: "PaymentsSearch.php",
+  				data: {id:id, pname:pname, paid:paid},
+  				success: function(response){
+            $('#pay_form')[0].reset();
+  					$("#success").html(response);
+  					}
+  			});
+  		}
+  	}
+  	});
+  });
+  </script>-->
+
+  <!-- jQuery -->
+  <script src="../Resources/plugins/jquery/jquery.min.js"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <script src="../Resources/plugins/jquery-ui/jquery-ui.min.js"></script>
+  <!--Bootbox library for dialog box.-->
+  <script src="../Resources/plugins/bootstrap/js/bootbox/bootbox.min.js"></script>
+  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+  <script>
+    $.widget.bridge('uibutton', $.ui.button)
+  </script>
+  <!-- Bootstrap 4 -->
+  <script src="../Resources/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- ChartJS -->
+  <script src="../Resources/plugins/chart.js/Chart.min.js"></script>
+  <!-- Sparkline -->
+  <script src="../Resources/plugins/sparklines/sparkline.js"></script>
+  <!-- JQVMap -->
+  <script src="../Resources/plugins/jqvmap/jquery.vmap.min.js"></script>
+  <script src="../Resources/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+  <!-- jQuery Knob Chart -->
+  <script src="../Resources/plugins/jquery-knob/jquery.knob.min.js"></script>
+  <!-- daterangepicker -->
+  <script src="../Resources/plugins/moment/moment.min.js"></script>
+  <script src="../Resources/plugins/daterangepicker/daterangepicker.js"></script>
+  <!-- Tempusdominus Bootstrap 4 -->
+  <script src="../Resources/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+  <!-- Summernote -->
+  <script src="../Resources/plugins/summernote/summernote-bs4.min.js"></script>
+  <!-- overlayScrollbars -->
+  <script src="../Resources/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="../Resources/dist/js/adminlte.js"></script>
+  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+  <script src="../Resources/dist/js/pages/dashboard.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="../Resources/dist/js/demo.js"></script>
 </body>
 </html>

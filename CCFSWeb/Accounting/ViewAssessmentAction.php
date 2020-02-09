@@ -16,6 +16,7 @@
                 <td>".$row['assessfor']."</td>
                 <td>".$row['amount']."</td>
                 <td>".$row['duedate']."</td>
+                <td>".$row["asmstatus"]."</td>
                     </tr>";
     }
     $result2 = $conn->query($idno);
@@ -38,6 +39,7 @@
                       <td>'.$row["assessfor"].'</td>
                       <td>'.$row["amount"].'</td>
                       <td>'.$row["duedate"].'</td>
+                      <td>'.$row["asmstatus"].'</td>
                     </tr>
                       ';
     }

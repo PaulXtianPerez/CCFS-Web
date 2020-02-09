@@ -101,12 +101,12 @@
               <i class="nav-icon fas fa-home"></i>
               <p>Homepage</p>
             </a>
-          </li>
-          <li class="nav-item has-treeview">
-            <a href="#Payments" id="payments" class="nav-link">
-              <i class="nav-icon fa fa-money-bill-alt"></i>
-              <p>Payments</p>
-            </a>
+            <li class="nav-item has-treeview">
+              <a href="#ViewAssessment" class="nav-link">
+                <i class="nav-icon fa fa-money-bill-alt"></i>
+                <p>Assessment of Fees</p>
+              </a>
+            </li>
           </li>
           <li class="nav-item has-treeview">
             <a href="#StudentFees" id="StudentFees" class="nav-link">
@@ -115,9 +115,9 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#ViewAssessment" class="nav-link">
+            <a href="#Payments" id="payments" class="nav-link">
               <i class="nav-icon fa fa-money-bill-alt"></i>
-              <p>Assessment of Fees</p>
+              <p>Payments</p>
             </a>
           </li>
         </ul>
