@@ -7,6 +7,8 @@
      header('location: ../Admin/AdminHome.php');
    }elseif($_SESSION['TYPE']=='REGISTRAR'){
      header('location: ../Registrar/RegistrarHome.php');
+   }elseif($_SESSION['TYPE']=='TEACHER'){
+     header('location: ../Teacher/TeacherHome.php');
    }
  } else {
    header('location: ../index.php');
