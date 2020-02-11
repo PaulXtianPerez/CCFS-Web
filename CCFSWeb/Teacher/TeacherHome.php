@@ -3,15 +3,17 @@
  include('../server.php');
  include('Connection.php');
 
- /*if (isset($_SESSION['LOGIN']) && $_SESSION['LOGIN']){
+ if (isset($_SESSION['LOGIN']) && $_SESSION['LOGIN']){
    if($_SESSION['TYPE']=='REGISTRAR'){
      header('location: ../Registrar/RegistrarHome.php');
    }elseif($_SESSION['TYPE']=='ACCOUNTING'){
      header('location: ../Accounting/AccountingHome.php');
+   }elseif($_SESSION['TYPE']=='ADMIN'){
+     header('location: ../Admin/AdminHome.php');
    }
  } else {
    header('location: ../index.php');
- }*/
+ }
 
  ?>
 
@@ -58,7 +60,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="AdminHome.php" class="nav-link">Home</a>
+        <a href="TeacherHome.php" class="nav-link">Home</a>
       </li>
     </ul>
 
