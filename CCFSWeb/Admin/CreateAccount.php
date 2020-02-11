@@ -76,7 +76,7 @@
       								<label>Account Type</label>
       								<div class="input-group mb-3">
       									<select name="type" id="type" class="form-control">
-                          <option value="ADMIN">Admin</option>
+                          <option value="PRINCIPAL">Principal</option>
       										<option value="REGISTRAR">Registrar</option>
       										<option value="ACCOUNTING">Accounting</option>
                           <option value="TEACHER">Teacher</option>
