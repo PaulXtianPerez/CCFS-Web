@@ -55,7 +55,7 @@
             <form id="frmBox" class="needs-validation" method="post" action="SchoolYearInsert.php" onsubmit="return formSubmit();">
               <div class="card card-primary">
                 <div class="card-header">
-                  <h3 class="card-title">School Year Information</h3>
+                  <h3 class="card-title">Date Information</h3>
                 </div>
                 <div class="card-body">
                   <div class="row">
@@ -69,11 +69,11 @@
                     </div>
                     <div class="form-group col-3">
                       <label for="dateStart">Date Start</label>
-                      <input class="form-control" id="inputDateStart" placeholder="Enter first day" type="date" name="dateStart" min="0" required>
+                      <input class="form-control" id="inputDateStart" placeholder="Enter First Day" type="date" name="dateStart" min="0" required>
                     </div>
                     <div class="form-group col-3">
                       <label for="dateEnd">Date End</label>
-                      <input class="form-control" id="inputDateStart" placeholder="Enter last day" type="date" name="dateEnd" min="0" required>
+                      <input class="form-control" id="inputDateEnd" placeholder="Enter Last Day" type="date" name="dateEnd" min="0" required>
                     </div>
                   </div>
                 </div>
@@ -87,55 +87,55 @@
                   <div class="row">
                     <div class="form-group col-3">
                       <label for="Yearstart">January </label>
-                      <input class="form-control attNum years year-1" id="inputYearStart" placeholder="Number of days" type="number" step="0.01" name="janAtt" min="0">
+                      <input class="form-control attNum years year-1" id="inputYearStart" placeholder="Number Of Days" type="number" step="0.01" name="janAtt" min="0" max="31">
                     </div>
                     <div class="form-group col-3">
                       <label for="Yearend">February</label>
-                      <input class="form-control attNum years year-2" id="inputYearEnd" placeholder="Number of days" type="number" step="0.01"  name="febAtt" min="0">
+                      <input class="form-control attNum years year-2" id="inputYearEnd" placeholder="Number Of Days" type="number" step="0.01"  name="febAtt" min="0" max="31">
                     </div>
                     <div class="form-group col-3">
                       <label for="Yearstart">March</label>
-                      <input class="form-control attNum years year-3" id="inputYearStart" placeholder="Number of days" type="number" step="0.01"  name="marAtt" min="0">
+                      <input class="form-control attNum years year-3" id="inputYearStart" placeholder="Number Of Days" type="number" step="0.01"  name="marAtt" min="0" max="31">
                     </div>
                     <div class="form-group col-3">
                       <label for="Yearend">April</label>
-                      <input class="form-control attNum years year-4" id="inputYearEnd" placeholder="Number of days" type="number" step="0.01"  name="aprAtt" min="0">
+                      <input class="form-control attNum years year-4" id="inputYearEnd" placeholder="Number Of Days" type="number" step="0.01"  name="aprAtt" min="0" max="31">
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-3">
                       <label for="Yearstart">May</label>
-                      <input class="form-control attNum years year-5" id="inputYearStart" placeholder="Number of days" type="number" step="0.01"  name="mayAtt" min="0">
+                      <input class="form-control attNum years year-5" id="inputYearStart" placeholder="Number Of Days" type="number" step="0.01"  name="mayAtt" min="0" max="31">
                     </div>
                     <div class="form-group col-3">
                       <label for="Yearend">June</label>
-                      <input class="form-control attNum years year-6" id="inputYearEnd" placeholder="Number of days" type="number" step="0.01"  name="junAtt" min="0">
+                      <input class="form-control attNum years year-6" id="inputYearEnd" placeholder="Number Of Days" type="number" step="0.01"  name="junAtt" min="0" max="31">
                     </div>
                     <div class="form-group col-3">
                       <label for="Yearstart">July </label>
-                      <input class="form-control attNum years year-7" id="inputYearStart" placeholder="Number of days" type="number" step="0.01" name="julAtt" min="0">
+                      <input class="form-control attNum years year-7" id="inputYearStart" placeholder="Number Of Days" type="number" step="0.01" name="julAtt" min="0" max="31">
                     </div>
                     <div class="form-group col-3">
                       <label for="Yearend">August</label>
-                      <input class="form-control attNum years year-8" id="inputYearEnd" placeholder="Number of days" type="number" step="0.01" name="augAtt" min="0">
+                      <input class="form-control attNum years year-8" id="inputYearEnd" placeholder="Number Of Days" type="number" step="0.01" name="augAtt" min="0" max="31">
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-3">
                       <label for="Yearstart">September </label>
-                      <input class="form-control attNum years year-9" id="inputYearStart" placeholder="Number of days" type="number" step="0.01" name="sepAtt" min="0">
+                      <input class="form-control attNum years year-9" id="inputYearStart" placeholder="Number Of Days" type="number" step="0.01" name="sepAtt" min="0" max="31">
                     </div>
                     <div class="form-group col-3">
                       <label for="Yearend">October</label>
-                      <input class="form-control attNum years year-10" id="inputYearEnd" placeholder="Number of days" type="number" step="0.01" name="octAtt" min="0">
+                      <input class="form-control attNum years year-10" id="inputYearEnd" placeholder="Number Of Days" type="number" step="0.01" name="octAtt" min="0" max="31">
                     </div>
                     <div class="form-group col-3">
                       <label for="Yearstart">November </label>
-                      <input class="form-control attNum years year-11" id="inputYearStart" placeholder="Number of days" type="number" step="0.01" name="novAtt" min="0">
+                      <input class="form-control attNum years year-11" id="inputYearStart" placeholder="Number Of Days" type="number" step="0.01" name="novAtt" min="0" max="31">
                     </div>
                     <div class="form-group col-3">
                       <label for="Yearend">December</label>
-                      <input class="form-control attNum years year-12" id="inputYearEnd" placeholder="Number of days" type="number" step="0.01" name="decAtt" min="0">
+                      <input class="form-control attNum years year-12" id="inputYearEnd" placeholder="Number Of Days" type="number" step="0.01" name="decAtt" min="0" max="31">
                     </div>
                   </div>
                   <div class="row">
@@ -156,14 +156,17 @@
                   <div class="row">
                     <div class="form-group col-3">
                       <label for="nurseryTuition">Nursery Tuition Fee</label>
+                      <button type="button" name="btnApplyPreTui" class="btn btn-info btn-sm" data-toggle="tooltip" title="Apply fee to all preschool levels"><i class="fa fa-angle-double-down" aria-hidden="true"></i></button>
                       <input class="form-control nurNum" id="inputnurseryTuition" placeholder="Enter Tuition Fee" type="number" step="0.01" name="pretui1" min="0">
                     </div>
                     <div class="form-group col-3">
                       <label for="nurseryMisc">Nursery Misc. Fees</label>
+                      <button type="button" name="btnApplyPreMisc" class="btn btn-info btn-sm" data-toggle="tooltip" title="Apply fee to all preschool levels"><i class="fa fa-angle-double-down" aria-hidden="true"></i></button>
                       <input class="form-control nurNum" id="inputnurseryMisc" placeholder="Enter Miscellaneous Fees" type="number" step="0.01" name="premisc1" min ="0">
                     </div>
                     <div class="form-group col-3">
                       <label for="nurseryBook">Nursery Book Fees</label>
+                      <button type="button" name="btnApplyPreBook" class="btn btn-info btn-sm" data-toggle="tooltip" title="Apply fee to all preschool levels"><i class="fa fa-angle-double-down" aria-hidden="true"></i></button>
                       <input class="form-control nurNum" id="inputnurseryBook" placeholder="Enter Book Fees" type="number" step="0.01" name="prebook1" min="0">
                     </div>
                     <div class="form-group col-3">
@@ -178,7 +181,7 @@
                     </div>
                     <div class="form-group col-3">
                       <label for="preKinMisc">Pre-Kinder Misc. Fees</label>
-                      <input class="form-control preNum" id="inputnurseryMisc" placeholder="Enter Miscellaneous Fees" type="number" step="0.01" name="premisc2" min="0">
+                      <input class="form-control preNum" id="inputpreKinMisc" placeholder="Enter Miscellaneous Fees" type="number" step="0.01" name="premisc2" min="0">
                     </div>
                     <div class="form-group col-3">
                       <label for="preKinBook">Pre-Kinder Book Fees</label>
@@ -196,7 +199,7 @@
                     </div>
                     <div class="form-group col-3">
                       <label for="KinMisc">Kinder Misc. Fees</label>
-                      <input class="form-control kinNum" id="inputnurseryMisc" placeholder="Enter Miscellaneous Fees" type="number" step="0.01" name="prebook3" min="0">
+                      <input class="form-control kinNum" id="inputKinMisc" placeholder="Enter Miscellaneous Fees" type="number" step="0.01" name="prebook3" min="0">
                     </div>
                     <div class="form-group col-3">
                       <label for="KinBook">Kinder Book Fees</label>
@@ -219,14 +222,17 @@
                   <div class="row">
                     <div class="form-group col-3">
                       <label for="grade1TFee">Grade 1 Tuition Fee </label>
+                      <button type="button" name="btnApplyGrdTui" class="btn btn-info btn-sm" data-toggle="tooltip" title="Apply fee to all grade school levels"><i class="fa fa-angle-double-down" aria-hidden="true"></i></button>
                       <input class="form-control oneNum" id="inputgrade1TFee" placeholder="Enter Tuition Fee" type="number" step="0.01" name="gradetui1" min="0">
                     </div>
                     <div class="form-group col-3">
                       <label for="grade1MiscFee">Grade 1 Misc. Fees</label>
+                      <button type="button" name="btnApplyGrdMisc" class="btn btn-info btn-sm" data-toggle="tooltip" title="Apply fee to all grade school levels"><i class="fa fa-angle-double-down" aria-hidden="true"></i></button>
                       <input class="form-control oneNum" id="inputgrade1MiscFee" placeholder="Enter Miscellaneous Fees" type="number" step="0.01" name="grademisc1" min="0">
                     </div>
                     <div class="form-group col-3">
                       <label for="grade1BookFee">Grade 1 Book Fees</label>
+                      <button type="button" name="btnApplyGrdBook" class="btn btn-info btn-sm" data-toggle="tooltip" title="Apply fee to all grade school levels"><i class="fa fa-angle-double-down" aria-hidden="true"></i></button>
                       <input class="form-control oneNum" id="inputgrade1BookFee" placeholder="Enter Book Fees" type="number" step="0.01" name="gradebook1" min="0">
                     </div>
                     <div class="form-group col-3">
@@ -313,7 +319,7 @@
                     </div>
                     <div class="form-group col-3">
                       <label for="grade6MiscFee">Grade 6 Misc. Fees</label>
-                      <input class="form-control sixNum" id="inputgrade5MiscFee" placeholder="Enter Miscellaneous Fees" type="number" step="0.01" name="grademisc6" min = "0">
+                      <input class="form-control sixNum" id="inputgrade6MiscFee" placeholder="Enter Miscellaneous Fees" type="number" step="0.01" name="grademisc6" min = "0">
                     </div>
                     <div class="form-group col-3">
                       <label for="grade6BookFee">Grade 6 Book Fees</label>
@@ -400,6 +406,90 @@
       }
     }
   });*/
+  </script>
+
+  <script type="text/javascript">
+    var yrStart = $('#inputYearStart');
+    var yrEnd = $('#inputYearEnd');
+    var dateStart = new Date($('#inputDateStart').val());
+    var dateEnd = new Date($('#inputDateEnd').val());
+
+    dateYrStart = dateStart.getFullYear();
+    dateYrEnd = datEnd.getFullYear();
+
+    function validateSchoolYear(){
+      if(yrStart.val() < yrEnd.val()) {
+        yrEnd.setCustomValidity("Year end can't be before year start!");
+      }
+    }
+    //yrEnd.onkeyup = validateSchoolYear;
+
+
+    /*function validateYear(){
+      if(yrStart != dateYrStart) {
+        dateYrStart.setCustomValidity("Years Don't Match");
+      } else if(yrEnd != dateYrEnd) {
+        dateYrEnd.setCustomValidity("Years Don't Match");
+      } else {
+        dateYrStart.setCustomValidity('');
+        dateYrEnd.setCustomValidity('');
+      }
+    }
+    yrStart.onchange = validateYear;
+    dateYrStart.onkeyup = validateYear;
+    yrEnd.onchange = validateYear;
+    dateYrEnd.onkeyup = validateYear;*/
+  </script>
+
+  <!-- 'Apply to all' button -->
+  <script type="text/javascript">
+  $(document).ready(function(){
+    var preTui = $('#inputnurseryTuition');
+    var preMisc = $('#inputnurseryMisc');
+    var preBook = $('#inputnurseryBook');
+    var grdTui = $('#inputgrade1TFee');
+    var grdMisc = $('#inputgrade1MiscFee');
+    var grdBook = $('#inputgrade1BookFee');
+
+    $('[name=btnApplyPreTui]').on('click', function(){
+      $('#inputpreKinTuition').val(preTui.val());
+      $('#inputKinTuition').val(preTui.val());
+    });
+
+    $('[name=btnApplyPreMisc]').on('click', function(){
+      $('#inputpreKinMisc').val(preMisc.val());
+      $('#inputKinMisc').val(preMisc.val());
+    });
+
+    $('[name=btnApplyPreBook]').on('click', function(){
+      $('#inputpreKinBook').val(preBook.val());
+      $('#inputKinBook').val(preBook.val());
+    });
+
+    $('[name=btnApplyGrdTui]').on('click', function(){
+      $('#inputgrade2TFee').val(grdTui.val());
+      $('#inputgrade3TFee').val(grdTui.val());
+      $('#inputgrade4TFee').val(grdTui.val());
+      $('#inputgrade5TFee').val(grdTui.val());
+      $('#inputgrade6TFee').val(grdTui.val());
+    });
+
+    $('[name=btnApplyGrdMisc]').on('click', function(){
+      $('#inputgrade2MiscFee').val(grdMisc.val());
+      $('#inputgrade3MiscFee').val(grdMisc.val());
+      $('#inputgrade4MiscFee').val(grdMisc.val());
+      $('#inputgrade5MiscFee').val(grdMisc.val());
+      $('#inputgrade6MiscFee').val(grdMisc.val());
+    });
+
+    $('[name=btnApplyGrdBook]').on('click', function(){
+      $('#inputgrade2BookFee').val(grdBook.val());
+      $('#inputgrade3BookFee').val(grdBook.val());
+      $('#inputgrade4BookFee').val(grdBook.val());
+      $('#inputgrade5BookFee').val(grdBook.val());
+      $('#inputgrade6BookFee').val(grdBook.val());
+    });
+  });
   </script>
 
   <!--===============================================================================================-->
