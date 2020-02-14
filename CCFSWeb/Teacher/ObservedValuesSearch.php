@@ -7,7 +7,7 @@ $input = filter_input_array(INPUT_POST);
 if(isset($input['searcher'])) {
 
   $id = $input['id'];
-  $query = "SELECT * FROM `checklist` WHERE (checkdesc IS NULL AND competencydesc IS NULL) AND IDno='".$id."' ORDER BY corevalues";
+  $query = "SELECT * FROM `checklist` WHERE (checkdesc IS NULL AND competencydesc IS NULL) AND IDno='".$id."' AND yearID IN (SELECT yearid from schoolyear WHERE scstatus='ACTIVE') ORDER BY corevalues";
   $result = mysqli_query($conn, $query);
 
   $output .= '

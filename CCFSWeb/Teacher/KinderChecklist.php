@@ -46,6 +46,7 @@ include("Connection.php");
         <div class="row mb-2">
           <div class="col-sm-12">
             <h1 class="m-0 text-dark">Preschool Early Childhood Care and Development Checklist</h1>
+            <h5 class="m-0 text-dark">School Year: <?php include("../ActiveSchoolYear.php")?></h5>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div>

@@ -1,6 +1,6 @@
 <?php
 include("Connection.php");
-$select_query = "SELECT * FROM `checklist` WHERE (competencydesc IS NULL AND valuedesc IS NULL) ORDER BY checkvalues";
+$select_query = "SELECT * FROM `checklist` WHERE (competencydesc IS NULL AND valuedesc IS NULL) AND yearID IN (SELECT yearid from schoolyear WHERE scstatus='ACTIVE') ORDER BY checkvalues";
 $output = '';
 
 if(empty($_POST)){
