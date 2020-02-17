@@ -46,6 +46,7 @@ include("Connection.php");
         <div class="row mb-2">
           <div class="col-sm-12">
             <h1 class="m-0 text-dark">Learner's Observed Values for Grade School</h1>
+            <h5 class="m-0 text-dark">School Year: <?php include("../ActiveSchoolYear.php")?></h5>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div>
@@ -214,7 +215,7 @@ $(document).ready(function(){
 });
 </script>
 
-<!-- Inline/live edit ratings -->
+<!-- Inline/live edit ratings
 <script>
 $(document).ready(function(){
   function edit_data(id, text, column_name){
@@ -249,7 +250,7 @@ $(document).ready(function(){
     edit_data(id, fourthrating, "fourthrating");
   });
 });
- </script>
+ </script>-->
 
 <!-- jQuery -->
 <script src="../Resources/plugins/jquery/jquery.min.js"></script>

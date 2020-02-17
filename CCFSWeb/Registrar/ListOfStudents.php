@@ -98,7 +98,7 @@
                       <td><?php echo $row["MiddleName"];?></td>
                       <td><?php echo $row["gradelvl"];?></td>
                       <td><?php echo $row["sename"];?></td>
-                      <td style="text-align:center;"><input type="button" name="edit" value="Edit" id="<?php echo $row["IDno"]; ?>" class="btn btn-info btn-xs edit_data" /></td>
+                      <td style="text-align:center;"><input type="button" name="edit" value="Edit" id="<?php echo $row["IDno"]; ?>" class="btn btn-info btn-sm edit_data" /></td>
                     </tr>
                     <?php }?>
                   </tbody>

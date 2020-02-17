@@ -1,14 +1,11 @@
 <?php
-// php populate html table from mysql database
 // connect to mysql
+include("Connection.php");
 include('AttendanceAction.php');
-$connect = mysqli_connect("localhost", "root", "", "ccfs");
-
 // mysql select query
 $query = "SELECT curstudent.IDno,GivenName,MiddleName,SurName FROM `curstudent` JOIN `enstudent` ON enstudent.IDno = curstudent.IDno WHERE curstudent.yearid IN (SELECT yearid from schoolyear WHERE scstatus='ACTIVE')";
-
 // result for method
-$result = mysqli_query($connect, $query);
+$result = mysqli_query($conn, $query);
 ?>
 
 <!DOCTYPE html>
@@ -89,7 +86,7 @@ $result = mysqli_query($connect, $query);
                   <thead>
                     <tr>
                       <th>ID Number</th>
-                      <th>Surname</th> 
+                      <th>Surname</th>
                       <th>Given name</th>
                       <th>Middle name</th>
                       <th></th>
@@ -102,7 +99,7 @@ $result = mysqli_query($connect, $query);
                         <td>".$row['SurName']."</td>
                         <td>".$row['GivenName']."</td>
                         <td>".$row['MiddleName']."</td>
-                        <td style='text-align: center;'><button type='button' class='btn btn-info btn-xs edit_data' id=".$row['IDno']." data-toggle='modal' data-target='#myModal'>Edit</button></tr>";
+                        <td style='text-align: center;'><button type='button' class='btn btn-info btn-sm edit_data' id=".$row['IDno']." data-toggle='modal' data-target='#myModal'>Edit</button></tr>";
                       }
                       ?>
                   </tbody>
@@ -118,7 +115,7 @@ $result = mysqli_query($connect, $query);
   </div><!-- /.container-fluid -->
 </div><!-- ./wrapper -->
 
-<div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade" id="myModal" role="dialog" data-backdrop="static">
   <div class="modal-dialog modal-dialog-scrollable modal-lg">
     <!-- Modal content-->
     <div class="modal-content">
@@ -138,18 +135,18 @@ $result = mysqli_query($connect, $query);
           </tr>
           <tbody>
             <b><p>ID Number: <input type="text" size="3" id="studid" disabled></p></b>
-            <tr><td>Jan</td><td><input type="number" size="3" name="dPres1"></td><td><input type="number" size="3" name="dTar1" ></td><td><input type="number" size="3" name="dAbs1"></td><td><input type="text" size="7" id="total1" disabled></td><td><button type="submit" class="btn btn-info btn-xs ed" id="1">Save</button></td></tr>
-            <tr><td>Feb</td><td><input type="number" size="3" name="dPres2"></td><td><input type="number" size="3" name="dTar2" ></td><td><input type="number" size="3" name="dAbs2"></td><td><input type="text" size="7" id="total2" disabled></td><td><button type="submit" class="btn btn-info btn-xs ed" id="2">Save</button></td></tr>
-            <tr><td>Mar</td><td><input type="number" size="3" name="dPres3"></td><td><input type="number" size="3" name="dTar3" ></td><td><input type="number" size="3" name="dAbs3"></td><td><input type="text" size="7" id="total3" disabled></td><td><button type="submit" class="btn btn-info btn-xs ed" id="3">Save</button></td></tr>
-            <tr><td>Apr</td><td><input type="number" size="3" name="dPres4"></td><td><input type="number" size="3" name="dTar4" ></td><td><input type="number" size="3" name="dAbs4"></td><td><input type="text" size="7" id="total4" disabled></td><td><button type="submit" class="btn btn-info btn-xs ed" id="4">Save</button></td></tr>
-            <tr><td>May</td><td><input type="number" size="3" name="dPres5"></td><td><input type="number" size="3" name="dTar5" ></td><td><input type="number" size="3" name="dAbs5"></td><td><input type="text" size="7" id="total5" disabled></td><td><button type="submit" class="btn btn-info btn-xs ed" id="5">Save</button></td></tr>
-            <tr><td>Jun</td><td><input type="number" size="3" name="dPres6"></td><td><input type="number" size="3" name="dTar6" ></td><td><input type="number" size="3" name="dAbs6"></td><td><input type="text" size="7" id="total6" disabled></td><td><button type="submit" class="btn btn-info btn-xs ed" id="6">Save</button></td></tr>
-            <tr><td>Jul</td><td><input type="number" size="3" name="dPres7"></td><td><input type="number" size="3" name="dTar7" ></td><td><input type="number" size="3" name="dAbs7"></td><td><input type="text" size="7" id="total7" disabled></td><td><button type="submit" class="btn btn-info btn-xs ed" id="7">Save</button></td></tr>
-            <tr><td>Aug</td><td><input type="number" size="3" name="dPres8"></td><td><input type="number" size="3" name="dTar8" ></td><td><input type="number" size="3" name="dAbs8"></td><td><input type="text" size="7" id="total8" disabled></td><td><button type="submit" class="btn btn-info btn-xs ed" id="8">Save</button></td></tr>
-            <tr><td>Sep</td><td><input type="number" size="3" name="dPres9"></td><td><input type="number" size="3" name="dTar9" ></td><td><input type="number" size="3" name="dAbs9"></td><td><input type="text" size="7" id="total9" disabled></td><td><button type="submit" class="btn btn-info btn-xs ed" id="9">Save</button></td></tr>
-            <tr><td>Oct</td><td><input type="number" size="3" name="dPres10"></td><td><input type="number" size="3" name="dTar10" ></td><td><input type="number" size="3" name="dAbs10"></td><td><input type="text" size="7" id="total10" disabled></td><td><button type="submit" class="btn btn-info btn-xs ed" id="10">Save</button></td></tr>
-            <tr><td>Nov</td><td><input type="number" size="3" name="dPres11"></td><td><input type="number" size="3" name="dTar11" ></td><td><input type="number" size="3" name="dAbs11"></td><td><input type="text" size="7" id="total11" disabled></td><td><button type="submit" class="btn btn-info btn-xs ed" id="11">Save</button></td></tr>
-            <tr><td>Dec</td><td><input type="number" size="3" name="dPres12"></td><td><input type="number" size="3" name="dTar12" ></td><td><input type="number" size="3" name="dAbs12"></td><td><input type="text" size="7" id="total12" disabled></td><td><button type="submit" class="btn btn-info btn-xs ed" id="12">Save</button></td></tr>
+            <tr><td>Jan</td><td><input type="number" size="3" name="dPres1"></td><td><input type="number" size="3" name="dTar1" ></td><td><input type="number" size="3" name="dAbs1"></td><td><input type="text" size="7" id="total1" disabled></td><td><button type="submit" class="btn btn-info btn-sm ed" id="1">Save</button></td></tr>
+            <tr><td>Feb</td><td><input type="number" size="3" name="dPres2"></td><td><input type="number" size="3" name="dTar2" ></td><td><input type="number" size="3" name="dAbs2"></td><td><input type="text" size="7" id="total2" disabled></td><td><button type="submit" class="btn btn-info btn-sm ed" id="2">Save</button></td></tr>
+            <tr><td>Mar</td><td><input type="number" size="3" name="dPres3"></td><td><input type="number" size="3" name="dTar3" ></td><td><input type="number" size="3" name="dAbs3"></td><td><input type="text" size="7" id="total3" disabled></td><td><button type="submit" class="btn btn-info btn-sm ed" id="3">Save</button></td></tr>
+            <tr><td>Apr</td><td><input type="number" size="3" name="dPres4"></td><td><input type="number" size="3" name="dTar4" ></td><td><input type="number" size="3" name="dAbs4"></td><td><input type="text" size="7" id="total4" disabled></td><td><button type="submit" class="btn btn-info btn-sm ed" id="4">Save</button></td></tr>
+            <tr><td>May</td><td><input type="number" size="3" name="dPres5"></td><td><input type="number" size="3" name="dTar5" ></td><td><input type="number" size="3" name="dAbs5"></td><td><input type="text" size="7" id="total5" disabled></td><td><button type="submit" class="btn btn-info btn-sm ed" id="5">Save</button></td></tr>
+            <tr><td>Jun</td><td><input type="number" size="3" name="dPres6"></td><td><input type="number" size="3" name="dTar6" ></td><td><input type="number" size="3" name="dAbs6"></td><td><input type="text" size="7" id="total6" disabled></td><td><button type="submit" class="btn btn-info btn-sm ed" id="6">Save</button></td></tr>
+            <tr><td>Jul</td><td><input type="number" size="3" name="dPres7"></td><td><input type="number" size="3" name="dTar7" ></td><td><input type="number" size="3" name="dAbs7"></td><td><input type="text" size="7" id="total7" disabled></td><td><button type="submit" class="btn btn-info btn-sm ed" id="7">Save</button></td></tr>
+            <tr><td>Aug</td><td><input type="number" size="3" name="dPres8"></td><td><input type="number" size="3" name="dTar8" ></td><td><input type="number" size="3" name="dAbs8"></td><td><input type="text" size="7" id="total8" disabled></td><td><button type="submit" class="btn btn-info btn-sm ed" id="8">Save</button></td></tr>
+            <tr><td>Sep</td><td><input type="number" size="3" name="dPres9"></td><td><input type="number" size="3" name="dTar9" ></td><td><input type="number" size="3" name="dAbs9"></td><td><input type="text" size="7" id="total9" disabled></td><td><button type="submit" class="btn btn-info btn-sm ed" id="9">Save</button></td></tr>
+            <tr><td>Oct</td><td><input type="number" size="3" name="dPres10"></td><td><input type="number" size="3" name="dTar10" ></td><td><input type="number" size="3" name="dAbs10"></td><td><input type="text" size="7" id="total10" disabled></td><td><button type="submit" class="btn btn-info btn-sm ed" id="10">Save</button></td></tr>
+            <tr><td>Nov</td><td><input type="number" size="3" name="dPres11"></td><td><input type="number" size="3" name="dTar11" ></td><td><input type="number" size="3" name="dAbs11"></td><td><input type="text" size="7" id="total11" disabled></td><td><button type="submit" class="btn btn-info btn-sm ed" id="11">Save</button></td></tr>
+            <tr><td>Dec</td><td><input type="number" size="3" name="dPres12"></td><td><input type="number" size="3" name="dTar12" ></td><td><input type="number" size="3" name="dAbs12"></td><td><input type="text" size="7" id="total12" disabled></td><td><button type="submit" class="btn btn-info btn-sm ed" id="12">Save</button></td></tr>
             <tr><td></td><td></td><td></td><td>Total Days</td><td><input type="text" id="tl" size="3" disabled></td></tr>
           </tbody>
         </table>

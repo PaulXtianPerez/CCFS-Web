@@ -7,7 +7,7 @@ $input = filter_input_array(INPUT_POST);
 if(isset($input['searcher'])) {
 
   $id = $input['id'];
-  $query = "SELECT * FROM `checklist` WHERE (checkdesc IS NULL AND valuedesc IS NULL) AND IDno='".$id."' ORDER BY competencyvalues";
+  $query = "SELECT * FROM `checklist` WHERE (checkdesc IS NULL AND valuedesc IS NULL) AND IDno='".$id."' AND yearID IN (SELECT yearid from schoolyear WHERE scstatus='ACTIVE') ORDER BY competencyvalues";
   $result = mysqli_query($conn, $query);
 
   $output .= '
@@ -37,10 +37,10 @@ if(mysqli_num_rows($result) > 0){
       <td style="display:none;">'.$row["checkid"].'</td>
       <td>'.$row["competencyvalues"].'</td>
       <td>'.$row["competencydesc"].'</td>
-      <td class="first" data-id1="'.$row["checkid"].'" contenteditable style="text-align:center;">'.$row["firstrating"].'</td>
-      <td class="second" data-id2="'.$row["checkid"].'" contenteditable style="text-align:center;">'.$row["secondrating"].'</td>
-      <td class="third" data-id3="'.$row["checkid"].'" contenteditable style="text-align:center;">'.$row["thirdrating"].'</td>
-      <td class="fourth" data-id4="'.$row["checkid"].'" contenteditable style="text-align:center;">'.$row["fourthrating"].'</td>
+      <td class="first" data-id1="'.$row["checkid"].'" style="text-align:center;">'.$row["firstrating"].'</td>
+      <td class="second" data-id2="'.$row["checkid"].'" style="text-align:center;">'.$row["secondrating"].'</td>
+      <td class="third" data-id3="'.$row["checkid"].'" style="text-align:center;">'.$row["thirdrating"].'</td>
+      <td class="fourth" data-id4="'.$row["checkid"].'" style="text-align:center;">'.$row["fourthrating"].'</td>
     </tr>
          ';
    }
