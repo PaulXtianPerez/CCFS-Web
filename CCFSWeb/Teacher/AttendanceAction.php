@@ -1,12 +1,12 @@
 <?php
-$connect = mysqli_connect('localhost', 'root', '', 'ccfs');
+include("Connection.php");
 $input = filter_input_array(INPUT_POST);
 
 if(isset($input["student_id"])) {
     $chkAtt = "SELECT IDno FROM attendance WHERE IDno=".$input['student_id']."";
     $getYID = "SELECT yearid FROM schoolyear WHERE scstatus = 'ACTIVE'";
-    $result = $connect->query($getYID); 
-    $result1 = $connect->query($chkAtt);
+    $result = $conn->query($getYID);
+    $result1 = $conn->query($chkAtt);
     $data = array();
     $data1 = array();
     while($row = $result->fetch_assoc()) {
@@ -17,23 +17,23 @@ if(isset($input["student_id"])) {
     }
     $monthID = array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
     if (empty($data1[0])) {
-        for($i = 0 ; $i < sizeof($monthID); $i++) { 
+        for($i = 0 ; $i < sizeof($monthID); $i++) {
             $insAtt = "INSERT INTO `attendance`(`IDno`,`yearid`,`month`) VALUES (".$input['student_id'].",".$data[0].",'".$monthID[$i]."')";
-            $insert_row = $connect->query($insAtt);
+            $insert_row = $conn->query($insAtt);
         }
     }
     $getAtt = "SELECT IDno,daysPres,daysTar,daysAbs FROM attendance WHERE IDno=".$input["student_id"]."";
     $rows = array();
-    $result2 = $connect->query($getAtt); 
+    $result2 = $conn->query($getAtt);
     $rows = [];
     while($row = mysqli_fetch_array($result2))
     {
         $rows[] = $row;
     }
     echo json_encode($rows);
-    
+
 }else if(isset($input['id'])) {
-    
+
     switch($input['month']) {
         case 1:
             $query = "
@@ -44,7 +44,7 @@ if(isset($input["student_id"])) {
             daysAbs = ".$input['daysAbs1']."
             WHERE IDno = ".$input['id']." AND `month`='Jan'
             ";
-            mysqli_query($connect, $query);
+            mysqli_query($conn, $query);
         break;
         case 2:
             $query = "
@@ -55,7 +55,7 @@ if(isset($input["student_id"])) {
             daysAbs = ".$input['daysAbs2']."
             WHERE IDno = ".$input['id']." AND `month`='Feb'
             ";
-            mysqli_query($connect, $query);
+            mysqli_query($conn, $query);
         break;
         case 3:
             $query = "
@@ -67,7 +67,7 @@ if(isset($input["student_id"])) {
             daysAbs = ".$input['daysAbs3']."
             WHERE IDno = ".$input['id']." AND `month`='Mar'
             ";
-            mysqli_query($connect, $query);
+            mysqli_query($conn, $query);
         break;
         case 4:
             $query = "
@@ -79,7 +79,7 @@ if(isset($input["student_id"])) {
             daysAbs = ".$input['daysAbs4']."
             WHERE IDno = ".$input['id']." AND `month`='Apr'
             ";
-            mysqli_query($connect, $query);
+            mysqli_query($conn, $query);
         break;
         case 5:
             $query = "
@@ -91,7 +91,7 @@ if(isset($input["student_id"])) {
             daysAbs = ".$input['daysAbs5']."
             WHERE IDno = ".$input['id']." AND `month`='May'
             ";
-            mysqli_query($connect, $query);
+            mysqli_query($conn, $query);
         break;
         case 6:
             $query = "
@@ -103,7 +103,7 @@ if(isset($input["student_id"])) {
             daysAbs = ".$input['daysAbs6']."
             WHERE IDno = ".$input['id']." AND `month`='Jun'
             ";
-            mysqli_query($connect, $query);
+            mysqli_query($conn, $query);
         break;
         case 7:
             $query = "
@@ -115,7 +115,7 @@ if(isset($input["student_id"])) {
             daysAbs = ".$input['daysAbs7']."
             WHERE IDno = ".$input['id']." AND `month`='Jul'
             ";
-            mysqli_query($connect, $query);
+            mysqli_query($conn, $query);
         break;
         case 8:
             $query = "
@@ -127,7 +127,7 @@ if(isset($input["student_id"])) {
             daysAbs = ".$input['daysAbs8']."
             WHERE IDno = ".$input['id']." AND `month`='Aug'
             ";
-            mysqli_query($connect, $query);
+            mysqli_query($conn, $query);
         break;
         case 9:
             $query = "
@@ -139,7 +139,7 @@ if(isset($input["student_id"])) {
             daysAbs = ".$input['daysAbs9']."
             WHERE IDno = ".$input['id']." AND `month`='Sep'
             ";
-            mysqli_query($connect, $query);
+            mysqli_query($conn, $query);
         break;
         case 10:
             $query = "
@@ -151,7 +151,7 @@ if(isset($input["student_id"])) {
             daysAbs = ".$input['daysAbs10']."
             WHERE IDno = ".$input['id']." AND `month`='Oct'
             ";
-            mysqli_query($connect, $query);
+            mysqli_query($conn, $query);
         break;
         case 11:
             $query = "
@@ -163,7 +163,7 @@ if(isset($input["student_id"])) {
             daysAbs = ".$input['daysAbs11']."
             WHERE IDno = ".$input['id']." AND `month`='Nov'
             ";
-            mysqli_query($connect, $query);
+            mysqli_query($conn, $query);
         break;
         case 12:
             $query = "
@@ -175,9 +175,9 @@ if(isset($input["student_id"])) {
             daysAbs = ".$input['daysAbs12']."
             WHERE IDno = ".$input['id']." AND `month`='Dec'
             ";
-            mysqli_query($connect, $query);
+            mysqli_query($conn, $query);
         break;
     }
-        
+
 }
 ?>

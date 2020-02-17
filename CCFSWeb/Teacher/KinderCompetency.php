@@ -75,9 +75,9 @@ include("Connection.php");
                 </div>
               </div>
               <!-- /.card-header -->
-              <div>
+              <!--<div>
                 <button type="button" name="competency" id="competency" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-info view_data" style="float:right; margin-top:5px; margin-right:20px;">Edit Domains and Descriptions</button>
-              </div>
+              </div>-->
               <b><p id="success" style="text-align:center; font-size:15px;"></p></b>
               <div id="competencyData" class="card-body">
                 <table id="competencyTable" class="table table-bordered table-hover">
@@ -111,7 +111,7 @@ include("Connection.php");
   </div>
 </div> <!-- ./wrapper -->
 
-<!-- Modal for editing competency. -->
+<!-- Modal for editing competency.
 <div id="add_data_Modal" class="modal fade" data-backdrop="static">
   <div class="modal-dialog modal-dialog-scrollable modal-xl">
     <div class="modal-content">
@@ -160,7 +160,7 @@ include("Connection.php");
       </div>
     </div>
   </div>
-</div>
+</div>-->
 
 <!-- Search student -->
 <script type="text/javascript">

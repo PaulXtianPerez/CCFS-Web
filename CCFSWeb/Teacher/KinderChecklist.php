@@ -72,11 +72,12 @@ include("Connection.php");
                   <div>
                   <h3 class="card-title">ID: <p name="studentIDno"></p></h3>
                 </div>
-                </div> <br>
-              </div><!-- /.card-header -->
-              <div>
-                <button type="button" name="checklist" id="checklist" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-info view_data" style="float:right; margin-top:5px; margin-right:20px;">Edit Domains and Descriptions</button>
               </div>
+            </div><!-- /.card-header -->
+              <!--<div>
+                <button type="button" name="checklist" id="checklist" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-info view_data" style="float:right; margin-top:5px; margin-right:20px;">Edit Domains and Descriptions</button>
+              </div>-->
+            <b><p id="success" style="text-align:center; font-size:15px;"></p></b>
             <form method="post" id="checklistForm">
               <div id="checkData" class="card-body">
                 <table id="checklistTable" class="table table-bordered table-hover">
@@ -112,7 +113,7 @@ include("Connection.php");
   </div>
 </div><!-- ./wrapper -->
 
-<!-- Modal for editing checklist. -->
+<!-- Modal for editing checklist.
 <div id="add_data_Modal" class="modal fade" data-backdrop="static">
   <div class="modal-dialog modal-dialog-scrollable modal-xl">
     <div class="modal-content">
@@ -161,7 +162,7 @@ include("Connection.php");
       </div>
     </div>
   </div>
-</div>
+</div>-->
 
 <!-- Search student -->
 <script type="text/javascript">
