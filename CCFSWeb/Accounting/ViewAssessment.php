@@ -104,7 +104,7 @@
                         <th>ID Number </th>
       					        <th>Assessed For </th>
       					        <th>Amount </th>
-      					        <th>Due Date <button type="button" name="button" class="btn btn-info" data-toggle="modal" data-target="#add_data_Modal">Set Due Dates</button> </th>
+      					        <th>Due Date <button type="button" name="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#add_data_Modal">Set Due Dates</button> </th>
                         <th>Status </th>
                       </tr>
                     </thead>
