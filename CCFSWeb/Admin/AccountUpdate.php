@@ -41,7 +41,7 @@
                           <td>' . $row["username"] . '</td>
                           <td>' . $row["type"] . '</td>
                           <td>' . $row["accstatus"] . '</td>
-                          <td style="text-align: center;"><input type="button" name="edit" value="Edit" id="'.$row["accid"] .'" class="btn btn-info btn-xs edit_data" /></td>
+                          <td style="text-align: center;"><input type="button" name="edit" value="Edit" id="'.$row["accid"] .'" class="btn btn-info btn-sm edit_data" /></td>
                      </tr>
                 ';
            }

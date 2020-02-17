@@ -87,7 +87,7 @@ $resultCurr = mysqli_query($mysqli, $queryCurr);
                     <?php while($row = $resultCurr->fetch_assoc()) { ?>
                       <tr>
                         <td><?php echo $row["curname"];?></td>
-                        <td style="text-align:center;"><input type="button" name="view" value="View Subjects" id="<?php echo $row["curname"]; ?>" class="btn btn-info btn-xs view_data" /></td>
+                        <td style="text-align:center;"><input type="button" name="view" value="View Subjects" id="<?php echo $row["curname"]; ?>" class="btn btn-info btn-sm view_data" /></td>
                       </tr>
                       <?php }?>
                   </tbody>

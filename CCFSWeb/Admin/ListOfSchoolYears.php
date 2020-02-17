@@ -88,7 +88,7 @@ $result = mysqli_query($mysqli, $query);
                       <tr>
                         <td><?php echo $row["yearstart"]; echo "-"; echo $row["yearend"];?></td>
                         <td><?php echo $row["scstatus"];?>
-                        <td style="text-align: center;"><input type="button" name="edit" value="Edit" id="<?php echo $row["yearid"]; ?>" class="btn btn-info btn-xs edit_data" /></td>
+                        <td style="text-align: center;"><input type="button" name="edit" value="Edit" id="<?php echo $row["yearid"]; ?>" class="btn btn-info btn-sm edit_data" /></td>
                       </tr>
                       <?php }?>
                   </tbody>
@@ -107,12 +107,12 @@ $result = mysqli_query($mysqli, $query);
   <div class="modal-dialog modal-dialog-scrollable modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">School Year Information</h4>
+        <h4 class="modal-title">School Year Details</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
         <form method="post" id="insert_form">
-          <b><p>Date Information</p></b>
+          <b><p>School Year Information</p></b>
           <div class="row">
             <div class="form-group col-3">
               <label>Year Start</label> <i class="fa fa-lock" aria-hidden="true"></i>
@@ -131,12 +131,18 @@ $result = mysqli_query($mysqli, $query);
               <input class="form-control" type="text" name="dateEnd" id="dateEnd" disabled/>
             </div>
           </div>
-          <div class="form-group col-3">
-            <label>Change Status</label>
-            <select name="scstatus" id="scstatus" class="form-control">
-              <option value="ACTIVE">Active</option>
-              <option value="INACTIVE">Inactive</option>
-            </select>
+          <div class="row">
+            <div class="form-group col-3">
+              <label>Curriculum</label> <i class="fa fa-lock" aria-hidden="true"></i>
+              <input class="form-control" type="text" name="curriculum" id="curriculum" disabled/>
+            </div>
+            <div class="form-group col-4">
+              <label>Change School Year Status</label>
+              <select name="scstatus" id="scstatus" class="form-control">
+                <option value="ACTIVE">Active</option>
+                <option value="INACTIVE">Inactive</option>
+              </select>
+            </div>
           </div>
 
           <br><b><p>Number of Days per Month</p></b>

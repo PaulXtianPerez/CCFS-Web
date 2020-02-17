@@ -2,33 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>CCFS Student Information System</title>
-    <link rel="icon" href="../Resources/dist/img/CCFS_logo.png" type="image/icon type">
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="../Resources/width=device-width, initial-scale=1">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="../Resources/plugins/fontawesome-free/css/all.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- Tempusdominus Bbootstrap 4 -->
-    <link rel="stylesheet" href="../Resources/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-    <!-- iCheck -->
-    <link rel="stylesheet" href="../Resources/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-    <!-- JQVMap -->
-    <link rel="stylesheet" href="../Resources/plugins/jqvmap/jqvmap.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="../Resources/dist/css/adminlte.min.css">
-    <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="../Resources/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-    <!-- Daterange picker -->
-    <link rel="stylesheet" href="../Resources/plugins/daterangepicker/daterangepicker.css">
-    <!-- summernote -->
-    <link rel="stylesheet" href="../Resources/plugins/summernote/summernote-bs4.css">
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
-    <link rel="stylesheet" href="../Resources/bootstrap-4.4.1/css/bootstrap.css">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>CCFS Student Information System</title>
+  <link rel="icon" href="../Resources/dist/img/CCFS_logo.png" type="image/icon type">
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="../Resources/width=device-width, initial-scale=1">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../Resources/plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bbootstrap 4 -->
+  <link rel="stylesheet" href="../Resources/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="../Resources/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="../Resources/plugins/jqvmap/jqvmap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../Resources/dist/css/adminlte.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="../Resources/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="../Resources/plugins/daterangepicker/daterangepicker.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="../Resources/plugins/summernote/summernote-bs4.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
+  <link rel="stylesheet" href="../Resources/bootstrap-4.4.1/css/bootstrap.css">
 <head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -55,7 +55,7 @@
             <form id="frmBox" class="needs-validation" method="post" action="SchoolYearInsert.php" onsubmit="return formSubmit();">
               <div class="card card-primary">
                 <div class="card-header">
-                  <h3 class="card-title">Date Information</h3>
+                  <h3 class="card-title">School Year Information</h3>
                 </div>
                 <div class="card-body">
                   <div class="row">
@@ -74,6 +74,20 @@
                     <div class="form-group col-3">
                       <label for="dateEnd">Date End</label>
                       <input class="form-control" id="inputDateEnd" placeholder="Enter Last Day" type="date" name="dateEnd" min="0" required>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-4">
+                      <label>Curriculum to use for this school year</label>
+                      <?php include("database.php");
+                            $query1 = "SELECT curname FROM curriculum GROUP BY curname";
+                            $result = $mysqli->query($query1) or die($mysqli->error.__LINE__);
+                      ?>
+                      <select name="curname" id="curname" class="form-control">
+                        <?php while ($row1 = mysqli_fetch_array($result)):;?>
+                          <option name = "curname"><?php echo $row1[0];?></option>
+                        <?php endwhile;?>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -216,7 +230,7 @@
               <!-- Start of Gradeschool Card -->
               <div class="card card-primary">
                 <div class="card-header">
-                  <h3 class="card-title">Gradeschool Fees</h3>
+                  <h3 class="card-title">Grade School Fees</h3>
                 </div>
                 <div class="card-body">
                   <div class="row">
@@ -314,7 +328,7 @@
                   </div>
                   <div class="row">
                     <div class="form-group col-3">
-                      <label for="grade6TFee">Grade 6 Tuition Fee </label>
+                      <label for="grade6TFee">Grade 6 Tuition Fee</label>
                       <input class="form-control sixNum" id="inputgrade6TFee" placeholder="Enter Tuition Fee" type="number" step="0.01" name="gradetui6" min ="0">
                     </div>
                     <div class="form-group col-3">

@@ -96,7 +96,7 @@ $result = mysqli_query($mysqli, $query);
                         <td><?php echo $row["username"];?></td>
                         <td><?php echo $row["type"];?></td>
                         <td><?php echo $row["accstatus"];?></td>
-                        <td style="text-align: center;"><input type="button" name="edit" value="Edit" id="<?php echo $row["accid"]; ?>" class="btn btn-info btn-xs edit_data" /></td>
+                        <td style="text-align: center;"><input type="button" name="edit" value="Edit" id="<?php echo $row["accid"]; ?>" class="btn btn-info btn-sm edit_data" /></td>
                       </tr>
                     <?php endwhile;?>
                   </tbody>
@@ -115,7 +115,7 @@ $result = mysqli_query($mysqli, $query);
   <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Account Information</h4>
+        <h4 class="modal-title">Account Details</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
