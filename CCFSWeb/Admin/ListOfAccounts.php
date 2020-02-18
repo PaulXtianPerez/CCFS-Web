@@ -122,6 +122,10 @@ $result = mysqli_query($mysqli, $query);
         <form method="post" id="insert_form">
           <div class="row">
             <div class="form-group col-6">
+              <label>Account ID</label> <i class="fa fa-lock" aria-hidden="true"></i>
+              <input class="form-control" type="text" name="accid" id="accid" disabled/>
+            </div>
+            <div class="form-group col-6">
               <label>Employee ID</label> <i class="fa fa-lock" aria-hidden="true"></i>
               <input class="form-control" type="text" name="empid" id="empid" disabled/>
             </div>
@@ -158,12 +162,15 @@ $result = mysqli_query($mysqli, $query);
           </div>
           <div class="row">
             <div class="form-group col-6">
+              <label>Date/Time Created</label> <i class="fa fa-lock" aria-hidden="true"></i>
+              <input class="form-control" type="text" name="dtme" id="dtme" disabled/>
+            </div>
+            <div class="form-group col-6">
               <label>Change Account Status</label>
               <select name="status" id="status" class="form-control">
                 <option value="Active">Active</option>
                 <option value="Inactive">Inactive</option>
               </select>
-              <br />
             </div>
           </div>
 
@@ -205,6 +212,7 @@ $(document).ready(function(){
       data:{account_id:account_id},
       dataType:"json",
       success:function(data){
+        $('#accid').val(data.accid);
         $('#empid').val(data.empid);
         $('#firstname').val(data.fname);
         $('#lastname').val(data.lname);
@@ -213,6 +221,7 @@ $(document).ready(function(){
         $('#password').val(data.password);
         $('#confirmPassword').val(data.password);
         $('#status').val(data.accstatus);
+        $('#dtme').val(data.created);
         $('#account_id').val(data.accid);
         $('#add_data_Modal').modal('show');
       }

@@ -67,7 +67,7 @@ $result = mysqli_query($mysqli, $query);
             <div class="card card-primary">
               <div class="card-header">
                 <!-- SEARCH FORM -->
-                <form class="form-inline form-group">
+                <form class="form-inline">
                   <div class="input-group input-group-sm">
                     <input id="searchInput" class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"/>
                   </div>
