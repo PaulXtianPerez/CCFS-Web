@@ -1,6 +1,4 @@
 <?php
-  //session_start();
-
   include('../server.php');
   include('Connection.php');
   include('database.php');
@@ -8,6 +6,8 @@
   if (isset($_SESSION['LOGIN']) && $_SESSION['LOGIN']){
     if($_SESSION['TYPE']=='ACCOUNTING'){
       header('location: ../Accounting/AccountingHome.php');
+    } elseif($_SESSION['TYPE']=='TEACHER'){
+      header('location: ../Teacher/TeacherHome.php');
     }
   } else {
     header('location: ../index.php');
@@ -58,7 +58,7 @@
     <nav class="header navbar navbar-expand navbar-green navbar-light sidebar-gradient-green elevation-4">
       <!-- Left navbar links -->
       <ul class="navbar-nav nav-pills nav-sidebar flex-column">
-        <a href="<?php echo $_SESSION['TYPE'] == 'ADMIN' ? '../Admin/AdminHome.php' : '../Registrar/RegistrarHome.php'; ?>" class="brand-link" data-toggle="tooltip" title="Go to homepage">
+        <a href="<?php echo $_SESSION['TYPE'] == 'PRINCIPAL' ? '../Principal/PrincipalHome.php' : '../Registrar/RegistrarHome.php'; ?>" class="brand-link" data-toggle="tooltip" title="Go to homepage">
           <img src="../Resources/dist/img/CCFS_logo.png" alt="CCFS Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
           <span class="brand-text font-weight-light">CCFS</span>
         </a>
