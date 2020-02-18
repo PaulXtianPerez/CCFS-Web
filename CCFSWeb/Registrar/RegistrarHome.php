@@ -4,8 +4,8 @@
  include('Connection.php');
 
  if (isset($_SESSION['LOGIN']) && $_SESSION['LOGIN']){
-   if($_SESSION['TYPE']=='ADMIN'){
-     header('location: ../Admin/AdminHome.php');
+   if($_SESSION['TYPE']=='PRINCIPAL'){
+     header('location: ../Principal/PrincipalHome.php');
    }elseif($_SESSION['TYPE']=='ACCOUNTING'){
      header('location: ../Accounting/AccountingHome.php');
    }elseif($_SESSION['TYPE']=='TEACHER'){
