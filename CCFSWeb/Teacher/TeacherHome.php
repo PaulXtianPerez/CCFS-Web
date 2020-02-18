@@ -8,8 +8,8 @@
      header('location: ../Registrar/RegistrarHome.php');
    }elseif($_SESSION['TYPE']=='ACCOUNTING'){
      header('location: ../Accounting/AccountingHome.php');
-   }elseif($_SESSION['TYPE']=='ADMIN'){
-     header('location: ../Admin/AdminHome.php');
+   }elseif($_SESSION['TYPE']=='PRINCIPAL'){
+     header('location: ../Principal/PrincipalHome.php');
    }
  } else {
    header('location: ../index.php');
