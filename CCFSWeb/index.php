@@ -2,13 +2,15 @@
 	include('server.php');
 
 	if (isset($_SESSION['LOGIN']) && $_SESSION['LOGIN']){
-	  if($_SESSION['TYPE']=='ADMIN'){
-	    header('location: Admin/AdminHome.php');
+	  if($_SESSION['TYPE']=='PRINCIPAL'){
+	    header('location: Principal/PrincipalHome.php');
 	  }elseif($_SESSION['TYPE']=='REGISTRAR'){
 	    header('location: Registrar/RegistrarHome.php');
-	  }else{
+	  }elseif($_SESSION['TYPE']=='ACCOUNTING'){
 	    header('location: Accounting/AccountingHome.php');
-	  }
+	  }else{
+			header('location: Teacher/TeacherHome.php');
+		}
 	}
 ?>
 <!DOCTYPE html>
@@ -50,8 +52,8 @@
 					<img src="Resources/dist/img/CCFS_Logo.png" alt="CCFS Logo" id="ccfs_logo" class="animated animatedFadeInUp fadeInUp" >
 					<span class="login100-form-title p-b-33">
 						Cypress Christian Foundation School
+						<hr><h5 class="m-0 text-dark">Student Information System</h5>
 					</span>
-
 
 					<div class="wrap-input100 validate-input" data-validate="Username is required">
 						<input class="input100" type="text" name="username" placeholder="Username">
@@ -78,13 +80,13 @@
 
 	<script type="text/javascript">
 	function processForm(e) {
-	    if (e.preventDefault) e.preventDefault();
+		if (e.preventDefault) e.preventDefault();
 
-	    var textinput = document.getElementById("enterButton");
-	    var searchterm = textinput.value;
-	    window.location.assign("index.php" + searchterm)
+	  var textinput = document.getElementById("enterButton");
+	  var searchterm = textinput.value;
+	  window.location.assign("index.php" + searchterm)
 
-	    return false; // Block form
+    return false; // Block form
 	}
 
 	var form = document.getElementById('searchForm');
