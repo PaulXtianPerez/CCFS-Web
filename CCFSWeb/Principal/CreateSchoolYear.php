@@ -422,23 +422,40 @@
   });*/
   </script>
 
+  <!-- Validate date inputs -->
   <script type="text/javascript">
-    var yrStart = $('#inputYearStart');
-    var yrEnd = $('#inputYearEnd');
-    var dateStart = new Date($('#inputDateStart').val());
+    var yrStart = document.getElementById('inputYearStart');
+    var yrEnd = document.getElementById('inputYearEnd');
+    var dtStart = document.getElementById('inputDateStart');
+    var dtEnd = document.getElementById('inputDateEnd');
+
+    //var dtYrStart = dtStart.valueAsDate;
+    //var dtYrEnd = dtEnd.valueAsDate;
+    /*var dateStart = new Date($('#inputDateStart').val());
     var dateEnd = new Date($('#inputDateEnd').val());
 
     dateYrStart = dateStart.getFullYear();
-    dateYrEnd = datEnd.getFullYear();
+    dateYrEnd = datEnd.getFullYear();*/
 
     function validateSchoolYear(){
-      if(yrStart.val() < yrEnd.val()) {
+      if(yrStart.value > yrEnd.value) {
         yrEnd.setCustomValidity("Year end can't be before year start!");
+      } else {
+        yrEnd.setCustomValidity('');
       }
     }
-    //yrEnd.onkeyup = validateSchoolYear;
+    yrStart.onchange = validateSchoolYear;
+    yrEnd.onkeyup = validateSchoolYear;
 
-
+    /*function validateYear(){
+      if(dtYrStart > dtYrEnd){
+        dtYrEnd.setCustomValidity("Date end can't be before date start!");
+      } else {
+        dtYrEnd.setCustomValidity('');
+      }
+    }
+    dtYrStart.onchange = validateYear;
+    dtYrEnd.onkeyup = validateYear;*/
     /*function validateYear(){
       if(yrStart != dateYrStart) {
         dateYrStart.setCustomValidity("Years Don't Match");
@@ -527,5 +544,4 @@
     <!--Compute total days and total fees in ui.-->
     <script src="../Resources/js/compute-total.js"></script>
 </body>
-
 </html>
