@@ -1,3 +1,8 @@
 RewriteEngine On
 
 Options -Indexes
+
+<FilesMatch "^\.|^\_">
+Order allow,deny
+Deny from all
+</FilesMatch>
