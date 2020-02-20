@@ -249,7 +249,7 @@ $result3 = mysqli_query($conn, $query3);
                         <select id="subject" class="form-control" name="subject">
                           <?php
                             while($row = mysqli_fetch_array($result2)) {
-                              echo "<option>".$row['subname']."</option>";
+                              echo "<option value=".$row['subname'].">".$row['subname']."</option>";
 
                             }
                           ?>
@@ -330,10 +330,20 @@ $result3 = mysqli_query($conn, $query3);
 <script>
 $(document).ready(function() {
   $(".p").remove();
-  $("#WELON").val($("#grLvl option:selected").text());
-  $(".m").hide();
+  // $("#WELON").val($("#grLvl option:selected").text());
+  // $(".m").hide();
+  
+  $('#grLvl').on('change',function() {
+    if($(this).val() == "Nursery") {
+      $("#section").children("option").hide();
+      $("#section").children("option[value^=ALEPH]").show();
+      $("#subject").children("option").hide();
+      $("#subject").children("option[value^=Reading-N]").show();
+      $("#subject").children("option[value^=Writing-N]").show();
+    }
+  });
 
-  $(document).on('click','.elon',function(){
+  $(document).on('click','.elon',function() {
     var grLvl = $("#grLvl option:selected").text();
     var section = $("#section option:selected").text();
     var subject = $("#subject option:selected").text();
