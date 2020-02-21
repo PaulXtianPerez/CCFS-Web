@@ -361,7 +361,7 @@
     </section>
   </div>
 
-  <!--Submit form.-->
+  <!-- Submit form. -->
   <script type="text/javascript">
   function formSubmit(){
     var yrStart = document.getElementById("inputYearStart").value;
@@ -396,7 +396,10 @@
     });
     return false;
   }
-/*
+  </script>
+
+  <!-- Show/hide no. of sch days. -->
+  <script type="text/javascript">
   $('document').ready( function ( ) {
     $( '.years' ).closest( '.form-group' ).hide();
     $( '[name=dateStart]' ).on( 'blur', function ( ) {
@@ -419,18 +422,55 @@
         $( '.year-' + $d ).closest( '.form-group' ).show();
       }
     }
-  });*/
+  });
+  </script>
+
+  <script src="moment.js"></script>
+  <script src="moment.min.js"></script>
+  <script>
+  var d2 = document.getElementById('inputDateEnd');
+  var date1 = document.getElementById('inputDateStart').value;
+var date2 = document.getElementById('inputDateEnd').value;
+var time1 = moment(date1).format('MM-DD-YYYY');
+var time2 = moment(date2).format('MM-DD-YYYY');
+function validate(){
+  if(time2 > time1){
+  	d2.setCustomValidity("Date end can't be before date start!");
+  }else{
+  	d2.setCustomValidity("");
+  }
+}
+//yrStart.onchange = validateSchoolYear;
+d2.onchange = validate;
+d2.onkeyup = validate;
+  /*function compare() {
+    var moment = require('moment');
+
+var firstDate = moment($("#inputDateStart").val(), "MM-DD-YYYY");
+var secondDate = moment($("#inputDateEnd").val(), "MM-DD-YYYY");
+
+console.log(firstDate.inspect(), secondDate.inspect());
+
+if (firstDate.isValid() && secondDate.isValid()) {
+  // you need a validation before using diff function of momentjs
+  //var diff = firstDate.isAfter(secondDate);
+  //console.log(diff);
+  if(firstDate.isAfter(secondDate, 'days')){
+    alert("hhh");
+  }
+  }
+}*/
   </script>
 
   <!-- Validate date inputs -->
   <script type="text/javascript">
     var yrStart = document.getElementById('inputYearStart');
     var yrEnd = document.getElementById('inputYearEnd');
-    var dtStart = document.getElementById('inputDateStart');
-    var dtEnd = document.getElementById('inputDateEnd');
+    var dtStart = document.getElementById('inputDateStart').value;
+    var dtEnd = document.getElementById('inputDateEnd').value;
 
-    //var dtYrStart = dtStart.valueAsDate;
-    //var dtYrEnd = dtEnd.valueAsDate;
+    var dtYrStart = new Date(dtStart);
+    var dtYrEnd = new Date(dtEnd);
     /*var dateStart = new Date($('#inputDateStart').val());
     var dateEnd = new Date($('#inputDateEnd').val());
 
@@ -445,17 +485,18 @@
       }
     }
     yrStart.onchange = validateSchoolYear;
+    yrEnd.onchange = validateSchoolYear;
     yrEnd.onkeyup = validateSchoolYear;
 
-    /*function validateYear(){
-      if(dtYrStart > dtYrEnd){
+    function validateYear(){
+      if(dtYrStart.getFullYear() === dtYrEnd.getFullYear()){
         dtYrEnd.setCustomValidity("Date end can't be before date start!");
       } else {
         dtYrEnd.setCustomValidity('');
       }
     }
     dtYrStart.onchange = validateYear;
-    dtYrEnd.onkeyup = validateYear;*/
+    dtYrEnd.onkeyup = validateYear;
     /*function validateYear(){
       if(yrStart != dateYrStart) {
         dateYrStart.setCustomValidity("Years Don't Match");
