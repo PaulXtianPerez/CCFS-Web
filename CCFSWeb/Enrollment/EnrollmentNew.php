@@ -148,7 +148,7 @@
                     </div>
                     <div class="form-group col-md-3">
                       <label>Grade Level <span class="reqAsterisk">*</span></label>
-                      <select class="form-control" name="gradeLevel">
+                      <select class="form-control" id="kl" name="gradeLevel">
                         <option>NURSERY</option>
                         <option>PRE-KINDER</option>
                         <option>KINDER</option>
@@ -422,6 +422,53 @@
   <!--Search continuing student-->
   <script>
     $(document).ready(function () {
+      $('[name=gradeLevel]').on('change',function() {
+        if($(this).val()=='NURSERY') {
+          $('[name=sename]').val('ALEPH');
+          $('[name=sename]').children("option").hide();
+          $('[name=sename]').val('ALEPH');
+        }else if($(this).val()=='PRE-KINDER') {
+          $('[name=sename]').children("option").hide();
+          $('[name=sename]').children("option").show();
+          $('[name=sename]').val('ALPHA');
+          $('[name=sename]').children("option").hide();
+        }else if($(this).val()=='KINDER') {
+          $('[name=sename]').val('BETA');
+          $('[name=sename]').children("option").hide();
+          $('[name=sename]').val('BETA');
+          
+        }else if($(this).val()=='GRADE 1') {
+          $('[name=sename]').val('GAMMA');
+          $('[name=sename]').children("option").hide();
+          $('[name=sename]').val('GAMMA');
+          
+        }else if($(this).val()=='GRADE 2') {
+          $('[name=sename]').val('DELTA');
+          $('[name=sename]').children("option").hide();
+          $('[name=sename]').val('DELTA');
+          
+        }else if($(this).val()=='GRADE 3') {
+          $('[name=sename]').val('EPSILON');
+          $('[name=sename]').children("option").hide();
+          $('[name=sename]').val('EPSILON');
+          
+        }else if($(this).val()=='GRADE 4') {
+          $('[name=sename]').val('ZETA');
+          $('[name=sename]').children("option").hide();
+          $('[name=sename]').val('ZETA');
+          
+        }else if($(this).val()=='GRADE 5') {
+          $('[name=sename]').val('ETA');
+          $('[name=sename]').children("option").hide();
+          $('[name=sename]').val('ETA');
+          
+        }else if($(this).val()=='GRADE 6') {
+          $('[name=sename]').val('THETA');
+          $('[name=sename]').children("option").hide();
+          $('[name=sename]').val('THETA');
+          
+        }
+      });
       $('[name=searcher]').on('click', function () {
         var search = $('[name=search]').val();
         $.ajax({
