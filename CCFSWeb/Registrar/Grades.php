@@ -332,14 +332,114 @@ $(document).ready(function() {
   $(".p").remove();
   // $("#WELON").val($("#grLvl option:selected").text());
   // $(".m").hide();
-  
+  if($('#grLvl').val() == "Nursery") {
+    $("#section").children("option").hide();
+    $("#section").val('ALEPH');
+    $("#subject").children("option").hide();
+    $("#subject").val('Reading-N');
+    $("#subject").children("option[value^=Reading-N]").show();
+    $("#subject").children("option[value^=Writing-N]").show();
+  }
   $('#grLvl').on('change',function() {
     if($(this).val() == "Nursery") {
       $("#section").children("option").hide();
-      $("#section").children("option[value^=ALEPH]").show();
+      $("#section").val('ALEPH');
       $("#subject").children("option").hide();
+      $("#subject").val('Reading-N');
       $("#subject").children("option[value^=Reading-N]").show();
       $("#subject").children("option[value^=Writing-N]").show();
+    }else if($(this).val() == "Pre-Kinder") {
+      $("#section").val('ALPHA');
+      $("#subject").children("option").hide();
+      $("#subject").val('Reading-Pk');
+      $("#subject").children("option[value^=Reading-Pk]").show();
+      $("#subject").children("option[value^=Writing-Pk]").show();
+    }else if($(this).val() == "Kinder") {
+      $("#section").val('BETA');
+      $("#subject").children("option").hide();
+      $("#subject").val('Reading-K');
+      $("#subject").children("option[value^=Reading-K]").show();
+      $("#subject").children("option[value^=Writing-K]").show();
+      $("#subject").children("option[value^=Math-K]").show();
+      $("#subject").children("option[value^=Word-K]").show();
+    }else if($(this).val() == "Grade 1") {
+      $("#section").val('GAMMA');
+      $("#subject").children("option").hide();
+      $("#subject").val('Reading-1');
+      $("#subject").children("option[value^=Reading-1]").show();
+      $("#subject").children("option[value^=Writing-1]").show();
+      $("#subject").children("option[value^=Math-1]").show();
+      $("#subject").children("option[value^=Word-1]").show();
+      $("#subject").children("option[value^=Mape-1]").show();
+      $("#subject").children("option[value^=Computer-1]").show();
+      $("#subject").children("option[value^=Filipino-1]").show();
+      $("#subject").children("option[value^=English-1]").show();
+      $("#subject").children("option[value^=Science-1]").show();
+    }else if($(this).val() == "Grade 2") {
+      $("#section").val('DELTA');
+      $("#subject").children("option").hide();
+      $("#subject").val('Reading-2');
+      $("#subject").children("option[value^=Reading-2]").show();
+      $("#subject").children("option[value^=Writing-2]").show();
+      $("#subject").children("option[value^=Math-2]").show();
+      $("#subject").children("option[value^=Word-2]").show();
+      $("#subject").children("option[value^=Mape-2]").show();
+      $("#subject").children("option[value^=Computer-2]").show();
+      $("#subject").children("option[value^=Filipino-2]").show();
+      $("#subject").children("option[value^=English-2]").show();
+      $("#subject").children("option[value^=Science-2]").show();
+    }else if($(this).val() == "Grade 3") {
+      $("#section").val('EPSILON');
+      $("#subject").children("option").hide();
+      $("#subject").val('Reading-3');
+      $("#subject").children("option[value^=Reading-3]").show();
+      $("#subject").children("option[value^=Writing-3]").show();
+      $("#subject").children("option[value^=Math-3]").show();
+      $("#subject").children("option[value^=Word-3]").show();
+      $("#subject").children("option[value^=Mape-3]").show();
+      $("#subject").children("option[value^=Computer-3]").show();
+      $("#subject").children("option[value^=Filipino-3]").show();
+      $("#subject").children("option[value^=English-3]").show();
+      $("#subject").children("option[value^=Science-3]").show();
+    }else if($(this).val() == "Grade 4") {
+      $("#section").val('ZETA');
+      $("#subject").children("option").hide();
+      $("#subject").val('Reading-4');
+      $("#subject").children("option[value^=Reading-4]").show();
+      $("#subject").children("option[value^=Writing-4]").show();
+      $("#subject").children("option[value^=Math-4]").show();
+      $("#subject").children("option[value^=Word-4]").show();
+      $("#subject").children("option[value^=Mape-4]").show();
+      $("#subject").children("option[value^=Computer-4]").show();
+      $("#subject").children("option[value^=Filipino-4]").show();
+      $("#subject").children("option[value^=English-4]").show();
+      $("#subject").children("option[value^=Science-4]").show();
+    }else if($(this).val() == "Grade 5") {
+      $("#section").val('ETA');
+      $("#subject").children("option").hide();
+      $("#subject").val('Reading-5');
+      $("#subject").children("option[value^=Reading-5]").show();
+      $("#subject").children("option[value^=Writing-5]").show();
+      $("#subject").children("option[value^=Math-5]").show();
+      $("#subject").children("option[value^=Word-5]").show();
+      $("#subject").children("option[value^=Mape-5]").show();
+      $("#subject").children("option[value^=Computer-5]").show();
+      $("#subject").children("option[value^=Filipino-5]").show();
+      $("#subject").children("option[value^=English-5]").show();
+      $("#subject").children("option[value^=Science-5]").show();
+    }else if($(this).val() == "Grade 6") {
+      $("#section").val('THETA');
+      $("#subject").children("option").hide();
+      $("#subject").val('Reading-6');
+      $("#subject").children("option[value^=Reading-6]").show();
+      $("#subject").children("option[value^=Writing-6]").show();
+      $("#subject").children("option[value^=Math-6]").show();
+      $("#subject").children("option[value^=Word-6]").show();
+      $("#subject").children("option[value^=Mape-6]").show();
+      $("#subject").children("option[value^=Computer-6]").show();
+      $("#subject").children("option[value^=Filipino-6]").show();
+      $("#subject").children("option[value^=English-6]").show();
+      $("#subject").children("option[value^=Science-6]").show();
     }
   });
 
