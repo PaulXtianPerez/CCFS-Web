@@ -77,7 +77,7 @@
     <!-- Brand Logo -->
     <a href="AdminHome.php" class="brand-link">
       <img src="../Resources/dist/img/CCFS_logo.png" alt="CCFS Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">CCFS</span>
+      <span class="brand-text font-weight-light">CCFS - Teacher</span>
     </a>
 
     <!-- Sidebar -->
@@ -116,7 +116,7 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#KinderChecklist" id="kinderChecklist" class="nav-link">
+            <a href="#PreschoolChecklist" id="preschChecklist" class="nav-link">
               <i class="nav-icon fa fa-check-square"></i>
               <p>Preschool Checklist</p>
             </a>

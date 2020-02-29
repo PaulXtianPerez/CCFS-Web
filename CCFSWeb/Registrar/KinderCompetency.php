@@ -69,16 +69,20 @@ include("Connection.php");
                       <input class="form-control search btn btn-primary" type="submit" name="searcher" value="Search"/>
                     </div>
                   </form>
+                  <div class="row">
+                    <div class="col-4">
+                      <h3 class="card-title">ID Number:</h3>
+                    </div>
+                    <div class="col-4">
+                      <p name="studentIDno"></p>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h3 class="card-title">ID: <p name="studentIDno"></p></h3>
-                </div>
-              </div>
-              <!-- /.card-header -->
+              </div><!-- /.card-header -->
               <div>
                 <button type="button" name="competency" id="competency" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-info view_data" style="float:right; margin-top:5px; margin-right:20px;">Edit Domains and Descriptions</button>
               </div>
-              <b><p id="success" style="text-align:center; font-size:15px;"></p></b>
+
               <div id="competencyData" class="card-body">
                 <table id="competencyTable" class="table table-bordered table-hover">
                    <thead style="text-align:center;">

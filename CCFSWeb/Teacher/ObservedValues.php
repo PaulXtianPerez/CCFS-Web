@@ -69,16 +69,18 @@ include("Connection.php");
                       <input class="form-control search btn btn-primary" type="submit" name="searcher" value="Search"/>
                     </div>
                   </form>
+                  <div class="row">
+                    <div class="col-4">
+                      <h3 class="card-title">ID Number:</h3>
+                    </div>
+                    <div class="col-4">
+                      <p name="studentIDno"></p>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h3 class="card-title">ID: <p name="studentIDno"></p></h3>
-                </div>
-              </div>
-              <!-- /.card-header -->
-              <!--<div>
-                <button type="button" name="obsval" id="obsval" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-info view_data" style="float:right; margin-top:5px; margin-right:20px;">Edit Core Values and Descriptions</button>
-              </div>-->
+              </div><!-- /.card-header -->
               <b><p id="success" style="text-align:center; font-size:15px;"></p></b>
+
               <div id="obsValData" class="card-body">
                 <table id="obsValTable" class="table table-bordered table-hover">
                   <thead style="text-align:center;">
@@ -111,7 +113,7 @@ include("Connection.php");
   </div>
 </div><!-- ./wrapper -->
 
-<!-- Modal for editing observed values. 
+<!-- Modal for editing observed values.
 <div id="add_data_Modal" class="modal fade" data-backdrop="static">
   <div class="modal-dialog modal-dialog-scrollable modal-xl">
     <div class="modal-content">

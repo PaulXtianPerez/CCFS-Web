@@ -304,7 +304,11 @@ $result3 = mysqli_query($conn, $query3);
                     </tbody>
                     </tfoot>
                   </table>
-                  <input type='submit' class='m btn btn-success' value='Save'>
+                  <div class="row">
+                    <div class="col-1">
+                    <input type='submit' class='m btn btn-success' value='Save'>
+                  </div>
+                </div>
                   </form>
                 </div>
                 <!-- /.card-body -->
@@ -318,13 +322,13 @@ $result3 = mysqli_query($conn, $query3);
   </div><!-- ./wrapper -->
 
 <!-- Initialize DataTables plugin -->
-<!-- <script type="text/javascript">
-
-// $("#gradesTable").DataTable({
-//   "pagingType": "full_numbers", //'First', 'Previous', 'Next' and 'Last' buttons plus page numbers
-//   "destroy": true //for reinitialization
-// });
-</script> -->
+ <script type="text/javascript">
+  $("#gradesTable").DataTable({
+     "paging": false, //remove pagination
+     "bFilter": false, //remove default search/filter
+     "destroy": true //for reinitialization
+   });
+</script>
 
 <!--Tabledit plugin -->
 <script>
@@ -528,7 +532,6 @@ $(document).on("click", ":submit", 'form',function(e){
       console.log(data);
     }
   });
-
 });
 // $(function () {
 
@@ -551,23 +554,6 @@ $(document).on("click", ":submit", 'form',function(e){
   // $(document).on('click','.m',function() {
   //   var student_id = $(this).attr("id");
   // });
-
-    // $('#gradesTable').Tabledit({
-    //  url:'GradesAction.php',
-    //  deleteButton: false,
-    //  hideIdentifier: true,
-    //  buttons: {
-    //     edit: {
-    //         class: 'btn btn-info btn-xs edit_data',
-    //         html: '<span data-toggle="tooltip" title="Edit"><i class="fas fa-edit" aria-hidden="true"></i></span>',
-    //         action: 'edit'
-    //     }
-    // },
-    //  columns:{
-    //    identifier:[1, "gradeid"], //gradeid or subjID?
-    //    editable:[[3, 'firstquartergrade'], [4, 'secondquartergrade'], [5, 'thirdquartergrade'], [6, 'fourthquartergrade']]
-    //  },
-    // });
 
 });
 // if($("#grLvl option:selected").text() == 'Nursery') {

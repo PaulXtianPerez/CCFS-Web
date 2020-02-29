@@ -361,6 +361,7 @@
     </section>
   </div>
 
+
   <!-- Submit form. -->
   <script type="text/javascript">
   function formSubmit(){
@@ -410,39 +411,71 @@
       dateStartEndChange();
     });
 
-    function dateStartEndChange ( ) {
-      var date_start = $( '[name=dateStart]' ).val( );
-      var date_end = $( '[name=dateEnd]' ).val( );
-      var date_start_month = new Date( date_start ).getMonth( ) + 1;
-      var date_end_month = new Date( date_end ).getMonth( ) + 1;
+    var monthNames = [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" ];
+    function dateStartEndChange() {
+      /*var dateStart = moment($('[name=dateStart]').val(), "MM-DD-YYYY");
+      var dateEnd = moment($('[name=dateEnd]').val(), "MM-DD-YYYY");
+      var interim = dateStart.clone();
+      var timeValues = [];
 
       $( '.years' ).closest( '.form-group' ).hide();
 
-      for ( $d = date_start_month; $d <= date_end_month; $d++ ) {
-        $( '.year-' + $d ).closest( '.form-group' ).show();
+      if (dateStart.isValid() && dateEnd.isValid()) {
+        while (dateEnd > interim || interim.format('M') === dateEnd.format('M')) {
+          timeValues.push(interim.format('MM'));
+          interim.add(1,'month');
+          $( '.year-' + timeValues ).closest( '.form-group' ).show();
+        }
+      }*/
+      var arr = [];
+      var dateStart = $('[name=dateStart]').val();
+      var dateEnd = $('[name=dateEnd]').val();
+      //var date_start_month = new Date(date_start).getMonth() + 1;
+      //var date_end_month = new Date(date_end).getMonth() + 1;
+      //var start = new Date(Date.parse(dateStart));
+      //var end = new Date(Date.parse(dateEnd));
+      var datFrom = new Date('1 ' + dateStart);
+      var datTo = new Date('1 ' + dateEnd);
+      var fromYear =  datFrom.getFullYear();
+      var toYear =  datTo.getFullYear();
+      var diffYear = (12 * (toYear - fromYear)) + datTo.getMonth();
+
+      $('.years').closest('.form-group').hide();
+
+      for ($d = datFrom.getMonth(); $d <= diffYear; $d++) {
+        arr.push(monthNames[$d%12]);
+        //$('.year-' + $d).closest('.form-group').show();
       }
+      return arr;
+      $('.year-' + monthNames).closest('.form-group').show();
     }
   });
   </script>
 
-  <script src="moment.js"></script>
-  <script src="moment.min.js"></script>
+
   <script>
-  var d2 = document.getElementById('inputDateEnd');
-  var date1 = document.getElementById('inputDateStart').value;
-var date2 = document.getElementById('inputDateEnd').value;
-var time1 = moment(date1).format('MM-DD-YYYY');
-var time2 = moment(date2).format('MM-DD-YYYY');
-function validate(){
-  if(time2 > time1){
-  	d2.setCustomValidity("Date end can't be before date start!");
-  }else{
-  	d2.setCustomValidity("");
+  var d1 = document.getElementById('dateStart');
+  var d2 = document.getElementById('dateEnd');
+  var startDate = moment($('[name=dateStart]').val());
+  var endDate = moment($('[name=dateEnd]').val());
+
+  function validate(){
+    if (endDate.isBefore(startDate)) {
+      d2.setCustomValidity("Date end can't be before date start!");
+    }else{
+    	d2.setCustomValidity("");
+    }
+
+    /*if(time2 > time1){
+    	d2.setCustomValidity("Date end can't be before date start!");
+    }else{
+    	d2.setCustomValidity("");
+    }*/
   }
-}
-//yrStart.onchange = validateSchoolYear;
-d2.onchange = validate;
-d2.onkeyup = validate;
+  //yrStart.onchange = validateSchoolYear;
+  d1.onchange = validate;
+  d2.onchange = validate;
+  d2.onkeyup = validate;
   /*function compare() {
     var moment = require('moment');
 
@@ -466,16 +499,17 @@ if (firstDate.isValid() && secondDate.isValid()) {
   <script type="text/javascript">
     var yrStart = document.getElementById('inputYearStart');
     var yrEnd = document.getElementById('inputYearEnd');
-    var dtStart = document.getElementById('inputDateStart').value;
+    var dtSt = document.getElementById('inputDateStart');
+    var dtEn = document.getElementById('inputDateEnd');
+    /*var dtStart = document.getElementById('inputDateStart').value;
     var dtEnd = document.getElementById('inputDateEnd').value;
 
     var dtYrStart = new Date(dtStart);
-    var dtYrEnd = new Date(dtEnd);
-    /*var dateStart = new Date($('#inputDateStart').val());
-    var dateEnd = new Date($('#inputDateEnd').val());
-
-    dateYrStart = dateStart.getFullYear();
-    dateYrEnd = datEnd.getFullYear();*/
+    var dtYrEnd = new Date(dtEnd);*/
+    var date_start = $( '[name=dateStart]' ).val( );
+    var date_end = $( '[name=dateEnd]' ).val( );
+    var date_start_year = new Date( date_start ).getYear();
+    var date_end_year = new Date( date_end ).getYear();
 
     function validateSchoolYear(){
       if(yrStart.value > yrEnd.value) {
@@ -489,14 +523,23 @@ if (firstDate.isValid() && secondDate.isValid()) {
     yrEnd.onkeyup = validateSchoolYear;
 
     function validateYear(){
-      if(dtYrStart.getFullYear() === dtYrEnd.getFullYear()){
-        dtYrEnd.setCustomValidity("Date end can't be before date start!");
+      if(date_start_year != yrStart.value){
+        dtSt.setCustomValidity("Years don't match!");
+      } else if(date_end_year != yrEnd.value) {
+        dtEn.setCustomValidity("Years don't match!");
       } else {
-        dtYrEnd.setCustomValidity('');
+        dtSt.setCustomValidity('');
+        dtEn.setCustomValidity('');
       }
     }
-    dtYrStart.onchange = validateYear;
-    dtYrEnd.onkeyup = validateYear;
+    //yrStart.onchange = validateYear;
+    //yrStart.onkeyup = validateYear;
+    yrEnd.onchange = validateYear;
+    yrEnd.onkeyup = validateYear;
+    //dtSt.onchange = validateYear;
+    //dtSt.onkeyup = validateYear;
+    dtEn.onchange = validateYear;
+    dtEn.onkeyup = validateYear;
     /*function validateYear(){
       if(yrStart != dateYrStart) {
         dateYrStart.setCustomValidity("Years Don't Match");
@@ -566,6 +609,8 @@ if (firstDate.isValid() && secondDate.isValid()) {
 
   <!--===============================================================================================-->
   <script src="../Resources/vendor/jquery/jquery-3.2.1.min.js"></script>
+  <script src="moment.js"></script>
+  <script src="moment.min.js"></script>
   <!--Bootbox library for dialog box.-->
     <script src="../Resources/plugins/bootstrap/js/bootbox/bootbox.min.js"></script>
   <!--===============================================================================================-->

@@ -33,6 +33,7 @@ include("Connection.php");
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
+  <link href="../Resources/plugins/jquery.growl/stylesheets/jquery.growl.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="../Resources/bootstrap-4.4.1/css/bootstrap.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -69,16 +70,18 @@ include("Connection.php");
                       <input class="form-control search btn btn-primary" type="submit" name="searcher" value="Search"/>
                     </div>
                   </form>
+                  <div class="row">
+                    <div class="col-4">
+                      <h3 class="card-title">ID Number:</h3>
+                    </div>
+                    <div class="col-4">
+                      <p name="studentIDno"></p>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h3 class="card-title">ID: <p name="studentIDno"></p></h3>
-                </div>
-              </div>
-              <!-- /.card-header -->
-              <!--<div>
-                <button type="button" name="competency" id="competency" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-info view_data" style="float:right; margin-top:5px; margin-right:20px;">Edit Domains and Descriptions</button>
-              </div>-->
+              </div><!-- /.card-header -->
               <b><p id="success" style="text-align:center; font-size:15px;"></p></b>
+
               <div id="competencyData" class="card-body">
                 <table id="competencyTable" class="table table-bordered table-hover">
                    <thead style="text-align:center;">
@@ -225,7 +228,8 @@ $(document).ready(function(){
       data:{id:id, text:text, column_name:column_name},
       dataType:"text",
       success:function(data){
-        $("#success").html(data);
+        //$("#success").html(data);
+        $.growl({ message: data });
       }
     });
   }
@@ -258,6 +262,8 @@ $(document).ready(function(){
 <script src="../Resources/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!--Bootbox library for dialog box.-->
 <script src="../Resources/plugins/bootstrap/js/bootbox/bootbox.min.js"></script>
+<!-- jquery growl -->
+<script src="../Resources/plugins/jquery.growl/javascripts/jquery.growl.js" type="text/javascript"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)

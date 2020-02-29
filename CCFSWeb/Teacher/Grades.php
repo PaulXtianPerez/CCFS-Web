@@ -249,7 +249,7 @@ $result3 = mysqli_query($conn, $query3);
                         <select id="subject" class="form-control" name="subject">
                           <?php
                             while($row = mysqli_fetch_array($result2)) {
-                              echo "<option>".$row['subname']."</option>";
+                              echo "<option value=".$row['subname'].">".$row['subname']."</option>";
 
                             }
                           ?>
@@ -304,7 +304,11 @@ $result3 = mysqli_query($conn, $query3);
                     </tbody>
                     </tfoot>
                   </table>
-                  <input type='submit' class='m btn btn-success' value='Save'>
+                  <div class="row">
+                    <div class="col-1">
+                    <input type='submit' class='m btn btn-success' value='Save'>
+                  </div>
+                </div>
                   </form>
                 </div>
                 <!-- /.card-body -->
@@ -318,22 +322,132 @@ $result3 = mysqli_query($conn, $query3);
   </div><!-- ./wrapper -->
 
 <!-- Initialize DataTables plugin -->
-<!-- <script type="text/javascript">
-
-// $("#gradesTable").DataTable({
-//   "pagingType": "full_numbers", //'First', 'Previous', 'Next' and 'Last' buttons plus page numbers
-//   "destroy": true //for reinitialization
-// });
-</script> -->
+ <script type="text/javascript">
+  $("#gradesTable").DataTable({
+     "paging": false, //remove pagination
+     "bFilter": false, //remove default search/filter
+     "destroy": true //for reinitialization
+   });
+</script>
 
 <!--Tabledit plugin -->
 <script>
 $(document).ready(function() {
   $(".p").remove();
-  $("#WELON").val($("#grLvl option:selected").text());
-  $(".m").hide();
+  // $("#WELON").val($("#grLvl option:selected").text());
+  // $(".m").hide();
+  if($('#grLvl').val() == "Nursery") {
+    $("#section").children("option").hide();
+    $("#section").val('ALEPH');
+    $("#subject").children("option").hide();
+    $("#subject").val('Reading-N');
+    $("#subject").children("option[value^=Reading-N]").show();
+    $("#subject").children("option[value^=Writing-N]").show();
+  }
+  $('#grLvl').on('change',function() {
+    if($(this).val() == "Nursery") {
+      $("#section").children("option").hide();
+      $("#section").val('ALEPH');
+      $("#subject").children("option").hide();
+      $("#subject").val('Reading-N');
+      $("#subject").children("option[value^=Reading-N]").show();
+      $("#subject").children("option[value^=Writing-N]").show();
+    }else if($(this).val() == "Pre-Kinder") {
+      $("#section").val('ALPHA');
+      $("#subject").children("option").hide();
+      $("#subject").val('Reading-Pk');
+      $("#subject").children("option[value^=Reading-Pk]").show();
+      $("#subject").children("option[value^=Writing-Pk]").show();
+    }else if($(this).val() == "Kinder") {
+      $("#section").val('BETA');
+      $("#subject").children("option").hide();
+      $("#subject").val('Reading-K');
+      $("#subject").children("option[value^=Reading-K]").show();
+      $("#subject").children("option[value^=Writing-K]").show();
+      $("#subject").children("option[value^=Math-K]").show();
+      $("#subject").children("option[value^=Word-K]").show();
+    }else if($(this).val() == "Grade 1") {
+      $("#section").val('GAMMA');
+      $("#subject").children("option").hide();
+      $("#subject").val('Reading-1');
+      $("#subject").children("option[value^=Reading-1]").show();
+      $("#subject").children("option[value^=Writing-1]").show();
+      $("#subject").children("option[value^=Math-1]").show();
+      $("#subject").children("option[value^=Word-1]").show();
+      $("#subject").children("option[value^=Mape-1]").show();
+      $("#subject").children("option[value^=Computer-1]").show();
+      $("#subject").children("option[value^=Filipino-1]").show();
+      $("#subject").children("option[value^=English-1]").show();
+      $("#subject").children("option[value^=Science-1]").show();
+    }else if($(this).val() == "Grade 2") {
+      $("#section").val('DELTA');
+      $("#subject").children("option").hide();
+      $("#subject").val('Reading-2');
+      $("#subject").children("option[value^=Reading-2]").show();
+      $("#subject").children("option[value^=Writing-2]").show();
+      $("#subject").children("option[value^=Math-2]").show();
+      $("#subject").children("option[value^=Word-2]").show();
+      $("#subject").children("option[value^=Mape-2]").show();
+      $("#subject").children("option[value^=Computer-2]").show();
+      $("#subject").children("option[value^=Filipino-2]").show();
+      $("#subject").children("option[value^=English-2]").show();
+      $("#subject").children("option[value^=Science-2]").show();
+    }else if($(this).val() == "Grade 3") {
+      $("#section").val('EPSILON');
+      $("#subject").children("option").hide();
+      $("#subject").val('Reading-3');
+      $("#subject").children("option[value^=Reading-3]").show();
+      $("#subject").children("option[value^=Writing-3]").show();
+      $("#subject").children("option[value^=Math-3]").show();
+      $("#subject").children("option[value^=Word-3]").show();
+      $("#subject").children("option[value^=Mape-3]").show();
+      $("#subject").children("option[value^=Computer-3]").show();
+      $("#subject").children("option[value^=Filipino-3]").show();
+      $("#subject").children("option[value^=English-3]").show();
+      $("#subject").children("option[value^=Science-3]").show();
+    }else if($(this).val() == "Grade 4") {
+      $("#section").val('ZETA');
+      $("#subject").children("option").hide();
+      $("#subject").val('Reading-4');
+      $("#subject").children("option[value^=Reading-4]").show();
+      $("#subject").children("option[value^=Writing-4]").show();
+      $("#subject").children("option[value^=Math-4]").show();
+      $("#subject").children("option[value^=Word-4]").show();
+      $("#subject").children("option[value^=Mape-4]").show();
+      $("#subject").children("option[value^=Computer-4]").show();
+      $("#subject").children("option[value^=Filipino-4]").show();
+      $("#subject").children("option[value^=English-4]").show();
+      $("#subject").children("option[value^=Science-4]").show();
+    }else if($(this).val() == "Grade 5") {
+      $("#section").val('ETA');
+      $("#subject").children("option").hide();
+      $("#subject").val('Reading-5');
+      $("#subject").children("option[value^=Reading-5]").show();
+      $("#subject").children("option[value^=Writing-5]").show();
+      $("#subject").children("option[value^=Math-5]").show();
+      $("#subject").children("option[value^=Word-5]").show();
+      $("#subject").children("option[value^=Mape-5]").show();
+      $("#subject").children("option[value^=Computer-5]").show();
+      $("#subject").children("option[value^=Filipino-5]").show();
+      $("#subject").children("option[value^=English-5]").show();
+      $("#subject").children("option[value^=Science-5]").show();
+    }else if($(this).val() == "Grade 6") {
+      $("#section").val('THETA');
+      $("#subject").children("option").hide();
+      $("#subject").val('Reading-6');
+      $("#subject").children("option[value^=Reading-6]").show();
+      $("#subject").children("option[value^=Writing-6]").show();
+      $("#subject").children("option[value^=Math-6]").show();
+      $("#subject").children("option[value^=Word-6]").show();
+      $("#subject").children("option[value^=Mape-6]").show();
+      $("#subject").children("option[value^=Computer-6]").show();
+      $("#subject").children("option[value^=Filipino-6]").show();
+      $("#subject").children("option[value^=English-6]").show();
+      $("#subject").children("option[value^=Science-6]").show();
+    }
+  });
 
-  $(document).on('click','.elon',function(){
+  $(document).on('click','.elon',function() {
     var grLvl = $("#grLvl option:selected").text();
     var section = $("#section option:selected").text();
     var subject = $("#subject option:selected").text();
@@ -418,7 +532,6 @@ $(document).on("click", ":submit", 'form',function(e){
       console.log(data);
     }
   });
-
 });
 // $(function () {
 
@@ -441,23 +554,6 @@ $(document).on("click", ":submit", 'form',function(e){
   // $(document).on('click','.m',function() {
   //   var student_id = $(this).attr("id");
   // });
-
-    // $('#gradesTable').Tabledit({
-    //  url:'GradesAction.php',
-    //  deleteButton: false,
-    //  hideIdentifier: true,
-    //  buttons: {
-    //     edit: {
-    //         class: 'btn btn-info btn-xs edit_data',
-    //         html: '<span data-toggle="tooltip" title="Edit"><i class="fas fa-edit" aria-hidden="true"></i></span>',
-    //         action: 'edit'
-    //     }
-    // },
-    //  columns:{
-    //    identifier:[1, "gradeid"], //gradeid or subjID?
-    //    editable:[[3, 'firstquartergrade'], [4, 'secondquartergrade'], [5, 'thirdquartergrade'], [6, 'fourthquartergrade']]
-    //  },
-    // });
 
 });
 // if($("#grLvl option:selected").text() == 'Nursery') {

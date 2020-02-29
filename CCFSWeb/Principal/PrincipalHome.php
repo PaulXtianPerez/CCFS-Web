@@ -90,7 +90,7 @@
     <!-- Brand Logo -->
     <a href="PrincipalHome.php" class="brand-link">
       <img src="../Resources/dist/img/CCFS_logo.png" alt="CCFS Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">CCFS</span>
+      <span class="brand-text font-weight-light">CCFS - Principal</span>
     </a>
 
     <!-- Sidebar -->
