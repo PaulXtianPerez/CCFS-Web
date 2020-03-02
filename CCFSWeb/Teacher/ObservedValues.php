@@ -33,6 +33,7 @@ include("Connection.php");
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
+  <link rel="stylesheet" type="text/css" href="../Resources/plugins/jquery.toast/jquery.toast.min.css"/>
   <link rel="stylesheet" href="../Resources/bootstrap-4.4.1/css/bootstrap.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -79,7 +80,6 @@ include("Connection.php");
                   </div>
                 </div>
               </div><!-- /.card-header -->
-              <b><p id="success" style="text-align:center; font-size:15px;"></p></b>
 
               <div id="obsValData" class="card-body">
                 <table id="obsValTable" class="table table-bordered table-hover">
@@ -113,56 +113,6 @@ include("Connection.php");
   </div>
 </div><!-- ./wrapper -->
 
-<!-- Modal for editing observed values.
-<div id="add_data_Modal" class="modal fade" data-backdrop="static">
-  <div class="modal-dialog modal-dialog-scrollable modal-xl">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Edit Core Values and Descriptions</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      <div class="modal-body">
-        <div>
-          <form id="insert_form" method="post">
-            <div>
-              <div class="row form-group col-6">
-                <label>Core Value</label>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" id="domain" name="domain" list="domains" maxlength="50" required/>
-                    <?php $query1 = "SELECT corevalues FROM `checklist` WHERE (checkdesc IS NULL AND competencydesc IS NULL) GROUP BY corevalues";
-                    $result = $conn->query($query1) or die($conn->error.__LINE__);
-                    ?>
-                  <datalist id="domains">
-                    <?php while ($row1 = mysqli_fetch_array($result)):;?>
-                    <option name = "competencyvalues"><?php echo $row1[0];?></option>
-                    <?php endwhile;?>
-                  </datalist>
-                </div>
-              </div>
-              <div class="row">
-                <div class="form-group col-11">
-                  <label>Description <i>(max 250 characters)</i></label>
-                  <div class="input-group mb-3">
-                    <textarea class="form-control" id="description" name="description" rows="3" maxlength="250" required></textarea>
-                  </div>
-                </div>
-                <div class="col-1">
-                  <input type="submit" name="submit" value="Add" min="0" class="btn btn-success"/>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-        <div id="checklistData">
-
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>-->
 
 <!-- Search student-->
 <script type="text/javascript">
@@ -227,26 +177,38 @@ $(document).ready(function(){
       data:{id:id, text:text, column_name:column_name},
       dataType:"text",
       success:function(data){
-        $("#success").html(data);
+        $.toast({
+          text: data, // Text that is to be shown in the toast
+          showHideTransition: 'plain', // fade, slide or plain
+          allowToastClose: true, // Boolean value true or false
+          hideAfter: 3000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+          stack: false, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+          position: 'bottom-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+          bgColor: '#00753a',  // Background color of the toast
+          textColor: '#ffffff',  // Text color of the toast
+          textAlign: 'center',  // Text alignment i.e. left, right or center
+          loader: true,  // Whether to show loader or not. True by default
+          loaderBg: '#9EC600',  // Background color of the toast loader
+        });
       }
     });
   }
-  $(document).on('keyup', '.first', function(){
+  $(document).on('input', '.first', function(){
     var id = $(this).data("id1");
     var firstrating = $(this).text();
     edit_data(id, firstrating, "firstrating");
   });
-  $(document).on('keyup', '.second', function(){
+  $(document).on('input', '.second', function(){
     var id = $(this).data("id2");
     var secondrating = $(this).text();
     edit_data(id, secondrating, "secondrating");
   });
-  $(document).on('keyup', '.third', function(){
+  $(document).on('input', '.third', function(){
     var id = $(this).data("id3");
     var thirdrating = $(this).text();
     edit_data(id, thirdrating, "thirdrating");
   });
-  $(document).on('keyup', '.fourth', function(){
+  $(document).on('input', '.fourth', function(){
     var id = $(this).data("id4");
     var fourthrating = $(this).text();
     edit_data(id, fourthrating, "fourthrating");
@@ -258,6 +220,8 @@ $(document).ready(function(){
 <script src="../Resources/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="../Resources/plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- jquery toast -->
+<script src="../Resources/plugins/jquery.toast/jquery.toast.min.js" type="text/javascript"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)
