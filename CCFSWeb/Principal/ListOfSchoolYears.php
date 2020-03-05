@@ -398,6 +398,7 @@ $(document).ready(function(){
         $('#yearEnd').val(data.yearend);
         $('#dateStart').val(data.dateStart);
         $('#dateEnd').val(data.dateEnd);
+        $('#curriculum').val(data.curriculum);
         $('#inputnurseryTuition').val(data.pretui1);
         $('#inputnurseryBook').val(data.premisc1);
         $('#inputnurseryMisc1').val(data.prebook1);

@@ -28,6 +28,7 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
+  <link rel="stylesheet" type="text/css" href="../Resources/plugins/jquery.toast/jquery.toast.min.css"/>
   <link rel="stylesheet" href="../Resources/bootstrap-4.4.1/css/bootstrap.css">
 <head>
 
@@ -353,7 +354,6 @@
                 </div>
                 <!-- /.col -->
               </div>
-              <b><p id="success" style="text-align:center; font-size:22px;"></p></b>
             </form>
           </div>
         </div>
@@ -386,9 +386,34 @@
           url: "SchoolYearInsert.php",
           data: $("#frmBox").serialize(),
           success: function(response){
-            $("#success").html(response);
             if(response.includes("Successfully created a new school year.")){
               document.getElementById("frmBox").reset();
+              $.toast({
+                text: response, // Text that is to be shown in the toast
+                showHideTransition: 'plain', // fade, slide or plain
+                allowToastClose: true, // Boolean value true or false
+                hideAfter: 10000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                stack: false, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                position: 'bottom-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                bgColor: '#00753a',  // Background color of the toast
+                textColor: '#ffffff',  // Text color of the toast
+                textAlign: 'center',  // Text alignment i.e. left, right or center
+                loader: true,  // Whether to show loader or not. True by default
+                loaderBg: '#9EC600',  // Background color of the toast loader
+              });
+  					} else {
+              $.toast({
+                text: response, // Text that is to be shown in the toast
+                showHideTransition: 'plain', // fade, slide or plain
+                allowToastClose: true, // Boolean value true or false
+                hideAfter: false, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                stack: false, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                position: 'bottom-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                bgColor: '#FF0004',  // Background color of the toast
+                textColor: '#ffffff',  // Text color of the toast
+                textAlign: 'center',  // Text alignment i.e. left, right or center
+                loader: false,  // Whether to show loader or not. True by default
+              });
             }
           }
         });
@@ -399,7 +424,7 @@
   }
   </script>
 
-  <!-- Show/hide no. of sch days. -->
+  <!-- Show/hide no. of sch days.
   <script type="text/javascript">
   $('document').ready( function ( ) {
     $( '.years' ).closest( '.form-group' ).hide();
@@ -450,7 +475,7 @@
       $('.year-' + monthNames).closest('.form-group').show();
     }
   });
-  </script>
+  </script>-->
 
 
   <script>
@@ -495,7 +520,7 @@ if (firstDate.isValid() && secondDate.isValid()) {
 }*/
   </script>
 
-  <!-- Validate date inputs -->
+  <!-- Validate date inputs
   <script type="text/javascript">
     var yrStart = document.getElementById('inputYearStart');
     var yrEnd = document.getElementById('inputYearEnd');
@@ -554,7 +579,7 @@ if (firstDate.isValid() && secondDate.isValid()) {
     dateYrStart.onkeyup = validateYear;
     yrEnd.onchange = validateYear;
     dateYrEnd.onkeyup = validateYear;*/
-  </script>
+  </script>-->
 
   <!-- 'Apply to all' button -->
   <script type="text/javascript">
@@ -613,6 +638,8 @@ if (firstDate.isValid() && secondDate.isValid()) {
   <script src="moment.min.js"></script>
   <!--Bootbox library for dialog box.-->
     <script src="../Resources/plugins/bootstrap/js/bootbox/bootbox.min.js"></script>
+  <!-- jquery toast -->
+    <script src="../Resources/plugins/jquery.toast/jquery.toast.min.js" type="text/javascript"></script>
   <!--===============================================================================================-->
     <script src="../Resources/vendor/animsition/js/animsition.min.js"></script>
   <!--===============================================================================================-->
