@@ -82,7 +82,6 @@ $result = mysqli_query($conn, $query);
                   </div>
                 </div>
               </div><!-- /.card-header -->
-              <b><p id="success" style="text-align:center; font-size:15px;"></p></b>
 
             <form method="post" id="checklistForm" action="PreschoolChecklistAction.php">
               <div id="checkData" class="card-body">

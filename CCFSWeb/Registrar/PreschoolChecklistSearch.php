@@ -46,41 +46,41 @@ if(mysqli_num_rows($result) > 0){
 
       if($firstVal != 0){
         $output .= '
-        <td style="text-align:center;"><input type="checkbox" name="chk1" id="chk1" data-contact_avl="val" value="1" checked="checked" disabled>'.$row["firstrating"].'</td>
+        <td style="text-align:center;"><input type="checkbox" data-id1="'.$row["checkid"].'" name="chk1" id="chk1" value="1" checked="checked"></td>
         ';
       } else {
         $output .= '
-        <td style="text-align:center;"><input type="checkbox" name="chk1" id="chk1" data-contact_avl="val" value="1" disabled>'.$row["firstrating"].'</td>
+        <td style="text-align:center;"><input type="checkbox" data-id1="'.$row["checkid"].'" name="chk1" id="chk1" value="1"></td>
         ';
       }
 
       if($secondVal != 0){
         $output .= '
-        <td style="text-align:center;"><input type="checkbox" name="chk2" id="chk2" data-contact_avl="val" value="1" checked="checked" disabled>'.$row["secondrating"].'</td>
+        <td style="text-align:center;"><input type="checkbox" data-id2="'.$row["checkid"].'" name="chk2" id="chk2" value="1" checked="checked"></td>
         ';
       } else {
         $output .= '
-        <td style="text-align:center;"><input type="checkbox" name="chk2" id="chk2" data-contact_avl="val" value="1" disabled>'.$row["secondrating"].'</td>
+        <td style="text-align:center;"><input type="checkbox" data-id2="'.$row["checkid"].'" name="chk2" id="chk2" value="1"></td>
         ';
       }
 
       if($thirdVal != 0){
         $output .= '
-        <td style="text-align:center;"><input type="checkbox" name="chk3" id="chk3" data-contact_avl="val" value="1" checked="checked" disabled>'.$row["thirdrating"].'</td>
+        <td style="text-align:center;"><input type="checkbox" data-id3="'.$row["checkid"].'" name="chk3" id="chk3" value="1" checked="checked"></td>
         ';
       } else {
         $output .= '
-        <td style="text-align:center;"><input type="checkbox" name="chk3" id="chk3" data-contact_avl="val" value="1" disabled>'.$row["thirdrating"].'</td>
+        <td style="text-align:center;"><input type="checkbox" data-id3="'.$row["checkid"].'" name="chk3" id="chk3" value="1"></td>
         ';
       }
 
       if($fourthVal != 0){
         $output .= '
-        <td style="text-align:center;"><input type="checkbox" name="chk4" id="chk4" data-contact_avl="val" value="1" checked="checked" disabled>'.$row["fourthrating"].'</td>
+        <td style="text-align:center;"><input type="checkbox" data-id4="'.$row["checkid"].'" name="chk4" id="chk4" value="1" checked="checked"></td>
         ';
       } else {
         $output .= '
-        <td style="text-align:center;"><input type="checkbox" name="chk4" id="chk4" data-contact_avl="val" value="1" disabled>'.$row["fourthrating"].'</td>
+        <td style="text-align:center;"><input type="checkbox" data-id4="'.$row["checkid"].'" name="chk4" id="chk4" value="1"></td>
         ';
       }
 
@@ -93,6 +93,6 @@ if(mysqli_num_rows($result) > 0){
    } else {
      echo "No matching records found";
    }
- }
+  }
 
  ?>

@@ -1,7 +1,6 @@
 <?php
 // connect to mysql
 include("Connection.php");
-
 ?>
 
 <!DOCTYPE html>
@@ -34,6 +33,7 @@ include("Connection.php");
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
+  <link rel="stylesheet" type="text/css" href="../Resources/plugins/jquery.toast/jquery.toast.min.css"/>
   <link rel="stylesheet" href="../Resources/bootstrap-4.4.1/css/bootstrap.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -69,6 +69,11 @@ include("Connection.php");
                     <div class="input-group input-group-sm col-1">
                       <input class="form-control search btn btn-primary" type="submit" name="searcher" value="Search"/>
                     </div>
+                    <!--
+                    <div class="custom-control custom-checkbox">
+  <input type="checkbox" class="custom-control-input" id="customCheck1">
+  <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
+</div>-->
                   </form>
                   <div class="row">
                     <div class="col-4">
@@ -80,9 +85,7 @@ include("Connection.php");
                   </div>
                 </div>
               </div><!-- /.card-header -->
-              <b><p id="success" style="text-align:center; font-size:15px;"></p></b>
-              
-            <form method="post" id="checklistForm" action="PreschoolChecklistAction.php">
+
               <div id="checkData" class="card-body">
                 <table id="checklistTable" class="table table-bordered table-hover">
                   <thead style="text-align:center;">
@@ -107,8 +110,6 @@ include("Connection.php");
                 </table>
               </div>
                 <!-- /.card-body -->
-                <input type="submit" class="btn btn-success" name="submit" value="Save">
-              </form>
             </div>
               <!-- /.card -->
           </div>
@@ -118,56 +119,6 @@ include("Connection.php");
   </div>
 </div><!-- ./wrapper -->
 
-<!-- Modal for editing checklist. -->
-<div id="add_data_Modal" class="modal fade" data-backdrop="static">
-  <div class="modal-dialog modal-dialog-scrollable modal-xl">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Edit Domains and Descriptions</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      <div class="modal-body">
-        <div>
-          <form id="insert_form" method="post">
-            <div>
-              <div class="row form-group col-6">
-                <label>Domain</label>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" id="domain" name="domain" list="domains" maxlength="50" required/>
-                    <?php $query1 = "SELECT checkvalues FROM `checklist` WHERE (competencydesc IS NULL AND valuedesc IS NULL) GROUP BY checkvalues";
-                    $result = $conn->query($query1) or die($conn->error.__LINE__);
-                    ?>
-                  <datalist id="domains">
-                    <?php while ($row1 = mysqli_fetch_array($result)):;?>
-                    <option name = "checkvalues"><?php echo $row1[0];?></option>
-                    <?php endwhile;?>
-                  </datalist>
-                </div>
-              </div>
-              <div class="row">
-                <div class="form-group col-11">
-                  <label>Description <i>(max 250 characters)</i></label>
-                  <div class="input-group mb-3">
-                    <textarea class="form-control" id="description" name="description" rows="3" maxlength="250" required></textarea>
-                  </div>
-                </div>
-                <div class="col-1">
-                  <input type="submit" name="submit" value="Add" min="0" class="btn btn-success"/>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-        <div id="checklistData">
-
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- Search student -->
 <script type="text/javascript">
@@ -189,101 +140,83 @@ $(document).ready(function(){
   });
 </script>
 
-<script type="text/javascript">
-$('#checklistForm').on("submit", function(event){
-  event.preventDefault();
-  $.ajax({
-    type: "POST",
-    url: "PreschoolChecklistAction.php",
-    data: $("#checklistForm").serialize(),
-    success: function(response){
-      alert("Success");
-    }
-  });
-
-});
-</script>
-<!--
-<script>
-        $(document).on("change", "input[name='chk']", function () {
-            var checkbox = $(this);
-            var checked = checkbox.prop('checked');
-            $.ajax({
-                url:"KinderChecklistAction.php",
-                type: 'post',
-                data: {
-                    action: 'checkbox-select',
-                    id: checkbox.data('contact_avl'),
-                    checked: checked
-                      },
-                success: function(data) {
-                    alert(data);
-                },
-                error: function(data) {
-                   // alert(data);
-                    // Revert
-                    checkbox.attr('checked', !checked);
-                }
-            });
-        });
-    </script>-->
-
-<!--
-<script type="text/javascript">
-     // get all chkbox value in current row
-$(function () {
-    $(".btn-success").click(function(){
-
-        var chk = $(this).closest('tr').find('input:checkbox');
-        var chkid=$(this).closest('tr').find('td').val();
-        alert("Check ID : " +chkid);
-        alert("1st :" +chk[3].checked);
-        alert("2nd: " +chk[4].checked);
-        alert("3rd: "+ chk[5].checked);
-
-    });
-            });
-
-</script> -->
-
-<!-- View/add/edit domains and descriptions through modal. -->
+<!-- Save checkbox option on click -->
 <script>
 $(document).ready(function(){
-  $('.view_data').click(function(){
+  function checkbox_select(id, value, column_name){
+    var status = $(value).prop('checked');
+    var action = '';
+    if(status) {
+      status = 1;
+      action = 'checked';
+    } else {
+      status = 0;
+      action = 'unchecked';
+    }
+
     $.ajax({
-      url:"PreschoolChecklistUpdate.php",
-      success:function(response){
-        $('#checklistData').html(response);
-        $('#dataModal').modal("show");
-        }
-      });
-    });
-  //Submit form
-  $('#insert_form').on("submit", function(event){
-    event.preventDefault();
-    $.ajax({
-      type: "POST",
-      url: "PreschoolChecklistUpdate.php",
-      data: $("#insert_form").serialize(),
-      success: function(response){
-        if(response.includes("Successfully added.")){
-          $('#description').val("");
-          $('#checklistData').html(response);
-          $("#add_data_Modal").on("hidden.bs.modal", function () {
-            location.reload();
+      url: 'PreschoolChecklistAction.php',
+      type: 'post',
+      data: {id:id, value:status, column_name:column_name},
+      cache: false,
+      success: function(data){
+        if(data.includes("Data updated")){
+          $.toast({
+            text: data + ': ' + action, // Text that is to be shown in the toast
+            showHideTransition: 'plain', // fade, slide or plain
+            allowToastClose: true, // Boolean value true or false
+            hideAfter: 3000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+            stack: false, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+            position: 'bottom-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+            bgColor: '#00753a',  // Background color of the toast
+            textColor: '#ffffff',  // Text color of the toast
+            textAlign: 'center',  // Text alignment i.e. left, right or center
+            loader: true,  // Whether to show loader or not. True by default
+            loaderBg: '#9EC600',  // Background color of the toast loader
+          });
+        } else {
+          $.toast({
+            text: data, // Text that is to be shown in the toast
+            showHideTransition: 'plain', // fade, slide or plain
+            allowToastClose: true, // Boolean value true or false
+            hideAfter: false, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+            stack: false, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+            position: 'bottom-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+            bgColor: '#FF0004',  // Background color of the toast
+            textColor: '#ffffff',  // Text color of the toast
+            textAlign: 'center',  // Text alignment i.e. left, right or center
+            loader: false,  // Whether to show loader or not. True by default
           });
         }
       }
-    });
+   });
+  }
+
+  $(document).on("change", "input[name='chk1']", function(){
+    var id = $(this).data("id1");
+    checkbox_select(id, this, "firstrating");
+  });
+  $(document).on("change", "input[name='chk2']", function(){
+    var id = $(this).data("id2");
+    checkbox_select(id, this, "secondrating");
+  });
+  $(document).on("change", "input[name='chk3']", function(){
+    var id = $(this).data("id3");
+    checkbox_select(id, this, "thirdrating");
+  });
+  $(document).on("change", "input[name='chk4']", function(){
+    var id = $(this).data("id4");
+    checkbox_select(id, this, "fourthrating");
   });
 });
 </script>
-
 
 <!-- jQuery -->
 <script src="../Resources/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="../Resources/plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- jquery toast -->
+<script src="../Resources/plugins/jquery.toast/jquery.toast.min.js" type="text/javascript"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)

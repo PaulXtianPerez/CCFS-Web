@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 18, 2020 at 12:20 PM
+-- Generation Time: Mar 05, 2020 at 08:02 AM
 -- Server version: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `accounts` (
   `accid` int(11) NOT NULL AUTO_INCREMENT,
   `empid` varchar(45) NOT NULL,
   `username` varchar(45) NOT NULL,
-  `password` varchar(16) NOT NULL,
+  `password` varchar(16) NOT NULL DEFAULT 'ccfs2020',
   `fname` varchar(20) NOT NULL,
   `lname` varchar(20) NOT NULL,
   `type` varchar(15) NOT NULL,
@@ -278,16 +278,16 @@ CREATE TABLE IF NOT EXISTS `checklist` (
 --
 
 INSERT INTO `checklist` (`checkid`, `checkvalues`, `checkdesc`, `competencyvalues`, `competencydesc`, `corevalues`, `valuedesc`, `firstrating`, `secondrating`, `thirdrating`, `fourthrating`, `IDno`, `yearID`) VALUES
-(1, 'GROSS MOTOR', 'Climbs on chair or other elevated piece of furniture like bed without help.', NULL, NULL, NULL, NULL, '', '', '', '', 200001, 15),
-(2, 'GROSS MOTOR', 'Walks backward.', NULL, NULL, NULL, NULL, '', '', '', '', 200001, 15),
-(3, 'GROSS MOTOR', 'Runs without tripping or falling.', NULL, NULL, NULL, NULL, '', '', '', '', 200001, 15),
-(4, 'GROSS MOTOR', 'Walks downstairs, two feet on each step with one hand held.', NULL, NULL, NULL, NULL, '', '', '', '', 200001, 15),
-(5, 'GROSS MOTOR', 'Walks upstairs holding handrail, two feet on each step.', NULL, NULL, NULL, NULL, '', '', '', '', 200001, 15),
-(6, 'GROSS MOTOR', 'Walks upstairs with alternate feet without holding handrails.', NULL, NULL, NULL, NULL, '', '', '', '', 200001, 15),
-(7, 'GROSS MOTOR', 'Walks downstairs with alternate feet without holding handrails.', NULL, NULL, NULL, NULL, '', '', '', '', 200001, 15),
-(8, 'GROSS MOTOR', 'Moves body part as directed.', NULL, NULL, NULL, NULL, '', '', '', '', 200001, 15),
-(9, 'GROSS MOTOR', 'Jumps up.', NULL, NULL, NULL, NULL, '', '', '', '', 200001, 15),
-(10, 'GROSS MOTOR', 'Throws ball overhead with direction.', NULL, NULL, NULL, NULL, '', '', '', '', 200001, 15),
+(1, 'GROSS MOTOR', 'Climbs on chair or other elevated piece of furniture like bed without help.', '', NULL, NULL, NULL, '0', '0', '0', '0', 200001, 15),
+(2, 'GROSS MOTOR', 'Walks backward.', NULL, NULL, NULL, NULL, '0', '0', '0', '0', 200001, 15),
+(3, 'GROSS MOTOR', 'Runs without tripping or falling.', NULL, NULL, NULL, NULL, '0', '0', '0', '0', 200001, 15),
+(4, 'GROSS MOTOR', 'Walks downstairs, two feet on each step with one hand held.', NULL, NULL, NULL, NULL, '0', '0', '0', '', 200001, 15),
+(5, 'GROSS MOTOR', 'Walks upstairs holding handrail, two feet on each step.', NULL, NULL, NULL, NULL, '0', '0', '', '', 200001, 15),
+(6, 'GROSS MOTOR', 'Walks upstairs with alternate feet without holding handrails.', NULL, NULL, NULL, NULL, '0', '', '', '', 200001, 15),
+(7, 'GROSS MOTOR', 'Walks downstairs with alternate feet without holding handrails.', NULL, NULL, NULL, NULL, '0', '0', '', '', 200001, 15),
+(8, 'GROSS MOTOR', 'Moves body part as directed.', NULL, NULL, NULL, NULL, '0', '', '', '', 200001, 15),
+(9, 'GROSS MOTOR', 'Jumps up.', NULL, NULL, NULL, NULL, '0', '', '', '', 200001, 15),
+(10, 'GROSS MOTOR', 'Throws ball overhead with direction.', NULL, NULL, NULL, NULL, '0', '', '', '', 200001, 15),
 (11, 'GROSS MOTOR', 'Hops 1 to 3 steps on preferred foot.', NULL, NULL, NULL, NULL, '', '', '', '', 200001, 15),
 (12, 'GROSS MOTOR', 'Jumps and turns.', NULL, NULL, NULL, NULL, '', '', '', '', 200001, 15),
 (13, 'GROSS MOTOR', 'Dances patterns/joins group movement activities.', NULL, NULL, NULL, NULL, '', '', '', '', 200001, 15),
@@ -299,14 +299,14 @@ INSERT INTO `checklist` (`checkid`, `checkvalues`, `checkdesc`, `competencyvalue
 (19, 'FINE MOTOR', 'Unscrew lid container or unwraps food.', NULL, NULL, NULL, NULL, '', '', '', '', 200001, 15),
 (20, 'FINE MOTOR', 'Scribbles spontaneously.', NULL, NULL, NULL, NULL, '', '', '', '', 200001, 15),
 (21, 'FINE MOTOR', 'Scribbles vertical and horizontal lines.', NULL, NULL, NULL, NULL, '', '', '', '', 200001, 15),
-(22, 'FINE MOTOR', 'Draws circle purposely.', NULL, NULL, NULL, NULL, '', '', '', '', 200001, 15),
-(23, 'FINE MOTOR', 'Draws a human figure (head, eyes, trunk, arms, and hand/fingers).', NULL, NULL, NULL, NULL, '', '', '', '', 200001, 15),
-(24, 'FINE MOTOR', 'Draws a house using geometric forms.', NULL, NULL, NULL, NULL, '', '', '', '', 200001, 15),
-(25, NULL, NULL, 'Health, Well-Being, and Motor Development', 'Demonstrates health habits that keep one clean and sanitary', NULL, NULL, 'B', 'B ', 'C', 'C', 200001, 15),
-(26, NULL, NULL, 'Health, Well-Being, and Motor Development', 'Demonstrates health habits that promote personal safety', NULL, NULL, 'C', 'B', 'B', 'D', 200001, 15),
+(22, 'FINE MOTOR', 'Draws circle purposely.', NULL, NULL, NULL, NULL, '0', '0', '', '', 200001, 15),
+(23, 'FINE MOTOR', 'Draws a human figure (head, eyes, trunk, arms, and hand/fingers).', NULL, NULL, NULL, NULL, '', '0', '', '', 200001, 15),
+(24, 'FINE MOTOR', 'Draws a house using geometric forms.', NULL, NULL, NULL, NULL, '0', '0', '', '', 200001, 15),
+(25, NULL, NULL, 'Health, Well-Being, and Motor Development', 'Demonstrates health habits that keep one clean and sanitary', NULL, NULL, 'C', 'C', 'C', 'C', 200001, 15),
+(26, NULL, NULL, 'Health, Well-Being, and Motor Development', 'Demonstrates health habits that promote personal safety', NULL, NULL, 'B', 'B', 'B', 'D', 200001, 15),
 (27, NULL, NULL, 'Health, Well-Being, and Motor Development', 'Demonstrates locomotor skills such as walking, running, skipping, jumping, climbing correctly during play, dance or exercise activities.', NULL, NULL, '', '', '', '', 200001, 15),
 (28, NULL, NULL, 'Health, Well-Being, and Motor Development', 'Demonstrates non-locomotor skills such as pushing, pulling, turning, swaying, bending, throwing, catching, and kicking correctly during play, dance or exercise.', NULL, NULL, '', '', '', '', 200001, 15),
-(29, NULL, NULL, 'Health, Well-Being, and Motor Development', 'Demonstrate fine motor skills needed for self-care/self-help such as tooth brushing, buttoning, screwing, and unscrewing lids, using spoon and fork correctly, etc.', NULL, NULL, '', '', '', '', 200001, 15),
+(29, NULL, NULL, 'Health, Well-Being, and Motor Development', 'Demonstrate fine motor skills needed for self-care/self-help such as tooth brushing, buttoning, screwing, and unscrewing lids, using spoon and fork correctly, etc.', NULL, NULL, 'D', 'D', 'C', 'C', 200001, 15),
 (30, NULL, NULL, 'Health, Well-Being, and Motor Development', 'Demonstrate fine motor skills needed for creative self-expression/art activities, such as tearing, cutting, pasting, copying, drawing, coloring, molding, painting, and lacing, etc.', NULL, NULL, '', '', '', '', 200001, 15),
 (31, NULL, NULL, 'Health, Well-Being, and Motor Development', 'Traces, copies, or writes letter and numerals', NULL, NULL, '', '', '', '', 200001, 15),
 (32, NULL, NULL, 'Socio-Emotional Development', 'States personal information (name, gender, age, birthday)', NULL, NULL, '', '', '', '', 200001, 15),
@@ -377,10 +377,10 @@ INSERT INTO `checklist` (`checkid`, `checkvalues`, `checkdesc`, `competencyvalue
 (97, 'EXPRESSIVE LANGUAGE', 'Ask \"what\" questions.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 200001, 15),
 (98, 'EXPRESSIVE LANGUAGE', 'Ask \"who\" and \"why\" questions.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 200001, 15),
 (99, 'EXPRESSIVE LANGUAGE', 'Gives account of recent experiences (with prompting) in order of occurrence using past tense.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 200001, 15),
-(100, 'COGNITIVE', 'Looks at direction of falling objects.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 200001, 15),
-(101, 'COGNITIVE', 'Looks for partially hidden objects.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 200001, 15),
-(102, 'COGNITIVE', 'Imitates behavior just seen a few minutes earlier.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 200001, 15),
-(103, 'COGNITIVE', 'Offers objects but will not release it.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 200001, 15),
+(100, 'COGNITIVE', 'Looks at direction of falling objects.', NULL, NULL, NULL, NULL, '1', '1', '1', NULL, 200001, 15),
+(101, 'COGNITIVE', 'Looks for partially hidden objects.', NULL, NULL, NULL, NULL, '1', NULL, NULL, '1', 200001, 15),
+(102, 'COGNITIVE', 'Imitates behavior just seen a few minutes earlier.', NULL, NULL, NULL, NULL, '1', '1', NULL, '1', 200001, 15),
+(103, 'COGNITIVE', 'Offers objects but will not release it.', NULL, NULL, NULL, NULL, NULL, '1', '1', NULL, 200001, 15),
 (104, 'COGNITIVE', 'Looks for completely hidden objects.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 200001, 15),
 (105, 'COGNITIVE', 'Exhibits simple pretend play (feed, put doll to sleep).', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 200001, 15),
 (106, 'COGNITIVE', 'Matches objects.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 200001, 15),
@@ -475,7 +475,7 @@ INSERT INTO `checklist` (`checkid`, `checkvalues`, `checkdesc`, `competencyvalue
 (195, NULL, NULL, 'Mathematics', 'Measures length, capacity, and mass of objects using non-standard measuring tools', NULL, NULL, NULL, NULL, NULL, NULL, 200001, 15),
 (196, NULL, NULL, 'Mathematics', 'Recognizes coins and bills (up to PhP 20)', NULL, NULL, NULL, NULL, NULL, NULL, 200001, 15),
 (197, NULL, NULL, 'Mathematics', 'The child can recognize the following coins and bills: 5 centavos, 10 centavos, 25 centavos, 1 peso, 5 pesos, 10 pesos, 20 pesos', NULL, NULL, NULL, NULL, NULL, NULL, 200001, 15),
-(198, NULL, NULL, 'Understanding the Physical and Natural Environment', 'Identifies body parts and their functions', NULL, NULL, NULL, NULL, NULL, NULL, 200001, 15),
+(198, NULL, NULL, 'Understanding the Physical and Natural Environment', 'Identifies body parts and their functions', NULL, NULL, 'C', 'A', 'A', 'C', 200001, 15),
 (199, NULL, NULL, 'Understanding the Physical and Natural Environment', 'Records observations and data with pictures, numbers and/or symbols', NULL, NULL, NULL, NULL, NULL, NULL, 200001, 15),
 (200, NULL, NULL, 'Understanding the Physical and Natural Environment', 'Identifies parts of plants and animals', NULL, NULL, NULL, NULL, NULL, NULL, 200001, 15),
 (201, NULL, NULL, 'Understanding the Physical and Natural Environment', 'Classifies animals according to shared characteristics', NULL, NULL, NULL, NULL, NULL, NULL, 200001, 15),
@@ -491,7 +491,7 @@ INSERT INTO `checklist` (`checkid`, `checkvalues`, `checkdesc`, `competencyvalue
 DROP TABLE IF EXISTS `curriculum`;
 CREATE TABLE IF NOT EXISTS `curriculum` (
   `curid` int(45) NOT NULL AUTO_INCREMENT,
-  `curname` varchar(11) NOT NULL,
+  `curname` varchar(45) NOT NULL,
   `subjname1` text NOT NULL,
   `subjname2` text NOT NULL,
   `subjname3` text NOT NULL,
@@ -591,21 +591,21 @@ CREATE TABLE IF NOT EXISTS `enstudent` (
   `homeTelnum` varchar(45) DEFAULT NULL,
   `mobilenum` varchar(45) NOT NULL,
   `studaddress` varchar(90) NOT NULL,
-  `prevschoolattended` varchar(45) NOT NULL,
+  `prevschoolattended` varchar(45) DEFAULT NULL,
   `studstat` varchar(45) NOT NULL,
   `sponsor` varchar(12) DEFAULT NULL,
   `faFname` varchar(45) DEFAULT NULL,
   `falname` varchar(45) DEFAULT NULL,
-  `faAdd` varchar(60) DEFAULT NULL,
+  `faAdd` varchar(90) DEFAULT NULL,
   `faMobilenum` varchar(45) DEFAULT NULL,
   `faEmail` varchar(45) DEFAULT NULL,
-  `faoccupation` varchar(45) NOT NULL,
+  `faoccupation` varchar(45) DEFAULT NULL,
   `moFname` varchar(45) DEFAULT NULL,
   `moLname` varchar(45) DEFAULT NULL,
-  `moAdd` varchar(60) DEFAULT NULL,
+  `moAdd` varchar(90) DEFAULT NULL,
   `momobilenum` varchar(45) DEFAULT NULL,
   `moEmail` varchar(45) DEFAULT NULL,
-  `mooccupation` varchar(45) NOT NULL,
+  `mooccupation` varchar(45) DEFAULT NULL,
   `sibFname` varchar(60) DEFAULT NULL,
   `sibLname` varchar(60) DEFAULT NULL,
   `sibBirthdate` date DEFAULT NULL,
@@ -613,7 +613,7 @@ CREATE TABLE IF NOT EXISTS `enstudent` (
   `yearid` int(11) NOT NULL,
   `dateenrolled` date NOT NULL,
   `guardianName` varchar(45) DEFAULT NULL,
-  `guardianAddress` varchar(60) DEFAULT NULL,
+  `guardianAddress` varchar(90) DEFAULT NULL,
   `guardianContact` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`enid`),
   KEY `studFname` (`GivenName`),
@@ -798,6 +798,9 @@ CREATE TABLE IF NOT EXISTS `schoolyear` (
   `yearid` int(11) NOT NULL AUTO_INCREMENT,
   `yearstart` int(10) NOT NULL,
   `yearend` int(10) NOT NULL,
+  `dateStart` date DEFAULT NULL,
+  `dateEnd` date DEFAULT NULL,
+  `curriculum` varchar(45) NOT NULL,
   `janAtt` float NOT NULL,
   `febAtt` float NOT NULL,
   `marAtt` float NOT NULL,
@@ -810,8 +813,6 @@ CREATE TABLE IF NOT EXISTS `schoolyear` (
   `octAtt` float NOT NULL,
   `novAtt` float NOT NULL,
   `decAtt` float NOT NULL,
-  `dateStart` date DEFAULT NULL,
-  `dateEnd` date DEFAULT NULL,
   `pretui1` float DEFAULT NULL,
   `premisc1` float DEFAULT NULL,
   `prebook1` float DEFAULT NULL,
@@ -850,9 +851,9 @@ CREATE TABLE IF NOT EXISTS `schoolyear` (
 -- Dumping data for table `schoolyear`
 --
 
-INSERT INTO `schoolyear` (`yearid`, `yearstart`, `yearend`, `janAtt`, `febAtt`, `marAtt`, `aprAtt`, `mayAtt`, `junAtt`, `julAtt`, `augAtt`, `sepAtt`, `octAtt`, `novAtt`, `decAtt`, `dateStart`, `dateEnd`, `pretui1`, `premisc1`, `prebook1`, `pretui2`, `premisc2`, `prebook2`, `pretui3`, `premisc3`, `prebook3`, `gradetui1`, `gradebook1`, `grademisc1`, `gradetui2`, `grademisc2`, `gradebook2`, `gradetui3`, `grademisc3`, `gradebook3`, `gradetui4`, `grademisc4`, `gradebook4`, `gradetui5`, `grademisc5`, `gradebook5`, `gradetui6`, `grademisc6`, `gradebook6`, `scfee`, `scstatus`) VALUES
-(15, 2020, 2021, 20, 20, 20, 10, 0, 15, 20, 20, 20, 20, 20, 15, '2020-06-08', '2021-04-15', 10888.7, 3600, 2095, 10888.7, 3600, 2095, 10888.7, 3600, 2095, 10888.7, 3900, 2095, 10888.7, 2095, 3900, 10888.7, 2095, 3900, 10888.7, 2095, 3900, 10888.7, 2095, 3900, 10888.7, 2095, 3900, NULL, 'ACTIVE'),
-(16, 2019, 2020, 20, 20, 20, 10, 0, 15, 20, 20, 20, 20, 20, 15, '2019-06-10', '2020-04-13', 10888.7, 3600, 2095, 10888.7, 3600, 2095, 10888.7, 3600, 2095, 10888.7, 3900, 2095, 10888.7, 2095, 3900, 10888.7, 2095, 3900, 10888.7, 2095, 3900, 10888.7, 2095, 3900, 10888.7, 2095, 3900, NULL, 'INACTIVE');
+INSERT INTO `schoolyear` (`yearid`, `yearstart`, `yearend`, `dateStart`, `dateEnd`, `curriculum`, `janAtt`, `febAtt`, `marAtt`, `aprAtt`, `mayAtt`, `junAtt`, `julAtt`, `augAtt`, `sepAtt`, `octAtt`, `novAtt`, `decAtt`, `pretui1`, `premisc1`, `prebook1`, `pretui2`, `premisc2`, `prebook2`, `pretui3`, `premisc3`, `prebook3`, `gradetui1`, `gradebook1`, `grademisc1`, `gradetui2`, `grademisc2`, `gradebook2`, `gradetui3`, `grademisc3`, `gradebook3`, `gradetui4`, `grademisc4`, `gradebook4`, `gradetui5`, `grademisc5`, `gradebook5`, `gradetui6`, `grademisc6`, `gradebook6`, `scfee`, `scstatus`) VALUES
+(15, 2020, 2021, '2020-06-08', '2021-04-15', 'K to 12', 20, 20, 20, 10, 0, 15, 20, 20, 20, 20, 20, 15, 10888.7, 3600, 2095, 10888.7, 3600, 2095, 10888.7, 3600, 2095, 10888.7, 3900, 2095, 10888.7, 2095, 3900, 10888.7, 2095, 3900, 10888.7, 2095, 3900, 10888.7, 2095, 3900, 10888.7, 2095, 3900, NULL, 'ACTIVE'),
+(16, 2019, 2020, '2019-06-10', '2020-04-13', 'K to 12', 20, 20, 20, 10, 0, 15, 20, 20, 20, 20, 20, 15, 10888.7, 3600, 2095, 10888.7, 3600, 2095, 10888.7, 3600, 2095, 10888.7, 3900, 2095, 10888.7, 2095, 3900, 10888.7, 2095, 3900, 10888.7, 2095, 3900, 10888.7, 2095, 3900, 10888.7, 2095, 3900, NULL, 'INACTIVE');
 
 -- --------------------------------------------------------
 
