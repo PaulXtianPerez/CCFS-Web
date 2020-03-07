@@ -31,6 +31,7 @@ include("CurriculumInsert.php");
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
+  <link rel="stylesheet" type="text/css" href="../Resources/plugins/jquery.toast/jquery.toast.min.css"/>
   <link rel="stylesheet" href="../Resources/bootstrap-4.4.1/css/bootstrap.css">
   </head>
   <body>
@@ -52,7 +53,7 @@ include("CurriculumInsert.php");
         <div class="row">
           <!-- left column -->
           <div class="col-md-12">
-            <form id="frmBox" class="needs-validation" method="post" action="CurriculumInsert.php" onsubmit="return formSubmit();">
+            <form id="frmBox" class="needs-validation" method="post">
             <!-- Curriculum content -->
             <?php foreach ( $grades as $grade_id => $grade ) {?>
               <input type="hidden" id="inputGradeLevel" name ="grade[<?php echo $grade_id; ?>]" value="<?php echo $grade; ?>">
@@ -98,7 +99,7 @@ include("CurriculumInsert.php");
             <div class="row form-inline card-body">
               <div class="form-group col-5">
                 <label for="curid">Curriculum Name: </label>
-                <input class="form-control" id="inputCurriculumID" placeholder="Enter Curriculum Name" type="text" name ="curname" min="0" required style="margin-left: 10px;">
+                <input class="form-control" id="inputCurriculumID" placeholder="Enter Curriculum Name" type="text" name="curname" min="0" required style="margin-left: 10px;">
               </div>
 
               <div class="form-group col-3" style="display:none;">
@@ -114,7 +115,7 @@ include("CurriculumInsert.php");
                 </select>
               </div>
               <div class="form-group col-3">
-                <input type="submit" name="submit" class="btn btn-success" value = "Create" min ="0" style="margin-left: 10px;"/>
+                <input type="submit" name="submit" class="btn btn-success" value="Create" style="margin-left: 10px;"/>
                 <b><p id="success" style="text-align:center; font-size:22px;"></p></b>
               </div>
             </div>
@@ -123,45 +124,73 @@ include("CurriculumInsert.php");
       </form>
     </div>
   </section>
-  </div>
+</div>
+
 
 <!--Submit form.-->
 <script type="text/javascript">
-//$('#frmBox').on("submit", function(event){
-  //event.preventDefault();
-  function formSubmit(){
-  var curname = document.getElementById("inputCurriculumID").value;
-  bootbox.confirm({
-  	message: "Create curriculum " +curname+ "?",
-		buttons: {
-			confirm: {
-        label: "Yes",
-        className: "btn-success"
-    },
-    cancel: {
-        label: "No",
-        className: "btn-danger"
-    }
-	},
-  callback: function(result){
-    if(result){
-      $.ajax({
-        type: "POST",
-        url: "CurriculumInsert.php",
-        data: $("#frmBox").serialize(),
-        success: function(response){
-          $('#frmBox')[0].reset();
-          $("#success").html(response);
-          if(response.includes("Successfully created a new curriculum.")){
-            document.getElementById("frmBox").reset();
+$(document).ready(function(){
+  $('#frmBox').on("submit", function(event){
+    event.preventDefault();
+    var curname = $("#inputCurriculumID").val();
+    var submit = $('input[name=submit]').val();
+    var inputGradeLevel = $("#inputGradeLevel").val();
+    bootbox.confirm({
+    	message: "Create curriculum " +curname+ "?",
+  		buttons: {
+  			confirm: {
+          label: "Yes",
+          className: "btn-success"
+      },
+      cancel: {
+          label: "No",
+          className: "btn-danger"
+      }
+  	},
+    callback: function(result){
+      if(result){
+        $.ajax({
+          type: "POST",
+          url: "CurriculumInsert.php",
+          data: $("#frmBox").serialize(), //{submit:submit, inputGradeLevel:inputGradeLevel}
+          success: function(response){
+            $("#success").html(response);
+            if(response.includes("Successfully created a new curriculum.")){
+              document.getElementById("frmBox").reset();
+              $.toast({
+                text: response, // Text that is to be shown in the toast
+                showHideTransition: 'plain', // fade, slide or plain
+                allowToastClose: true, // Boolean value true or false
+                hideAfter: 10000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                stack: false, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                position: 'bottom-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                bgColor: '#00753a',  // Background color of the toast
+                textColor: '#ffffff',  // Text color of the toast
+                textAlign: 'center',  // Text alignment i.e. left, right or center
+                loader: true,  // Whether to show loader or not. True by default
+                loaderBg: '#9EC600',  // Background color of the toast loader
+              });
+            } else {
+              $.toast({
+                text: "<span style='font-size:15px;'><i class=\"fa fa-exclamation-circle\"></i> Failed to create curriculum.</span>", // Text that is to be shown in the toast
+                showHideTransition: 'plain', // fade, slide or plain
+                allowToastClose: true, // Boolean value true or false
+                hideAfter: false, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                stack: false, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                position: 'bottom-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                bgColor: '#FF0004',  // Background color of the toast
+                textColor: '#ffffff',  // Text color of the toast
+                textAlign: 'center',  // Text alignment i.e. left, right or center
+                loader: false,  // Whether to show loader or not. True by default
+              });
+            }
           }
-        }
-      });
+        });
+      }
     }
-  }
+    });
   });
-  //return false;
-}
+});
 </script>
 
 
@@ -169,6 +198,8 @@ include("CurriculumInsert.php");
 	<script src="../Resources/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--Bootbox library for dialog box.-->
 	<script src="../Resources/plugins/bootstrap/js/bootbox/bootbox.min.js"></script>
+<!-- jquery toast -->
+  <script src="../Resources/plugins/jquery.toast/jquery.toast.min.js" type="text/javascript"></script>
 <!--===============================================================================================-->
 	<script src="../Resources/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
