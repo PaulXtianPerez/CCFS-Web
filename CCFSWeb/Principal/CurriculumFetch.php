@@ -1,9 +1,9 @@
 <?php
+ include("database.php");
  if(isset($_POST["curr_name"])){
       $output = '';
-      $connect = mysqli_connect("localhost", "root", "", "ccfs");
       $query = "SELECT * FROM curriculum WHERE curname = '".$_POST["curr_name"]."'";
-      $result = mysqli_query($connect, $query);
+      $result = mysqli_query($mysqli, $query);
       $output .= '
       <div class="table-responsive">
            <b><p>Curriculum: '.$_POST["curr_name"].'</p></b>

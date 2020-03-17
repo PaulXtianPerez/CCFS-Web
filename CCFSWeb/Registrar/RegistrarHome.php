@@ -1,5 +1,4 @@
 <?php
- include('../edit.php');
  include('../server.php');
  include('Connection.php');
 

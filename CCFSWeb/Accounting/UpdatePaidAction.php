@@ -11,7 +11,8 @@ if(isset($_POST['update'])) {
   $bal[] = "SELECT * FROM feestudent WHERE yearid = '".$actyear[0]."' ";
 
   $result1 = $conn->query($bal[0]) or die($conn->error.__LINE__);
-      while($row = mysqli_fetch_array($result1)) {
+  
+  while($row = mysqli_fetch_array($result1)) {
     //values for status paid or unpaid
     $set = 'Paid';
     $down = $row["tuition"];

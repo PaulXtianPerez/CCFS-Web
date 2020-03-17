@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 05, 2020 at 08:02 AM
+-- Generation Time: Mar 17, 2020 at 11:16 AM
 -- Server version: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `accounts` (
   `accid` int(11) NOT NULL AUTO_INCREMENT,
   `empid` varchar(45) NOT NULL,
   `username` varchar(45) NOT NULL,
-  `password` varchar(16) NOT NULL DEFAULT 'ccfs2020',
+  `password` varchar(255) NOT NULL DEFAULT 'ccfs2020',
   `fname` varchar(20) NOT NULL,
   `lname` varchar(20) NOT NULL,
   `type` varchar(15) NOT NULL,
@@ -48,15 +48,15 @@ CREATE TABLE IF NOT EXISTS `accounts` (
 --
 
 INSERT INTO `accounts` (`accid`, `empid`, `username`, `password`, `fname`, `lname`, `type`, `accstatus`, `created`) VALUES
-(1, 'CCFS-001', 'REGISTRAR', 'REGISTRAR', 'ADAM', 'SOBREMONTE', 'REGISTRAR', 'Active', '2020-02-18 11:52:18'),
-(2, 'CCFS-002', 'Paul_Acc', 'a123bc', 'PAUL', 'PEREZ', 'REGISTRAR', 'Inactive', '2020-02-18 11:52:18'),
-(3, 'CCFS-003', 'ACCOUNTING', 'ACCOUNTING', 'JARGON', 'TAASIN', 'ACCOUNTING', 'Active', '2020-02-18 11:52:18'),
-(4, 'CCFS-004', 'vinceAcc', 'running', 'VINCENT', 'TOLENTINO', 'ACCOUNTING', 'Inactive', '2020-02-18 11:52:18'),
-(5, 'CCFS-005', 'PRINCIPAL', 'PRINCIPAL', 'LEMUEL', 'DE GUZMAN', 'PRINCIPAL', 'Active', '2020-02-18 11:52:18'),
-(6, 'CCFS-006', 'ACC_IMRAN', '12345', 'IMRAN', 'MAHMOOD', 'ACCOUNTING', 'Active', '2020-02-18 11:52:18'),
-(7, 'CCFS-007', 'TEST', 'TEST', 'GIAN', 'MAURICIO', 'PRINCIPAL', 'Inactive', '2020-02-18 11:52:18'),
-(8, 'CCFS-008', 'TEACHER', 'TEACHER', 'CJ', 'OREDINA', 'TEACHER', 'Active', '2020-02-18 11:52:18'),
-(9, 'CCFS-009', 'TeacherJun', 'qwertyu', 'JUN ALLEN', 'PASCUA', 'TEACHER', 'Inactive', '2020-02-18 11:52:18');
+(1, 'CCFS-001', 'REGISTRAR', '$2y$10$7cW26W.YsvsnxVEFD..h4OrbgoVOkCKERyuLfyOY5iZw/Y5A37p0i', 'ADAM', 'SOBREMONTE', 'REGISTRAR', 'Active', '2020-02-18 11:52:18'),
+(2, 'CCFS-002', 'Paul_Acc', 'ccfs2020', 'PAUL', 'PEREZ', 'REGISTRAR', 'Inactive', '2020-02-18 11:52:18'),
+(3, 'CCFS-003', 'ACCOUNTING', '$2y$10$bBeYiyFDqG4tE6tf6V0BouRVMc8H1BlX2n6jYAgs2BpSYDY82lOHi', 'JARGON', 'TAASIN', 'ACCOUNTING', 'Active', '2020-02-18 11:52:18'),
+(4, 'CCFS-004', 'vinceAcc', 'ccfs2020', 'VINCENT', 'TOLENTINO', 'ACCOUNTING', 'Inactive', '2020-02-18 11:52:18'),
+(5, 'CCFS-005', 'PRINCIPAL', '$2y$10$xCnZdOgC64WcwGRmNANzMuw6kKRu3jguKkIxGu7IcVaxE1Yn1Asc2', 'LEMUEL', 'DE GUZMAN', 'PRINCIPAL', 'Active', '2020-02-18 11:52:18'),
+(6, 'CCFS-006', 'ACC_IMRAN', 'ccfs2020', 'IMRAN', 'MAHMOOD', 'ACCOUNTING', 'Active', '2020-02-18 11:52:18'),
+(7, 'CCFS-007', 'TEST', 'ccfs2020', 'GIAN', 'MAURICIO', 'PRINCIPAL', 'Inactive', '2020-02-18 11:52:18'),
+(8, 'CCFS-008', 'TEACHER', '$2y$10$rr2XAKRlbJIP53R1bcPkXeM2WUnHW3q/hE/askt7kQYMrjX04lpJy', 'CJ', 'OREDINA', 'TEACHER', 'Active', '2020-02-18 11:52:18'),
+(9, 'CCFS-009', 'TeacherJun', 'ccfs2020', 'JUN ALLEN', 'PASCUA', 'TEACHER', 'Inactive', '2020-02-18 11:52:18');
 
 -- --------------------------------------------------------
 

@@ -41,6 +41,7 @@ $result = mysqli_query($mysqli, $query);
   <link rel="stylesheet" type="text/css" href="../Resources/plugins/bootstrap/js/DataTables/datatables.css">
   <!-- DataTables plugin -->
   <script type="text/javascript" charset="utf8" src="../Resources/plugins/bootstrap/js/DataTables/datatables.js"></script>
+  <link rel="stylesheet" type="text/css" href="../Resources/plugins/jquery.toast/jquery.toast.min.css"/>
   <link rel="stylesheet" href="../Resources/bootstrap-4.4.1/css/bootstrap.css">
 </head>
 <body class="hold-transition sidebar-mini">
@@ -452,6 +453,7 @@ $(document).ready(function(){
     event.preventDefault();
     bootbox.confirm({
     	message: "Are you sure you want to save any changes made to this school year?",
+      centerVertical: true,
   		buttons: {
   			confirm: {
           label: "Yes",
@@ -472,14 +474,38 @@ $(document).ready(function(){
               $('#update').val("Updating...");
               },
               success:function(data){
-                $('#insert_form')[0].reset();
-                $('#add_data_Modal').modal('hide');
-                bootbox.alert({
-                  message: "<i class=\"fa fa-check\"></i> Successfully updated school year.",
-                  callback: function(){
+                if(data.includes("School year updated.")){
+                  $('#update').val("Save Changes");
+                  $.toast({
+                    text: data, // Text that is to be shown in the toast
+                    showHideTransition: 'plain', // fade, slide or plain
+                    allowToastClose: true, // Boolean value true or false
+                    hideAfter: 10000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                    stack: false, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                    position: 'bottom-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                    bgColor: '#00753a',  // Background color of the toast
+                    textColor: '#ffffff',  // Text color of the toast
+                    textAlign: 'center',  // Text alignment i.e. left, right or center
+                    loader: true,  // Whether to show loader or not. True by default
+                    loaderBg: '#9EC600',  // Background color of the toast loader
+                  });
+                  $("#add_data_Modal").on("hidden.bs.modal", function(){
                     location.reload();
-                  }
-                });
+                  });
+                } else {
+                  $.toast({
+                    text: data, // Text that is to be shown in the toast
+                    showHideTransition: 'plain', // fade, slide or plain
+                    allowToastClose: true, // Boolean value true or false
+                    hideAfter: false, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                    stack: false, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                    position: 'bottom-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                    bgColor: '#FF0004',  // Background color of the toast
+                    textColor: '#ffffff',  // Text color of the toast
+                    textAlign: 'center',  // Text alignment i.e. left, right or center
+                    loader: false,  // Whether to show loader or not. True by default
+                  });
+                }
               }
             });
           }
@@ -515,6 +541,8 @@ $("#schyrTable").DataTable({
 <script src="../Resources/plugins/bootstrap/js/bootbox/bootbox.min.js"></script>
 <!--Compute total days and total fees in ui.-->
 <script src="../Resources/js/compute-total.js"></script>
+<!-- jquery toast -->
+<script src="../Resources/plugins/jquery.toast/jquery.toast.min.js" type="text/javascript"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)

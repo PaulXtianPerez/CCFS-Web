@@ -1,10 +1,6 @@
 <?php
 // connect to database
 include("dbase.php");
-// mysql select query
-$query = "SELECT * FROM feestudent WHERE yearid IN (SELECT yearid from schoolyear WHERE scstatus='ACTIVE')";
-// result for method
-$result = mysqli_query($conn, $query);
 ?>
 <html>
 <head>
@@ -35,10 +31,13 @@ $result = mysqli_query($conn, $query);
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
+  <!-- jQuery -->
+  <script src="../Resources/plugins/jquery/jquery.min.js"></script>
   <!-- CSS for DataTables plugin -->
   <link rel="stylesheet" type="text/css" href="../Resources/plugins/bootstrap/js/DataTables/datatables.css">
   <!-- DataTables plugin -->
   <script type="text/javascript" charset="utf8" src="../Resources/plugins/bootstrap/js/DataTables/datatables.js"></script>
+  <link rel="stylesheet" type="text/css" href="../Resources/plugins/jquery.toast/jquery.toast.min.css"/>
   <link rel="stylesheet" href="../Resources/bootstrap-4.4.1/css/bootstrap.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -76,10 +75,7 @@ $result = mysqli_query($conn, $query);
                 </form>
               </div>
             </div>
-            
-            <div>
-              <b><p id="success" style="text-align:center; color:#0AC02A; font-size:22px;"></p></b>
-            </div>
+            <br>
 
             <div class="card card-primary">
               <div class="card-header">
@@ -104,19 +100,6 @@ $result = mysqli_query($conn, $query);
                       <th>Surcharge</th>
                     </tr>
                   </thead>
-      				    <tbody> <!-- Populate from database. -->
-                    <?php while($row = mysqli_fetch_array($result)):;?>
-                      <tr>
-                        <td><?php echo $row["IDno"];?></td>
-                        <td><?php echo $row["books"];?></td>
-                        <td><?php echo $row["misc"];?></td>
-                        <td><?php echo $row["tuition"];?></td>
-                        <td><?php echo $row["service"];?></td>
-                        <td><?php echo $row["balance"];?></td>
-                        <td><?php echo $row["surcharge"];?></td>
-                      </tr>
-                    <?php endwhile;?>
-                  </tbody>
                 </table>
               </div> <!-- /.card-body -->
             </div> <!-- /.card -->
@@ -126,6 +109,28 @@ $result = mysqli_query($conn, $query);
     </section>
   </div><!-- /.row -->
 </div><!-- ./wrapper -->
+
+
+<!-- Initialize DataTables plugin -->
+<script type="text/javascript" language="javascript">
+$(document).ready(function(){
+  var dataTable = $('#feesTable').DataTable({
+    "processing": true,
+    "serverSide": true,
+    "pagingType": "full_numbers", //'First', 'Previous', 'Next' and 'Last' buttons plus page numbers
+    //"bFilter": false, //remove default search/filter
+    "ajax":{
+      url: "StudentFeesTableData.php", // json datasource
+      type: "post",  // method  , by default get
+      error: function(){  // error handling
+        $(".table-grid-error").html("");
+        $("#feesTable").append('<tbody class="table-grid-error"><tr><th colspan="3">No data found in the server</th></tr></tbody>');
+        $("#feesTable_processing").css("display","none");
+        }
+      }
+  });
+});
+</script>
 
 <!--Surcharge -->
 <script type="text/javascript">
@@ -138,35 +143,47 @@ $(document).ready(function(){
       type:"post",
       url:"SurchargeAction.php",
       data:{idn:idn, surcharge:surcharge},
-      success:function(data){
-        $("#success").html("<i class=\"fa fa-check-circle\"></i> Surcharge added.");
-        $("#feesTable").html(data);
+      success:function(response){
+        if(response.includes("Surcharge added.")) {
+          $('#feesTable').DataTable().ajax.reload();
+          $.toast({
+            text: response, // Text that is to be shown in the toast
+            showHideTransition: 'plain', // fade, slide or plain
+            allowToastClose: true, // Boolean value true or false
+            hideAfter: 10000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+            stack: false, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+            position: 'bottom-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+            bgColor: '#00753a',  // Background color of the toast
+            textColor: '#ffffff',  // Text color of the toast
+            textAlign: 'center',  // Text alignment i.e. left, right or center
+            loader: true,  // Whether to show loader or not. True by default
+            loaderBg: '#9EC600',  // Background color of the toast loader
+          });
+        } else {
+          $.toast({
+            text: response, // Text that is to be shown in the toast
+            showHideTransition: 'plain', // fade, slide or plain
+            allowToastClose: true, // Boolean value true or false
+            hideAfter: false, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+            stack: false, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+            position: 'bottom-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+            bgColor: '#FF0004',  // Background color of the toast
+            textColor: '#ffffff',  // Text color of the toast
+            textAlign: 'center',  // Text alignment i.e. left, right or center
+            loader: false,  // Whether to show loader or not. True by default
+          });
         }
-      });
+      }
     });
   });
-</script>
-
-<!-- Initialize DataTables plugin -->
-<script type="text/javascript">
-var table = $("#feesTable").DataTable();
-$("#searchInput").on("keyup", function() {
-  table.search(this.value).draw(); //search/filter functionality using DataTables search API
-});
-table.destroy(); //for reinitialization
-
-$("#feesTable").DataTable({
-  "pagingType": "full_numbers", //'First', 'Previous', 'Next' and 'Last' buttons plus page numbers
-  "bFilter": false, //remove default search/filter
-  "destroy": true //for reinitialization
 });
 </script>
 
 
-<!-- jQuery -->
-<script src="../Resources/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="../Resources/plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- jquery toast -->
+<script src="../Resources/plugins/jquery.toast/jquery.toast.min.js" type="text/javascript"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)

@@ -46,41 +46,41 @@ if(mysqli_num_rows($result) > 0){
 
       if($firstVal != 0){
         $output .= '
-        <td style="text-align:center;"><input type="checkbox" data-id1="'.$row["checkid"].'" name="chk1" id="chk1" value="1" checked="checked"></td>
+        <td style="text-align:center;"><input type="checkbox" data-id1="'.$row["checkid"].'" name="chk1" id="chk1" value="1" checked="checked" disabled></td>
         ';
       } else {
         $output .= '
-        <td style="text-align:center;"><input type="checkbox" data-id1="'.$row["checkid"].'" name="chk1" id="chk1" value="1"></td>
+        <td style="text-align:center;"><input type="checkbox" data-id1="'.$row["checkid"].'" name="chk1" id="chk1" value="1" disabled></td>
         ';
       }
 
       if($secondVal != 0){
         $output .= '
-        <td style="text-align:center;"><input type="checkbox" data-id2="'.$row["checkid"].'" name="chk2" id="chk2" value="1" checked="checked"></td>
+        <td style="text-align:center;"><input type="checkbox" data-id2="'.$row["checkid"].'" name="chk2" id="chk2" value="1" checked="checked" disabled></td>
         ';
       } else {
         $output .= '
-        <td style="text-align:center;"><input type="checkbox" data-id2="'.$row["checkid"].'" name="chk2" id="chk2" value="1"></td>
+        <td style="text-align:center;"><input type="checkbox" data-id2="'.$row["checkid"].'" name="chk2" id="chk2" value="1" disabled></td>
         ';
       }
 
       if($thirdVal != 0){
         $output .= '
-        <td style="text-align:center;"><input type="checkbox" data-id3="'.$row["checkid"].'" name="chk3" id="chk3" value="1" checked="checked"></td>
+        <td style="text-align:center;"><input type="checkbox" data-id3="'.$row["checkid"].'" name="chk3" id="chk3" value="1" checked="checked" disabled></td>
         ';
       } else {
         $output .= '
-        <td style="text-align:center;"><input type="checkbox" data-id3="'.$row["checkid"].'" name="chk3" id="chk3" value="1"></td>
+        <td style="text-align:center;"><input type="checkbox" data-id3="'.$row["checkid"].'" name="chk3" id="chk3" value="1" disabled></td>
         ';
       }
 
       if($fourthVal != 0){
         $output .= '
-        <td style="text-align:center;"><input type="checkbox" data-id4="'.$row["checkid"].'" name="chk4" id="chk4" value="1" checked="checked"></td>
+        <td style="text-align:center;"><input type="checkbox" data-id4="'.$row["checkid"].'" name="chk4" id="chk4" value="1" checked="checked" disabled></td>
         ';
       } else {
         $output .= '
-        <td style="text-align:center;"><input type="checkbox" data-id4="'.$row["checkid"].'" name="chk4" id="chk4" value="1"></td>
+        <td style="text-align:center;"><input type="checkbox" data-id4="'.$row["checkid"].'" name="chk4" id="chk4" value="1" disabled></td>
         ';
       }
 

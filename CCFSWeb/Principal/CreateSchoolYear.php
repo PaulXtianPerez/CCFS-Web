@@ -424,6 +424,43 @@
   }
   </script>
 
+  <script type="text/javascript">
+
+  $('document').ready(function() {
+    $('.years').closest('.form-group').hide();
+    $('[name=dateStart]').on('blur', function() {
+      dateStartEndChange();
+    });
+
+    $('[name=dateEnd]').on('blur', function() {
+      dateStartEndChange();
+    });
+
+    function dateStartEndChange() {
+      var date_start = $('[name=dateStart]').val();
+      var date_end = $('[name=dateEnd]').val();
+      var date_start_month = new Date(date_start).getMonth() + 1;
+      var date_end_month = new Date(date_end).getMonth() + 1;
+
+      $('.years').closest('.form-group').hide();
+
+      if (date_start_month <= date_end_month) {
+        for (var $d = date_start_month; $d <= date_end_month; $d++) {
+          $('.year-' + $d).closest('.form-group').show();
+        }
+      } else {
+      	for (var $d = date_start_month; $d <= 12; $d++) {
+          $('.year-' + $d).closest('.form-group').show();
+        }
+        for (var $d = 1; $d <= date_end_month; $d++) {
+          $('.year-' + $d).closest('.form-group').show();
+        }
+      }
+
+    }
+  });
+</script>
+
   <!-- Show/hide no. of sch days.
   <script type="text/javascript">
   $('document').ready( function ( ) {

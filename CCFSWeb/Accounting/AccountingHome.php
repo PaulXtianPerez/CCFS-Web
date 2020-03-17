@@ -1,5 +1,4 @@
 <?php
- include('../edit.php');
  include('../server.php');
 
  if (isset($_SESSION['LOGIN']) && $_SESSION['LOGIN']){
@@ -120,6 +119,12 @@
             <a href="#Payments" id="payments" class="nav-link">
               <i class="nav-icon fa fa-money-bill-alt"></i>
               <p>Payments</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#AccountingReports" id="reports" class="nav-link">
+              <i class="nav-icon fas fa-file"></i>
+              <p>Generate Reports</p>
             </a>
           </li>
         </ul>

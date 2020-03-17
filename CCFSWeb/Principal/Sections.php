@@ -37,13 +37,16 @@ $result = mysqli_query($mysqli, $query);
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
-  <!-- CSS for DataTables plugin -->
+  <!-- jQuery -->
+  <script type="text/javascript" language="javascript" src="../Resources/plugins/jquery/jquery.js"></script>
+  <!-- CSS for DataTables plugin-->
   <link rel="stylesheet" type="text/css" href="../Resources/plugins/bootstrap/js/DataTables/datatables.css">
-  <!-- DataTables plugin -->
-  <script type="text/javascript" charset="utf8" src="../Resources/plugins/bootstrap/js/DataTables/datatables.js"></script>
+  <!-- DataTables plugin-->
+  <script type="text/javascript" language="javascript" src="../Resources/plugins/bootstrap/js/DataTables/datatables.js"></script>
   <!-- JQuery Inline Table Editor Plugin -->
   <script src="../Resources/plugins/jquery/jquery.tabledit.js"></script>
   <script src="../Resources/plugins/jquery/jquery.tabledit.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../Resources/plugins/jquery.toast/jquery.toast.min.css"/>
   <link rel="stylesheet" href="../Resources/bootstrap-4.4.1/css/bootstrap.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -79,27 +82,96 @@ $result = mysqli_query($mysqli, $query);
                   </form>
                 </div>
               </div> <!-- /.card-header -->
+
               <div>
-                <button type="button" name="section" id="section" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-info" style="float:right; margin-top:5px; margin-right:20px;">Create Section</button>
+                <div class="form-group col-4">
+                  <button data-toggle="collapse" data-target="#insert_form"><p><b>Create New Section: <span class="fas fa-angle-down"></span></b></p></button>
+                </div>
+                <!-- Form for creating new section. -->
+                <form id="insert_form" class="needs-validation collapse" method="post">
+                  <div class="input-group">
+                    <div class="form-group col-3">
+                      <div class="input-group mb-3">
+                        <select name="gradelvl" id="gradelvl" class="form-control" required>
+                          <option value="" disabled selected>Select Grade Level</option>
+                          <option value="NURSERY">NURSERY</option>
+                          <option value="PRE-KINDER">PRE-KINDER</option>
+                          <option value="KINDER">KINDER</option>
+                          <option value="GRADE 1">GRADE 1</option>
+                          <option value="GRADE 2">GRADE 2</option>
+                          <option value="GRADE 3">GRADE 3</option>
+                          <option value="GRADE 4">GRADE 4</option>
+                          <option value="GRADE 5">GRADE 5</option>
+                          <option value="GRADE 6">GRADE 6</option>
+                        </select>
+                        <div class="input-group-append">
+                          <div class="input-group-text">
+                            <span class="fas fa-users"></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group col-3">
+                      <div class="input-group mb-3" class="validate-input" data-validate="Section name is required">
+                        <input type="text" name="sename" id="sename" class="form-control" placeholder="Enter Section Name" maxlength="40" required/>
+                        <div class="input-group-append">
+                          <div class="input-group-text">
+                            <span class="fas fa-id-badge"></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group col-4">
+                      <div class="input-group mb-3">
+                        <input type="text" name="advname" id="advname" class="form-control" placeholder="Enter Adviser Name" maxlength="40" required/>
+                        <div class="input-group-append">
+                          <div class="input-group-text">
+                            <span class="fas fa-user-circle"></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group col-2">
+                      <input type="submit" name="submit" value="Create" class="btn btn-success"/>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-6" style="display:none">
+                      <label>School Year</label>
+                      <?php $query2 = "Select yearid from schoolyear where scstatus = 'ACTIVE'";
+                      $result2 = $mysqli->query($query2) or die($mysqli->error.__LINE__);
+                      ?>
+                      <div class="input-group mb-3">
+                      <select name = "yearid" type = "hidden" class="form-control" >
+                          <?php while ($row2 = mysqli_fetch_array($result2)):;?>
+                          <option name = "yearid" type = "hidden"><?php echo $row2[0];?></option>
+                          <?php endwhile;?>
+                          </select>
+                        <div class="input-group-append">
+                          <div class="input-group-text">
+                            <span class="fas fa-calendar"></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div><hr>
+                </form>
               </div>
+
               <div class="card-body">
                 <table id="secListTable" class="table table-bordered table-hover">
                   <thead>
                     <tr>
-                      <th style="display:none;">Section ID</th>
+                      <th>Section ID</th>
                       <th width="40%">Section Name</th>
                       <th>Adviser Name</th>
                     </tr>
                   </thead>
-                   <tbody> <!-- Populate from database. -->
-                      <?php while($row = mysqli_fetch_array($result)):;?>
-                        <tr>
-                          <td style="display:none;"><?php echo $row["secID"];?></td>
-                          <td><?php echo trim( str_replace( 'Grade', '', $row["gradelvl"] ) ) . " - " . $row["sename"];?></td>
-                          <td><?php echo $row["adviserlname"];?></td>
-                        </tr>
-                      <?php endwhile;?>
-                    </tbody>
+                  <tbody>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tbody>
                   </table>
                 </div> <!-- /.card-body -->
               </div>
@@ -110,99 +182,27 @@ $result = mysqli_query($mysqli, $query);
     </div>
   </div>
 
-<!-- Modal for creating a new section. -->
-<div id="add_data_Modal" class="modal fade">
-  <div class="modal-dialog modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Create New Section</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      <div class="modal-body">
-        <form id="insert_form" class="needs-validation" method="post">
-          <div class="row">
-            <div class="form-group col-6">
-              <label>Section Name</label>
-              <div class="input-group mb-3" class="validate-input" data-validate="Section name is required">
-                <input type="text" name="sename" id="sename" class="form-control" placeholder="Enter Section Name" maxlength="40" required/>
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <span class="fas fa-id-badge"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="form-group col-6">
-              <label>Grade Level</label>
-              <div class="input-group mb-3">
-                <select name="gradelvl" id="gradelvl" class="form-control">
-                  <option value="NURSERY">NURSERY</option>
-                  <option value="PRE-KINDER">PRE-KINDER</option>
-                  <option value="KINDER">KINDER</option>
-                  <option value="GRADE 1">GRADE 1</option>
-                  <option value="GRADE 2">GRADE 2</option>
-                  <option value="GRADE 3">GRADE 3</option>
-                  <option value="GRADE 4">GRADE 4</option>
-                  <option value="GRADE 5">GRADE 5</option>
-                  <option value="GRADE 6">GRADE 6</option>
-                </select>
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <span class="fas fa-users"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="form-group col-12">
-              <label>Adviser Name</label>
-              <div class="input-group mb-3">
-                <input type="text" name="advname" id="advname" class="form-control" placeholder="Enter Adviser Name" maxlength="40" required/>
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <span class="fas fa-user-circle"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-6" style="display:none">
-                <label>School Year</label>
-                <?php $query2 = "Select yearid from schoolyear where scstatus = 'ACTIVE'";
-                $result2 = $mysqli->query($query2) or die($mysqli->error.__LINE__);
-                ?>
-                <div class="input-group mb-3">
-                <select name = "yearid" type = "hidden" class="form-control" >
-                    <?php while ($row2 = mysqli_fetch_array($result2)):;?>
-                    <option name = "yearid" type = "hidden"><?php echo $row2[0];?></option>
-                    <?php endwhile;?>
-                    </select>
-                  <div class="input-group-append">
-                    <div class="input-group-text">
-                      <span class="fas fa-calendar"></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <!-- /.col -->
-              <div class="col-4">
-                <input type="submit" name="submit" value="Create" min="0" class="btn btn-success"/>
-              </div>
-              <!-- /.col -->
-            </div>
-            <b><p id="success" style="text-align:center; font-size:22px;"></p></b>
-        </form>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
+<!-- Initialize DataTables plugin -->
+<script type="text/javascript" language="javascript">
+$(document).ready(function(){
+  var dataTable = $('#secListTable').DataTable({
+    "processing": true,
+    "serverSide": true,
+    "pagingType": "full_numbers", //'First', 'Previous', 'Next' and 'Last' buttons plus page numbers
+    //"bFilter": false, //remove default search/filter
+    "ajax":{
+      url: "SectionTableData.php", // json datasource
+      type: "post",  // method  , by default get
+      error: function(){  // error handling
+        $(".table-grid-error").html("");
+        $("#secListTable").append('<tbody class="table-grid-error"><tr><th colspan="3">No data found in the server</th></tr></tbody>');
+        $("#secListTable_processing").css("display","none");
+        }
+      }
+  });
+});
+</script>
 
 <!--Submit form.-->
 <script type="text/javascript">
@@ -211,6 +211,7 @@ $('#insert_form').on("submit", function(event){
   var secname = document.getElementById("sename").value;
 	bootbox.confirm({
 		message: "Create section " +secname+ "?",
+    centerVertical: true,
 		buttons: {
 			confirm: {
         label: "Yes",
@@ -228,31 +229,41 @@ $('#insert_form').on("submit", function(event){
 				url: "SectionInsert.php",
 				data: $("#insert_form").serialize(),
 				success: function(response){
-          $('#insert_form')[0].reset();
-					$("#success").html(response);
-            $("#add_data_Modal").on("hidden.bs.modal", function () {
-              location.reload();
+          if(response.includes("Failed to create a new section.")){
+            $.toast({
+              text: response, // Text that is to be shown in the toast
+              showHideTransition: 'plain', // fade, slide or plain
+              allowToastClose: true, // Boolean value true or false
+              hideAfter: false, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+              stack: false, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+              position: 'bottom-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+              bgColor: '#FF0004',  // Background color of the toast
+              textColor: '#ffffff',  // Text color of the toast
+              textAlign: 'center',  // Text alignment i.e. left, right or center
+              loader: false,  // Whether to show loader or not. True by default
             });
-					}
+          } else {
+            $('#insert_form')[0].reset();
+  					$("#secData").html(response);
+            $.toast({
+              text: "<span style='font-size:15px;'><i class=\"fa fa-check-circle\"></i> Successfully created a new section.</span>", // Text that is to be shown in the toast
+              showHideTransition: 'plain', // fade, slide or plain
+              allowToastClose: true, // Boolean value true or false
+              hideAfter: 10000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+              stack: false, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+              position: 'bottom-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+              bgColor: '#00753a',  // Background color of the toast
+              textColor: '#ffffff',  // Text color of the toast
+              textAlign: 'center',  // Text alignment i.e. left, right or center
+              loader: true,  // Whether to show loader or not. True by default
+              loaderBg: '#9EC600',  // Background color of the toast loader
+            });
+          }
+				}
 			});
 		}
 	}
 	});
-});
-</script>
-
-<!-- Initialize DataTables plugin -->
-<script type="text/javascript">
-var table = $("#secListTable").DataTable();
-$("#searchInput").on("keyup", function() {
-  table.search(this.value).draw(); //search/filter functionality using DataTables search API
-});
-table.destroy(); //for reinitialization
-
-$("#secListTable").DataTable({
-  "paging": false, //remove pagination
-  "bFilter": false, //remove default search/filter
-  "destroy": true //for reinitialization
 });
 </script>
 
@@ -327,12 +338,12 @@ for (i = 0; i < capsFields.length; i++) {
 </script>
 
 
-<!-- jQuery -->
-<script src="../Resources/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="../Resources/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!--Bootbox library for dialog box.-->
 <script src="../Resources/plugins/bootstrap/js/bootbox/bootbox.min.js"></script>
+<!-- jquery toast -->
+<script src="../Resources/plugins/jquery.toast/jquery.toast.min.js" type="text/javascript"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)

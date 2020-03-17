@@ -1,9 +1,9 @@
 <?php
-$connect = mysqli_connect('localhost', 'root', '', 'ccfs');
+include("database.php");
 
 $input = filter_input_array(INPUT_POST);
 
-$adviser_name = mysqli_real_escape_string($connect, $input["adviserlname"]);
+$adviser_name = mysqli_real_escape_string($mysqli, $input["adviserlname"]);
 
 if($input["action"] === 'edit')
 {
@@ -13,7 +13,7 @@ if($input["action"] === 'edit')
  WHERE secID = '".$input["secID"]."'
  ";
 
- mysqli_query($connect, $query);
+ mysqli_query($mysqli, $query);
 
 }
 if($input["action"] === 'delete')
@@ -22,7 +22,7 @@ if($input["action"] === 'delete')
  DELETE FROM section
  WHERE secID = '".$input["secID"]."'
  ";
- mysqli_query($connect, $query);
+ mysqli_query($mysqli, $query);
 }
 
 echo json_encode($input);

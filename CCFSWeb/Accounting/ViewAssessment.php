@@ -27,6 +27,7 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
+  <script src="../Resources/vendor/jquery/jquery-3.2.1.min.js"></script>
   <!-- CSS for DataTables plugin -->
   <link rel="stylesheet" type="text/css" href="../Resources/plugins/bootstrap/js/DataTables/datatables.css">
   <!-- DataTables plugin -->
@@ -56,15 +57,15 @@
           <div class="col-12">
             <div class="input-group">
               <!-- Create assessment -->
-              <div class="Balance">
+              <div class="Balance col-2">
                 <div class="searchID">
                   <form id="poll_form">
-                    <input type="submit" name="create" class="btn btn-info create" value="Create Assessment"/>
+                    <input type="submit" name="create" class="btn btn-info btn create" value="Create Assessment"/>
                   </form>
                 </div>
               </div>
               <!-- Update assessment -->
-              <div class="status">
+              <div class="status col-2">
                 <div class="statusass">
                   <form method="post" id="statusupdate">
                     <input type="submit" name="update" class="btn btn-info update" value="Update Assessment"/>
@@ -108,8 +109,7 @@
                         <th>Status </th>
                       </tr>
                     </thead>
-            				<tbody id="viewAssessment"> <!-- Populate from database. -->
-                    </tbody>
+
                   </table>
                 </div><!-- /.card-body -->
               </div><!-- /.card -->
@@ -139,6 +139,7 @@
     </div>
   </div>
 
+
 <!--Submit search form.-->
 <script type="text/javascript">
    $(document).ready(function(){
@@ -152,7 +153,7 @@
                   data:{search:search,id:id},
                   success:function(data){
                     console.log(data);
-                    $('#viewAssessment').html(data);
+                    $('#assessmentTable').html(data);
                   }
              });
         });
@@ -170,6 +171,27 @@
              });
         });
    });
+</script>
+
+<!-- Initialize DataTables plugin -->
+<script type="text/javascript" language="javascript">
+$(document).ready(function(){
+  var dataTable = $('#assessmentTable').DataTable({
+    "processing": true,
+    "serverSide": true,
+    "pagingType": "full_numbers", //'First', 'Previous', 'Next' and 'Last' buttons plus page numbers
+    //"bFilter": false, //remove default search/filter
+    "ajax":{
+      url: "ViewAssessmentAction.php", // json datasource
+      type: "post",  // method  , by default get
+      error: function(){  // error handling
+        $(".table-grid-error").html("");
+        $("#assessmentTable").append('<tbody class="table-grid-error"><tr><th colspan="3">No data found in the server</th></tr></tbody>');
+        $("#assessmentTable_processing").css("display","none");
+        }
+      }
+  });
+});
 </script>
 
 <!-- Create Assessment -->
@@ -242,19 +264,8 @@ $(document).ready(function(){
 });
 </script>
 
-<!-- Initialize DataTables plugin
-<script type="text/javascript">
-$("#assessmentTable").DataTable({
-  "pagingType": "full_numbers", //'First', 'Previous', 'Next' and 'Last' buttons plus page numbers
-  "processing": true,
-  "serverSide": true,
-  "ajax": "ViewAssessmentAction.php",
-  "destroy": true //for reinitialization
-});
-</script> -->
 
 <!--===============================================================================================-->
-  <script src="../Resources/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--Bootbox library for dialog box.-->
   <script src="../Resources/plugins/bootstrap/js/bootbox/bootbox.min.js"></script>
 <!--===============================================================================================-->

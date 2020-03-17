@@ -9,9 +9,9 @@ if(isset($_POST['user_name'])){
   $query = mysqli_query($mysqli, $checkdata);
 
   if(mysqli_num_rows($query)>0){
-    echo "<span style='color:#FF0004;'>" . '<i class="fas fa-exclamation-circle"></i>' . " Username already exists." . "</span>";
+    echo "<span style='color:#FF0004;' data-toggle='tooltip' title='Username already exists'>" . '<i class="fas fa-exclamation-circle"></i>' . "</span>";
   } else {
-    echo "<span style='color:#0AC02A;'>" . '<i class="fas fa-check-circle"></i>' . " Username available." . "</span>";
+    echo "<span style='color:#0AC02A;' data-toggle='tooltip' title='Username available'>" . '<i class="fas fa-check-circle"></i>' . "</span>";
   }
   exit();
 }

@@ -219,42 +219,6 @@ $(document).ready(function(){
 });
 </script>
 
-<!-- Inline/live edit ratings
-<script>
-$(document).ready(function(){
-  function edit_data(id, text, column_name){
-    $.ajax({
-      url:"ChecklistsRatings.php",
-      method:"POST",
-      data:{id:id, text:text, column_name:column_name},
-      dataType:"text",
-      success:function(data){
-        $("#success").html(data);
-      }
-    });
-  }
-  $(document).on('keyup', '.first', function(){
-    var id = $(this).data("id1");
-    var firstrating = $(this).text();
-    edit_data(id, firstrating, "firstrating");
-  });
-  $(document).on('keyup', '.second', function(){
-    var id = $(this).data("id2");
-    var secondrating = $(this).text();
-    edit_data(id, secondrating, "secondrating");
-  });
-  $(document).on('keyup', '.third', function(){
-    var id = $(this).data("id3");
-    var thirdrating = $(this).text();
-    edit_data(id, thirdrating, "thirdrating");
-  });
-  $(document).on('keyup', '.fourth', function(){
-    var id = $(this).data("id4");
-    var fourthrating = $(this).text();
-    edit_data(id, fourthrating, "fourthrating");
-  });
-});
- </script>-->
 
 <!-- jQuery -->
 <script src="../Resources/plugins/jquery/jquery.min.js"></script>

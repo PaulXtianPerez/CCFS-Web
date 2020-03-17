@@ -1,7 +1,7 @@
 <?php
 	include('server.php');
 
-	if (isset($_SESSION['LOGIN']) && $_SESSION['LOGIN']){
+	if (isset($_SESSION['LOGIN']) && $_SESSION['LOGIN'] && $_SESSION['PASSWORD']!='ccfs2020'){
 	  if($_SESSION['TYPE']=='PRINCIPAL'){
 	    header('location: Principal/PrincipalHome.php');
 	  }elseif($_SESSION['TYPE']=='REGISTRAR'){
@@ -11,6 +11,8 @@
 	  }else{
 			header('location: Teacher/TeacherHome.php');
 		}
+	} elseif(isset($_SESSION['LOGIN']) && $_SESSION['LOGIN'] && $_SESSION['PASSWORD']=='ccfs2020') {
+		header('location: ChangePassword.php');
 	}
 ?>
 <!DOCTYPE html>
@@ -62,7 +64,7 @@
 					</div>
 
 					<div class="wrap-input100 rs1 validate-input" data-validate="Password is required">
-						<input class="input100" id="enterButton" type="password" name="password" placeholder="Password">
+						<input class="input100" id="enterButton" type="password" name="password" placeholder="Password" maxlength="16">
 						<span class="focus-input100-1"></span>
 						<span class="focus-input100-2"></span>
 					</div>

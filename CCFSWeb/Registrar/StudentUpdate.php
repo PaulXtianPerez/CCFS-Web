@@ -1,8 +1,6 @@
 <?php
  include("Connection.php");
  if(!empty($_POST)) {
-      $output = '';
-      $message = '';
       $status = mysqli_real_escape_string($conn, $_POST["status"]);
       $surname = mysqli_real_escape_string($conn, $_POST["surname"]);
       $givenname = mysqli_real_escape_string($conn, $_POST["givenname"]);
@@ -59,40 +57,13 @@
            guardianAddress='$guaaddress',
            guardianContact='$guacontact'
            WHERE IDno='$_POST[student_id]'";
-           $message = 'Successfully updated.';
       }
 
       if(mysqli_query($conn, $query)) {
-           $output .= '<label class="text-success">' . $message . '</label>';
-           $select_query = "SELECT IDno, enstudent.SurName, enstudent.GivenName, enstudent.MiddleName, enstudent.gradelvl,section.sename FROM enstudent,section WHERE enstudent.gradelvl = section.gradelvl AND enstudent.yearid IN (SELECT yearid from schoolyear WHERE scstatus='ACTIVE') GROUP BY IDno";
-           $result = mysqli_query($conn, $select_query);
-           $output .= '
-                <table class="table table-bordered table-hover">
-                     <tr>
-                       <th>ID Number</th>
-                       <th>Surname</th>
-                       <th>Given Name</th>
-                       <th>Middle Name</th>
-                       <th>Grade Level</th>
-                       <th>Section</th>
-                       <th></th>
-                     </tr>
-           ';
-           while($row = mysqli_fetch_array($result)) {
-                $output .= '
-                     <tr>
-                          <td>' . $row["IDno"] . '</td>
-                          <td>' . $row["SurName"] . '</td>
-                          <td>' . $row["GivenName"] . '</td>
-                          <td>' . $row["MiddleName"] . '</td>
-                          <td>' . $row["gradelvl"] . '</td>
-                          <td>' . $row["sename"] . '</td>
-                          <td style="text-align:center;"><input type="button" name="edit" value="Edit" id="'.$row["IDno"] .'" class="btn btn-info btn-sm edit_data" /></td>
-                     </tr>
-                ';
-           }
-           $output .= '</table>';
+        echo "<span style='font-size:15px;'>" . '<i class="fas fa-check-circle"></i>' . " Student data updated." . "</span>";
+      } else {
+        echo "<span style='font-size:15px;'>" . '<i class="fas fa-exclamation-circle"></i>' . " Update failed." . "</span>";
       }
-      echo $output;
+
  }
  ?>

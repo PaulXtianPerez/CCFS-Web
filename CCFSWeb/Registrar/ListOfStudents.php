@@ -36,10 +36,13 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
-  <!-- CSS for DataTables plugin -->
+  <!-- jQuery -->
+  <script type="text/javascript" language="javascript" src="../Resources/plugins/jquery/jquery.js"></script>
+  <!-- CSS for DataTables plugin-->
   <link rel="stylesheet" type="text/css" href="../Resources/plugins/bootstrap/js/DataTables/datatables.css">
-  <!-- DataTables plugin -->
-  <script type="text/javascript" charset="utf8" src="../Resources/plugins/bootstrap/js/DataTables/datatables.js"></script>
+  <!-- DataTables plugin-->
+  <script type="text/javascript" language="javascript" src="../Resources/plugins/bootstrap/js/DataTables/datatables.js"></script>
+  <link rel="stylesheet" type="text/css" href="../Resources/plugins/jquery.toast/jquery.toast.min.css"/>
   <link rel="stylesheet" href="../Resources/bootstrap-4.4.1/css/bootstrap.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -89,19 +92,7 @@
                       <th></th>
                     </tr>
                 </thead>
-                <tbody> <!-- Populate from database. -->
-                  <?php while($row = $result->fetch_assoc()) { ?>
-                    <tr>
-                      <td><?php echo $row["IDno"];?></td>
-                      <td><?php echo $row["SurName"];?></td>
-                      <td><?php echo $row["GivenName"];?></td>
-                      <td><?php echo $row["MiddleName"];?></td>
-                      <td><?php echo $row["gradelvl"];?></td>
-                      <td><?php echo $row["sename"];?></td>
-                      <td style="text-align:center;"><input type="button" name="edit" value="Edit" id="<?php echo $row["IDno"]; ?>" class="btn btn-info btn-sm edit_data" /></td>
-                    </tr>
-                    <?php }?>
-                  </tbody>
+
                 </table>
               </div>
               <!-- /.card-body -->
@@ -303,6 +294,28 @@
   </div>
 </div>
 
+
+<!-- Initialize DataTables plugin -->
+<script type="text/javascript" language="javascript">
+$(document).ready(function(){
+  var dataTable = $('#studListTable').DataTable({
+    "processing": true,
+    "serverSide": true,
+    "pagingType": "full_numbers", //'First', 'Previous', 'Next' and 'Last' buttons plus page numbers
+    //"bFilter": false, //remove default search/filter
+    "ajax":{
+      url: "StudentTableData.php", // json datasource
+      type: "post",  // method  , by default get
+      error: function(){  // error handling
+        $(".table-grid-error").html("");
+        $("#studListTable").append('<tbody class="table-grid-error"><tr><th colspan="3">No data found in the server</th></tr></tbody>');
+        $("#studListTable_processing").css("display","none");
+        }
+      }
+  });
+});
+</script>
+
 <!-- View and edit student information through modal. -->
 <script type="text/javascript">
 $(document).ready(function(){
@@ -352,6 +365,7 @@ $(document).ready(function(){
     event.preventDefault();
     bootbox.confirm({
     	message: "Are you sure you want to save any changes made to this student's data?",
+      centerVertical: true,
   		buttons: {
   			confirm: {
           label: "Yes",
@@ -372,10 +386,38 @@ $(document).ready(function(){
               $('#update').val("Updating...");
               },
               success:function(data){
-                $('#insert_form')[0].reset();
-                $('#add_data_Modal').modal('hide');
-                $('#studListTable').html(data);
-                $('#update').val("Save Changes");
+                if(data.includes("Student data updated.")){
+                  $('#update').val("Save Changes");
+                  $.toast({
+                    text: data, // Text that is to be shown in the toast
+                    showHideTransition: 'plain', // fade, slide or plain
+                    allowToastClose: true, // Boolean value true or false
+                    hideAfter: 10000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                    stack: false, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                    position: 'bottom-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                    bgColor: '#00753a',  // Background color of the toast
+                    textColor: '#ffffff',  // Text color of the toast
+                    textAlign: 'center',  // Text alignment i.e. left, right or center
+                    loader: true,  // Whether to show loader or not. True by default
+                    loaderBg: '#9EC600',  // Background color of the toast loader
+                  });
+                  $("#add_data_Modal").on("hidden.bs.modal", function(){
+                    $('#studListTable').DataTable().ajax.reload();
+                  });
+                } else {
+                  $.toast({
+                    text: data, // Text that is to be shown in the toast
+                    showHideTransition: 'plain', // fade, slide or plain
+                    allowToastClose: true, // Boolean value true or false
+                    hideAfter: false, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                    stack: false, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                    position: 'bottom-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                    bgColor: '#FF0004',  // Background color of the toast
+                    textColor: '#ffffff',  // Text color of the toast
+                    textAlign: 'center',  // Text alignment i.e. left, right or center
+                    loader: false,  // Whether to show loader or not. True by default
+                  });
+                }
               }
             });
           }
@@ -383,21 +425,6 @@ $(document).ready(function(){
       });
     });
   });
-</script>
-
-<!-- Initialize DataTables plugin -->
-<script type="text/javascript">
-var table = $("#studListTable").DataTable();
-$("#searchInput").on("keyup", function() {
-  table.search(this.value).draw(); //search/filter functionality using DataTables search API
-});
-table.destroy(); //for reinitialization
-
-$("#studListTable").DataTable({
-  "pagingType": "full_numbers", //'First', 'Previous', 'Next' and 'Last' buttons plus page numbers
-  "bFilter": false, //remove default search/filter
-  "destroy": true //for reinitialization
-});
 </script>
 
 <!--Force capitalize inputs-->
@@ -422,12 +449,12 @@ for (i = 0; i < capsFields.length; i++) {
 </script>
 
 
-<!-- jQuery -->
-<script src="../Resources/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="../Resources/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!--Bootbox library for dialog box.-->
 <script src="../Resources/plugins/bootstrap/js/bootbox/bootbox.min.js"></script>
+<!-- jquery toast -->
+<script src="../Resources/plugins/jquery.toast/jquery.toast.min.js" type="text/javascript"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)

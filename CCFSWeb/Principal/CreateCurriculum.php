@@ -137,6 +137,7 @@ $(document).ready(function(){
     var inputGradeLevel = $("#inputGradeLevel").val();
     bootbox.confirm({
     	message: "Create curriculum " +curname+ "?",
+      centerVertical: true,
   		buttons: {
   			confirm: {
           label: "Yes",

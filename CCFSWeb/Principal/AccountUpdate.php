@@ -1,52 +1,33 @@
 <?php
- $connect = mysqli_connect("localhost", "root", "", "ccfs");
- if(!empty($_POST)) {
-      $output = '';
-      $message = '';
-      $firstname = mysqli_real_escape_string($connect, $_POST["firstname"]);
-      $lastname = mysqli_real_escape_string($connect, $_POST["lastname"]);
-      $password = mysqli_real_escape_string($connect, $_POST["password"]);
-      $status = mysqli_real_escape_string($connect, $_POST["status"]);
-      if($_POST["account_id"] != '') {
-           $query = "
-           UPDATE accounts
-           SET fname='$firstname',
-           lname='$lastname',
-           password='$password',
-           accstatus='$status'
-           WHERE accid='".$_POST["account_id"]."'";
-           $message = 'Account updated.';
-      }
+ include("database.php");
 
-      if(mysqli_query($connect, $query)) {
-           $output .= '<label class="text-success">' . $message . '</label>';
-           $select_query = "SELECT * FROM accounts";
-           $result = mysqli_query($connect, $select_query);
-           $output .= '
-                <table class="table table-bordered table-hover">
-                     <tr>
-                       <th>Account ID</th>
-                       <th>Name</th>
-                       <th>Username</th>
-                       <th>Account Type</th>
-                       <th>Status</th>
-                       <th></th>
-                     </tr>
-           ';
-           while($row = mysqli_fetch_array($result)) {
-                $output .= '
-                     <tr>
-                        <td style="text-align: center;">' . $row["accid"] . '</td>
-                        <td>' . $row["fname"] . ' ' . $row["lname"] . '</td>
-                        <td>' . $row["username"] . '</td>
-                        <td>' . $row["type"] . '</td>
-                        <td>' . $row["accstatus"] . '</td>
-                        <td style="text-align: center;"><input type="button" name="edit" value="Edit" id="'.$row["accid"] .'" class="btn btn-info btn-sm edit_data" /></td>
-                     </tr>
-                ';
-           }
-           $output .= '</table>';
-      }
-      echo $output;
+ $input = filter_input_array(INPUT_POST);
+
+ if(!empty($_POST) && !isset($input['reset'])) {
+   $firstname = mysqli_real_escape_string($mysqli, $_POST["firstname"]);
+   $lastname = mysqli_real_escape_string($mysqli, $_POST["lastname"]);
+   $status = mysqli_real_escape_string($mysqli, $_POST["status"]);
+   if($_POST["account_id"] != '') {
+     $query = "
+     UPDATE accounts
+     SET fname='$firstname',
+     lname='$lastname',
+     accstatus='$status'
+     WHERE accid='".$_POST["account_id"]."'";
+   }
+
+   if(mysqli_query($mysqli, $query)) {
+     echo "<span style='font-size:15px;'>" . '<i class="fas fa-check-circle"></i>' . " Account updated." . "</span>";
+   } else {
+     echo "<span style='font-size:15px;'>" . '<i class="fas fa-exclamation-circle"></i>' . " Update failed." . "</span>";
+   }
+
+ } else if (isset($input['reset'])) {
+   $query = "UPDATE accounts SET password = DEFAULT WHERE accid='".$_POST["account_id"]."'";
+   if(mysqli_query($mysqli, $query)) {
+     echo "<span style='font-size:15px;'>" . '<i class="fas fa-check-circle"></i>' . " Password reset successful." . "</span>";
+   } else {
+     echo "<span style='font-size:15px;'>" . '<i class="fas fa-exclamation-circle"></i>' . " Failed to reset password." . "</span>";
+   }
  }
  ?>

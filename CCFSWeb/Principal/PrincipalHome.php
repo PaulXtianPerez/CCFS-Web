@@ -1,5 +1,4 @@
 <?php
- include('../edit.php');
  include('../server.php');
  include('Connection.php');
 
@@ -164,15 +163,9 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#CreateAccount" id="crAcc" class="nav-link">
-              <i class="nav-icon fas fa-user-plus"></i>
-              <p>Create Account</p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview">
-            <a href="#ListOfAccounts" id="accList" class="nav-link">
+            <a href="#Accounts" id="accList" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
-              <p>List of Accounts</p>
+              <p>User Accounts</p>
             </a>
           </li>
         </ul>
@@ -217,7 +210,7 @@
               </div>
               <div class="card-body">
                   <img src="../Resources/dist/img/CCFSLOGO2.png" alt="CCFS Logo" class="pull-left mr-2 float-left" style="max-width: 320px">
-                  <p style="margin-top: 100px; foWnt-size: 21px;"> Cypress Christian Foundation School (CCFS), located at 600 Naguilian Road, Irisan, Baguio City, is a primary school run by Saved of the Lord Ministry. The school was founded in 1999.
+                  <p style="margin-top: 100px; font-size: 21px;"> Cypress Christian Foundation School (CCFS), located at 600 Naguilian Road, Irisan, Baguio City, is a primary school run by Saved of the Lord Ministry. The school was founded in 1999.
                   CCFS caters to preschool up to grade school, with an academic calendar that runs from June to April. Although a Christian school, non-Christian students are welcome to enroll in CCFS.
                  </p>
               </div>
