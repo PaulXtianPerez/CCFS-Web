@@ -1,10 +1,6 @@
 <?php
 // connect to database
 include("database.php");
-// mysql select query
-$query = "SELECT * FROM `section` WHERE yearid IN (SELECT yearid from schoolyear WHERE scstatus='ACTIVE')";
-// result for method
-$result = mysqli_query($mysqli, $query);
 ?>
 
 <!DOCTYPE html>
@@ -162,16 +158,11 @@ $result = mysqli_query($mysqli, $query);
                 <table id="secListTable" class="table table-bordered table-hover">
                   <thead>
                     <tr>
-                      <th>Section ID</th>
                       <th width="40%">Section Name</th>
-                      <th>Adviser Name</th>
+                      <th>Adviser Name (<i>Click to edit</i>)</th>
+                      <th width="5%"></th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tbody>
                   </table>
                 </div> <!-- /.card-body -->
               </div>
@@ -204,7 +195,135 @@ $(document).ready(function(){
 });
 </script>
 
-<!--Submit form.-->
+<!--  Edit and delete data -->
+<script type="text/javascript" language="javascript" >
+$(document).ready(function(){
+  function update_data(id, column_name, value){
+    $.ajax({
+      url:"SectionUpdate.php",
+      method:"POST",
+      data:{id:id, column_name:column_name, value:value},
+      success:function(response){
+        if(response.includes("Update failed.")){
+          $.toast({
+            text: response, // Text that is to be shown in the toast
+            showHideTransition: 'plain', // fade, slide or plain
+            allowToastClose: true, // Boolean value true or false
+            hideAfter: false, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+            stack: false, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+            position: 'bottom-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+            bgColor: '#FF0004',  // Background color of the toast
+            textColor: '#ffffff',  // Text color of the toast
+            textAlign: 'center',  // Text alignment i.e. left, right or center
+            loader: false,  // Whether to show loader or not. True by default
+          });
+        } else {
+          $('#secListTable').DataTable().ajax.reload();
+          $.toast({
+            text: response, // Text that is to be shown in the toast
+            showHideTransition: 'plain', // fade, slide or plain
+            allowToastClose: true, // Boolean value true or false
+            hideAfter: 10000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+            stack: false, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+            position: 'bottom-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+            bgColor: '#00753a',  // Background color of the toast
+            textColor: '#ffffff',  // Text color of the toast
+            textAlign: 'center',  // Text alignment i.e. left, right or center
+            loader: true,  // Whether to show loader or not. True by default
+            loaderBg: '#9EC600',  // Background color of the toast loader
+          });
+        }
+      }
+    });
+  }
+
+  $(document).on('blur', '.update', function(){
+    var id = $(this).data("id");
+    var column_name = $(this).data("column");
+    var value = $(this).text();
+    if(value != ''){
+      update_data(id, column_name, value);
+    } else {
+      $('#secListTable').DataTable().ajax.reload();
+      $.toast({
+        text: "<span style='font-size:15px;'><i class='fas fa-exclamation-circle'></i> Adviser name is required.</span>", // Text that is to be shown in the toast
+        showHideTransition: 'plain', // fade, slide or plain
+        allowToastClose: true, // Boolean value true or false
+        hideAfter: false, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+        stack: false, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+        position: 'bottom-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+        bgColor: '#FF0004',  // Background color of the toast
+        textColor: '#ffffff',  // Text color of the toast
+        textAlign: 'center',  // Text alignment i.e. left, right or center
+        loader: false,  // Whether to show loader or not. True by default
+      });
+    }
+  });
+
+  $(document).on('click', '.delete', function(){
+    var id = $(this).attr("id");
+    var del = $('button[name=delete]').val();
+
+    bootbox.confirm({
+   		message: "Are you sure you want to delete this section?",
+      centerVertical: true,
+   		buttons: {
+   			confirm: {
+           label: "Yes",
+           className: "btn-success"
+       },
+       cancel: {
+           label: "No",
+           className: "btn-danger"
+       }
+   	},
+   	callback: function(result){
+   		if(result){
+   			$.ajax({
+   				type: "POST",
+   				url: "SectionUpdate.php",
+          method: "POST",
+          data:{id:id, del:del},
+   				success: function(response){
+            if(response.includes("Delete failed.")){
+              $.toast({
+                text: response, // Text that is to be shown in the toast
+                showHideTransition: 'plain', // fade, slide or plain
+                allowToastClose: true, // Boolean value true or false
+                hideAfter: false, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                stack: false, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                position: 'bottom-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                bgColor: '#FF0004',  // Background color of the toast
+                textColor: '#ffffff',  // Text color of the toast
+                textAlign: 'center',  // Text alignment i.e. left, right or center
+                loader: false,  // Whether to show loader or not. True by default
+              });
+            } else {
+     					$('#secListTable').DataTable().ajax.reload();
+              $.toast({
+                text: response, // Text that is to be shown in the toast
+                showHideTransition: 'plain', // fade, slide or plain
+                allowToastClose: true, // Boolean value true or false
+                hideAfter: 10000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+                stack: false, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+                position: 'bottom-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+                bgColor: '#00753a',  // Background color of the toast
+                textColor: '#ffffff',  // Text color of the toast
+                textAlign: 'center',  // Text alignment i.e. left, right or center
+                loader: true,  // Whether to show loader or not. True by default
+                loaderBg: '#9EC600',  // Background color of the toast loader
+              });
+            }
+   				}
+   			});
+   		}
+   	}
+  });
+});
+});
+</script>
+
+<!-- Submit form. -->
 <script type="text/javascript">
 $('#insert_form').on("submit", function(event){
   event.preventDefault();
@@ -244,9 +363,9 @@ $('#insert_form').on("submit", function(event){
             });
           } else {
             $('#insert_form')[0].reset();
-  					$("#secData").html(response);
+  					$('#secListTable').DataTable().ajax.reload();
             $.toast({
-              text: "<span style='font-size:15px;'><i class=\"fa fa-check-circle\"></i> Successfully created a new section.</span>", // Text that is to be shown in the toast
+              text: response, // Text that is to be shown in the toast
               showHideTransition: 'plain', // fade, slide or plain
               allowToastClose: true, // Boolean value true or false
               hideAfter: 10000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
@@ -264,55 +383,6 @@ $('#insert_form').on("submit", function(event){
 		}
 	}
 	});
-});
-</script>
-
-<!--Tabledit-->
-<script type="text/javascript">
-$('#secListTable').Tabledit({
-  url: 'SectionUpdate.php',
-  buttons: {
-     edit: {
-         class: 'btn btn-info btn-xs edit_data',
-         html: '<span data-toggle="tooltip" title="Edit adviser"><i class="fas fa-edit" aria-hidden="true"></i></span>',
-         action: 'edit'
-     },
-     delete: {
-         class: 'btn btn-danger btn-xs edit_data',
-         html: '<span data-toggle="tooltip" title="Delete section"><i class="fas fa-trash" aria-hidden="true"></i></span>',
-         action: 'delete'
-       },
-     },
-  columns: {
-      identifier: [0, 'secID'],
-      editable: [[2, 'adviserlname']]
-  },
-  onSuccess:function(data, textStatus, jqXHR){
-   if(data.action == 'delete'){
-     $('#'+data.id).remove();
-   }
- },
-  //Prevent empty field
-  onAjax: function(action, data, serialize){
-    console.log('onAjax(action, serialize)');
-    console.log(action);
-    console.log(serialize);
-
-    if (action === 'edit'){
-      var values_1 = data.split('&');
-      var id_1 = values_1[0];
-      var notes_1 = values_1[1];
-
-      var values_2 = notes_1.split('=');
-      var notes_2 = values_2[1];
-
-      if (notes_2 === ""){
-        return false;
-      } else {
-        return true;
-      }
-    }
-  }
 });
 </script>
 

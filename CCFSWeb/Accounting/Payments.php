@@ -26,6 +26,8 @@
   <link rel="stylesheet" href="../Resources/plugins/summernote/summernote-bs4.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- jQuery -->
+  <script src="../Resources/plugins/jquery/jquery.min.js"></script>
   <link rel="stylesheet" type="text/css" href="../Resources/dist/css/main.css">
   <!-- CSS for DataTables plugin -->
   <link rel="stylesheet" type="text/css" href="../Resources/plugins/bootstrap/js/DataTables/datatables.css">
@@ -73,7 +75,7 @@
                         </div>
                       </form> <br>
                       <div id="searchResult">
-                        <?php include("PaymentsSearch.php"); ?>
+
                       </div>
 
                       <form method="post" id="pay_form">
@@ -103,7 +105,6 @@
                         <div class="row col-4">
                           <input type="submit" name="paid" class="btn btn-success paid" value="Submit"/>
                         </div>
-                        <b><p id="success" style="text-align:center; font-size:22px;"></p></b>
                       </form>
                     </div>
                   </div>
@@ -118,7 +119,7 @@
 
   <?php include("PaymentsInsert.php"); ?>
 
-  <!-- Search student
+  <!-- Search student -->
   <script type="text/javascript">
   $(document).ready(function(){
     $('#searchForm').on("submit", function(event){
@@ -135,9 +136,9 @@
         });
       });
     });
-  </script>-->
+  </script>
 
-  <!--Submit form.
+  <!-- Submit form. -->
   <script type="text/javascript">
   $('#pay_form').on("submit", function(event){
     event.preventDefault();
@@ -145,7 +146,7 @@
     var pname = $('input[name=pname]').val();
     var paid = $('input[name=paid]').val();
   	bootbox.confirm({
-  		message: "Submit?",
+  		message: "Submit payment?",
   		buttons: {
   			confirm: {
           label: "Yes",
@@ -161,20 +162,21 @@
   			$.ajax({
   				type: "POST",
   				url: "PaymentsSearch.php",
-  				data: {id:id, pname:pname, paid:paid},
+  				//data: {id:id, pname:pname, paid:paid},
+          data: $("#pay_form").serialize(),
   				success: function(response){
+            alert(response);
             $('#pay_form')[0].reset();
-  					$("#success").html(response);
+  					//$("#success").html(response);
   					}
   			});
   		}
   	}
   	});
   });
-  </script>-->
+  </script>
 
-  <!-- jQuery -->
-  <script src="../Resources/plugins/jquery/jquery.min.js"></script>
+
   <!-- jQuery UI 1.11.4 -->
   <script src="../Resources/plugins/jquery-ui/jquery-ui.min.js"></script>
   <!--Bootbox library for dialog box.-->

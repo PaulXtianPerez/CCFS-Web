@@ -42,6 +42,6 @@ include('dbase.php');
         mysqli_query($conn,$query11);
 
     }
-    echo '<i class="fas fa-check-circle"></i>' . " Successfully created assessment.";
+    echo "<span style='font-size:15px;'>" . '<i class="fas fa-check-circle"></i>' . " Successfully created assessment." . "</span>";
  }
 ?>

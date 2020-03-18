@@ -1,30 +1,24 @@
 <?php
 include("database.php");
 
-$input = filter_input_array(INPUT_POST);
+if(isset($_POST["id"]) && !isset($_POST["del"])){
+  $value = mysqli_real_escape_string($mysqli, $_POST["value"]);
+  $query = "UPDATE section SET ".$_POST["column_name"]."='".$value."' WHERE secID = '".$_POST["id"]."'";
 
-$adviser_name = mysqli_real_escape_string($mysqli, $input["adviserlname"]);
+  if(mysqli_query($mysqli, $query)){
+    echo "<span style='font-size:15px;'>" . '<i class="fas fa-check-circle"></i>' . " Data updated." . "</span>";
+  } else {
+    echo "<span style='font-size:15px;'>" . '<i class="fas fa-exclamation-circle"></i>' . " Update failed." . "</span>";
+  }
 
-if($input["action"] === 'edit')
-{
- $query = "
- UPDATE section
- SET adviserlname = '".$adviser_name."'
- WHERE secID = '".$input["secID"]."'
- ";
+} else if(isset($_POST["id"]) && isset($_POST["del"])){
+  $query = "DELETE FROM section WHERE secID = '".$_POST["id"]."'";
 
- mysqli_query($mysqli, $query);
-
+  if(mysqli_query($mysqli, $query)){
+    echo "<span style='font-size:15px;'>" . '<i class="fas fa-check-circle"></i>' . " Section deleted." . "</span>";
+  } else {
+    echo "<span style='font-size:15px;'>" . '<i class="fas fa-exclamation-circle"></i>' . " Delete failed." . "</span>";
+  }
 }
-if($input["action"] === 'delete')
-{
- $query = "
- DELETE FROM section
- WHERE secID = '".$input["secID"]."'
- ";
- mysqli_query($mysqli, $query);
-}
-
-echo json_encode($input);
 
 ?>

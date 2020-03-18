@@ -11,7 +11,7 @@ if(isset($_POST['update'])) {
   $bal[] = "SELECT * FROM feestudent WHERE yearid = '".$actyear[0]."' ";
 
   $result1 = $conn->query($bal[0]) or die($conn->error.__LINE__);
-  
+
   while($row = mysqli_fetch_array($result1)) {
     //values for status paid or unpaid
     $set = 'Paid';
@@ -137,5 +137,5 @@ if(isset($_POST['update'])) {
     }
 
   }
-  echo '<i class="fas fa-check-circle"></i>' . " Successfully updated assessment.";
+  echo "<span style='font-size:15px;'>" . '<i class="fas fa-check-circle"></i>' . " Successfully updated assessment." . "</span>";
 }

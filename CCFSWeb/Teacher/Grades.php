@@ -530,6 +530,7 @@ $(document).on("click", ":submit", 'form',function(e){
     data: $('form').serialize(),
     success: function (data) {
       console.log(data);
+      alert(data);
     }
   });
 });

@@ -8,9 +8,8 @@ $requestData = $_REQUEST;
 
 $columns = array(
 // datatable column index  => database column name
-	0 => 'secID',
-	1 => 'sename','gradelvl',
-	2 => 'adviserlname'
+	0 => 'sename','gradelvl',
+	1 => 'adviserlname'
 );
 
 // getting total number records without any search
@@ -22,8 +21,7 @@ $totalFiltered = $totalData;  // when there is no search parameter then total nu
 
 $sql = "SELECT * FROM `section` WHERE 1=1 AND yearid IN (SELECT yearid from schoolyear WHERE scstatus='ACTIVE')";
 if(!empty($requestData['search']['value'])) {   // if there is a search parameter, $requestData['search']['value'] contains search parameter
-	$sql.= " AND ( secID LIKE '".$requestData['search']['value']."%' ";
-	$sql.= " OR sename LIKE '".$requestData['search']['value']."%' ";
+	$sql.= " AND ( sename LIKE '".$requestData['search']['value']."%' ";
 	$sql.= " OR gradelvl LIKE '".$requestData['search']['value']."%' ";
 	$sql.= " OR adviserlname LIKE '".$requestData['search']['value']."%' )";
 }
@@ -38,9 +36,9 @@ $data = array();
 while($row = mysqli_fetch_array($query)) {  // preparing an array
 	$nestedData = array();
 
-	$nestedData[] = $row["secID"];
 	$nestedData[] = $row["gradelvl"] .' - '. $row["sename"];
-	$nestedData[] = $row["adviserlname"];
+	$nestedData[] = '<div contenteditable class="update" data-id="'.$row["secID"].'" data-column="adviserlname">' . $row["adviserlname"] . '</div>';
+	$nestedData[] = '<button type="button" name="delete" class="btn btn-danger btn-sm delete" id="'.$row["secID"].'"><span data-toggle="tooltip" title="Delete section"><i class="fas fa-trash" aria-hidden="true"></i></span></button>';
 
 	$data[] = $nestedData;
 }

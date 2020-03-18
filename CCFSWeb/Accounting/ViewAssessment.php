@@ -32,6 +32,7 @@
   <link rel="stylesheet" type="text/css" href="../Resources/plugins/bootstrap/js/DataTables/datatables.css">
   <!-- DataTables plugin -->
   <script type="text/javascript" charset="utf8" src="../Resources/plugins/bootstrap/js/DataTables/datatables.js"></script>
+  <link rel="stylesheet" type="text/css" href="../Resources/plugins/jquery.toast/jquery.toast.min.css"/>
   <link rel="stylesheet" href="../Resources/bootstrap-4.4.1/css/bootstrap.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -73,9 +74,7 @@
                 </div>
               </div>
             </div>
-            <div>
-              <b><p id="success" style="text-align:center; color:#0AC02A; font-size:22px;"></p></b>
-            </div>
+            <br>
 
               <div class="card card-primary">
                 <div class="card-header">
@@ -83,7 +82,7 @@
                     <form id="K" class="form-inline"> <!-- SEARCH FORM -->
                       <div class="input-group">
                         <div class="input-group input-group-sm">
-                          <input type="text" name="id" class="id form-control form-control-navbar" placeholder="Enter ID Number"/>
+                          <input type="text" name="id" class="id form-control form-control-navbar" placeholder="Enter ID Number" required/>
                         </div>
                         <div class="input-group">
                           <div class="input-group input-group-sm col-6">
@@ -97,6 +96,7 @@
                     </form>
                   </div>
                 </div><!-- /.card-header -->
+
       			    <!-- Balance -->
                 <div class="card-body">
                   <table id="assessmentTable" class="table table-bordered table-hover">
@@ -154,6 +154,21 @@
                   success:function(data){
                     console.log(data);
                     $('#assessmentTable').html(data);
+                    var dataTable = $('#assessmentTable').DataTable({
+                      "processing": true,
+                      "serverSide": true,
+                      "pagingType": "full_numbers", //'First', 'Previous', 'Next' and 'Last' buttons plus page numbers
+                      //"bFilter": false, //remove default search/filter
+                      "ajax":{
+                        url: "ViewAssessmentAction.php", // json datasource
+                        type: "post",  // method  , by default get
+                        error: function(){  // error handling
+                          $(".table-grid-error").html("");
+                          $("#assessmentTable").append('<tbody class="table-grid-error"><tr><th colspan="3">No data found in the server</th></tr></tbody>');
+                          $("#assessmentTable_processing").css("display","none");
+                          }
+                        }
+                    });
                   }
              });
         });
@@ -173,7 +188,7 @@
    });
 </script>
 
-<!-- Initialize DataTables plugin -->
+<!-- Initialize DataTables plugin
 <script type="text/javascript" language="javascript">
 $(document).ready(function(){
   var dataTable = $('#assessmentTable').DataTable({
@@ -192,7 +207,7 @@ $(document).ready(function(){
       }
   });
 });
-</script>
+</script>-->
 
 <!-- Create Assessment -->
 <script type="text/javascript">
@@ -219,7 +234,19 @@ $(document).ready(function(){
           url:"AssessmentAction.php",
           data: {create:create},
           success:function(data){
-            $("#success").html(data);
+            $.toast({
+              text: data, // Text that is to be shown in the toast
+              showHideTransition: 'plain', // fade, slide or plain
+              allowToastClose: true, // Boolean value true or false
+              hideAfter: 10000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+              stack: false, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+              position: 'bottom-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+              bgColor: '#00753a',  // Background color of the toast
+              textColor: '#ffffff',  // Text color of the toast
+              textAlign: 'center',  // Text alignment i.e. left, right or center
+              loader: true,  // Whether to show loader or not. True by default
+              loaderBg: '#9EC600',  // Background color of the toast loader
+            });
           }
         });
       }
@@ -254,7 +281,19 @@ $(document).ready(function(){
           url:"UpdatePaidAction.php",
           data: {update:update},
           success:function(data){
-            $("#success").html(data);
+            $.toast({
+              text: data, // Text that is to be shown in the toast
+              showHideTransition: 'plain', // fade, slide or plain
+              allowToastClose: true, // Boolean value true or false
+              hideAfter: 10000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+              stack: false, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+              position: 'bottom-right', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+              bgColor: '#00753a',  // Background color of the toast
+              textColor: '#ffffff',  // Text color of the toast
+              textAlign: 'center',  // Text alignment i.e. left, right or center
+              loader: true,  // Whether to show loader or not. True by default
+              loaderBg: '#9EC600',  // Background color of the toast loader
+            });
           }
         });
       }
@@ -268,6 +307,8 @@ $(document).ready(function(){
 <!--===============================================================================================-->
 <!--Bootbox library for dialog box.-->
   <script src="../Resources/plugins/bootstrap/js/bootbox/bootbox.min.js"></script>
+<!-- jquery toast -->
+  <script src="../Resources/plugins/jquery.toast/jquery.toast.min.js" type="text/javascript"></script>
 <!--===============================================================================================-->
   <script src="../Resources/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->

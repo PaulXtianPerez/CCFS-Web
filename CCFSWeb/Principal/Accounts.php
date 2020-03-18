@@ -325,7 +325,7 @@ function formSubmit(){
 						$('#availability').html("");
             $('#accListTable').DataTable().ajax.reload();
             $.toast({
-              text: "<span style='font-size:15px;'><i class=\"fa fa-check-circle\"></i> Successfully created a new account.</span>", // Text that is to be shown in the toast
+              text: response, // Text that is to be shown in the toast
               showHideTransition: 'plain', // fade, slide or plain
               allowToastClose: true, // Boolean value true or false
               hideAfter: 10000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
