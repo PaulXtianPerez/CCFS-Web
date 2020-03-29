@@ -83,7 +83,7 @@ include("Connection.php");
               <div>
                 <button type="button" name="checklist" id="checklist" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-info view_data" style="float:right; margin-top:5px; margin-right:20px;">Edit Domains and Descriptions</button>
               </div>
-              
+
             <form method="post" id="checklistForm" action="PreschoolChecklistAction.php">
               <div id="checkData" class="card-body">
                 <table id="checklistTable" class="table table-bordered table-hover">
@@ -310,14 +310,9 @@ $(document).ready(function(){
 <script src="../Resources/plugins/summernote/summernote-bs4.min.js"></script>
 <!-- overlayScrollbars -->
 <script src="../Resources/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../Resources/dist/js/adminlte.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="../Resources/dist/js/pages/dashboard.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../Resources/dist/js/demo.js"></script>
 <!-- JQuery Inline Table Editor Plugin -->
 <script src="../Resources/plugins/jquery/jquery.tabledit.js"></script>
 <script src="../Resources/plugins/jquery/jquery.tabledit.min.js"></script>
+
 </body>
 </html>
